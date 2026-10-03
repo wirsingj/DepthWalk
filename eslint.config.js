@@ -18,7 +18,7 @@ export default [
     languageOptions: {globals: globals.node},
   },
   {
-    files: ['src/{depthwalk,depth-frame,stereogram,pattern,contours,surface-stereo,chroma-stereo,scene-color,foundation-stereo,foundation-texture}.js', 'src/gpu/depthwalk-gpu.js'],
+    files: ['src/{depthwalk,depth-frame,stereogram,pattern,contours,surface-stereo,chroma-stereo,scene-color,foundation-stereo,foundation-texture,foundation-motion,foundation-carrier,foundation-preparation,frame-demand}.js', 'src/gpu/depthwalk-gpu.js'],
     rules: {
       'no-restricted-globals': ['error', 'window', 'document'],
       'no-restricted-imports': ['error', {patterns: ['three', 'three/*']}],

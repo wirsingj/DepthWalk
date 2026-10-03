@@ -1,8 +1,8 @@
 {
-  "recordedAt": "2026-10-03T01:17:57.420Z",
-  "baseRevision": "2a1278b",
+  "recordedAt": "2026-10-03T02:41:48.431Z",
+  "baseRevision": "545de5a",
   "branch": "codex/v0.6",
-  "scope": "Depth-only binary/white/pink CPU foundation algorithm, standalone comparison, and playable-city integration. Not a release or human acceptance.",
+  "scope": "Current uncommitted codex/v0.6: optional contrast comparison, grain clock after GPU admission, stable CPU scene-input caching and prompt keyboard release. Moving static remains unresolved; exact-class reuse stays offline.",
   "environment": {
     "os": "Windows",
     "node": "v22.22.3",
@@ -16,48 +16,301 @@
   "checks": {
     "lint": "passed",
     "unitTests": {
-      "passed": 165,
+      "passed": 175,
       "failed": 0
     },
     "productionBuild": "passed",
-    "gameplay": "foundation-gameplay.json",
-    "gameplayPassedPerStartupBackend": 38,
-    "foundationBackend": "CPU workers even when the legacy game uses WebGPU",
-    "productionSmoke": "Reference, white/pink selection, shapes and both city sources, motion/pause, source/depth switching, native presentation and selected-carrier gameplay link. Final built smoke includes source-view world change followed by pink rendering. No captured console errors/warnings.",
+    "gameplay": {
+      "backends": [
+        "WebGPU",
+        "CPU"
+      ],
+      "failed": 0,
+      "source": "tests/browser-checks.js",
+      "viewport": [
+        1280,
+        720
+      ],
+      "passedPerBackend": 41,
+      "motionOutput": [
+        640,
+        360
+      ],
+      "detail": "Both backends preserve comparison pose/collectibles and exact contrast mapping; key release settles by 300 ms then holds identical pixels. Fullscreen/pointer lock still require real clicks."
+    },
+    "foundationBackend": "Auto prefers WebGPU; explicit CPU compatibility remains available; failure selects CPU fallback.",
+    "productionSmoke": {
+      "recordedWith": "2026-10-03T02:11:36.672Z",
+      "scope": "Production build contains enabled Reduce moving bands. Same current graph and depth calibration; direct GPU tone generation; fine changing grain during camera/visibility motion and a held carrier at rest. CPU compatibility passed the same 40 gameplay checks.",
+      "current": "Production rebuilt successfully; current gameplay checks ran against live development source, not a separate production server."
+    },
+    "preferenceMigration": "Unit coverage: previous legacy saves and a changed preset signature restore current defaults; same-preset custom choices persist.",
     "finalDiagnosticMetadata": {
-      "pattern": "foundation-binary",
+      "pattern": "foundation-pink",
       "edges": 0,
       "dotSize": 1,
       "pixelRatio": 1,
       "spacing": 96,
-      "strength": 0.33
-    }
+      "strength": 0.33,
+      "noiseFrame": "Captured current uint32 identifier; zero selects original static reference.",
+      "motionCadence": "baseline",
+      "carrierContrast": "A=1, optional B=0.5; captured per frame",
+      "grainTrial": "baseline or contrast"
+    },
+    "gpuFixtures": {
+      "foundation": "27 dynamic carrier/frame/contrast cases (binary/white/pink, frames 1/2/uint32-max, contrasts 1/.75/.5) preserve exact roots/pairs, held frames and zero measured CPU/GPU grayscale difference. Static reference/presentation checks retained.",
+      "passed": 22,
+      "failed": 0,
+      "source": "tests/gpu-checks.js"
+    },
+    "performanceSample": {
+      "gpuReadMs": 0,
+      "scope": "Historical, not remeasured this turn. Development gameplay after QA completed; 1280x720, DPR 1, pink/96/.33, positive noiseFrame 18 held at rest, native scale 1. HUD cadence sample, not a sustained motion benchmark.",
+      "refreshHz": 240,
+      "note": "Completion includes scheduling; not a GPU timestamp.",
+      "gpuFps": 240,
+      "adapter": "NVIDIA Ampere",
+      "gpuCompletionMs": 4,
+      "recordedWith": "2026-10-03T02:11:36.672Z"
+    },
+    "motion": {
+      "source": "tests/browser-checks.js",
+      "method": "Image-only local correlation at horizontal shifts -12..12 and vertical -4..4; 16 current city frames, turning and forward movement, both contrasts.",
+      "scope": "Engineering checks, not perceived bands, comfort or sustained performance.",
+      "fixedCoherence": 0.686,
+      "gpuDynamicCoherence": 0.108,
+      "cpuDynamicCoherence": 0.108,
+      "gpuWorstDecodedDepthLossPercentagePoints": 0.05,
+      "cpuWorstDecodedDepthLossPercentagePoints": 0.91,
+      "heldChanges": 0
+    },
+    "liveDevelopment": {
+      "sourceAndLatestControlsServed": true,
+      "strictPorts": true,
+      "probeRemoved": true,
+      "cacheControl": "no-cache",
+      "htmlEditSentFullReload": true,
+      "websocketConnected": true,
+      "previewPort": 4173,
+      "port": 5174,
+      "firefox": "Direct inspection blocked by Computer Use because Firefox URL-policy enforcement is unsupported. No browser settings changed; user needs one refresh to load live client.",
+      "recordedWith": "2026-10-03T02:11:36.672Z",
+      "scope": "Earlier source/HMR verification retained; server source now includes current changes. Direct Firefox inspection remains unavailable."
+    },
+    "browserChecksRecordedAt": "2026-10-03T02:41:48.431Z",
+    "sourceIntegrity": "Hashes identify files tested at recordedAt. Later tiny-step diagnostics and center-guide UI edits are outside that run; the full gameplay suite was not rerun for these additions. Core stereo synthesis remains unchanged. Historical HMR/performance observations retain their earlier scope."
   },
   "limitations": [
-    "No human fusion acceptance or anti-banding success claim.",
-    "No foundation GPU implementation; CPU image bounds and initial FFT preparation costs remain.",
-    "No end-to-end FPS benchmark or moving-game perceptual comparison.",
-    "Full gameplay runs preceded a metadata-only correction to foundation history/edge/dot-size reporting; lint/build and built F3 capture were checked afterward.",
-    "The new comparison PNG button was exercised, but its host download event timed out; downloaded file not verified. The existing gameplay PNG export check passed.",
-    "Full legacy GPU fixture suite, fullscreen and actual captured mouse were not rerun.",
-    "1/f spectrum is tested before geometry mapping; broad structure is checked on a flat encoded plane, not arbitrary occlusions."
+    "Human retains depth; dynamic carrier greatly improved moving bands, with one later suspected brief diamond band. Half contrast helps but harsh static remains. No general comfort or release acceptance.",
+    "No previous RGB/depth accumulation. Integer disparity terracing and legacy color propagation are not solved by this carrier change.",
+    "Procedural pink approximates 1/f with normalized octaves; independent spectral tests cover inputs, not arbitrary occlusion mapping.",
+    "Refresh limited to 60 Hz on camera/visibility changes; general animated hosts must supply their own noiseFrame policy.",
+    "Initial static CPU FFT and 2 MP bounds remain. FPS observation is stationary with a dynamic carrier held, not a hardware-floor or sustained-motion benchmark.",
+    "Fullscreen, captured mouse and forced GPU device loss were not rerun. Direct Firefox UI verification was blocked; live-source and WebSocket reload delivery were verified without browser control."
   ],
   "sha256": {
-    "src/foundation-stereo.js": "3e1c4bbebffab59d2208f46abecbdc339e468635feff5c839d77092f55c6bb3f",
+    "src/foundation-stereo.js": "937b2440859e26f69f0ccc204265a2465f1a8d26588c532af4e43edb60d79713",
     "src/foundation-texture.js": "f1b4e5691d9b8c1a7f6877b12356350daf7b64dd696bfb4130b16b62859af5d4",
     "src/stereogram.js": "14cad13bbc7640a6b588a7c7839b2e98daff7abe43e7cbdd4dcedda485d3cae9",
-    "src/stereo.worker.js": "f0bb31ffaae3b0abebe3a2a5a7d7bfd7d8c68f53439877bd67f2dfdde8aea518",
-    "src/main.js": "6bc02cdf97d8512c227be515b327486843003064274d4131f23644a8cc92fd0d",
-    "src/preferences.js": "f70fc8cfd8e88e96475baca4ddea6dfcf68959303136aadea3120b8d572dada1",
-    "index.html": "fe84aef66105eea1c6835c2389a860398e8939fb0d6da23ec85e4fba53864fcd",
+    "src/stereo.worker.js": "0e96db13599134c9e95949c47cf14fe44fb7f2e265e0c38df280efac249dbd8a",
+    "src/main.js": "87d4dc469090965172f291b88c0ca78e5140139f11dcbac7c21fe60a54560d0e",
+    "src/preferences.js": "f262c5a0c035b6c1eca5b527d6b570edb1004255f3367e1d4f3cf659061d9f30",
+    "index.html": "790b3381d4e87d69f7bfd889e3fc187f4352118aa94d87931d10c4365476c58c",
     "tests/foundation.test.js": "e0616088f0db5f621e5473359fe671a69093e8cdf0e2a958c85e77d2e6f8f281",
     "tests/foundation.worker.js": "7ebcc2e212b68478f209531124ff0102fffab7867afec99d05169f5bea546583",
     "tests/foundations.html": "2f1908fd7e909095784ecf2a579958753ccbf4197f613ba69de7034ed13da559",
     "tests/foundations.js": "68562101239ae1356c954970485f5446c1e3945ca360e446d126dfc69588ff37",
     "tests/foundations.css": "40d6010847280ac473b3210b888d686d931e4e927fe11f5d5201372e87d2b1f7",
-    "tests/browser-checks.js": "9b721fae06ee4d776ea53ecb08601357c0a138f89919aabf3975fa36b9b1d3ed",
+    "tests/browser-checks.js": "def7e470f5b5e89d7421958622e59dfd333257eff7172dbe8ede78e5a324fd48",
     "tests/observer-lab.html": "2d39e4587259472d2031b2575773396b51040d41333ed10cfb666d14811b362d",
-    "vite.config.js": "79b8f9aed6688fe48841b73a4a39d24a4379fc7b8bae4a08151b237b805642f8",
-    "eslint.config.js": "cfb0fbc2a6e95f652deb645e1ca5b8abedf0c0d7b009040108bc66c334f0a6a7"
+    "vite.config.js": "33787033f4f6471022d2e46a7e3f66819059cb375ded7ba56b3a35c0a0d4595e",
+    "eslint.config.js": "cfb0fbc2a6e95f652deb645e1ca5b8abedf0c0d7b009040108bc66c334f0a6a7",
+    "src/style.css": "b167ab66055cf6230351cced6665712191afb098d5b51eba740672af29cc3829",
+    "tests/audit-regressions.test.js": "732bd1fc7e25932b8639b9ad8f60f0a737e0915a94f2a19282758f78659bad73",
+    "tests/depth-direction.test.js": "d33c5148b88041f081b63999c3a3f1e2b865f8c4650c9e03f2fb5e9f9ae54412",
+    "tests/ink-contours.test.js": "ea857975af7dea762a196df7778b8a92f1a818bd0780e7a8c7d1fee8d48b8dca",
+    "src/gpu/depthwalk-gpu.js": "afd47f40ae0080e0f72983c93f208cd18dfd7bd89d1819e8ffa391b85f3fd32f",
+    "src/gpu/stereogram.wgsl": "fed551458dd414509218ab75bad7152c186561834391271d9a4e740987049173",
+    "src/gpu/city-renderer.js": "e643939a6d608a2388e2184384400451620cb6c6d659ce49471b36b3d4ca193c",
+    "tests/gpu-checks.js": "7e38a819eca88c28dcc86936ffa1f313b7c6b85cc388846629b0eedffc1f574f",
+    "src/foundation-motion.js": "279d0c95e837c0e1b669349bc9e6846425692ce229b2a0cfe9f2cf881f22ed81",
+    "tests/foundation-motion.test.js": "3ee277ece006cc642cee30734a5cfd4f9b9f3573540a13092a59761e555641e3",
+    "tests/foundation-motion-quality.js": "a6e51e5a8acd0245b0282ea8d2399656d16564fc7bde47719f8dc25aecbba066",
+    "src/debug/panel.js": "bc6fd9db5bd188f2028bd1ca701522bff4036bebbbafe631904e726f6e403653",
+    "src/game.js": "c85faa798d443b322527d5d30ed995494c41dacf1be02fc712aa407adf2956d7",
+    "tests/game.test.js": "120b840dd3286599cbd25fb75ae58d90a4f0f7d59df4d2db314ec67476f8e78a",
+    "tests/foundation-reuse-research.js": "b4abdc2c5f6759a5fffe29410862d22bf3afd837860a8ddefd45bd9304ebff4e"
+  },
+  "humanObservation": {
+    "reportedDate": "2026-10-02",
+    "scope": "Live game; exact settings/hardware not independently captured.",
+    "banding": "Initially reported absent; during the 0.75-contrast comparison the user suspected one brief band at the diamond. Bounded acceptance, not universal absence.",
+    "fusion": "User retained depth and objects/edges during movement.",
+    "remaining": "Harsh TV static during movement; reported tail of 1–2 seconds after stopping. Faster key release is tested but not yet separately human-confirmed.",
+    "frameSync": "No meaningful difference.",
+    "contrast75": "Qualified improvement; depth held, main static remained harsh.",
+    "contrast50": "B helps, but static is still too harsh."
+  },
+  "contrastTrial": {
+    "retained": true,
+    "transform": "round(128 + (tone - 128) * 0.75)",
+    "scope": "Historical 0.75-contrast CPU rectangle fixture below; not a human failure threshold. Current optional live B uses 0.5.",
+    "fixture": {
+      "width": 640,
+      "height": 360,
+      "nearRectangle": {
+        "xExclusive": [
+          200,
+          430
+        ],
+        "yExclusive": [
+          50,
+          320
+        ],
+        "proximity": 0.8
+      },
+      "backgroundProximity": 0.15,
+      "carrier": "pink",
+      "spacing": 96,
+      "strength": 0.33,
+      "noiseFrame": 2,
+      "seed": 173,
+      "maxColumns": 64,
+      "maxRows": 36
+    },
+    "summaries": [
+      {
+        "contrast": 1,
+        "sampled": 2304,
+        "valid": 1944,
+        "reliableFraction": 0.918724279835391,
+        "ambiguousFraction": 0.00102880658436214,
+        "alternateLayerFraction": 0.7345679012345679,
+        "meanDotContrast": 0.34727709150050495,
+        "weakContrastFraction": 0.13734567901234568,
+        "zeroStrength": false
+      },
+      {
+        "contrast": 0.75,
+        "sampled": 2304,
+        "valid": 1944,
+        "reliableFraction": 0.6872427983539094,
+        "ambiguousFraction": 0.00102880658436214,
+        "alternateLayerFraction": 0.7345679012345679,
+        "meanDotContrast": 0.2523101752791551,
+        "weakContrastFraction": 0.5241769547325102,
+        "zeroStrength": false
+      }
+    ],
+    "decision": "Both human comparisons helped insufficiently. Leave A as default, B optional; stop contrast reductions. Comfort remains unresolved.",
+    "default": false,
+    "currentComparisonContrast": 0.5
+  },
+  "releaseFix": {
+    "source": "tests/game.test.js",
+    "ratesHz": [
+      30,
+      60,
+      144,
+      240
+    ],
+    "routes": [
+      "walk",
+      "sprint",
+      "turn"
+    ],
+    "before": {
+      "settleMs": [
+        611,
+        700
+      ],
+      "extraGrainFields": [
+        18,
+        40
+      ]
+    },
+    "after": {
+      "settleMs": [
+        142,
+        167
+      ],
+      "extraGrainFields": [
+        4,
+        9
+      ]
+    },
+    "scope": "Deterministic simulation; current CPU/GPU browser checks confirm key release settles by 300 ms and holds exact pixels afterward. Does not account for the full human-reported tail or prove moving comfort."
+  },
+  "reuseHypothesis": {
+    "source": "tests/foundation-reuse-research.js",
+    "scope": "Synthetic exact-class reuse; no human comfort claim or game integration",
+    "width": 384,
+    "height": 128,
+    "spacing": 72,
+    "strength": 0.33,
+    "frames": 12,
+    "results": [
+      {
+        "route": "turn",
+        "reusedFraction": 0.79591,
+        "baseline": {
+          "averageRms": 68.07192,
+          "peakRms": 71.80547,
+          "peakStripeVariation": 0.11912,
+          "quietTransitions": 0
+        },
+        "reuse": {
+          "averageRms": 24.57536,
+          "peakRms": 27.39986,
+          "peakStripeVariation": 1.15275,
+          "quietTransitions": 0
+        },
+        "decodedDepthWithinTwoPixels": [
+          0.96711,
+          0.95559
+        ]
+      },
+      {
+        "route": "approach",
+        "reusedFraction": 0.86937,
+        "baseline": {
+          "averageRms": 67.97034,
+          "peakRms": 71.78972,
+          "peakStripeVariation": 0.11586,
+          "quietTransitions": 0
+        },
+        "reuse": {
+          "averageRms": 15.09719,
+          "peakRms": 17.00586,
+          "peakStripeVariation": 2.08686,
+          "quietTransitions": 0
+        },
+        "decodedDepthWithinTwoPixels": [
+          0.97204,
+          0.97204
+        ]
+      },
+      {
+        "route": "flat-approach",
+        "reusedFraction": 0.83333,
+        "baseline": {
+          "averageRms": 67.94426,
+          "peakRms": 71.92096,
+          "peakStripeVariation": 0.1275,
+          "quietTransitions": 0
+        },
+        "reuse": {
+          "averageRms": 6.19269,
+          "peakRms": 68.11963,
+          "peakStripeVariation": 0.06066,
+          "quietTransitions": 10
+        },
+        "decodedDepthWithinTwoPixels": [
+          1,
+          1
+        ]
+      }
+    ],
+    "decision": "Do not integrate: reduced average flicker concentrates changes in vertical strips or rare large refreshes. These proxies indicate risk; no human test performed."
   }
 }

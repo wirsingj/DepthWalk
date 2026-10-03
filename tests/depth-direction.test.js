@@ -24,12 +24,12 @@ test('fresh and migrated viewing defaults give foreground a smaller recovered se
   }
 });
 
-test('old reversed defaults migrate once without losing other viewing preferences',()=>{
+test('old reversed tuning migrates to the latest preset; subsequent diagnostic choices persist',()=>{
   let saved=JSON.stringify({layoutRevision:2,'invert-depth':true,pattern:'classic',spacing:'150',grain:'2','stereo-window':'3'});
   const storage={getItem:()=>saved,setItem:(_,value)=>saved=value};
   const migrated=loadPreferences(storage);
   assert.equal(migrated['invert-depth'],false);
-  assert.equal(migrated.pattern,'classic');assert.equal(migrated.spacing,'150');assert.equal(migrated.grain,'2');assert.equal(migrated['stereo-window'],'3');
+  assert.deepEqual(migrated,VIEWING_DEFAULTS);
   savePreferences(storage,{...migrated,'invert-depth':true});
   assert.equal(loadPreferences(storage)['invert-depth'],true,'new explicit diagnostic choice should persist');
 });

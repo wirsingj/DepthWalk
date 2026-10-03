@@ -6,7 +6,6 @@
   <canvas id="stereo" aria-label="Interactive Magic Eye city"></canvas>
   <canvas id="gpu-stereo" aria-label="GPU Magic Eye city" hidden></canvas>
   <div id="stereo-surround" aria-hidden="true" hidden><div class="surround-left"></div><div class="surround-right"></div></div>
-  <div id="center-alignment" role="img" aria-label="Two center alignment crosses: look through them until three appear" hidden><i aria-hidden="true"></i><i aria-hidden="true"></i></div>
   <div id="interface">
     <header>
       <a class="brand" href="./" aria-label="Depthwalk home"><span class="brand-mark">▥</span> DEPTHWALK<span class="edition">EXPERIMENT 001</span></a>
@@ -28,29 +27,47 @@
     <aside id="tuning" class="panel">
       <div class="panel-heading"><span>FIND YOUR DEPTH</span><button id="collapse" aria-expanded="true" aria-label="Collapse viewing controls">−</button></div>
       <div id="tuning-body">
-        <p class="tuning-hint"><a href="./tests/foundations.html">Open v0.6 · Depth first →</a></p>
+        <div class="renderer-choice">
+          <p id="renderer-status" role="status">Stereo: depth first · Soft grayscale</p>
+          <p>Start still. Look through the dots until they merge.</p>
+        </div>
         <label for="demo">Demo world</label>
         <select id="demo" disabled><option value="original">Original city</option><option value="retro">Block study · simple shapes</option></select>
-        <p class="tuning-hint">Switch worlds at the same position with the same filter. Block study tests simpler shapes and flat colors. Try 50% render quality separately for chunkier pixels.</p>
+        <p class="control-help">Changes the scenery. Keeps your position and signals.</p>
+        <label for="texture">Texture</label>
+        <select id="texture"><option value="foundation-pink">Soft grayscale · starting preset</option><option value="foundation-binary">Black &amp; white · strongest contrast</option><option value="foundation-white">Fine grayscale · comparison</option><option value="" disabled hidden>Legacy style selected in Advanced</option></select>
+        <button id="motion-compare-open" class="outline" aria-expanded="false" aria-controls="motion-comparison">Compare moving grain</button>
+        <section id="motion-comparison" aria-label="Movement comparison" hidden>
+          <div class="motion-options"><button id="motion-baseline" aria-pressed="true">A · Current</button><button id="motion-candidate" aria-pressed="false">B · Half contrast</button></div>
+          <p class="control-help">Walk forward and turn, then try the other version. Compare static, depth clarity and moving bands. Switching keeps your position.</p>
+          <p id="motion-comparison-status" class="control-help">A · Current contrast. Grain holds while stopped.</p>
+        </section>
+        <p class="control-help">Same depth, different grain. Try black &amp; white for stronger contrast.</p>
+        <button id="reset-viewing" class="primary">Use latest defaults</button>
+        <p class="control-help">Updates on reload. Restores the starting preset; keeps your walk.</p>
+        <details id="advanced-settings"><summary>Advanced · experiments and fine tuning</summary>
+        <p class="tuning-hint">Start with the defaults. Legacy color styles remain comparisons; they can repeat outlines and weaken depth. <a href="./tests/foundations.html">Compare reference textures →</a></p>
         <label for="pattern">Pattern style</label>
-        <select id="pattern"><option value="quiet">Quiet stereo · continuous depth</option><option value="chroma-soft">Soft paired - experimental</option><option value="chroma">Paired color · experimental</option><option value="scene">Scene colors · dense reference</option><option value="geometry">DepthWalk colors · natural</option><option value="classic">Classic colors · sharp dots</option><option value="mono">Neutral dots · fusion aid</option><option value="foundation-binary">v0.6 · Black &amp; white reference</option><option value="foundation-white">v0.6 · White texture</option><option value="foundation-pink">v0.6 · Pink texture candidate</option></select>
-        <p id="foundation-hint" class="tuning-hint" hidden>Depth-only reference · CPU. One-pixel texture, full image, no added ink or frame blending. Scene color returns in Colored 3D. Initial texture preparation may pause briefly.</p>
+        <select id="pattern"><optgroup label="Depth first"><option value="foundation-pink" selected>Depth first · Soft grayscale</option><option value="foundation-binary">Depth first · Black &amp; white</option><option value="foundation-white">Depth first · Fine grayscale</option></optgroup><optgroup label="Legacy comparisons"><option value="quiet">Quiet stereo · continuous depth</option><option value="chroma-soft">Soft paired - experimental</option><option value="chroma">Paired color · experimental</option><option value="scene">Scene colors · dense reference</option><option value="geometry">DepthWalk colors · natural</option><option value="classic">Classic colors · sharp dots</option><option value="mono">Neutral dots · fusion aid</option></optgroup></select>
+        <p id="foundation-hint" class="tuning-hint" hidden>Depth-only reference. One-pixel texture, full image, no added ink or frame blending. Scene color returns in Colored 3D.</p>
+        <div id="foundation-motion-controls" hidden><label><input type="checkbox" id="foundation-motion" checked> Reduce moving bands</label><p class="tuning-hint">Refreshes matching grain while you move; freezes when you stop. Trades sweeping patterns for fine moving static. Turn off to compare.</p></div>
         <p class="tuning-hint"><a id="banding-comparison" href="./tests/observer-lab.html?preview=rank" target="_blank" rel="noopener">Preview anti-banding prototype ↗</a><br>Recorded comparison. Not yet a live game style.</p>
-        <label for="stereo-window">Stereo area</label><select id="stereo-window"><option value="0">Full image</option><option value="4">Center · 4 pattern widths (experimental)</option><option value="3">Center · 3 pattern widths</option><option value="2">Center · 2 pattern widths</option></select><p class="tuning-hint">Full-width city. Y toggles center alignment guides. Narrow stereo windows remain experimental.</p>
+        <label for="stereo-window">Stereo area</label><select id="stereo-window"><option value="0">Full image</option><option value="4">Center · 4 pattern widths (experimental)</option><option value="3">Center · 3 pattern widths</option><option value="2">Center · 2 pattern widths</option></select><p class="tuning-hint">Full-width city. T toggles faint center sight guides. Narrow stereo windows remain experimental.</p>
         <div id="surface-controls"><label for="surface-detail">Stereo support <output id="surface-value">35%</output></label><input id="surface-detail" type="range" min="0" max="100" value="35" step="5"><div class="range-labels"><span>Quieter surfaces</span><span>Stronger cues</span></div><p class="tuning-hint" id="surface-hint">Quiet shading with a continuous stereo pattern. Increase support for an easier depth lock. E compares with dense styles.</p></div>
         <div id="motion-controls" hidden><label><input type="checkbox" id="motion-stability" checked> Stable texture during movement</label><p class="tuning-hint">Carries texture between matching surfaces without blurring depth.</p></div>
         <div id="quiet-motion-controls"><label><input type="checkbox" id="quiet-stability"> Reduce Quiet shimmer · experimental</label><p class="tuning-hint">Keeps texture steadier while moving; repeated outlines remain. <a id="quiet-comparison" href="./tests/observer-lab.html?compare=quiet&amp;direction=original" target="_blank" rel="noopener">Compare the same recorded walk ↗</a></p></div>
         <label for="grain">Dot size</label>
         <select id="grain"><option value="1" selected>Fine · 1 px</option><option value="2">Medium · 2 px</option><option value="3">Large · 3 px</option></select>
         <label for="edges">Edge definition</label>
-        <select id="edges"><option value="0">Off</option><option value="1">Crisp · thin</option><option value="2" selected>Bold · strong</option><option value="3">Dark ink · outlined</option></select>
+        <select id="edges"><option value="0" selected>Off</option><option value="1">Crisp · thin</option><option value="2">Bold · strong</option><option value="3">Dark ink · outlined</option></select>
         <p class="tuning-hint">Dark ink emphasizes shape edges; repeated outlines can become more prominent.</p>
-        <label for="spacing">Pattern spacing <output id="spacing-value">120 px</output></label>
-        <input id="spacing" type="range" min="48" max="180" value="120" step="1">
+        <label for="spacing">Dot separation <output id="spacing-value">96 px</output></label>
+        <input id="spacing" type="range" min="48" max="180" value="96" step="1">
         <div class="range-labels"><span>Easier to fuse</span><span>Wider</span></div>
         <p class="tuning-hint">Wider spacing gives fewer repeats. Reduce it if the guide dots won't merge.</p>
-        <label for="strength">Depth strength <output id="strength-value">50%</output></label>
-        <input id="strength" type="range" min="0" max="50" value="50" step="1">
+        <label for="strength">Depth amount <output id="strength-value">33%</output></label>
+        <input id="strength" type="range" min="0" max="50" value="33" step="1">
+        <p class="control-help">Lower this if depth breaks into separate layers. Higher means a wider depth range, not a clearer image.</p>
         <label><input id="invert-depth" type="checkbox"> Reverse depth direction</label><p class="tuning-hint">Normally off for looking through the screen. Turning this on swaps foreground and background.</p>
         <label for="quality">Render quality</label>
         <select id="quality"><option value="auto">Auto · target smooth motion</option><option value="1">Native · sharpest</option><option value="0.75">Balanced · 75%</option><option value="0.5">Performance · 50%</option></select>
@@ -58,15 +75,15 @@
         <select id="backend"><option value="auto">Auto · prefer GPU</option><option value="gpu">GPU · WebGPU</option><option value="cpu">CPU · compatibility</option></select>
         <div id="backend-status" class="render-meta" role="status">Checking GPU…</div>
         <div class="render-meta"><span id="resolution">Preparing scene…</span><span id="fps">— fps</span></div>
-        <button id="reset-viewing" class="outline">Reset viewing settings</button>
-        <p class="tuning-hint">Start still and merge the two guide dots into one center dot. If you see extra layers, pause and reacquire the dots. Try Neutral dots or lower depth strength for an easier lock.</p>
+        </details>
       </div>
     </aside>
     <div id="performance" class="panel" aria-label="Live rendering performance"><strong id="live-fps">— fps</strong><span id="live-backend">Starting GPU</span><small id="perf-detail">Checking renderer…</small></div>
     <div id="mission" class="panel" hidden><div class="mission-icon">◈</div><div><span class="eyebrow">SIGNALS RECOVERED</span><div class="mission-count"><strong id="count">0</strong><span>/ 5</span><div id="signals"><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
     <div id="toast" role="status" aria-live="polite"></div>
     <section id="complete" class="panel" hidden><div class="eyebrow">ALL SIGNALS CONNECTED</div><h2>The city is awake.</h2><p>Five beacons. One hidden world.<br>Stay a while — there’s nowhere you need to be.</p><button id="keep-walking" class="primary">Keep exploring <span>↗</span></button></section>
-    <footer><span><i class="status-dot"></i> <span id="location">CENTRAL PLAZA</span></span><div><span><kbd>WASD</kbd> walk · <kbd>Shift</kbd> sprint</span><span><kbd>R</kbd> view · <kbd>E</kbd> pattern</span><button id="center-guide" aria-pressed="false" title="Look through the two crosses until three appear. Alignment aid; scene fusion can still vary.">Center guides <kbd>Y</kbd></button><button id="capture">Mouse look ↗</button><button id="debug-open">Analyze stereo F3</button><button id="help">Guide</button><button id="hide">Hide HUD <kbd>H</kbd></button></div></footer>
+    <footer><span><i class="status-dot"></i> <span id="location">CENTRAL PLAZA</span></span><div><span><kbd>WASD</kbd> walk · <kbd>Shift</kbd> sprint</span><span><kbd>R</kbd> view · <kbd>E</kbd> pattern</span><button id="center-guide" aria-pressed="true" title="Toggle three faint sight guides across the screen center.">Center guides <kbd>T</kbd></button><button id="capture">Mouse look ↗</button><button id="debug-open">Analyze stereo F3</button><button id="help">Guide</button><button id="hide">Hide HUD <kbd>H</kbd></button></div></footer>
+    <div id="center-alignment" role="img" aria-label="Three faint center-line sight guides"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></div>
   </div>
   <button id="show-hud" hidden>Show HUD <kbd>H</kbd></button>
   <div id="fatal" hidden role="alert"></div>

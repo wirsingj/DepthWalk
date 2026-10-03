@@ -2,18 +2,23 @@
 
 A playable, single-level Magic Eye city exploration game. Built with Three.js, Vite, procedural geometry, and a real single-image autostereogram renderer. No external assets, runtime services, accounts, or network requests beyond serving the app.
 
-The city is also the test scene for engine-independent **DepthWalk CPU and WebGPU filters**. Scalar depth is required; scene color is optional. DepthWalk generates the dot texture, estimated normals, edge emphasis and stereo matching, using either supplied colors or its own geometry palette. See [the integration interface](docs/INTEGRATION.md) for both APIs. The game prefers WebGPU and retains CPU workers as a compatibility fallback.
+The city is also the test scene for engine-independent **DepthWalk CPU and WebGPU filters**. Scalar depth is required; scene color is optional. DepthWalk generates the dot texture, estimated normals, edge emphasis and stereo matching, using either supplied colors or its own geometry palette. See [the integration interface](docs/INTEGRATION.md) for both APIs. The game starts with the depth-only foundation renderer on WebGPU, with CPU fallback.
 
 ## Launch
 
-The **v0.6 foundation platform** is at [Depth first](tests/foundations.html).
+The game now starts with **Soft grayscale**, the depth-first pink-noise preset.
+Everyday controls are world, texture and **Use latest defaults**. Advanced controls
+are collapsed. The **v0.6 foundation comparison** is at [Depth first](tests/foundations.html).
 Compare black-and-white, white-noise and spectral pink-noise carriers on the same
 depth frame, then choose **Play this in the city** to use that renderer with
 movement and collectibles. City links also accept `?foundation=binary`,
-`?foundation=white` or `?foundation=pink`. These research modes use CPU workers,
+`?foundation=white` or `?foundation=pink`. These research modes prefer WebGPU,
 full-image depth and one-pixel texture, without source tint, added ink, reversal
-or frame blending. The first texture preparation can pause; output is capped near
-2 MP. Fusion improvement remains unconfirmed. Legacy GPU modes remain available.
+or frame blending. Initial texture preparation runs in a worker; output is capped near
+2 MP. Human feedback reports strong band reduction and retained objects/edges,
+with one possible brief diamond band, but rejects harsh TV static. Moving-grain
+comfort remains the priority; this audit preserves the current carrier.
+Legacy modes remain available under Advanced.
 
 The goal remains a stereogram video game and eventually a reusable layer for
 other games, with explicit limits and accepted degradation. Earlier design
@@ -26,7 +31,10 @@ npm install
 npm run dev
 ```
 
-Open **http://localhost:5173** in a desktop browser. Chrome or Edge with hardware acceleration is recommended for mouse capture. The Vite console shows the actual address if port 5173 is occupied. Do not open `index.html` directly: ES modules and workers need an HTTP server.
+Open the address printed by Vite. Development uses fixed port **5174** and serves
+current source with automatic updates; refreshing always loads current code.
+If the port is occupied, startup fails instead of silently choosing another port.
+Do not open `index.html` directly: ES modules and workers need an HTTP server.
 
 Development and preview bind to this computer's loopback interface by default.
 For an intentional LAN demo, explicitly pass `--host 0.0.0.0` to Vite.
@@ -38,7 +46,9 @@ npm run build
 npm run preview
 ```
 
-Open the address printed by Vite (normally http://localhost:4173). The generated `dist/` directory can be served by any static HTTP host.
+Production preview uses fixed port **4173**, serves only the last build, and does
+not hot-reload source edits. Keep development on 5174 for daily use. The generated
+`dist/` directory can be served by any static HTTP host.
 
 ## Play
 
@@ -51,7 +61,7 @@ The initial scene is stationary. Relax your eyes as if looking beyond the displa
 | Shift + movement | Sprint |
 | Left / right arrows | Turn without capturing the mouse; Q also turns left |
 | R | Cycle Magic Eye / Colored 3D / Depth map, retaining mouse capture |
-| E | Cycle pattern style, retaining mouse capture |
+| E | Cycle three depth-first textures; all styles only with Advanced open; retain mouse capture |
 | F3 / Analyze stereo | Pause and reconstruct depth from the finished stereo pixels |
 | Mouse look button, or click the scene | Explicitly request mouse capture after entering |
 | Mouse | Look horizontally and gently up/down while captured |
@@ -74,25 +84,19 @@ half resolution. Recorded comparisons also provide the demo selector.
 
 ## Viewing and performance
 
-- **Y / Center guides:** toggle two central crosses in Magic Eye view. Look through them until three appear. They follow pattern spacing, replace the upper dots while enabled, and remain available with the HUD hidden. Alignment helps acquire depth but does not guarantee scene fusion.
+- **T / Center guides:** three translucent white crosses with thin black outlines start visible across the screen center in the UI layer. T toggles only crosses; upper dots stay independent. Both hide with the HUD. Y remains an alias. These sight references follow pattern spacing; fusion is not guaranteed.
 
-- **Stereo area:** defaults to the full-width city. Optional narrow center windows remain experimental; they bound matching chains but were rejected as the default presentation. Existing window preferences migrate once to full image, preserving other viewing settings. Y provides central alignment without narrowing the scene. Repeated-object artifacts remain unresolved.
-
-- **Pattern style:** Quiet stereo · continuous depth retains the previously fused source-color baseline at 35% support. Viewing preferences persist. Repeated outlines remain unresolved. The neutral replacement was rejected and reverted: making color-spread metrics zero by discarding scene cues was not a successful fix. Paired modes remain experimental.
-- **Reduce Quiet shimmer · experimental:** optional, off by default. Keeps texture seeds steadier while recomputing current source colors and exact stereo pairs. Toggle it during the same walk to compare; it does not remove repeated outlines. [Measured tradeoffs](docs/OBSERVER.md#quiet-motion-comparison).
-
-- **Soft paired - experimental:** keeps the continuous carrier and projects 25% source lighting into the visible eye pairs. It reduces noise and restores some surface shading without copying color down full-width chains. Equal class luminance is relaxed; conflicting colors remain a research limitation. Quiet stays the default, and viewing settings now survive reloads.
-- **Paired color · experimental:** a separate research mode for repeated colored outlines. It retains the complete depth graph in **linear-light luminance** and projects source hues to both visible eye endpoints, with nearer surfaces winning overlaps. Colors never traverse chains to the screen edges. RGB equality is deliberately relaxed where projected surfaces compete. Shading is flattened and propagated contour accents are disabled. Stereo support adjusts the continuous carrier. **Stable texture during movement** is enabled by default: it smooths the seed texture and reuses previous matching classes one-to-one, preserving current depth without final-image blur. Disable it for a comparison. Quiet stereo remains the default.
-- **Dot size:** Fine / 1 CSS pixel by default; Medium / 2 and Large / 3 are also available. All sizes remain stable across display scaling and worker boundaries. Use Native quality for the finest detail; reduced quality enlarges pixels sharply rather than smoothing them.
-- **Edge definition:** Bold is the default. Crisp uses a thinner band; Off removes emphasis. **Dark ink · outlined** darkens matched contours, including recessed rims, while retaining Quiet's matching texture contrast. It can make repeated outlines more prominent. No screen-space overlay or depth displacement is applied.
-- **Pattern spacing:** 48–180 CSS pixels; default 120. Wider spacing reduces the number of repeats across the full image. Reduce it if merging the dots is difficult. Spacing and alignment dots scale together.
-- **Reset viewing settings:** restores the default controls and saved preferences without changing camera position or collected beacons.
-- **Depth strength:** 0–50%; default 50%, matching the same preferred setup. Lower values make gentler depth. At zero the pattern repeats uniformly, useful for learning to fuse it.
-- **Reverse depth direction:** normally off for looking through the screen; enabling it swaps foreground/background. The former reversed default is retired, and older saved settings reset only direction. New choices persist. F3 and recorded-walk links follow the setting; explicitly reversed historical lab links remain reversed. Human confirmation is pending.
-- **Native:** generates at the actual device-pixel resolution, up to 8.3 megapixels (4K). It does not stretch a low-resolution image. DPR/display-scale changes and window resizes recreate the render buffers.
-- **Auto · target smooth motion:** the default quality adapts resolution after sustained slow frames and restores it when headroom permits. Choose Native to hold resolution fixed. All modes preserve display-pixel spacing.
-- **Balanced / Performance:** explicitly select 75% / 50% of native linear resolution. These modes trade sharpness for speed. Pattern separation is converted from CSS pixels to render pixels, preserving its apparent spacing when render quality changes.
-- **Renderer:** Auto prefers WebGPU. Depth rendering, stereo constraints, palette generation and presentation remain on the GPU with no per-frame CPU readback. CPU compatibility can be selected explicitly and activates automatically if GPU initialization fails or the device is lost. The HUD reports the active renderer. WebGPU requires a supported browser/device and a secure context (localhost or HTTPS).
+- **Starting preset:** depth-first pink noise, 96 CSS-pixel spacing and 33% strength, full image, foreground near, no source tint, ink or frame history. Pink follows [static-viewing research](https://arxiv.org/abs/1506.05036); these spacing/strength values are engineering choices, not paper-derived optima. Gameplay fusion remains unconfirmed.
+- **Texture:** Soft grayscale (pink), Black & white (strongest contrast), or Fine grayscale (white noise). All use the same depth correspondence algorithm. Colored 3D still shows source colors.
+- **Use latest defaults:** restores the current preset without moving the camera or resetting collectibles. Saved adjustments persist while starting defaults match; changing defaults automatically retires older tuning on reload. Explicit foundation URLs still choose their named texture.
+- **Advanced:** holds sliders, legacy styles, renderer selection and lab links. Quiet/paired/source-color styles remain comparisons with unresolved repeated outlines and fusion failures. They are not the starting preset.
+- **Reduce moving bands:** on by default for depth-first textures. Refreshes matched grain while moving and freezes when stopped; trades sweeping patterns for fine moving static. Disable under Advanced to compare. [Mechanism and limits](docs/STEREO-CONSTRAINTS.md#motion-carrier).
+- **Compare moving grain:** A retains current contrast; B halves it. Walk and turn with each, comparing static, depth and bands. Switching keeps your position. B is an experiment; reset restores A. Releasing movement keys now settles promptly to stop unnecessary grain changes.
+- **Dot separation:** 48–180 CSS pixels. Reduce it if the guides will not merge; wider values reduce repeats. **Depth amount:** 0–50%; lower it if depth splits into layers. Zero gives a flat pattern. Neither slider guarantees clearer depth.
+- **Legacy-only controls:** stereo windows, dot size, ink and reversal cannot alter foundation output. Quiet support changes matching texture contrast. Quiet/paired history carries seed identity, never old image frames. [History evidence](docs/OBSERVER.md#quiet-motion-comparison).
+- **Quality:** Auto adapts resolution; Native holds device resolution subject to the 2 MP foundation / 8.3 MP legacy caps. Balanced and Performance use 75% and 50% linear resolution. Lower resolution enlarges pixels sharply; spacing remains in display pixels.
+- **Renderer:** Auto prefers WebGPU for all textures and falls back to CPU on failure. The badge reports the actual backend; completion latency is not GPU execution time.
+- **At rest:** unchanged depth-first frames are held; the badge says “Still · grain held.” Movement, settings and analysis resume rendering. A window too narrow for the pattern shows a recoverable prompt.
 - GPU rendering follows display refresh, with at most two real frames in flight. Visible animation frames prompt outstanding completion callbacks with an empty submission, addressing Firefox's [100 ms idle-poll scheduling issue](https://bugzilla.mozilla.org/show_bug.cgi?id=1870699). The badge exposes backend, resolution and completion latency; completion latency includes browser scheduling and is **not GPU execution time**. No Firefox preference changes are required by this workaround. CPU presentation targets up to 40 fps. QA readbacks reduce speed during checks and stop afterward; benchmark the normal page.
 - Use the **−** control to collapse viewing settings or **H** to hide the HUD. Focusing a tuning input stops held movement. There is no head bob, shaking, automatic turning, or decorative motion.
 
@@ -112,7 +116,7 @@ Paired color isolates the repeating color problem from disparity encoding. A dep
 
 ## Verification
 
-The [Observer lab](docs/OBSERVER.md) at **http://localhost:5173/tests/observer-lab.html** supports longer research cycles: repeatable walk/turn/stop recordings, CPU or WebGPU profile sweeps, aligned eye-color views, a rotatable recovered relief, per-pixel disparity cost curves, and motion/error timelines. A local source-color intervention measures how far colored repeats propagate. Choose quick or native 1080p inputs, compare eight profiles, inspect weak regions and export the report. The lab and GPU fixtures are included in production builds. For unattended synthetic runs, use `npm run research -- --full --output evidence/my-observer-run.json`.
+The [Observer lab](docs/OBSERVER.md) at **tests/observer-lab.html** supports longer research cycles: repeatable walk/turn/stop recordings, CPU or WebGPU profile sweeps, aligned eye-color views, a rotatable recovered relief, per-pixel disparity cost curves, and motion/error timelines. A local source-color intervention measures how far colored repeats propagate. Choose quick or native 1080p inputs, compare eight profiles, inspect weak regions and export the report. The lab and GPU fixtures are included in production builds. For unattended synthetic runs, use `npm run research -- --full --output evidence/my-observer-run.json`.
 
 The observer's analytical controls detect blank images, incorrect depth, mismatched eye colors, regenerated-but-valid stereo noise, stale depth during motion, and remote color copies. The original decoder remains unchanged. Earlier measurements explain why depth accuracy alone was insufficient: in a 640×360 plaza sweep, Paired color recovered 96.0% of disparities within two pixels while 17.9% of matching eye patches disagreed in color. Quiet stereo had only 0.7% color conflict but propagated 53.4% of a local color intervention's affected pixels beyond the generous 1.5-period neighborhood. Those percentages have different denominators; they are diagnostic signals, not measured human discomfort. See [historical observer verification](evidence/observer-verification.json), [the app/tooling audit](docs/AUDIT.md), and [method, thresholds and iteration rules](docs/OBSERVER.md).
 
@@ -131,42 +135,32 @@ Sharpness/echo regressions check contrast retention when mixing materials, absen
 
 Contour regressions additionally check foreground-only silhouettes, face corners at continuous depth, rejection of hidden edges, unchanged flat interiors, CSS-scaled widths, stable frames and seam-free worker halos. At Fine / 120 px / 50%, contour contrast increases by at least 25% in the controlled fixture while its strongest correlation remains at the surface's actual stereo depth in all three pattern styles.
 
-For repeatable browser integration tests, run the dev server and open **http://localhost:5173/?verify**. This dev-only page runs checks against the actual WebGL renderer, workers, input event handlers, HUD, collision, collection, and completion. It reports results on screen. Movement cases use synthetic keyboard events and isolated player fixtures; the separate route test verifies continuous paths through the level. The test runner is excluded from production builds.
+For repeatable browser integration tests, run the dev server and open **`/?verify` on the running development server**. This dev-only page runs checks against the actual WebGL renderer, workers, input event handlers, HUD, collision, collection, and completion. It reports results on screen. Movement cases use synthetic keyboard events and isolated player fixtures; the separate route test verifies continuous paths through the level. The test runner is excluded from production builds.
 
-Earlier sharpness verification at 1920×1080 (84 px spacing, 32% depth):
+Current findings and the prioritized work list live in [the project audit](docs/AUDIT.md).
+Use `/?verify=runtime&quality=1` for idle/wake-up, diagnostic capture and
+GPU-loss/CPU-timeout recovery. That dev-only route deliberately destroys its own
+GPU device and terminates a worker; use a separate test tab.
+The GPU fixture page is **tests/gpu-checks.html**.
 
-- 68 GPU surface-depth samples agreed with independent raycast geometry; maximum normalized error was **0.000007**. Nine sky samples were correctly zero.
-- **99.99% of 12,425 sampled interior stereo pairs** had exactly matching pixel colors in City materials mode at the predicted depth-dependent separation. Boundaries are excluded from this interior metric; a separate regression checks rejected occluded constraints.
-- The GPU returned all ten surface IDs and 205 procedural detail levels. Sampled material IDs matched the raycast geometry. Switching between material and classic patterns changed the image without moving the camera, and switching back reproduced the original frame exactly.
-- Live City colors RMS contrast measured **0.513**. In a controlled mixed-material fixture, luminance standard deviation improved from **16.22 to 68.29** on a 0–255 scale. The revised mixed-material contrast matches the uniform-material signal instead of losing about 65% of it.
-- An annulus fixture tests 6,285 pairs of unconstrained pixels whose positions differ by multiples of pattern spacing. The old modulo seed lookup forced every such pair to match; the new independent seed field is checked against the chance-match rate instead. See `evidence/stereo-quality-before.json` and `evidence/stereo-quality-after.json` for numerical diagnostics. These measurements are not a claim that all human false fusion is eliminated.
-- Stationary rendered frames were identical. All view switches preserved the player pose.
-- Movement, Q/E turning, collisions, HUD toggling, guide pause, five walk-in collections, and the completion message passed browser integration tests.
-- Actual browser UI interactions verified fullscreen entry/exit, resizing through 1280×720, 1920×1080 and 2560×1440, and quality/spacing/depth controls.
-
-The earlier contour update (before removing host normals) passed 37 numerical/unit tests and 18 browser integration checks at 1920×1080 with Fine dots, 120 px spacing, 50% depth and Bold edges. Its results are retained in `evidence/contour-browser-checks.json`.
-
-The depth-only API tests additionally cover depth linearization, reversed Z, orthographic and infinite-far projection, row origins, ignored host color/normal bytes, geometry reconstruction without labels, smooth-floor rejection, deterministic rendering, input validation and full-frame/worker equivalence at multiple quality settings. Browser verification checks that the live demo supplies only scalar depth and that a standalone call to the public filter reproduces every worker-rendered pixel.
-
-The earlier shaded CPU update passed 52 unit tests and 20 browser checks; its results remain in `evidence/shaded-depth-browser-checks.json`. Current GPU verification additionally compares every live constraint root with the independent CPU solver, checks exact pixel matches within classes, and tests renderer switching. The `tests/gpu-checks.html` development route exercises flat depths, overlaps, curved depth maps, all pattern styles, display scaling and zero depth strength directly on WebGPU. It also checks stationary stability and GPU validation errors.
-
-The GPU/banding update passed **54 unit tests, 22 GPU gameplay checks and five GPU fixture checks**. At native 1080p, all 2,073,600 GPU constraint roots agreed with the independent CPU solver, 99.46% of RGB values were identical, and mean channel difference was 0.002/255. Every pixel in each GPU class matched its root exactly. A controlled near-slab fixture limits tint-only vertical brightness variation to 18.1/255, below its 20-level regression limit. See `evidence/gpu-verification.json` for revision, environment, settings and both backend reports. Actual resizing also exercised native 3840×2160 rendering at an observed 84 fps.
-
-The earlier natural-palette update passed **55 unit tests, 22 gameplay checks on each backend, five GPU fixtures and the production build**. It adds a regression proving that changing one class's hue cannot tint unrelated classes on the same row, and checks consistent green on both sides of inclined shapes. All 2,073,600 live GPU constraint roots still matched the CPU reference; 99.94% of RGB values matched exactly, with mean channel difference 0.001/255. The tint-only near-slab brightness span was 18.54/255 (limit 20). See `evidence/natural-palette-verification.json` for the scoped results. These checks do not establish semantic material recognition or human fusion comfort.
-
-The earlier scene-color/reconstruction update passed **68 unit tests, 24 gameplay checks per backend, seven GPU fixtures and the production build**. GPU gameplay ran at 1920×1522; CPU gameplay at 1920×1080. All 2,922,240 live GPU roots matched the CPU solver, with 100.00% exact RGB; the optional color image matched every sampled channel of the actual normal render. Independent reconstruction of the 1080p initial scene placed 97.7% of sampled disparities within two pixels of intended depth (98.6% in smooth interiors, mean error 0.37 pixels). The normal GPU page sampled 173 completed frames/s at native 1080p on the test machine; this is an observation, not a performance guarantee. See [the scoped report](evidence/scene-reconstruction-verification.json). The user confirmed external Firefox improved from 10 fps to 58–60 fps after reloading with the scheduling workaround; this is human-reported validation, alongside the delayed-completion simulation.
-
-Shading regressions cover distinct distance brightness, geometry-derived color families, dark-blue sky, ordered opaque tone ramps, all final pixel links across overlapping shapes, independent exposed seeds, stationary stability and contrast-preserving contours at near/far depths. Controlled planes at distances 60, 30, 14 and 4 had mean luminance 66.6, 82.4, 105.1 and 130.6 respectively. Their intended stereo correlation was exactly 1, with all competing tested peaks below 0.034. See `evidence/shaded-depth-quality.json`. These are signal measurements, not proof of human viewing comfort.
-
-The earlier Quiet stereo update passed **74 unit tests, 26 gameplay checks per backend, eight GPU fixtures and the production build**. Both gameplay runs used 1280×720. Quiet mode preserves exact class colors, matches the CPU source-color fit, and restores identical pixels after changing support. The added GPU fixture checks six settings combinations, stationary equality and overlaps; worst mean channel difference from the CPU was 0.00005/255. The live F3 capture recovered 95.6% of sampled disparities within two pixels, with 53.3% classified as reliable. See [its scoped report](evidence/quiet-stereo-verification.json), including source fingerprint, test scope and a normal-page GPU performance sample.
-
-Open **http://localhost:5173/tests/surface-lab.html** for the repeatable source-color experiment. It compares the plaza and a close beacon using the dense reference, Quiet stereo, Paired color and the rejected sparse variant. At 65% support, Quiet stereo reduced raw RGB error by 42–46% and broad-color error by 38–42% relative to the dense reference; 94.8–95.3% of decoded samples remained within two pixels of intended disparity. Reliable-match coverage fell from 87–88% to 36–51%, exposing weaker evidence on quieter surfaces. Broad-color error uses a 25×9-pixel box average at the lab's 1000×562 resolution; it measures resemblance, not perceived banding. [Full comparison and human feedback](evidence/surface-research-comparison.json). The user confirmed Quiet stereo fuses and rejected sparse Surface stereo despite its better color-error scores. The decoder and confidence thresholds are unchanged.
-
-The paired-color revision passes **81 unit tests, 27 gameplay checks per backend, ten GPU fixtures and the production build**. GPU and CPU gameplay used 1280×720. The ring fixture aligned all 16,576 visible foreground color pairs, with zero recoloring beyond projected eye silhouettes; maximum paired linear-light luminance difference was 0.00413 on a 0–1 scale after 8-bit quantization. Three GPU settings combinations matched the CPU with mean RGB error below 0.00001/255. Moving-depth fixtures showed 30.4% (CPU) and 33.1% (GPU) lower frame-difference RMS with texture stability enabled; the CPU fixture retained 99.96% of overall carrier contrast. Every frame retained current depth correspondences, and stopped frames were identical. Movement easing now settles to exactly zero below imperceptible velocity thresholds, preventing lingering depth changes after key release. These fixture metrics do not establish human motion comfort. See [the scoped report](evidence/paired-color-verification.json) and [city reconstruction comparison](evidence/paired-color-city-comparison.json). Human comfort remains a separate acceptance test.
+Earlier measurements remain scoped to their original revisions and environments:
+[sharpness](evidence/stereo-quality-after.json),
+[contours](evidence/contour-browser-checks.json),
+[shading](evidence/shaded-depth-quality.json),
+[GPU](evidence/gpu-verification.json),
+[natural palette](evidence/natural-palette-verification.json),
+[scene reconstruction](evidence/scene-reconstruction-verification.json),
+[Quiet](evidence/quiet-stereo-verification.json),
+[source-color comparison](evidence/surface-research-comparison.json),
+[paired color](evidence/paired-color-verification.json), and
+[foundation](evidence/foundation-verification.json).
+They are historical records, not acceptance of current gameplay. The current
+motion diagnosis and rejected approaches have one detailed home in
+[stereo constraints](docs/STEREO-CONSTRAINTS.md#motion-carrier).
 
 ### Remaining limits
 
-The paired-color experiment suppresses propagated hues at the cost of original lighting and luminance texture. Its broad RGB error is worse than Quiet stereo despite keeping hues spatially local. The unchanged image-only decoder recovered 96.3–97.0% of sampled disparities within two pixels in the two city fixtures; this is signal evidence, not confirmation that viewers fuse the projected colors. Ring/diamond regressions separately test foreground hue alignment and zero color spill beyond projected eye silhouettes and bounded linear-luminance mismatch after 8-bit display quantization. The GPU fixture page labels both previews. The first unprojected Local color attempt was rejected by the user: depth was fragile and hues appeared doubled over it. The user reported colored depth from the paired revision, but fragile fusion, transparent-looking color artifacts and severe motion static. The latest revision adds carrier smoothing/reuse and rejects incompatible color partners; its perceptual outcome still needs evaluation.
+The paired-color experiment suppresses propagated hues at the cost of original lighting and luminance texture. Its broad RGB error is worse than Quiet stereo despite keeping hues spatially local. The unchanged image-only decoder recovered 96.3–97.0% of sampled disparities within two pixels in the two city fixtures; this is signal evidence, not confirmation that viewers fuse the projected colors. Ring/diamond regressions separately test foreground hue alignment and zero color spill beyond projected eye silhouettes and bounded linear-luminance mismatch after 8-bit display quantization. The GPU fixture page labels both previews. The first unprojected Local color attempt was rejected by the user: depth was fragile and hues appeared doubled over it. The user reported colored depth from the paired revision, but fragile fusion, transparent-looking color artifacts and severe motion static. These legacy styles remain experiments; the default depth-first path and its unresolved motion comfort take priority.
 
 Quiet stereo retains complete matching but deliberately reduces texture. Its decoder confidence is lower on quiet surfaces, and horizontal color repetition is reduced rather than eliminated. The sparse **Surface stereo** experiment looked closer to the source in image metrics but failed the user's fusion test: doubled artwork and rectangles of noise remained. It is excluded from the game selector and retained only for research. Earlier Quiet fusion feedback was limited to that viewer/setup; see [current human assessment](docs/SOT.md#evidence-and-limits) before treating it as acceptance.
 
@@ -193,6 +187,8 @@ A single-image stereogram cannot reproduce the normal view's arbitrary surface c
 - `src/pattern.js` — independent full-image seeds, geometry palettes and distance-shaded contrast ramps.
 - `src/contours.js` — foreground silhouettes and sharp face corners from depth/normals.
 - `src/stereo.worker.js` — scanline encoding worker.
+- `src/worker-client.js` / `src/stereo-worker-client.js` — bounded requests and validated stripe ownership.
+- `src/frame-demand.js` — host admission tracking for unchanged foundation frames.
 - `src/city.js` — procedural demo scene and normal-view materials.
 - `src/surfaces.js` — surface IDs and shared world-space procedural texture shader.
 - `src/game.js` — collision, movement, beacon locations and collection.

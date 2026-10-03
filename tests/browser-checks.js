@@ -7,6 +7,8 @@ import {contrast} from './stereo-quality.js';
 import {detectContours} from '../src/contours.js';
 import {DepthWalkFilter} from '../src/depthwalk.js';
 import {FoundationFilter} from '../src/foundation-stereo.js';
+import {motionCoherence} from './foundation-motion-quality.js';
+import {reconstructStereogram,compareReconstruction} from '../src/debug/reconstruct.js';
 import {prepareGeometry} from '../src/depth-frame.js';
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const $=id=>document.getElementById(id);
@@ -17,20 +19,49 @@ async function until(predicate,message,timeout=8000){
   const deadline=performance.now()+timeout;
   while(!predicate()){assert(performance.now()<deadline,message);await wait(25);}
 }
-export async function runChecks({player,scene,found,stop,getWorld,getFrame,captureNormalColor}){
+export async function runChecks({player,scene,found,stop,getWorld,getFrame,getMotionStats,captureNormalColor,runtime}){
+  if(new URLSearchParams(location.search).get('verify')==='startup'){
+    const {runStartupChecks}=await import('./startup-checks.js');
+    return runStartupChecks({stop,getFrame,...runtime});
+  }
+  if(new URLSearchParams(location.search).get('verify')==='tiny-step'){
+    const {runTinyStepCheck}=await import('./tiny-step-check.js');
+    return runTinyStepCheck({player,stop,getFrame,captureNormalColor});
+  }
+  if(new URLSearchParams(location.search).get('verify')==='runtime'){
+    const {runRuntimeChecks}=await import('./runtime-checks.js');
+    return runRuntimeChecks({player,stop,getFrame,...runtime});
+  }
   const report=document.createElement('pre');report.id='verification';
   report.style.cssText='position:fixed;top:95px;left:16px;z-index:20;background:#10202bf5;color:#bbefc3;padding:16px;font:11px/1.65 monospace;max-height:65vh;max-width:660px;overflow:auto;pointer-events:none;border:1px solid #547b76;border-radius:8px';
   report.textContent='BROWSER INTEGRATION CHECKS\n';document.body.append(report);
   const results=[];
   async function check(name,fn){try{const detail=await fn();results.push({name,pass:true,detail});report.textContent+=`PASS  ${name}${detail?' · '+detail:''}\n`;}catch(e){results.push({name,pass:false,error:e.message});report.textContent+=`FAIL  ${name} · ${e.message}\n`;}}
   const fixture=(position={})=>{stop();Object.assign(player,createPlayer(),position);};
-  await check('quiet stereo has adjustable support and the rejected sparse experiment is outside the game',()=>{
-    assert($('pattern').value==='quiet'&&$('surface-detail').value==='35','quiet defaults differ');
+  await check('depth-first pink starts with simple controls and conservative depth',()=>{
+    assert($('pattern').value==='foundation-pink'&&$('texture').value==='foundation-pink','depth-first default missing');
+    assert($('spacing').value==='96'&&$('strength').value==='33'&&$('edges').value==='0','starting preset differs');
+    assert(!$('advanced-settings').open&&$('stereo-window').disabled,'advanced controls exposed or foundation window enabled');
+    assert($('foundation-motion').checked,'motion band reduction must start enabled');
     assert(!$('invert-depth').checked,'parallel-view default must preserve foreground ordering');
     assert(![...$('pattern').options].some(o=>o.value==='surface'),'rejected sparse experiment must remain in the lab');
   });
+  await check('simple texture selection and E stay in depth-first modes without moving the player',async()=>{
+    const pose=JSON.stringify(player),signals=[...found].join(',');
+    await until(()=>getFrame()?.pattern==='foundation-pink','default pink frame missing',15000);
+    $('texture').value='foundation-binary';$('texture').dispatchEvent(new Event('change'));
+    await until(()=>getFrame()?.pattern==='foundation-binary','texture selection did not reach renderer',15000);
+    for(let i=0;i<3;i++){await key('KeyE',40);assert($('pattern').value.startsWith('foundation-'),'simple E selected a legacy mode');}
+    assert($('texture').value===$('pattern').value,'texture picker is stale');
+    assert(JSON.stringify(player)===pose&&[...found].join(',')===signals,'texture selection changed the walk');
+  });
   // Keep the established dense-depth checks as an unchanged reference, then
   // inspect experimental selected constraints separately below.
+  $('advanced-settings').open=true;
+  for(const [id,value] of Object.entries({spacing:'120',strength:'50',edges:'2','motion-stability':true})){
+    if(typeof value==='boolean')$(id).checked=value;else $(id).value=value;
+    $(id).dispatchEvent(new Event($(id).type==='range'?'input':'change'));
+  }
   $('invert-depth').checked=false;$('invert-depth').dispatchEvent(new Event('change'));
   $('pattern').value='scene';$('pattern').dispatchEvent(new Event('change'));
   for(let i=0;i<150&&getFrame()?.pattern!=='scene';i++)await wait(100);
@@ -100,7 +131,7 @@ export async function runChecks({player,scene,found,stop,getWorld,getFrame,captu
     const mean=error/f.color.length;assert(mean<.5,`scene copy was inverted, stale or color-transformed: ${mean}`);
     return `${(100*exact/f.color.length).toFixed(2)}% exact channels; mean difference ${mean.toFixed(4)}/255 including lighting/textures`;
   });
-  await check('fine dots, wide spacing, strong depth and bold contours are the defaults',()=>{
+  await check('legacy reference retains its fixed fine dots, spacing, depth and contours',()=>{
     assert($('grain').value==='1'&&$('spacing').value==='120'&&$('strength').value==='50'&&$('edges').value==='2','viewing defaults differ');
     const dots=$('alignment').querySelectorAll('i');
     assert(Math.abs(dots[1].getBoundingClientRect().left-dots[0].getBoundingClientRect().left-120)<1,'guide dots do not match spacing');
@@ -149,6 +180,7 @@ export async function runChecks({player,scene,found,stop,getWorld,getFrame,captu
   });
   await check('R cycles views and E cycles all styles without requesting mouse release',async()=>{
     const pose=JSON.stringify(player),initial=$('pattern').value,exit=document.exitPointerLock;let releases=0;
+    $('advanced-settings').open=true;
     document.exitPointerLock=()=>{releases++;};
     try{
       for(const view of ['normal','depth','stereo']){await key('KeyR',40);assert(document.querySelector('[data-view].selected').dataset.view===view,'R did not cycle view');}
@@ -364,9 +396,9 @@ export async function runChecks({player,scene,found,stop,getWorld,getFrame,captu
     try{
       $('edges').value='3';$('edges').dispatchEvent(new Event('change'));$('spacing').value='180';$('spacing').dispatchEvent(new Event('input'));
       $('reset-viewing').click();
-      assert($('edges').value==='2'&&$('spacing').value==='120'&&$('pattern').value==='quiet'&&!$('invert-depth').checked,'baseline controls were not restored');
-      assert($('spacing-value').textContent==='120 px'&&$('strength-value').textContent==='50%','readouts are stale');
-      await until(()=>getFrame()?.pattern==='quiet'&&getFrame().edges===2&&getFrame().invertDepth===false,'reset did not reach renderer');
+      assert($('edges').value==='0'&&$('spacing').value==='96'&&$('pattern').value==='foundation-pink'&&!$('invert-depth').checked,'baseline controls were not restored');
+      assert($('spacing-value').textContent==='96 px'&&$('strength-value').textContent==='33%','readouts are stale');
+      await until(()=>getFrame()?.pattern==='foundation-pink'&&getFrame().edges===0&&getFrame().invertDepth===false,'reset did not reach renderer',15000);
       assert(JSON.stringify(player)===pose&&JSON.stringify([...found])===JSON.stringify(collected),'reset altered the walk');
       return 'default controls, live rendering, labels, camera and collected beacons';
     }finally{
@@ -434,18 +466,19 @@ export async function runChecks({player,scene,found,stop,getWorld,getFrame,captu
     }
     return 'both directions; new stereo frames; source world carried into comparisons';
   });
-  await check('foundation game modes match the full-frame reference across worker seams',async()=>{
+  await check('foundation game modes match the full-frame reference on the selected backend',async()=>{
     const saved=$('pattern').value;
     try{
       for(const carrier of ['binary','white','pink']){
         const pattern='foundation-'+carrier;$('pattern').value=pattern;$('pattern').dispatchEvent(new Event('change'));
-        await until(()=>getFrame()?.pattern===pattern,'foundation workers did not finish',15000);
+        await until(()=>getFrame()?.pattern===pattern,'foundation renderer did not finish',15000);
         const f=getFrame(),expected=new FoundationFilter().render({width:f.width,height:f.height,depth:f.depth,format:'packed-proximity-rg16',origin:'bottom-left'},
-          {carrier,spacing:f.spacing,strength:f.strength}).pixels;
-        assert(expected.length===f.pixels.length&&expected.every((v,i)=>v===f.pixels[i]),'foundation differs across worker stripes');
-        assert($('performance').dataset.backend==='cpu'&&$('edges').disabled&&$('grain').disabled&&$('invert-depth').disabled,'foundation controls/backend misleading');
+          {carrier,spacing:f.spacing,strength:f.strength,noiseFrame:f.noiseFrame??0,carrierContrast:f.carrierContrast??1}).pixels;
+        let error=0,maximum=0;for(let i=0;i<expected.length;i++){const delta=Math.abs((expected[i]&255)-(f.pixels[i]&255));error+=delta;maximum=Math.max(maximum,delta);}
+        assert(expected.length===f.pixels.length&&maximum<=1&&error/expected.length<.01,'foundation differs from full-frame reference');
+        assert($('performance').dataset.backend===(f.backend==='gpu'?'gpu':'cpu')&&$('edges').disabled&&$('grain').disabled&&$('invert-depth').disabled,'foundation controls/backend misleading');
       }
-      return 'binary/white/pink; every pixel matches standalone reference';
+      return 'binary/white/pink; CPU agreement within one grayscale level; mean error below .01/255';
     }finally{$('pattern').value=saved;$('pattern').dispatchEvent(new Event('change'));}
   });
   await check('foundation rendering preserves playable movement and source-view switching',async()=>{
@@ -459,6 +492,71 @@ export async function runChecks({player,scene,found,stop,getWorld,getFrame,captu
       assert(JSON.stringify(player)===moved,'diagnostic views moved the player');
       return 'walk, stop, source/depth/stereo at unchanged pose';
     }finally{Object.assign(player,pose);$('pattern').value=saved;$('pattern').dispatchEvent(new Event('change'));}
+  });
+  await check('motion comparison changes only contrast at the same pose and held frame',async()=>{
+    const saved=$('pattern').value,enabled=$('foundation-motion').checked,pose={...player};
+    try{
+      $('foundation-motion').checked=true;$('foundation-motion').dispatchEvent(new Event('change'));
+      $('pattern').value='foundation-pink';$('pattern').dispatchEvent(new Event('change'));fixture();
+      await until(()=>getFrame()?.pattern==='foundation-pink'&&Math.abs(getFrame().camera.position.z-player.z)<1e-6&&Math.abs(getFrame().camera.rotation.y-player.yaw)<1e-6,'comparison did not render',15000);
+      if($('motion-comparison').hidden)$('motion-compare-open').click();
+      const still=getFrame().pixels.slice(),epoch=getFrame().noiseFrame,position=JSON.stringify(player),signals=[...found].join(',');
+      for(const [id,cadence] of [['motion-candidate','contrast'],['motion-baseline','baseline']]){
+        $(id).click();await until(()=>getFrame()?.grainTrial===cadence,'comparison did not reach output',15000);
+        assert($(id).getAttribute('aria-pressed')==='true','comparison label is stale');
+        assert(JSON.stringify(player)===position&&[...found].join(',')===signals,'comparison moved player or changed collectibles');
+        assert(getFrame().noiseFrame===epoch,'switching contrast refreshed held grain');
+        const gain=cadence==='contrast'?.5:1;
+        assert(getFrame().carrierContrast===gain,'wrong comparison contrast');
+        assert(getFrame().pixels.every((v,i)=>Math.abs((v&255)-Math.round(128+((still[i]&255)-128)*gain))<=1),'comparison changed more than contrast');
+      }
+      const cadences=[];
+      for(const [id,cadence] of [['motion-baseline','baseline'],['motion-candidate','contrast']]){
+        $(id).click();await until(()=>getFrame()?.grainTrial===cadence,'cadence did not reach output',15000);
+        const before=getMotionStats();await key('ArrowRight',1100);const after=getMotionStats();
+        assert(player.vx===0&&player.vz===0&&player.turn===0,'camera still drifting 300 ms after release');
+        await until(()=>Math.abs(getFrame().camera.rotation.y-player.yaw)<1e-6,'final stopped pose did not render');
+        const stopped=getFrame().pixels.slice(),heldEpoch=getFrame().noiseFrame;
+        await wait(240);
+        assert(getFrame().noiseFrame===heldEpoch&&getFrame().pixels.every((v,i)=>v===stopped[i]),'grain continued after key release settled');
+        const frames=after.movingFrames-before.movingFrames,updates=after.refreshes-before.refreshes;
+        assert(frames>10&&updates>0,'comparison did not exercise moving frames');
+        assert(updates<=frames,'invalid grain update count');
+        cadences.push(`${cadence}: ${updates}/${frames} refreshed`);
+      }
+      return 'A/B labels; exact contrast mapping; unchanged pose/collectibles; release settled by 300 ms and held exact pixels; '+cadences.join('; ');
+    }finally{$('motion-baseline').click();Object.assign(player,pose);$('foundation-motion').checked=enabled;$('foundation-motion').dispatchEvent(new Event('change'));$('pattern').value=saved;$('pattern').dispatchEvent(new Event('change'));}
+  });
+  await check('foundation motion suppresses traveling texture in real city turns and forward movement',async()=>{
+    const saved=$('pattern').value,enabled=$('foundation-motion').checked,pose={...player},reference=new FoundationFilter();
+    let fixedMotion=0,dynamicMotion=0,transitions=0,worstDepthLoss=0;
+    try{
+      $('foundation-motion').checked=true;$('foundation-motion').dispatchEvent(new Event('change'));
+      $('pattern').value='foundation-pink';$('pattern').dispatchEvent(new Event('change'));
+      for(const cadence of ['baseline','contrast'])for(const route of ['turn','forward']){
+        $(cadence==='contrast'?'motion-candidate':'motion-baseline').click();
+        let previous;
+        for(let i=0;i<4;i++){
+          await wait(25);
+          fixture({z:13-(route==='forward'?i*.09:0),yaw:route==='turn'?i*.012:0});
+          const target={...player};
+          await until(()=>{const f=getFrame();return f?.pattern==='foundation-pink'&&f.grainTrial===cadence&&f.noiseFrame>0&&Math.abs(f.camera.position.z-target.z)<1e-6&&Math.abs(f.camera.rotation.y-target.yaw)<1e-6;},'motion frame did not reach renderer',15000);
+          const f=getFrame(),base=reference.render({width:f.width,height:f.height,depth:f.depth,format:'packed-proximity-rg16',origin:'bottom-left'},{carrier:'pink',spacing:f.spacing,strength:f.strength}).pixels.slice();
+          if(previous){fixedMotion+=motionCoherence(previous.base,base,f.width,f.height);dynamicMotion+=motionCoherence(previous.pixels,f.pixels,f.width,f.height);transitions++;}
+          if(i===3){
+            const scores=[base,f.pixels].map(pixels=>compareReconstruction(reconstructStereogram({pixels,width:f.width,height:f.height,spacing:f.spacing,strength:f.strength,maxColumns:64,maxRows:36}),{depth:f.depth,origin:'bottom-left'}).summary);
+            assert(scores.every(s=>s.compared>100&&Number.isFinite(s.withinTwoPixels)),'city depth comparison lacks evidence');
+            worstDepthLoss=Math.max(worstDepthLoss,scores[0].withinTwoPixels-scores[1].withinTwoPixels);
+            const held=f.pixels.slice(),epoch=f.noiseFrame;await wait(240);
+            assert(getFrame().noiseFrame===epoch&&getFrame().pixels.every((v,j)=>v===held[j]),'texture did not freeze after stopping');
+          }
+          previous={base,pixels:f.pixels.slice()};
+        }
+      }
+      assert(dynamicMotion<fixedMotion*.35&&dynamicMotion/transitions<.3,'directional city texture remains correlated');
+      assert(worstDepthLoss<.03,'motion texture weakened decoded city depth');
+      return `16 city frames, both contrasts; directional correlation ${(fixedMotion/transitions).toFixed(3)} → ${(dynamicMotion/transitions).toFixed(3)}; worst decoded-depth loss ${(worstDepthLoss*100).toFixed(2)} points; exact freeze at rest`;
+    }finally{$('motion-baseline').click();Object.assign(player,pose);$('foundation-motion').checked=enabled;$('foundation-motion').dispatchEvent(new Event('change'));$('pattern').value=saved;$('pattern').dispatchEvent(new Event('change'));}
   });
   report.dataset.results=JSON.stringify(results);report.dataset.complete='true';
   report.textContent+=`\n${results.filter(r=>r.pass).length}/${results.length} passed. Fullscreen and pointer lock require real clicks.\n`;

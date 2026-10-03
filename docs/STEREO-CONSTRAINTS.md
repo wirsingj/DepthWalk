@@ -18,9 +18,10 @@ fusion remain evidence. A monochrome reference does not solve source-color bandi
   this is not a single-image construction algorithm.
 - [Tyler and Clarke, 1990](https://christophertyler.org/CWTyler/TylerPDFs/TylerClarkeAutosterSPIE1979.pdf),
   *The Autostereogram*: depth-dependent horizontal repetition supports complex
-  shapes. Display sampling constrains depth detail; spatial grayscale interpolation
-  can encode fractional shifts. This does not justify blending successive frames
-  or revive our rejected fractional-depth implementation. Relevant full-text sections reviewed.
+  shapes. Page 187 proposes fractional repetition phase using grayscale samples of
+  high-resolution noise. This is spatial sampling, not successive-frame blending;
+  the paper does not validate moving gameplay. Our rejected row-dithered depth
+  candidate is a different mechanism. Relevant full-text sections reviewed.
 - [Thimbleby, Inglis and Witten, 1994](https://harold.thimbleby.net/sirds/ieee3d.pdf),
   *Displaying 3D Images*: symmetric correspondence, visibility rejection and
   equality classes establish a reference construction. Correct links alone do not
@@ -55,8 +56,21 @@ pixels without blending; overlapping submissions are not mixed images. No applic
 TAA, motion blur or frame interpolation was found. History retains pattern identity
 in [Quiet](../src/surface-stereo.js) and [paired modes](../src/chroma-stereo.js),
 not previous rendered color/depth. Soft paired mixes current-frame source lighting;
-that is a correspondence tradeoff, not temporal blending. External display processing
-was not inspected.
+that is a correspondence tradeoff, not temporal blending.
+
+**Driver audit, 2026-10-02:** Windows, RTX 3090, driver 616.64, checkout `545de5a`.
+NVIDIA app global settings show Image Scaling, FXAA, transparency AA, MFAA,
+Smooth Motion and Dynamic Vibrance off; DLSS overrides use application settings.
+[Image Scaling off also disables its sharpening](https://www.nvidia.com/content/Control-Panel-Help/vLatest/en-us/mergedProjects/3D%20Settings/Manage_3D_Settings_%28reference%29.htm).
+RTX Video Super Resolution is off; Video HDR is disabled. DSR 2×/33% is configured,
+but displays report native/recommended 1920×1080 and 2560×1440 resolutions.
+Read-only NVAPI queries for global and running Codex/Firefox/WebView2 profiles
+returned setting-not-found for queried AA/upscaling/DLSS controls; these do not
+independently prove effective per-program settings. No driver settings changed.
+Current application inspection retains nearest depth sampling, disabled WebGL AA
+and unblended frame presentation. Browser zoom, compositor resampling and monitor
+processing remain unverified; this audit neither proves fusion nor excuses synthesis
+defects.
 
 Quiet averages source RGB over entire correspondence classes. Its default support
 selects approximately 14.5% of class hashes for strong texture; others receive only
@@ -74,16 +88,29 @@ range; half-resolution P60 allows 21. Actual scene occupancy can be smaller.
 
 [FoundationFilter](../src/foundation-stereo.js) now supplies a depth-only reference
 and white/pink texture controls, reused by [the comparison](../tests/foundations.html)
-and the playable city's CPU workers. Both use the same visible-pair graph and
+and the playable city on WebGPU or CPU workers. Both use the same visible-pair graph and
 foreground-near mapping. Odd-separation centering alternates by absolute row as
 in TIW figure 3; existing renderer calls retain their original centering. The
 historical original renderer remains unidentified, not retrospectively restored.
 
+**Human direction, 2026-10-02:** Defaults must track paper findings and subsequent
+implementation changes; ordinary use must not require random slider tuning. The
+game now starts with pink texture, spacing 96 CSS pixels, strength .33, full image,
+foreground near and no ink/history. Pink follows the cited static acquisition
+results; spacing/strength are engineering starting values, not paper-derived optima
+or validated gameplay settings. World and three texture choices remain visible;
+Advanced holds legacy modes and fine tuning. E cycles only foundation textures
+unless Advanced is open. [Preferences](../src/preferences.js) fingerprint starting
+values: changed defaults retire previous tuning; same-preset adjustments persist.
+Use latest defaults restores controls without changing pose/signals. Explicit
+foundation URLs still select their named carrier. Future changes must update this
+starting preset when appropriate; the mechanism prevents older saves hiding it.
+
 [Carrier generation](../src/foundation-texture.js) uses deterministic Gaussian noise
 and a two-dimensional Fourier amplitude weight of `1/sqrt(f)` for pink `1/f`
 power. White/pink inputs share mean 128 and RMS 48 before byte clipping. Binary
-uses black/white extremes and therefore is not contrast-matched. Textures are
-cached by full-frame dimensions and seed, not regenerated during motion. Assign
+uses black/white extremes and therefore is not contrast-matched. Static reference
+textures are cached by full-frame dimensions and seed. Assign
 one texture sample per unconstrained class; never wrap seed coordinates at the
 stereo period or blur finished pixels. Correlated neighboring pink samples are
 intentional; distinct disocclusions are not forced into a shared seed identity.
@@ -93,19 +120,219 @@ oracle, exact visible pairs, foreground ordering, absent color influence, held-f
 restoration, origin/stripe agreement, an independent DFT power-exponent check and
 retained broad texture on a flat encoded surface. This is bounded numerical
 coverage; the spectrum after arbitrary occlusion mapping, fusion, motion comfort,
-and real-time performance are not established. No GPU implementation exists.
+and moving-game fusion remain unconfirmed. [GPU checks](../tests/gpu-checks.js)
+compare all three carriers, roots, visibility and final presentation against the
+reference. Motion/hold/revisit sequences verify current-depth output, identical
+stationary frames and no image history; these do not prove perceptual stability.
 
 The comparison starts still with synthetic depth shapes; Original city and Block
 study close-ups use the existing capture adapter. Treatment changes hold the same
 scene frame. A direct link opens the selected carrier in gameplay. The game
-explicitly uses CPU workers, caps foundation output near 2 MP and disables ignored
-color/ink/dot-size/reversal controls. CPU preparation can pause initially. API bounds
+defaults to WebGPU with CPU fallback, caps foundation output near 2 MP and disables
+ignored color/ink/dot-size/reversal controls. Gameplay prepares identical cached
+carrier bytes in a shared worker; per-frame depth/matching/presentation stay on GPU. API bounds
 and accepted formats live in [Integration](INTEGRATION.md#foundation-cpu-research-api).
+
+### Motion carrier
+
+**Human observation, 2026-10-02:** The moving carrier initially removed reported
+bands while retaining objects/edges. The 25%-softer comparison received a qualified
+positive response: depth remains, harsh TV static dominates movement and reportedly
+lingers 1–2 seconds after stopping; one possible brief band appeared on the diamond.
+Half contrast subsequently helped but remained too harsh; it was not promoted.
+The possible band qualifies the earlier report. Comfort and broader acceptance remain open.
+
+[Tyler, 2014](https://www.scholarpedia.org/article/Autostereogram), dynamic
+autostereograms section, describes independent patterns per frame to remove
+correlated texture motion that can compete with depth. This supports a different
+mechanism from the rejected depth dithering and color transport: keep current
+visibility/disparity, replace only the carrier. It predicts reduced coherent
+travel, with local moving grain as the tradeoff; it does not promise static-looking
+motion or eliminate integer depth terracing.
+
+[Papadimitriou et al., *Psychophysics of Autostereogram Videos*](https://homepages.inf.ed.ac.uk/rbf/PAPERS/rdsvideos.pdf)
+(author-hosted manuscript, reviewed) tested single-image videos: 640×480, 50 fps,
+fresh fields, simple objects; 26 observers for contrast/repetition, 13 for blur/color.
+Fusion survived fresh fields and reduced contrast. This supports testing, not
+optimal refresh, comfort or transferable thresholds for our pink texture/displays.
+Conflicting blur-radius ranges also preclude importing a universal blur setting.
+
+[Allison and Howard, 2000](https://www.eecs.yorku.ca/~rallison/papers/Allison-Stereopsis_with_persisting.pdf)
+(full paper reviewed) tested eight observers with binocular pairs, 33.5 Hz motion
+frames and 3.8-second movements. Renewed texture increased perceived peak depth.
+A five-observer follow-up manipulated perspective/disparity agreement: persistent
+texture favored conflicting perspective cues; concordant cues worked with either
+texture. This supports testing the motion implied by texture, not assuming all
+temporal correlation is harmful. It does not establish SIRDS comfort.
+
+[Kane, Guan and Banks, 2014](https://pmc.ncbi.nlm.nih.gov/articles/PMC3898296/)
+(methods reviewed) used fresh dots every 5 ms on 200 Hz CRTs, four observers and
+stereoscopic pairs. Disparity-modulation limits concern changing depth, not grain
+refresh. This supports separate timing tests, not high-refresh gameplay comfort.
+
+[Palmisano, Allison and Howard, 2006](https://www.eecs.yorku.ca/~rallison/papers/Allison-%20Effect%20of%20decorrelation%20on%203d.pdf)
+(methods/results reviewed) compared persistent dots with 80/26 ms lifetimes in
+binocular pairs. The dynamic experiment used three experienced observers, a 75 Hz
+display and stationary depth for 1.6 seconds. Renewal improved tolerance to
+interocular decorrelation; 26 ms did not significantly outperform 80 ms, possibly
+because of a ceiling. Maximal renewal is therefore not established as necessary.
+These conditions do not validate slower full-field flashes or asynchronous SIRDS
+renewal; either is a separate engineering hypothesis.
+
+[Tseng et al., 2006](https://pmc.ncbi.nlm.nih.gov/articles/PMC1595457/)
+(methods/results reviewed) separated motion direction, spatial recognition and
+speed judgments in three observers viewing binocular random-dot gratings.
+Depth-defined motion could appear stopped while the structure remained visible.
+Their approximately 4–6 Hz result describes passing depth-pattern cycles, not
+recommended grain refresh. Acceptance must include correct approach/recession and
+motion direction, alongside fusion and harshness; reconstruction alone misses this.
+
+[Delamare et al., 2019](https://hci.cs.umanitoba.ca/assets/publication_files/autostereo-final.pdf),
+*Interacting with Autostereograms* (methods/results/limitations reviewed), tested
+36 participants across six sessions on a 464×824, approximately 25 fps smartphone
+application. Twenty-one could not clearly see the depth-press animation, which
+regenerated random colors. This supports checking interaction during changing
+depth, beyond static recognition. Their whole-screen color feedback was not source
+color reconstruction; exposure did not constitute a full dynamicity study.
+
+**Research boundary:** The reviewed papers establish constructions, static texture
+tradeoffs and some dynamic tasks. None establishes a comfortable arbitrary-game
+carrier. The 1994 paper's qualitative shimmering advice is not a refresh optimum;
+the static pink-noise study does not validate our procedural temporal spectrum.
+[GPU Gems, chapter 41](https://developer.nvidia.com/gpugems/gpugems/part-vi-beyond-triangles/chapter-41-real-time-stereograms)
+is an engineering strip-feedback implementation with z-buffer animation, not a
+perceptual validation of our equality-class solver or driver processing.
+
+[Motion sampling](../src/foundation-motion.js) hashes coordinates and a uint32
+frame identifier. Binary uses full contrast; grayscale approximates Gaussian
+noise; pink combines normalized spatial octaves, with an independently tested
+approximate 1/f power slope. This differs from the static FFT reference. Each
+current class still receives one value, preserving every pair without mixing
+past pixels. CPU and GPU share the construction; GPU generates tones directly.
+
+The game defaults to **Reduce moving bands** under Advanced. It advances the
+carrier at most 60 Hz while camera/visibility changes, freezes at an exact pose, and
+starts with the static reference. The rate is an engineering bound, not a
+paper-derived optimum. Turning it off restores the static comparison. General
+hosts must supply their own animation/frame identifiers; the demo has static
+geometry. [API](INTEGRATION.md#foundation-cpu-research-api).
+
+**Cadence finding:** Simulated 60 fps ±0.12 ms jitter yields 30 grain updates/s.
+Per-submitted-frame refresh preserved depth; the user reported **no meaningful
+difference**. It remains a unit-test comparison, not the default. GPU grain advances
+after queue admission; submission counts are not measured display timing.
+
+**Compare moving grain:** A · Current; B · Half contrast (0.5 around gray 128).
+Timing, texture field, visibility and depth remain unchanged. `?motion-compare=contrast`
+opens B; `baseline` opens A. URL-scoped; reset restores A. Switching preserves pose
+and frame identity. Human feedback keeps B optional; stop reducing contrast.
+
+**Tiny-step finding:** [Coupled diagnostic](../tests/tiny-step-check.js) measures
+pixel changes and independent depth reconstruction, varying depth/grain separately.
+[Four game cases](../evidence/tiny-step-verification.json), Block study at 1280×720,
+use one simulated 60/240 Hz input tick, not an absolute human minimum. At spawn,
+the smaller step changes no stereo classes yet replaces 99.43% of pixels;
+holding grain produces identical output. Near the diamond, held grain changes
+0.24% versus 99.33%. Half contrast reduces amplitude without restoring correlation.
+Depth remains approximately 98–99% within two disparity pixels: good per-frame
+reconstruction can hide severe temporal discontinuity. Judge both jointly;
+micro-step success cannot replace longer-motion band checks or human review.
+
+**Release fix:** At 30/60/144/240 Hz, keyboard damping prolonged pose changes by
+611–700 ms (18–40 fields). Faster damping/cutoffs settle in 142–167 ms (4–9 fields),
+preserving acceleration and exact rest. Simulations cover sprint/walk/turning;
+CPU/GPU gameplay confirms settling by 300 ms. This addresses part of the tail,
+not moving harshness. Mouse input has no equivalent damping.
+
+The earlier 25% reduction lowered contrast-weighted decoder confidence, initially
+causing its withdrawal. [Fixture/settings/results](../evidence/foundation-verification.json)
+remain reproducible. That proxy cannot establish perceptual failure: paper contrast
+tolerance justified human review, which found improvement but insufficient comfort.
+Guard baseline signal quality; distinguish depth accuracy, contrast-weighted confidence,
+grain discomfort and fusion.
+
+**Rejected reuse hypothesis:** [Reproducible CPU study](../tests/foundation-reuse-research.js)
+retains a class's texture epoch only when its complete pixel membership is unchanged;
+no old RGB is mixed. This is an engineering extension, not a published result.
+Three 384×128 synthetic routes retain exact current pairs and lower average flicker,
+but turn/approach concentrate updates into strips (column energy variation
+1.15/2.09 versus 0.12); a flat approach has ten quiet transitions then one large
+refresh (68/255 RMS). These proxies expose a regression risk, not observed human
+banding. Keep it offline. Reduced average flicker alone is insufficient.
+
+**Encoded brightness finding:** [Diagnostic](../tests/foundation-luminance-research.js)
+and [results](../evidence/foundation-luminance-verification.json) cover 60 procedural
+pink fields at 640×360, fixed flat/two-depth scenes, spacing 96 and strength .33.
+Frame 51→52 changes whole-image mean by 16.84/15.21 and the largest 3×3 region
+mean by 24.40/24.16 grayscale code values. Pointwise variance normalization does
+not constrain the mean after a narrow population of class roots is repeated.
+The old raw-field check did not establish freedom from global flashing; its name
+now states its limited scope. Regional changes can also cancel in a global mean.
+These measurements are not linear-light brightness or comfort thresholds.
+
+**Mechanism isolation:** [Counterfactual study](../tests/foundation-mechanism-research.js)
+and [results](../evidence/foundation-mechanism-verification.json) separate changing
+depth at held grain from renewing grain at current depth, retaining the signed
+interaction term. At the fixed-depth brightness peak, whole-image and 3×3 regional
+means explain only 5.93% and 7.32% of difference energy; removing those regional
+means mathematically still leaves 66.58/255 RMS. That diagnostic subtraction is
+not a renderer: independent region corrections can break stereo pairs. A tiny
+depth step with unchanged classes contributes zero held-grain change. Conversely,
+the first flat-plane disparity transition in the specified approach changes 86%
+of root labels and produces 56.45 RMS even with grain held. Label changes are not
+a lower bound on changed pixels.
+
+The same study computes optimistic least-change bounds for the actual old image
+under the new exact equality classes. Preserving global mean and standard deviation
+requires at least 43.33/255 RMS at that flat transition, versus 5.33 for the two-pixel
+occluding-edge turn and zero for unchanged classes. Allowing contrast loss lowers
+the flat bound to 38.61 RMS but retains only 30.35% of horizontal variance. These
+real-valued bounds omit byte limits, spectrum and competing matches; preserving
+each row's moments adds a stricter constraint, reported separately. They are not
+renderers or comfort thresholds. Brightness correction alone cannot address the
+dominant change, and better class assignment cannot eliminate every transition.
+Apply these bounds to recorded gameplay before selecting another mechanism.
+
+**Fractional-method distinction:** the [removed row-dithered trial](OBSERVER.md#ink-contours)
+failed city checks. Its implementation is absent from current source and the
+available branch snapshots, so its exact rounding schedule is unverified. That
+failure does not reject all fractional spatial reconstruction. Tyler and Clarke's
+proposal remains untested here; TIW's grayscale palette still uses integer separation.
+Neither paper establishes a comfortable moving solution for this game.
+
+**Rejected continuous-carrier hypothesis:** [Offline study](../tests/foundation-temporal-research.js)
+and [results](../evidence/foundation-temporal-verification.json) compare independent,
+persistent and continuously evolving procedural fields over four/eight samples.
+Only source tones evolve; current pairs remain exact, with no rendered-image or
+depth history. Four synthetic 384×128 routes contain 48 samples each; these are
+short CPU sequences, not timed display or sustained gameplay tests. Mean output
+contrast stays near 47–48 grayscale levels. On the unchanged-graph control,
+eight-sample evolution lowers mean frame RMS from 67.71 to 9.49. However, turn
+column-energy variation peaks at 2.72 versus .19; a flat approach still bursts
+to 55.47 RMS when 82.81% of class roots change. Translated-match evidence reaches
+96% of sampled patches on another flat-approach transition. Sampled reconstruction
+remains approximately 94–100% within two disparity pixels. Rejected for promotion:
+average flicker hides concentrated changes and large transition bursts, despite
+intact depth. This exposes artifact risk, not newly observed human banding.
+
+[Checks](../tests/foundation-motion.test.js) preserve pairs, contrast, spectrum and
+worker seams. The legacy correlation peak includes zero displacement: stationary
+texture scores one, so it cannot label travel. Additive [temporal diagnostics](../tests/foundation-motion-quality.js)
+separate zero-shift evidence, translated improvement, ambiguous peaks, direction,
+flicker and column concentration. Fixed, independent, translated, expanding and
+contracting controls verify their scope. Missing evidence is null; integer search
+limits and engineering thresholds remain explicit. Human fusion, direction judgment,
+interaction success and comfort remain separate acceptance requirements.
 
 ### Remaining extension hypotheses
 
-1. Establish usable fusion on the implemented reference during actual gameplay.
-   Display/viewer calibration and complex occlusions still need validation.
+1. Preserve accepted band reduction while improving moving-grain comfort and fusion.
+   Isolate class reassignment from carrier renewal and encoded brightness pumping.
+   Exact-class reuse and simple continuous carrier evolution are rejected above;
+   lowering average flicker alone is insufficient. Spatially distributed renewal
+   is untested and must confront the same flat-plane transition. Display/viewer
+   calibration and complex occlusions still need validation. No contrast or timing
+   optimum is established for this game.
 2. Evaluate whether the pink carrier helps acquisition without sacrificing detail
    after depth mapping. This differs from the rejected solver below, which relaxed
    final matches. Spectral agreement alone is not a promotion criterion.

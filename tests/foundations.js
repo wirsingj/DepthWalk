@@ -2,10 +2,12 @@ import * as THREE from 'three';
 import {createCity,disposeCity} from '../src/city.js';
 import {createDepthMaterial} from '../src/adapters/three-depth.js';
 import {savePNG} from '../src/debug/save-png.js';
+import {DiagnosticWorker} from '../src/debug/worker-client.js';
 
 const $=id=>document.getElementById(id),canvas=$('image'),ctx=canvas.getContext('2d',{alpha:false});
-const worker=new Worker(new URL('./foundation.worker.js',import.meta.url),{type:'module'});
+let worker=null,closing=false;
 let view='binary',width=960,height=540,revision=0,busy=false,dirty=true,playing=false,phase=0,lastTime=0,frame=null,workerFrame=null,city=null;
+let sceneStyle=$('scene').value,spacingValue=$('spacing').value,strengthValue=$('strength').value;
 const descriptions={binary:'A clean black-and-white reference. No scene color, added outlines or frame blending.',white:'Grayscale white noise: fine texture throughout. This is the contrast-matched control for pink texture.',pink:'Candidate: pink noise adds broader matching features while retaining fine texture. Source colors and extra outlines are excluded.',source:'Source appearance only. This view is not a stereogram.',depth:'Depth input only: brighter means nearer. This view is not a stereogram.'};
 function pause(){if(playing)dirty=true;playing=false;$('motion').textContent='Play motion';$('motion').setAttribute('aria-pressed','false');}
 function invalidate(capture=false){revision++;dirty=true;if(capture)frame=null;}
@@ -26,7 +28,7 @@ function captureShapes(){
 function captureCity(){
   if(!city){
     const renderer=new THREE.WebGLRenderer({antialias:false});renderer.setSize(width,height);renderer.outputColorSpace=THREE.SRGBColorSpace;
-    const {scene}=createCity({style:$('scene').value});
+    const {scene}=createCity({style:sceneStyle});
     city={renderer,scene,background:scene.background,camera:new THREE.PerspectiveCamera(62,width/height,.1,110),material:createDepthMaterial(),target:new THREE.WebGLRenderTarget(width,height,{minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter})};
     city.target.texture.colorSpace=THREE.NoColorSpace;city.camera.rotation.order='YXZ';
   }
@@ -48,37 +50,65 @@ function paintSource(){
   paint(pixels);$('status').textContent='Source frame · motion paused';
 }
 function fail(message){pause();dirty=false;document.body.classList.add('failed');$('status').textContent=message;}
-worker.onerror=event=>{busy=false;fail(event.message||'Renderer worker failed. Reload to retry.');};
-worker.onmessage=({data})=>{
-  busy=false;if(data.id!==revision)return;
-  if(data.error){fail(data.error);return;}
-  paint(data.pixels);$('status').textContent=`${width} × ${height} · ${data.ms.toFixed(1)} ms CPU synthesis${playing?' · moving':' · still'}`;
-};
-function choose(next){pause();view=next;invalidate();$('description').textContent=descriptions[view];$('guides').hidden=['source','depth'].includes(view);$('play-city').href='../index.html?foundation='+(['source','depth'].includes(view)?'binary':view)+'&world='+($('scene').value==='retro'?'retro':'original');for(const b of document.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view));}
+function updateViewControls(){$('description').textContent=descriptions[view];$('guides').hidden=['source','depth'].includes(view);$('play-city').href='../index.html?foundation='+(['source','depth'].includes(view)?'binary':view)+'&world='+(sceneStyle==='retro'?'retro':'original');for(const b of document.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view));}
+function choose(next){pause();view=next;invalidate();updateViewControls();}
 for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>choose(b.dataset.view);
-for(const id of ['spacing','strength'])$(id).oninput=()=>{pause();$('spacing-value').textContent=$('spacing').value+' px';$('strength-value').textContent=Math.round(Number($('strength').value))+'%';$('guides').style.gap=(Number($('spacing').value)-8)+'px';invalidate();};
 function resize(){width=Number($('size').value);height=Math.round(width*9/16);canvas.width=width;canvas.height=height;$('native').style.width=width+'px';dispose();invalidate(true);}
-$('size').onchange=()=>{pause();resize();};
-$('scene').onchange=()=>{choose(view);phase=0;dispose();invalidate(true);};
+function reconcileControls(){
+  const resized=Number($('size').value)!==width,sceneChanged=$('scene').value!==sceneStyle;
+  const tuningChanged=$('spacing').value!==spacingValue||$('strength').value!==strengthValue;
+  if(resized||sceneChanged||tuningChanged)pause();
+  if(resized)resize();
+  if(sceneChanged){sceneStyle=$('scene').value;phase=0;dispose();invalidate(true);}
+  else if(tuningChanged)invalidate();
+  spacingValue=$('spacing').value;strengthValue=$('strength').value;
+  $('spacing-value').textContent=spacingValue+' px';$('strength-value').textContent=Math.round(Number(strengthValue))+'%';$('guides').style.gap=(Number(spacingValue)-8)+'px';
+  updateViewControls();
+}
+for(const id of ['spacing','strength'])$(id).oninput=reconcileControls;
+$('size').onchange=reconcileControls;
+$('scene').onchange=reconcileControls;
 $('motion').onclick=()=>{if(['source','depth'].includes(view))choose('binary');playing=!playing;$('motion').textContent=playing?'Pause motion':'Play motion';$('motion').setAttribute('aria-pressed',String(playing));};
 $('reset').onclick=()=>{pause();phase=0;invalidate(true);};
 $('save').onclick=()=>savePNG(canvas,`depthwalk-foundation-${$('scene').value}-${view}.png`).catch(e=>fail(e.message));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();});
-addEventListener('pagehide',()=>{worker.terminate();dispose();});
-function tick(time){
+// History traversal may restore form values after module setup and pageshow.
+// Reconcile on the following frame; unchanged BFCache state keeps its capture.
+addEventListener('pageshow',()=>requestAnimationFrame(reconcileControls));
+addEventListener('pagehide',event=>{
+  pause();
+  // A persisted page resumes with its workers and captured scene intact.
+  if(event.persisted)return;
+  closing=true;worker?.destroy();dispose();
+});
+async function tick(time){
   requestAnimationFrame(tick);
-  if(document.hidden||busy||(!dirty&&!playing))return;
+  if(closing||document.hidden||busy||(!dirty&&!playing))return;
   const dt=Math.min(.1,(time-lastTime)/1000);lastTime=time;
+  const requestRevision=revision,requestWidth=width,requestHeight=height;
   try{
     let fresh=!frame;
     if(playing){phase+=dt*.65;fresh=true;}
-    if(fresh)frame=$('scene').value==='shapes'?captureShapes():captureCity();
+    if(fresh)frame=sceneStyle==='shapes'?captureShapes():captureCity();
     dirty=false;
     if(['source','depth'].includes(view)){paintSource();return;}
     busy=true;document.body.classList.remove('failed');$('status').textContent='Rendering…';
     // One job in flight. Views use the held frame; stale jobs never paint.
-    worker.postMessage({id:revision,frame:frame!==workerFrame?{...frame,color:undefined}:undefined,settings:{carrier:view,spacing:Number($('spacing').value),strength:Number($('strength').value)/100}});
+    if(!worker||worker.closed){
+      worker=new DiagnosticWorker(new Worker(new URL('./foundation.worker.js',import.meta.url),{type:'module'}));
+      workerFrame=null;
+    }
+    const pending=worker.request({frame:frame!==workerFrame?{...frame,color:undefined}:undefined,settings:{carrier:view,spacing:Number($('spacing').value),strength:Number($('strength').value)/100}},{timeoutMs:15000});
     workerFrame=frame;
-  }catch(error){busy=false;fail(error.message);}
+    const result=await pending;
+    if(!result||result.width!==requestWidth||result.height!==requestHeight
+      ||!(result.pixels instanceof Uint32Array)||result.pixels.length!==requestWidth*requestHeight
+      ||!Number.isFinite(result.ms)||result.ms<0)throw Error('Malformed foundation renderer response');
+    if(closing||requestRevision!==revision)return;
+    paint(result.pixels);$('status').textContent=`${width} × ${height} · ${result.ms.toFixed(1)} ms CPU synthesis${playing?' · moving':' · still'}`;
+  }catch(error){
+    worker?.destroy(error);worker=null;workerFrame=null;
+    if(!closing&&requestRevision===revision)fail(`${error.message}. Choose a view to retry, or reload.`);
+  }finally{busy=false;}
 }
-resize();requestAnimationFrame(tick);
+resize();reconcileControls();requestAnimationFrame(tick);

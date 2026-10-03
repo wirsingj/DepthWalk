@@ -45,8 +45,8 @@ The example core call is synchronous. Run it in Web Workers as the city's compat
 ### Foundation CPU research API
 
 `FoundationFilter` from `src/foundation-stereo.js` is the v0.6 depth-only path,
-also used by the city's three `foundation-*` styles. It is separate from
-`DepthWalkFilter` / `DepthWalkGPU`; their pattern enums have not expanded.
+also used by the city's CPU fallback. `DepthWalkFilter` retains its legacy patterns;
+`DepthWalkGPU` additionally accepts all three `foundation-*` styles.
 
 ```js
 import {FoundationFilter} from './src/foundation-stereo.js';
@@ -65,9 +65,51 @@ Width/full-height must each be at most 2048 and their product at most 2,097,152.
 Carriers are `binary`, `white` and `pink`; no contour, reversal, color, history,
 dot-size or window options exist. Results contain top-left `pixels`, `width` and
 `height`. Output is reused; optionally supply a matching Uint32Array as argument
-three. Each worker caches a full-frame carrier, preserving stripe boundaries.
-Texture construction is an initial CPU cost. No GPU implementation or general
-game-engine compatibility claim follows. [Construction and evidence](STEREO-CONSTRAINTS.md#v06-foundation-implementation).
+three. Standalone calls synchronously cache a full-frame carrier unless prepared
+samples are installed. [Construction and evidence](STEREO-CONSTRAINTS.md#v06-foundation-implementation).
+
+`installPreparedCarrier({width, height, carrier, seed, yOffset, rows, tones})` copies
+validated Uint8Array samples. CPU slices retain full-frame dimensions and global
+row coordinates; they must cover the requested output rows. GPU installation
+requires the entire current frame (`yOffset: 0`, `rows: height`). Both retain owned
+copies, so transferring or mutating the supplied array afterward is safe. Metadata
+must match the rendered carrier/seed; CPU falls back to synchronous construction
+when installed samples do not cover the request. GPU installation invalidates the
+uploaded key, including same-key replacement. Callers supply reference-compatible
+samples; byte validation does not certify their spectrum or perceptual quality.
+
+The game uses [FoundationPreparation](../src/foundation-preparation.js): one worker
+generates the unchanged full-frame reference, then owned slices serve CPU workers
+and an owned copy serves GPU. One pending job and one retained carrier bound memory;
+new specifications cancel obsolete work. Each attempt has a 15-second deadline,
+with one fresh-worker retry. Failure shows reload guidance. Preparation precedes
+frame admission and grain advancement. Explicit CPU selection does not initialize
+WebGPU; choosing Auto/GPU later does. Standalone filter APIs remain synchronous.
+
+For WebGPU, use `pattern: 'foundation-pink'`, `'foundation-white'` or
+`'foundation-binary'` with the GPU interface below. Set `spacing: 96` and
+`depthStrength: .33` for the game's starting values; the API retains its legacy
+defaults. `foundationSeed` defaults to 173. Foundation dimensions share the CPU
+bounds; spacing scales by `pixelRatio` before integer rounding. Legacy color,
+contours, window, reversal, dot-size and history settings cannot alter these modes.
+The filter caches at most three reference carriers and uploads on carrier/seed/size
+changes. Per-frame depth, matching and presentation stay on GPU, without readback
+or image accumulation. Matching alternates odd-separation centering by row and
+agrees with CPU output for the same canonical input. Auto selects WebGPU
+with CPU fallback; adapter limitations below still apply.
+
+Both foundation APIs accept uint32 `noiseFrame` (default `0`). Zero retains the
+cached reference; positive values generate an independent procedural carrier with
+the same visible pairs. Keep the identifier unchanged to freeze texture; change
+it for a new moving frame. GPU/CPU grayscale rounding may differ by one level;
+each backend preserves exact class equality. No previous image is sampled.
+Full-frame coordinates preserve CPU worker seams. The game advances at most 60 Hz
+on camera/visibility changes; GPU settings are evaluated after queue admission.
+The carrier holds when stopped. Other hosts must include animated geometry in
+their refresh policy. Optional `carrierContrast` is finite, in [0.5, 1], default 1;
+class tones scale around gray 128 before rounding. Comparison B uses 0.5.
+F3 exports `noiseFrame`, `motionCadence`, `carrierContrast` and `grainTrial`.
+See [motion mechanism and tradeoff](STEREO-CONSTRAINTS.md#motion-carrier).
 
 ### Bounded central stereo
 
@@ -90,7 +132,7 @@ RGB; diagnostic evidence concerns the central stereo, not the CSS surround.
 
 ### Optional scene color
 
-Pass `frame.color` as a `Uint8Array` or `Uint8ClampedArray` of display/sRGB RGBA8 pixels, with exactly `width * height * 4` elements and the same origin, dimensions and halo rows as depth. Alpha is ignored. Select `pattern: 'quiet'`, `'scene'` or experimental `'chroma'` to use it. The research-only `'surface'` variant also accepts color. Other patterns ignore colors; omitting color with any of these four gives the exact generated-geometry fallback. Inputs are never modified. The demo defaults to Quiet stereo; the public API still defaults to geometry.
+Pass `frame.color` as a `Uint8Array` or `Uint8ClampedArray` of display/sRGB RGBA8 pixels, with exactly `width * height * 4` elements and the same origin, dimensions and halo rows as depth. Alpha is ignored. Select `pattern: 'quiet'`, `'scene'` or experimental `'chroma'` to use it. The research-only `'surface'` variant also accepts color. Other patterns ignore colors; omitting color with any of these four gives the exact generated-geometry fallback. Inputs are never modified. The demo defaults to the separate pink foundation renderer; this legacy API still defaults to geometry.
 
 `pattern: 'chroma'` is the optional **Paired color experiment**, also accepting this color input and `surfaceDetail`. Without color it gives the exact geometry fallback. It retains all visible depth constraints, but matches **linear Rec.709 luminance** instead of RGB. Convert sRGB source bytes to linear RGB, remove source luminance to obtain chromaticity, project it onto both visible eye endpoints, and scale it onto the class's deterministic scalar carrier. Each pixel selects the nearest source; equal-depth ties choose the rightmost sample deterministically. Unowned pixels are neutral. If an owner's other eye endpoint has an incompatible chromaticity, that conflicting tint is neutralized too. This comparison is bounded to one additional pair. Uniform gamut scaling preserves luminance before final sRGB quantization. Source shading and contour emphasis are omitted deliberately (`edges` has no visual effect with a color input). This prevents transitive hue/brightness copies; it may introduce chromatic rivalry. Treat it as research until human fusion is verified. It preserves projected hues, not the original render's full textures or lighting. The preceding unprojected variant produced doubled hues in human testing and has been replaced.
 
@@ -111,7 +153,7 @@ its texture amplitude; class contour coverage controls darkening. Other standard
 styles darken emphasized classes to 55% RGB. Paired color still ignores contours.
 Use `requiredHalo(pixelRatio, 3)` for CPU stripes: ink needs a second contour radius.
 This style can emphasize repeated outlines and darkens source colors; it is not
-an anti-banding or source-fidelity fix. Bold remains the default.
+an anti-banding or source-fidelity fix. Foundation gameplay omits ink.
 
 `pattern: 'surface'` is a **rejected sparse research experiment**, retained for reproducibility in `tests/surface-lab.html`, outside the game selector. It restricts exact color constraints to selected patches/features/contours and uses a faint dense noise carrier. The user reported doubled artwork and noise rectangles rather than fusion. Good source-color metrics or partial decoder recovery do not validate that mode; use Quiet stereo for the supported continuous signal.
 
@@ -129,7 +171,7 @@ teleport or different input stream. It clears temporal reuse, including CPU wind
 history, without reallocating buffers; the next frame matches fresh history.
 Full-image/window transitions also discard inactive Quiet and paired-color history.
 The demo's separate **Reduce Quiet shimmer · experimental** checkbox
-defaults off; paired stability defaults on. Human acceptance remains pending.
+defaults off; carrier history is also off in the new starting preset. Human acceptance remains pending.
 
 `chroma-soft` experimentally blends 25% projected source lighting into Paired color.
 It retains the graph but relaxes equal class luminance; test recovered depth, not exact
@@ -189,7 +231,7 @@ filter.render({
 });
 ```
 
-`verticalFov` defaults to 62 degrees. Orthographic inputs use `projection: 'orthographic'` and `orthographicHeight` (visible vertical span in engine units; default 2). Current reconstruction assumes a symmetric, square-pixel projection. Off-center/jittered projection matrices and lens distortion need an adapter; general inverse-projection input is not implemented yet.
+`verticalFov` defaults to 62 degrees; supplied values must be finite numbers strictly between 0 and 179. Orthographic inputs use `projection: 'orthographic'` and `orthographicHeight` (visible vertical span in engine units; default 2). Current reconstruction assumes a symmetric, square-pixel projection. Off-center/jittered projection matrices and lens distortion need an adapter; general inverse-projection input is not implemented yet.
 
 `settings.depthRange` controls how engine units map into stereogram depth. Keep it constant while moving. DepthWalk does not normalize each frame by its current minimum/maximum, which would cause the perceived depth to pump.
 

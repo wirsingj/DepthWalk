@@ -17,11 +17,11 @@ agent-guidance: Verify claims against named evidence; preserve human intent and 
 video game: this game first, eventually a reusable layer for other games, with
 explicit limits and accepted degradation. Strong, correctly ordered, stable depth
 comes before source-color fidelity. Research must advance playable usability.
+An eventual paper is an aspiration: preserve citations and reproducibility, not assumed novelty.
 
 The first attempt failed human acceptance and is preserved on `v0.5` at `2a1278b`;
 development continues on `codex/v0.6`. Earlier human suggestions about art style,
-color, ink, spacing and strength are hypotheses, not binding design requirements
-or technical evidence. Preserve reported observations and measured failures;
+color, ink, spacing and strength are hypotheses. Preserve observations and failures;
 reconsider mechanisms against papers and outcomes. Color and edges remain possible
 extensions, never reasons to weaken fusion.
 
@@ -31,13 +31,12 @@ startup, explicit mouse capture, Escape release and pose-preserving views.
 
 ## Implemented capability
 
-Demo/API/lab defaults preserve foreground-near ordering. Full-image Quiet remains
-the legacy default. Direction controls reach CPU/GPU, F3 and A/B;
-legacy reversed preferences are corrected. Opt-in history reduces motion change;
-camera-cut resets preserve allocations. Reversal preserves physical normals/contours.
-Optional dark ink outlines both relief directions. Spacing extends to 180 pixels;
-reset restores viewing defaults without moving the player or resetting beacons.
-See [API](INTEGRATION.md) and [comparison evidence](OBSERVER.md#quiet-motion-comparison).
+Defaults use depth-first pink/WebGPU, foreground-near ordering and shared worker
+preparation. Grain refreshes during movement. World/texture choices precede
+collapsed Advanced; saved tuning follows defaults, and reset preserves position.
+Legacy comparisons remain. **Compare moving grain** tests half contrast with unchanged depth/timing.
+See [preset policy](STEREO-CONSTRAINTS.md#v06-foundation-implementation),
+[API](INTEGRATION.md) and [comparison evidence](OBSERVER.md#quiet-motion-comparison).
 
 [Observer lab](OBSERVER.md) provides calibrated A/B/C replay, original-color references,
 native PNG export, asset-free fixtures and rejection gates. F3 restores views;
@@ -46,30 +45,30 @@ Controls: [README](../README.md#play).
 
 [Foundations](../tests/foundations.html) compares binary, white and spectral pink
 textures on held frames, with optional motion and source/depth views. The same
-depth-only CPU algorithm is selectable in the playable city. Scene color, ink,
-reversal and image history cannot alter these modes. No default promotion or
-human-fusion acceptance is implied. [Mechanism and limits](STEREO-CONSTRAINTS.md#v06-foundation-implementation).
+depth-only algorithm runs on GPU with CPU fallback. Scene color, ink,
+reversal and image history cannot alter these modes. Moving-grain comfort remains unresolved.
+[Mechanism and limits](STEREO-CONSTRAINTS.md#v06-foundation-implementation).
 
 ## Evidence and limits
 
-**Verified, 2026-10-02:** [Current checks](../evidence/foundation-verification.json): lint, 165 tests and build passed.
-Windows, Node 22.22.3, npm 10.2.3; `codex/v0.6` changes based on `2a1278b`.
-[Earlier depth](../evidence/depth-order-verification.json),
-[contour](../evidence/contour-verification.json) and [ink](OBSERVER.md#ink-contours)
-checks remain historical, not v0.6 acceptance. Projected-lighting and fractional-depth
+**Verified, 2026-10-02:** [Audit](AUDIT.md): unit/build/lint, GPU fixtures, gameplay
+and failure checks passed. Preparation preserves reference pixels while leaving the UI responsive.
+Windows, Node 22.22.3, npm 10.2.3; `codex/v0.6` changes based on `545de5a`.
+[Earlier foundation](../evidence/foundation-verification.json),
+[depth](../evidence/depth-order-verification.json), [contour](../evidence/contour-verification.json)
+and [ink](OBSERVER.md#ink-contours) checks remain historical. Projected-lighting and row-dithered-depth
 candidates regressed and were removed. Metrics do not establish comfort.
 
 **Human-reported, 2026-09-26:** Synthesis regressed across several modes; foreground
 trees look cut into background. The harness remains valuable; clarity/color ambition
 remains. Earlier [Quiet fusion](../README.md#remaining-limits) is not acceptance.
-After reloading with the scheduling fix, external Firefox improved
-from 10 fps/99 ms completion to 58–60 fps/13–30 ms. This is user confirmation, not an automated
-Firefox benchmark. QA readbacks stop after checks. Reconstruction measures image evidence,
+External Firefox previously improved to 58–60 fps after the scheduling fix
+(human report, not an automated benchmark). QA readbacks stop after checks. Reconstruction measures image evidence,
 not human comfort; alternate matches can be inherent harmonic repetitions.
 Mouse look is human-confirmed; the embedded host declined Pointer Lock.
 **Correction:** Reversed settings encoded foreground behind background while looking
 through the screen. Defaults/legacy preferences now preserve source ordering;
-explicit reversal remains diagnostic. Human confirmation remains a release blocker.
+explicit reversal remains diagnostic. Overall release acceptance remains open.
 
 ## Active gaps and priorities
 
@@ -78,12 +77,14 @@ canonical RG16 proximity and symmetric perspective projection. Its city adapter
 handles static geometry and beacon visibility; general animated adapters and native
 engine plugins remain future work. Off-center/jittered projections and lens
 distortion are unsupported. Depth cannot identify semantic materials or recover
-absent geometry. Full-width repeated-object bands and motion shimmer remain unresolved.
+absent geometry. Legacy color bands and harsh moving grain remain unresolved.
 
-**Next:** Establish foundation fusion during gameplay before color extensions or
-GPU promotion. Pink texture has numerical coverage, not human acceptance. The
-foundation path is CPU-only and bounded to about 2 MP; general engine integration
-and performance remain unfinished. No application frame blending was found.
+**Human-reported, 2026-10-02:** Depth holds; harsh moving static persists despite
+half contrast. One possible brief diamond band qualifies the earlier band-free report.
+Keyboard release now settles within 180 ms in tested simulations.
+**Next:** Measure unavoidable transition change in gameplay before another grain mechanism.
+Continuous-carrier trials retained depth but failed motion screening. [Research, measurements and limits](STEREO-CONSTRAINTS.md#motion-carrier).
+[Audit and work queue](AUDIT.md). Foundation output stays near 2 MP; no image blending.
 
 **Unknown:** First external engine target, supported hardware floor,
 deployment/release destination, repository visibility and reviewer ownership.

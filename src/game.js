@@ -33,15 +33,19 @@ export function stepPlayer(p, keys, dt) {
   const len = Math.hypot(f,s) || 1; f/=len; s/=len;
   const turn = Number(keys.has('KeyQ')||keys.has('ArrowLeft'))-Number(keys.has('ArrowRight'));
   const smooth = 1-Math.exp(-dt*12);
-  p.turn += (turn*.65-p.turn)*smooth;
-  if(!turn&&Math.abs(p.turn)<.0002)p.turn=0;
+  // Release settles promptly: imperceptible camera drift otherwise keeps
+  // replacing the entire stereogram carrier long after input has stopped.
+  const release = 1-Math.exp(-dt*36);
+  p.turn += (turn*.65-p.turn)*(turn?smooth:release);
+  if(!turn&&Math.abs(p.turn)<.002)p.turn=0;
   p.yaw += p.turn*dt;
   const speed=keys.has('ShiftLeft')||keys.has('ShiftRight')?6:3;
   const tx = (-Math.sin(p.yaw)*f+Math.cos(p.yaw)*s)*speed;
   const tz = (-Math.cos(p.yaw)*f-Math.sin(p.yaw)*s)*speed;
-  p.vx += (tx-p.vx)*smooth; p.vz += (tz-p.vz)*smooth;
+  const movementSmooth=f||s?smooth:release;
+  p.vx += (tx-p.vx)*movementSmooth; p.vz += (tz-p.vz)*movementSmooth;
   // Stop below a visually negligible speed instead of perturbing depth forever.
-  if(!f&&!s){if(Math.abs(p.vx)<.002)p.vx=0;if(Math.abs(p.vz)<.002)p.vz=0;}
+  if(!f&&!s){if(Math.abs(p.vx)<.02)p.vx=0;if(Math.abs(p.vz)<.02)p.vz=0;}
   if (!blocked(p.x+p.vx*dt,p.z)) p.x+=p.vx*dt; else p.vx=0;
   if (!blocked(p.x,p.z+p.vz*dt)) p.z+=p.vz*dt; else p.vz=0;
 }

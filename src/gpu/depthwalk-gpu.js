@@ -1,4 +1,6 @@
 import {stereoWindow} from '../stereo-window.js';
+import {createFoundationTexture} from '../foundation-texture.js';
+import {validatePreparedCarrier} from '../foundation-carrier.js';
 import shader from './stereogram.wgsl?raw';
 import {SHADED_GEOMETRY_PALETTE,SHADED_CONTOUR_PALETTE,CLASSIC_PALETTE,CONTOUR_CLASSIC_PALETTE,NEUTRAL_PALETTE,CONTOUR_NEUTRAL_PALETTE} from '../pattern.js';
 
@@ -11,7 +13,7 @@ const display=`
   let x=f32((i<<1u)&2u);let y=f32(i&2u);return vec4f(x*2.-1.,y*2.-1.,0.,1.);
 }
 @fragment fn fragment(@builtin(position) at:vec4f)->@location(0) vec4f{
-  let i=u32(at.y)*size.x+u32(at.x);var c=colors[parents[i]];if(size.z>=6u){c=local[i];}
+  let i=u32(at.y)*size.x+u32(at.x);var c=colors[parents[i]];if(size.z==6u||size.z==7u){c=local[i];}
   return vec4f(f32(c&255u),f32((c>>8u)&255u),f32((c>>16u)&255u),255.)/255.;
 }`;
 
@@ -23,6 +25,7 @@ export class DepthWalkGPU{
     const entries=[{binding:0,visibility:GPUShaderStage.COMPUTE,buffer:{type:'uniform'}},{binding:1,visibility:GPUShaderStage.COMPUTE,texture:{sampleType:'unfilterable-float'}}];
     for(let binding=2;binding<=9;binding++)entries.push({binding,visibility:GPUShaderStage.COMPUTE,buffer:{type:binding===9?'read-only-storage':'storage'}});
     entries.push({binding:10,visibility:GPUShaderStage.COMPUTE,texture:{sampleType:'unfilterable-float'}});
+    entries.push({binding:11,visibility:GPUShaderStage.COMPUTE,texture:{sampleType:'unfilterable-float'}});
     filter.layout=device.createBindGroupLayout({entries});const layout=device.createPipelineLayout({bindGroupLayouts:[filter.layout]});
     const module=device.createShaderModule({code:shader});
     const info=await module.getCompilationInfo();const errors=info.messages.filter(m=>m.type==='error');
@@ -30,7 +33,7 @@ export class DepthWalkGPU{
     filter.pipelines=await Promise.all(['prepare','link','gather','reuseCarrier','shade','localColor'].map(entryPoint=>device.createComputePipelineAsync({layout,compute:{module,entryPoint}})));
     const presentation=device.createShaderModule({code:display});
     filter.presentation=await device.createRenderPipelineAsync({layout:'auto',vertex:{module:presentation,entryPoint:'vertex'},fragment:{module:presentation,entryPoint:'fragment',targets:[{format}]},primitive:{topology:'triangle-list'}});
-    filter.uniform=device.createBuffer({size:64,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST});
+    filter.uniform=device.createBuffer({size:80,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST});
     const palette=Uint32Array.from([...SHADED_GEOMETRY_PALETTE,...SHADED_CONTOUR_PALETTE,...CLASSIC_PALETTE,...CONTOUR_CLASSIC_PALETTE,...NEUTRAL_PALETTE,...CONTOUR_NEUTRAL_PALETTE]);
     filter.palette=device.createBuffer({size:palette.byteLength,usage:GPUBufferUsage.STORAGE|GPUBufferUsage.COPY_DST});device.queue.writeBuffer(filter.palette,0,palette);
     filter.fallbackColor=device.createTexture({size:[1,1],format:'rgba8unorm',usage:GPUTextureUsage.TEXTURE_BINDING});
@@ -39,29 +42,59 @@ export class DepthWalkGPU{
   resize(width,height,depthView,colorView=null){
     if(!Number.isInteger(width)||!Number.isInteger(height)||width>8192||height>8192||width*height>8294400||width<1||height<1)throw Error('GPU filter dimensions exceed the supported 8.3 MP / 8192-axis limit');
     this.buffers?.forEach(b=>b.destroy());this.width=width;this.height=height;
+    const dimensions=`${width}/${height}`;
+    if(this.foundationDimensions!==dimensions){this.foundationDimensions=dimensions;this.foundationTextures=new Map();}
+    this.foundationKey=null;this.foundationTexture?.destroy();
+    this.foundationTexture=this.device.createTexture({size:[width,height],format:'r8unorm',usage:GPUTextureUsage.TEXTURE_BINDING|GPUTextureUsage.COPY_DST});
     this.hasColor=!!colorView;
     this.historyKey=null;
     this.buffers=Array.from({length:7},(_,i)=>this.device.createBuffer({size:i===6?height*3*4:width*height*4*(i===1?3:i===2||i===5?2:1),usage:GPUBufferUsage.STORAGE|GPUBufferUsage.COPY_SRC|GPUBufferUsage.COPY_DST}));
-    const entries=[{binding:0,resource:{buffer:this.uniform}},{binding:1,resource:depthView},...this.buffers.map((buffer,i)=>({binding:i+2,resource:{buffer}})),{binding:9,resource:{buffer:this.palette}},{binding:10,resource:colorView||this.fallbackColor.createView()}];
+    const entries=[{binding:0,resource:{buffer:this.uniform}},{binding:1,resource:depthView},...this.buffers.map((buffer,i)=>({binding:i+2,resource:{buffer}})),{binding:9,resource:{buffer:this.palette}},{binding:10,resource:colorView||this.fallbackColor.createView()},{binding:11,resource:this.foundationTexture.createView()}];
     this.group=this.device.createBindGroup({layout:this.layout,entries});
     this.displayGroup=this.device.createBindGroup({layout:this.presentation.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:this.buffers[1]}},{binding:1,resource:{buffer:this.buffers[5]}},{binding:2,resource:{buffer:this.uniform,offset:0,size:16}},{binding:3,resource:{buffer:this.buffers[3]}}]});
   }
   // The next submission seeds fresh classes; GPU resources stay allocated.
   resetHistory(){this.historyKey=null;}
-  encode(encoder,output,{pixelRatio=1,spacing=120,depthStrength=.5,dotSize=1,edges=2,pattern='geometry',verticalFov=62,depthRange=22,surfaceDetail=.35,temporalStability=false,windowPeriods=0,invertDepth=false}={}){
+  installPreparedCarrier(prepared){
+    validatePreparedCarrier(prepared);
+    if(prepared.width!==this.width||prepared.height!==this.height||prepared.yOffset!==0||prepared.rows!==this.height)throw Error('Prepared carrier must cover the GPU frame');
+    const key=`${prepared.carrier}/${prepared.seed}`;
+    if(!this.foundationTextures.has(key)&&this.foundationTextures.size>=3)this.foundationTextures.delete(this.foundationTextures.keys().next().value);
+    this.foundationTextures.set(key,prepared.tones.slice());
+    if(this.foundationKey===key)this.foundationKey=null;
+  }
+  encode(encoder,output,{pixelRatio=1,spacing=120,depthStrength=.5,dotSize=1,edges=2,pattern='geometry',verticalFov=62,depthRange=22,surfaceDetail=.35,temporalStability=false,windowPeriods=0,invertDepth=false,foundationSeed=173,noiseFrame=0,carrierContrast=1}={}){
     if(typeof temporalStability!=='boolean')throw Error('Temporal stability must be boolean');
     if(typeof invertDepth!=='boolean')throw Error('Depth inversion must be boolean');
-    if(!['chroma-soft','chroma','surface','quiet','scene','geometry','classic','mono'].includes(pattern)||![pixelRatio,spacing,dotSize,depthRange].every(v=>Number.isFinite(v)&&v>0)||!Number.isFinite(depthStrength)||depthStrength<0||depthStrength>.5||![0,1,2,3].includes(edges)||!(verticalFov>0&&verticalFov<179)||spacing*pixelRatio>8192||!Number.isFinite(surfaceDetail)||surfaceDetail<0||surfaceDetail>1)throw Error('Invalid GPU filter settings');
+    if(!['chroma-soft','chroma','surface','quiet','scene','geometry','classic','mono','foundation-binary','foundation-white','foundation-pink'].includes(pattern)||![pixelRatio,spacing,dotSize,depthRange].every(v=>Number.isFinite(v)&&v>0)||!Number.isFinite(depthStrength)||depthStrength<0||depthStrength>.5||![0,1,2,3].includes(edges)||!(Number.isFinite(verticalFov)&&verticalFov>0&&verticalFov<179)||spacing*pixelRatio>8192||!Number.isFinite(surfaceDetail)||surfaceDetail<0||surfaceDetail>1)throw Error('Invalid GPU filter settings');
+    const foundation=pattern.startsWith('foundation-');
+    if(foundation){
+      if(this.width>2048||this.height>2048||this.width*this.height>2097152||Math.max(8,Math.round(spacing*pixelRatio))>=this.width||![foundationSeed,noiseFrame].every(v=>Number.isInteger(v)&&v>=0&&v<=0xffffffff)||!Number.isFinite(carrierContrast)||carrierContrast<.5||carrierContrast>1)throw Error('Invalid GPU foundation settings');
+      const carrier=pattern.slice(11),key=`${carrier}/${foundationSeed}`;
+      if(!noiseFrame&&this.foundationKey!==key){
+        // Generate the reference carrier once. Depth, matching and presentation
+        // stay on GPU each frame; no rendered image is accumulated or read back.
+        if(!this.foundationTextures.has(key)){
+          if(this.foundationTextures.size>=3)this.foundationTextures.delete(this.foundationTextures.keys().next().value);
+          this.foundationTextures.set(key,createFoundationTexture(this.width,this.height,carrier,foundationSeed));
+        }
+        this.device.queue.writeTexture({texture:this.foundationTexture},this.foundationTextures.get(key),{bytesPerRow:this.width},[this.width,this.height]);
+        this.foundationKey=key;
+      }
+      edges=0;dotSize=1/pixelRatio;windowPeriods=0;invertDepth=false;temporalStability=false;
+    }
     const region=stereoWindow(this.width,spacing,pixelRatio,windowPeriods);
     if(windowPeriods&&!this.hasColor)throw Error('A bounded stereo window requires aligned scene color');
-    const data=new ArrayBuffer(64),u=new Uint32Array(data),f=new Float32Array(data);
+    const data=new ArrayBuffer(80),u=new Uint32Array(data),f=new Float32Array(data);
     this.localColor=['chroma','chroma-soft'].includes(pattern)&&this.hasColor;
     const quietHistory=pattern==='quiet'&&this.hasColor&&temporalStability;
     const historyKey=(this.localColor||quietHistory)&&temporalStability?`${pattern}/${pixelRatio}/${spacing}/${depthStrength}/${dotSize}/${surfaceDetail}/${region.left}/${region.right}/${depthRange}/${edges}/${invertDepth}`:null;
     const reuse=historyKey!==null&&historyKey===this.historyKey;this.historyKey=historyKey;
-    u.set([this.width,this.height,{geometry:0,classic:1,mono:2,scene:this.hasColor?3:0,surface:this.hasColor?4:0,quiet:this.hasColor?5:0,chroma:this.hasColor?6:0,'chroma-soft':this.hasColor?7:0}[pattern],edges]);
+    u.set([this.width,this.height,{geometry:0,classic:1,mono:2,scene:this.hasColor?3:0,surface:this.hasColor?4:0,quiet:this.hasColor?5:0,chroma:this.hasColor?6:0,'chroma-soft':this.hasColor?7:0,'foundation-binary':8,'foundation-white':9,'foundation-pink':10}[pattern],edges]);
     f.set([pixelRatio,Math.max(8,Math.round(spacing*pixelRatio)),Math.round(depthStrength*1000)/1000,2*Math.tan(verticalFov*Math.PI/360)/this.height,dotSize,depthRange,surfaceDetail,historyKey===null?0:reuse?3:2],4);
     u.set([region.left,region.right,windowPeriods,Number(invertDepth)],12);
+    u.set([foundation?noiseFrame:0,foundationSeed,0,0],16);
+    f[18]=carrierContrast;
     this.device.queue.writeBuffer(this.uniform,0,data);
     const dispatches=[[Math.ceil(this.width/8),Math.ceil(this.height/8)],[Math.ceil(this.width/64),this.height],[this.height,1],[Math.ceil(this.width/64),this.height],[Math.ceil(this.width/64),this.height],[Math.ceil(this.width/64),this.height]];
     for(const i of (this.localColor||quietHistory?[0,1,2,3,4,5]:[0,1,2,4])){
@@ -93,5 +126,5 @@ export class DepthWalkGPU{
       return new Uint32Array(read.getMappedRange().slice(0));
     }finally{read.destroy();}
   }
-  destroy(){this.buffers?.forEach(b=>b.destroy());this.uniform?.destroy();this.palette?.destroy();this.fallbackColor?.destroy();}
+  destroy(){this.buffers?.forEach(b=>b.destroy());this.uniform?.destroy();this.palette?.destroy();this.fallbackColor?.destroy();this.foundationTexture?.destroy();this.foundationTextures?.clear();}
 }

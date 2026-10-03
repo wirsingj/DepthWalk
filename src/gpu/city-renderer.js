@@ -30,6 +30,11 @@ export class GPUCityRenderer{
     this.canvas.width=width;this.canvas.height=height;this.width=width;this.height=height;
     this.color?.destroy();this.color=this.device.createTexture({size:[width,height],format:'rgba8unorm',usage:GPUTextureUsage.COPY_DST|GPUTextureUsage.COPY_SRC|GPUTextureUsage.TEXTURE_BINDING|GPUTextureUsage.RENDER_ATTACHMENT});
     this.depth.resize(width,height);this.filter.resize(width,height,this.depth.view,this.color.createView());
+    this.preparedCarrierKey=null;
+  }
+  installPreparedCarrier(prepared,key){
+    if(this.preparedCarrierKey===key)return;
+    this.filter.installPreparedCarrier(prepared);this.preparedCarrierKey=key;
   }
   render(camera,settings,onComplete,verify=false,renderColor=null){
     if(this.failed||this.disposed)return false;
@@ -37,6 +42,9 @@ export class GPUCityRenderer{
     const start=performance.now();
     let colorMs=0;
     try{
+      // Evaluate moving texture state only after a real frame gets a queue slot.
+      // A busy GPU must not advance the carrier for an image it never submits.
+      if(typeof settings==='function')settings=settings();
       const encoder=this.device.createCommandEncoder();
       if((settings.windowPeriods>0||['scene','surface','quiet','chroma','chroma-soft'].includes(settings.pattern))&&renderColor){
         const source=renderColor();

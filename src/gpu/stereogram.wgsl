@@ -1,4 +1,4 @@
-struct Params { size:vec4u, view:vec4f, style:vec4f, window:vec4u }
+struct Params { size:vec4u, view:vec4f, style:vec4f, window:vec4u, motion:vec4u }
 @group(0) @binding(0) var<uniform> p:Params;
 @group(0) @binding(1) var source:texture_2d<f32>;
 @group(0) @binding(2) var<storage,read_write> geometry:array<u32>;
@@ -10,6 +10,7 @@ struct Params { size:vec4u, view:vec4f, style:vec4f, window:vec4u }
 @group(0) @binding(8) var<storage,read_write> rows:array<u32>;
 @group(0) @binding(9) var<storage,read> palettes:array<u32>;
 @group(0) @binding(10) var sceneColor:texture_2d<f32>;
+@group(0) @binding(11) var foundationCarrier:texture_2d<f32>;
 const NONE=0xffffffffu;
 var<workgroup> rowSums:array<atomic<u32>,3>;
 fn sceneRGB(i:u32)->vec3u{return vec3u(floor(textureLoad(sceneColor,vec2i(i32(i%p.size.x),i32(i/p.size.x)),0).rgb*255.+.5));}
@@ -63,6 +64,10 @@ fn family(n:vec3f)->u32{
 fn prepare(@builtin(global_invocation_id) gid:vec3u){
   if(gid.x>=p.size.x||gid.y>=p.size.y){return;}
   let x=i32(gid.x);let y=i32(gid.y);let i=gid.y*p.size.x+gid.x;
+  if(p.size.z>=8u){
+    atomicStore(&parents[i],i);atomicStore(&colors[i],0u);pairs[i]=NONE;
+    geometry[i]=rawQ(x,y);return;
+  }
   atomicStore(&parents[i],i);atomicStore(&heads[i],select(NONE,0u,p.size.z>=6u));atomicStore(&colors[i],0u);pairs[i]=NONE;
   if(p.size.z>=6u){atomicStore(&parents[p.size.x*p.size.y*2u+i],0u);atomicStore(&heads[p.size.x*p.size.y+i],NONE);}
   if(p.size.z==5u&&p.style.w>=2.){atomicStore(&parents[p.size.x*p.size.y*2u+i],0u);}
@@ -128,7 +133,8 @@ fn surfaceFeature(i:u32)->bool{
 @compute @workgroup_size(64)
 fn link(@builtin(global_invocation_id) gid:vec3u){
   if(gid.x>=p.size.x||gid.y>=p.size.y){return;}let i=gid.y*p.size.x+gid.x;let x=gid.x;let row=i-x;let z=zAt(i);let s=spacing(z);
-  if(x<s/2u){return;}let left=x-s/2u;let right=left+s;if(left<p.window.x||right>=p.window.y){return;}
+  let half=(s+select(0u,(s&1u)*(gid.y&1u),p.size.z>=8u))/2u;
+  if(x<half){return;}let left=x-half;let right=left+s;if(left<p.window.x||right>=p.window.y){return;}
   if(p.view.z>0.){
     let center=qAt(i);let mu=rounded(p.view.z*1000.);let denominator=131070000u-mu*center;let factor=mu*u32(p.view.y);
     for(var t=1u;t<=p.size.x;t++){
@@ -142,7 +148,7 @@ fn link(@builtin(global_invocation_id) gid:vec3u){
     if(!surfacePatch(x,gid.y)&&!contour(i)&&!surfaceFeature(i)){return;}
   }
   pairs[i]=left|(right<<16u);unite(row+left,row+right);
-  if(p.size.z>=6u){
+  if(p.size.z==6u||p.size.z==7u){
     let owner=(qAt(i)<<16u)|(x+1u);atomicMax(&heads[row+left],owner);atomicMax(&heads[row+right],owner);
   }
 }
@@ -177,6 +183,10 @@ fn contour(i:u32)->bool{
 @compute @workgroup_size(64)
 fn gather(@builtin(workgroup_id) group:vec3u,@builtin(local_invocation_index) lane:u32){
   let y=group.x;let row=y*p.size.x;
+  if(p.size.z>=8u){
+    for(var x=lane;x<p.size.x;x+=64u){let i=row+x;atomicMax(&parents[i],root(i));}
+    return;
+  }
   if(lane<3u){atomicStore(&rowSums[lane],0u);}workgroupBarrier();
   for(var x=lane;x<p.size.x;x+=64u){
     if(x<p.window.x||x>=p.window.y){continue;}
@@ -205,6 +215,25 @@ fn seed(x:u32,y:u32)->u32{
 }
 fn rgb(c:u32)->vec3f{return vec3f(f32(c&255u),f32((c>>8u)&255u),f32((c>>16u)&255u));}
 fn packed(c:vec3f)->u32{let v=vec3u(floor(c+.5));return 0xff000000u|v.x|(v.y<<8u)|(v.z<<16u);}
+fn motionHash(x:u32,y:u32,key:u32)->u32{
+  var h=(x*374761393u)^(y*668265263u)^(p.motion.x*2246822519u)^key;
+  h=(h^(h>>16u))*2246822507u;h=(h^(h>>13u))*3266489909u;return h^(h>>16u);
+}
+fn motionNoise(x:u32,y:u32,key:u32)->f32{
+  let h=motionHash(x,y,key);return f32((h&255u)+((h>>8u)&255u)+((h>>16u)&255u)+(h>>24u))-510.;
+}
+fn motionTone(x:u32,y:u32)->u32{
+  if(p.size.z==8u){return (motionHash(x,y,p.motion.y)&1u)*255u;}
+  var value=motionNoise(x,y,p.motion.y);var variance=1.;var scale=2.;
+  if(p.size.z==10u){for(var octave=1u;octave<=8u;octave++){
+    let s=vec2f(f32(x),f32(y))/scale;let at=vec2u(floor(s));let f=fract(s);let key=p.motion.y+octave*2654435761u;
+    let a=motionNoise(at.x,at.y,key)*(1.-f.x)+motionNoise(at.x+1u,at.y,key)*f.x;
+    let b=motionNoise(at.x,at.y+1u,key)*(1.-f.x)+motionNoise(at.x+1u,at.y+1u,key)*f.x;
+    let weight=1.5/sqrt(scale);value+=(a*(1.-f.y)+b*f.y)*weight;
+    variance+=weight*weight*((1.-f.x)*(1.-f.x)+f.x*f.x)*((1.-f.y)*(1.-f.y)+f.y*f.y);scale*=2.;
+  }}
+  return rounded(clamp(128.+value*48./sqrt(21845.*variance),0.,255.));
+}
 fn inkColor(c:u32,edge:bool)->u32{if(p.size.w==3u&&edge){return packed(rgb(c)*.55);}return c;}
 @compute @workgroup_size(64)
 fn reuseCarrier(@builtin(global_invocation_id) gid:vec3u){
@@ -227,6 +256,12 @@ fn reuseCarrier(@builtin(global_invocation_id) gid:vec3u){
 @compute @workgroup_size(64)
 fn shade(@builtin(global_invocation_id) gid:vec3u){
   if(gid.x>=p.size.x||gid.y>=p.size.y){return;}let i=gid.y*p.size.x+gid.x;if(atomicLoad(&parents[i])!=i){return;}
+  if(p.size.z>=8u){
+    var value=rounded(textureLoad(foundationCarrier,vec2i(gid.xy),0).r*255.);
+    if(p.motion.x>0u){value=motionTone(gid.x,gid.y);}
+    value=rounded(128.+(f32(value)-128.)*bitcast<f32>(p.motion.z));
+    atomicStore(&colors[i],0xff000000u|value|(value<<8u)|(value<<16u));return;
+  }
   if(gid.x<p.window.x||gid.x>=p.window.y){atomicStore(&colors[i],packed(vec3f(sceneRGB(i))));return;}
   let x=i%p.size.x;let y=i/p.size.x;let random=seed(x,y);let tone=random&7u;let edge=atomicLoad(&colors[i])>0u;
   if(p.size.z>=6u){

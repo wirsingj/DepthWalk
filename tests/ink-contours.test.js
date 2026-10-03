@@ -39,9 +39,9 @@ test('ink halos preserve worker seams and source origin across resolution and wi
   }
 });
 
-test('ink and wider spacing preferences validate without changing prior defaults',()=>{
+test('legacy ink and wider spacing remain selectable alongside the depth-first defaults',()=>{
   const saved=sanitizePreferences({edges:'3',spacing:'180'});
   assert.equal(saved.edges,'3');assert.equal(saved.spacing,'180');
-  assert.equal(sanitizePreferences({spacing:'181'}).spacing,'120');
-  assert.equal(sanitizePreferences({}).edges,'2');
+  assert.equal(sanitizePreferences({spacing:'181'}).spacing,'96');
+  assert.equal(sanitizePreferences({}).edges,'0');
 });

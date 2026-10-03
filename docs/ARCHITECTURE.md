@@ -47,28 +47,30 @@ normals may alter reference colors.
 
 ## Demo responsibilities
 
-[main.js](../src/main.js) normally prefers WebGPU. Its adapter uploads static geometry
-and updates beacon visibility. Two submissions overlap; RAF empty submissions
-service Firefox completions. Diagnostics are exclusive. Completion latency includes
-scheduling. Failure selects CPU; WebGL supplies views/color. Quality can adapt or stay fixed.
+[main.js](../src/main.js) prefers foundation WebGPU, created only when selected.
+WebGPU uploads static geometry, updates beacons and overlaps two submissions.
+Grain advances after admission; RAF polls completions, including while idle.
+Diagnostics are exclusive. Failure selects CPU; WebGL supplies views/color.
+[Frame demand](../src/frame-demand.js) holds unchanged foundation output; input,
+settings and capture wake it. Idle samples cannot lower adaptive quality.
 
-CPU assembles complete frames from ≤4 [workers](../src/stereo.worker.js); legacy
-filters need halos. Pose/visibility caching stabilizes inputs; versions reject stale
-output. Quality respects CPU/refresh ceilings; QA readback stops after checks.
-[Diagnostics](OBSERVER.md) reconstruct pixels before truth comparison, expose missing
-evidence, export native PNGs and restore prior views; relief renders on demand.
+[Preparation](../src/foundation-preparation.js) computes unchanged reference bytes
+once off-thread; owned copies serve GPU/≤4 CPU stripes before admission.
+Superseded work is cancelled. [API](INTEGRATION.md#foundation-cpu-research-api) owns deadlines,
+retry and cache bounds. CPU [ownership](../src/stereo-worker-client.js) validates replies/versions
+with a 15-second deadline. Legacy stripes need halos.
+Scene-input caching ignores appearance controls; QA readback stops afterward.
+[Diagnostics](OBSERVER.md) reconstruct pixels, export PNGs and restore views.
 
-[FoundationFilter](../src/foundation-stereo.js) serves gameplay and
-[Foundations](../tests/foundations.html): canonical proximity, alternating
-row centering, exact visible pairs and cached binary/white/pink carriers. Full-frame
-seed coordinates keep worker stripes identical. It omits source tint, contours and
-history. Game selection forces CPU, full image and foreground-near direction;
-limits follow [Integration](INTEGRATION.md#foundation-cpu-research-api).
+[FoundationFilter](../src/foundation-stereo.js) serves gameplay/[Foundations](../tests/foundations.html):
+canonical proximity, alternating centering, visible pairs. CPU/GPU share carriers
+and procedural tones. Grain refreshes ≤60 Hz while moving; B halves class-tone contrast. Gameplay
+requires full-image foreground-near output; [API](INTEGRATION.md#foundation-cpu-research-api).
 
 [city.js](../src/city.js): Original/Block study share layout; Block simplifies geometry/materials.
 Switching preserves pose/collection/settings, disposes scenery, rebuilds GPU geometry,
 resets history. Resolution limits stereo precision despite RG16 input.
-[game.js](../src/game.js) owns movement/collision/collection.
+[game.js](../src/game.js) owns movement/collision/collection and release damping.
 
 ## Invariants and rejected regressions
 
@@ -82,9 +84,8 @@ resets history. Resolution limits stereo precision despite RG16 input.
 - Legacy palettes share eight ordered luminance tones and one seed tone index.
   Quiet stereo shares a class seed and contrast amplitude. Preserve matching contrast
   and keep highlights in gamut; averaging unrelated noise previously weakened fusion.
-- Express spacing, dot size and contour width in display pixels and scale them into
-  render pixels. Native output is generated at its chosen dimensions, currently
-  capped at 8.3 MP, or 2 MP for foundation gameplay.
+- Scale display-pixel spacing, dot size and contours into native render pixels.
+  Foundation gameplay caps near 2 MP; insufficient width pauses synthesis recoverably.
 - Keep depth-range mapping fixed across frames. Per-frame min/max normalization
   would change perceived depth as scene contents change.
 - Present complete current frames; no old RGB/depth accumulation, temporal antialiasing

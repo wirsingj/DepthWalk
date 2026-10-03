@@ -1,0 +1,695 @@
+{
+  "recordedAt": "2026-10-03T02:46:03.150Z",
+  "baseRevision": "545de5a",
+  "branch": "codex/v0.6",
+  "environment": {
+    "os": "Windows",
+    "browser": "Codex in-app Chromium"
+  },
+  "cases": [
+    {
+      "actualMovement": {
+        "changedAtLeast16Percent": 82.360352,
+        "changedPercent": 99.426866,
+        "correlation": -0.006622,
+        "meanAbsByte": 54.489127,
+        "rmsByte": 67.983806
+      },
+      "changedStereoClassPercent": 0,
+      "controlled": {
+        "depthOnlyHeldGrain": {
+          "changedAtLeast16Percent": 0,
+          "changedPercent": 0,
+          "correlation": 1,
+          "meanAbsByte": 0,
+          "rmsByte": 0
+        },
+        "fullContrast": {
+          "changedAtLeast16Percent": 82.360352,
+          "changedPercent": 99.426866,
+          "correlation": -0.006621,
+          "meanAbsByte": 54.48911,
+          "rmsByte": 67.983773
+        },
+        "grainOnlyHeldDepth": {
+          "changedAtLeast16Percent": 82.360352,
+          "changedPercent": 99.426866,
+          "correlation": -0.006621,
+          "meanAbsByte": 54.48911,
+          "rmsByte": 67.983773
+        },
+        "halfContrast": {
+          "changedAtLeast16Percent": 65.365885,
+          "changedPercent": 98.83431,
+          "correlation": -0.006589,
+          "meanAbsByte": 27.248334,
+          "rmsByte": 34.000751
+        }
+      },
+      "cpuReferenceError": 0.000016,
+      "forwardDistance": 0.00061,
+      "hz": 240,
+      "image": {
+        "backend": "gpu",
+        "contrast": 1,
+        "height": 720,
+        "noiseFrames": [
+          2,
+          3
+        ],
+        "width": 1280
+      },
+      "meanDepthChangeRG16": 0.3615,
+      "pose": "spawn",
+      "reconstruction": {
+        "depthOnlyHeldGrain": {
+          "after": {
+            "meanDisparityError": 0.074234,
+            "reliablePercent": 89.128352,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.329502
+          },
+          "before": {
+            "meanDisparityError": 0.074234,
+            "reliablePercent": 89.128352,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.329502
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 0,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0,
+            "meanDisparityChangePixels": 0,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "fullContrast": {
+          "after": {
+            "meanDisparityError": 0.076628,
+            "reliablePercent": 92.145594,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.185824
+          },
+          "before": {
+            "meanDisparityError": 0.074234,
+            "reliablePercent": 89.128352,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.329502
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 0.814176,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.089559,
+            "meanDisparityChangePixels": 0.089559,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "after": {
+            "meanDisparityError": 0.076628,
+            "reliablePercent": 92.145594,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.185824
+          },
+          "before": {
+            "meanDisparityError": 0.074234,
+            "reliablePercent": 89.128352,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.329502
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 0.814176,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.089559,
+            "meanDisparityChangePixels": 0.089559,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "halfContrast": {
+          "after": {
+            "meanDisparityError": 0.076149,
+            "reliablePercent": 6.800766,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.185824
+          },
+          "before": {
+            "meanDisparityError": 0.074234,
+            "reliablePercent": 4.358238,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.329502
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 0.814176,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.08908,
+            "meanDisparityChangePixels": 0.08908,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        }
+      },
+      "sourceRender": {
+        "changedPercent": 0.000977,
+        "meanAbsChannelByte": 0.000646
+      },
+      "standingStill": {
+        "changedAtLeast16Percent": 0,
+        "changedPercent": 0,
+        "correlation": 1,
+        "meanAbsByte": 0,
+        "rmsByte": 0
+      }
+    },
+    {
+      "actualMovement": {
+        "changedAtLeast16Percent": 82.131185,
+        "changedPercent": 99.379015,
+        "correlation": 0.001954,
+        "meanAbsByte": 54.236181,
+        "rmsByte": 67.662139
+      },
+      "changedStereoClassPercent": 0.370226,
+      "controlled": {
+        "depthOnlyHeldGrain": {
+          "changedAtLeast16Percent": 0.308485,
+          "changedPercent": 0.369358,
+          "correlation": 0.996566,
+          "meanAbsByte": 0.196427,
+          "rmsByte": 3.972086
+        },
+        "fullContrast": {
+          "changedAtLeast16Percent": 82.131185,
+          "changedPercent": 99.379015,
+          "correlation": 0.001954,
+          "meanAbsByte": 54.236181,
+          "rmsByte": 67.662139
+        },
+        "grainOnlyHeldDepth": {
+          "changedAtLeast16Percent": 82.140191,
+          "changedPercent": 99.37793,
+          "correlation": 0.001794,
+          "meanAbsByte": 54.244872,
+          "rmsByte": 67.668549
+        },
+        "halfContrast": {
+          "changedAtLeast16Percent": 65.194661,
+          "changedPercent": 98.812826,
+          "correlation": 0.001985,
+          "meanAbsByte": 27.122767,
+          "rmsByte": 33.838703
+        }
+      },
+      "cpuReferenceError": 0,
+      "forwardDistance": 0.009063,
+      "hz": 60,
+      "image": {
+        "backend": "gpu",
+        "contrast": 1,
+        "height": 720,
+        "noiseFrames": [
+          5,
+          6
+        ],
+        "width": 1280
+      },
+      "meanDepthChangeRG16": 20.099669,
+      "pose": "spawn",
+      "reconstruction": {
+        "depthOnlyHeldGrain": {
+          "after": {
+            "meanDisparityError": 0.066092,
+            "reliablePercent": 89.176245,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.185824
+          },
+          "before": {
+            "meanDisparityError": 0.070402,
+            "reliablePercent": 89.08046,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.137931
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 0.095785,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.011973,
+            "meanDisparityChangePixels": 0.011973,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "fullContrast": {
+          "after": {
+            "meanDisparityError": 0.101054,
+            "reliablePercent": 86.925287,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.94636
+          },
+          "before": {
+            "meanDisparityError": 0.070402,
+            "reliablePercent": 89.08046,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.137931
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.245211,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.122605,
+            "meanDisparityChangePixels": 0.122605,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "after": {
+            "meanDisparityError": 0.094349,
+            "reliablePercent": 86.877395,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.994253
+          },
+          "before": {
+            "meanDisparityError": 0.070402,
+            "reliablePercent": 89.08046,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.137931
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.197318,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.1159,
+            "meanDisparityChangePixels": 0.1159,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "halfContrast": {
+          "after": {
+            "meanDisparityError": 0.101054,
+            "reliablePercent": 3.16092,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.94636
+          },
+          "before": {
+            "meanDisparityError": 0.070402,
+            "reliablePercent": 4.597701,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.137931
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.245211,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.122605,
+            "meanDisparityChangePixels": 0.122605,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        }
+      },
+      "sourceRender": {
+        "changedPercent": 0.146918,
+        "meanAbsChannelByte": 0.051054
+      },
+      "standingStill": {
+        "changedAtLeast16Percent": 0,
+        "changedPercent": 0,
+        "correlation": 1,
+        "meanAbsByte": 0,
+        "rmsByte": 0
+      }
+    },
+    {
+      "actualMovement": {
+        "changedAtLeast16Percent": 81.920681,
+        "changedPercent": 99.328234,
+        "correlation": -0.012073,
+        "meanAbsByte": 54.181431,
+        "rmsByte": 67.61771
+      },
+      "changedStereoClassPercent": 0.243381,
+      "controlled": {
+        "depthOnlyHeldGrain": {
+          "changedAtLeast16Percent": 0.190972,
+          "changedPercent": 0.243164,
+          "correlation": 0.998083,
+          "meanAbsByte": 0.11967,
+          "rmsByte": 2.955777
+        },
+        "fullContrast": {
+          "changedAtLeast16Percent": 81.920681,
+          "changedPercent": 99.328234,
+          "correlation": -0.012073,
+          "meanAbsByte": 54.181431,
+          "rmsByte": 67.61771
+        },
+        "grainOnlyHeldDepth": {
+          "changedAtLeast16Percent": 81.922201,
+          "changedPercent": 99.326714,
+          "correlation": -0.012284,
+          "meanAbsByte": 54.19134,
+          "rmsByte": 67.623204
+        },
+        "halfContrast": {
+          "changedAtLeast16Percent": 65.028754,
+          "changedPercent": 98.702474,
+          "correlation": -0.012087,
+          "meanAbsByte": 27.093702,
+          "rmsByte": 33.81648
+        }
+      },
+      "cpuReferenceError": 0,
+      "forwardDistance": 0.00061,
+      "hz": 240,
+      "image": {
+        "backend": "gpu",
+        "contrast": 1,
+        "height": 720,
+        "noiseFrames": [
+          8,
+          9
+        ],
+        "width": 1280
+      },
+      "meanDepthChangeRG16": 2.049696,
+      "pose": "near first diamond",
+      "reconstruction": {
+        "depthOnlyHeldGrain": {
+          "after": {
+            "meanDisparityError": 0.18295,
+            "reliablePercent": 88.266284,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.41954
+          },
+          "before": {
+            "meanDisparityError": 0.177682,
+            "reliablePercent": 88.266284,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.467433
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 0.095785,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.006226,
+            "meanDisparityChangePixels": 0.006226,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "fullContrast": {
+          "after": {
+            "meanDisparityError": 0.130747,
+            "reliablePercent": 88.888889,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218
+          },
+          "before": {
+            "meanDisparityError": 0.177682,
+            "reliablePercent": 88.266284,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.467433
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.197318,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.130268,
+            "meanDisparityChangePixels": 0.130268,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "after": {
+            "meanDisparityError": 0.132184,
+            "reliablePercent": 88.840996,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218
+          },
+          "before": {
+            "meanDisparityError": 0.177682,
+            "reliablePercent": 88.266284,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.467433
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.197318,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.130747,
+            "meanDisparityChangePixels": 0.130747,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "halfContrast": {
+          "after": {
+            "meanDisparityError": 0.130747,
+            "reliablePercent": 4.166667,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218
+          },
+          "before": {
+            "meanDisparityError": 0.174808,
+            "reliablePercent": 3.87931,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.467433
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.197318,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.127395,
+            "meanDisparityChangePixels": 0.127395,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        }
+      },
+      "sourceRender": {
+        "changedPercent": 0.036675,
+        "meanAbsChannelByte": 0.015206
+      },
+      "standingStill": {
+        "changedAtLeast16Percent": 0,
+        "changedPercent": 0,
+        "correlation": 1,
+        "meanAbsByte": 0,
+        "rmsByte": 0
+      }
+    },
+    {
+      "actualMovement": {
+        "changedAtLeast16Percent": 81.745226,
+        "changedPercent": 99.43826,
+        "correlation": 0.006315,
+        "meanAbsByte": 54.328293,
+        "rmsByte": 67.888191
+      },
+      "changedStereoClassPercent": 2.902561,
+      "controlled": {
+        "depthOnlyHeldGrain": {
+          "changedAtLeast16Percent": 2.323893,
+          "changedPercent": 2.878147,
+          "correlation": 0.975665,
+          "meanAbsByte": 1.418286,
+          "rmsByte": 10.563744
+        },
+        "fullContrast": {
+          "changedAtLeast16Percent": 81.745226,
+          "changedPercent": 99.43826,
+          "correlation": 0.006315,
+          "meanAbsByte": 54.328277,
+          "rmsByte": 67.88819
+        },
+        "grainOnlyHeldDepth": {
+          "changedAtLeast16Percent": 81.773872,
+          "changedPercent": 99.434028,
+          "correlation": 0.005415,
+          "meanAbsByte": 54.346727,
+          "rmsByte": 67.912184
+        },
+        "halfContrast": {
+          "changedAtLeast16Percent": 64.791016,
+          "changedPercent": 98.885417,
+          "correlation": 0.006364,
+          "meanAbsByte": 27.167119,
+          "rmsByte": 33.952486
+        }
+      },
+      "cpuReferenceError": 0.000016,
+      "forwardDistance": 0.009063,
+      "hz": 60,
+      "image": {
+        "backend": "gpu",
+        "contrast": 1,
+        "height": 720,
+        "noiseFrames": [
+          11,
+          12
+        ],
+        "width": 1280
+      },
+      "meanDepthChangeRG16": 44.412478,
+      "pose": "near first diamond",
+      "reconstruction": {
+        "depthOnlyHeldGrain": {
+          "after": {
+            "meanDisparityError": 0.079981,
+            "reliablePercent": 90.708812,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.137931
+          },
+          "before": {
+            "meanDisparityError": 0.138889,
+            "reliablePercent": 89.60728,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 0.478927,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.137452,
+            "meanDisparityChangePixels": 0.048372,
+            "meanExpectedChangePixels": 0.1159,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "fullContrast": {
+          "after": {
+            "meanDisparityError": 0.101533,
+            "reliablePercent": 88.601533,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.94636
+          },
+          "before": {
+            "meanDisparityError": 0.138889,
+            "reliablePercent": 89.60728,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.436782,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.19636,
+            "meanDisparityChangePixels": 0.135057,
+            "meanExpectedChangePixels": 0.1159,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "after": {
+            "meanDisparityError": 0.145115,
+            "reliablePercent": 88.266284,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.611111
+          },
+          "before": {
+            "meanDisparityError": 0.138889,
+            "reliablePercent": 89.60728,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.484674,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.135536,
+            "meanDisparityChangePixels": 0.135536,
+            "meanExpectedChangePixels": 0,
+            "p95DisparityChangePixels": 0
+          }
+        },
+        "halfContrast": {
+          "after": {
+            "meanDisparityError": 0.101533,
+            "reliablePercent": 3.687739,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.94636
+          },
+          "before": {
+            "meanDisparityError": 0.141284,
+            "reliablePercent": 5.747126,
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218
+          },
+          "change": {
+            "changedOverTwoPixelsPercent": 1.388889,
+            "compared": 2088,
+            "meanChangeErrorPixels": 0.198755,
+            "meanDisparityChangePixels": 0.132663,
+            "meanExpectedChangePixels": 0.1159,
+            "p95DisparityChangePixels": 0
+          }
+        }
+      },
+      "sourceRender": {
+        "changedPercent": 0.375326,
+        "meanAbsChannelByte": 0.182794
+      },
+      "standingStill": {
+        "changedAtLeast16Percent": 0,
+        "changedPercent": 0,
+        "correlation": 1,
+        "meanAbsByte": 0,
+        "rmsByte": 0
+      }
+    }
+  ],
+  "devicePixelRatio": 1,
+  "reconstructionScope": "Independent image-only decoder; source comparison follows decoding. Confidence is contrast-sensitive; reconstruction is not human comfort.",
+  "scope": "Actual game depth/output; one simulated input tick before release, not an absolute minimum tap. Controlled images vary depth or carrier independently. No renderer change.",
+  "seed": 173,
+  "spacing": 96,
+  "strength": 0.33,
+  "viewport": [
+    1280,
+    720
+  ],
+  "world": "retro",
+  "checks": {
+    "lint": "passed",
+    "standingStill": "Exact held pixels in all four cases",
+    "reference": "Maximum mean CPU/GPU pixel error 0.000016/255",
+    "reconstruction": "16 paired controlled comparisons; source depth introduced after image-only decoding",
+    "productionBuild": "passed"
+  },
+  "sha256": {
+    "tests/tiny-step-check.js": "c3349a56a913c6b0be00b46cf57cd59df439069b8225bf70ecd2bb98ade88b3c",
+    "tests/browser-checks.js": "78916519f465f8f7cb3cb009a7acba83007d38a2d44b4c5b5c6177eaa1789a13",
+    "src/game.js": "c85faa798d443b322527d5d30ed995494c41dacf1be02fc712aa407adf2956d7",
+    "src/foundation-motion.js": "279d0c95e837c0e1b669349bc9e6846425692ce229b2a0cfe9f2cf881f22ed81",
+    "src/foundation-stereo.js": "937b2440859e26f69f0ccc204265a2465f1a8d26588c532af4e43edb60d79713",
+    "src/gpu/stereogram.wgsl": "fed551458dd414509218ab75bad7152c186561834391271d9a4e740987049173",
+    "src/main.js": "87d4dc469090965172f291b88c0ca78e5140139f11dcbac7c21fe60a54560d0e",
+    "src/debug/reconstruct.js": "c7552bda0eade634b9ed242e6e77d924d1958e91349d47a06b375211dc6aa7ac"
+  }
+}

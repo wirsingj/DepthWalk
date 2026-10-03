@@ -19,15 +19,14 @@ From repository root, `npm install` if needed:
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Start Vite; open the address printed in the terminal. |
+| `npm run dev` | Serve current source on fixed port 5174; hot reload. |
 | `npm run check` | Run ESLint, regressions and production build. |
 | `npm run build` | Create the production `dist/` output. |
-| `npm run preview` | Serve the built output for local inspection. |
+| `npm run preview` | Serve last build on fixed port 4173; no hot reload. |
 
-ES modules and workers need HTTP serving; opening `index.html` directly is not the
-launch procedure. Development/preview bind loopback; explicitly select another host
-for LAN. No deployment script or release workflow is defined.
-Do not treat a successful build as deployment. See [README](../README.md#launch).
+ES modules/workers require HTTP. Both servers bind loopback and reject occupied
+ports. Preview requires rebuilding. No deployment workflow is defined.
+[Launch](../README.md#launch).
 
 ## Verification and diagnosis
 
@@ -35,12 +34,15 @@ Filter changes need disparity, pixel matching, contrast, competing correlations,
 hue locality, occlusion, stability, scaling and seam checks. Gameplay changes need
 movement, collision and reachability checks.
 
-Append `?verify` for [gameplay checks](../tests/browser-checks.js) on the selected
-backend; use `?verify&renderer=cpu` for compatibility coverage.
-`tests/gpu-checks.html` (also built for production) checks GPU correspondence, visibility, stability and
-control scaling against the CPU. Capture outcomes, viewport, settings, revision
-and environment. QA readback stops after gameplay checks; measure frame rate
-afterward or on the normal page. Manually check fullscreen, resize and captured-mouse
+Use `?verify` for [gameplay checks](../tests/browser-checks.js); add `&renderer=cpu`
+for compatibility. `?verify=tiny-step&quality=1` isolates forward-step flicker and
+reconstructed depth. `tests/gpu-checks.html` checks GPU correspondence, visibility,
+stability and scaling against CPU. `?verify=runtime&quality=1` checks idle/wake-up
+and GPU/worker recovery. `?verify=startup&quality=1` checks preparation and recovery;
+also test with `&renderer=cpu`. Both inject faults: use a separate tab.
+Record outcomes, viewport, settings, revision
+and environment. QA readback stops afterward; measure performance on normal gameplay.
+Manually check fullscreen, resize and captured-mouse
 release where Pointer Lock is permitted; key clearing does not prove capture.
 Review human stereo perception separately from numerical correctness.
 
@@ -51,17 +53,18 @@ Use isolated objects before city A/B; C shows original colors, arrows step.
 `node tests/fusion-research.js` checks CPU prototypes on three fixed scenes. Keep
 controls/thresholds fixed; inspect worst frames and stationary captures.
 Human rejection overrides metrics; harmonics cannot establish ghosts.
+Offline diagnostics: `node tests/foundation-luminance-research.js`,
+`node tests/foundation-temporal-research.js`, `node tests/foundation-mechanism-research.js`.
+These measure brightness, motion and change mechanisms, not comfort.
 
 For low FPS, read the persistent backend badge. WebGPU completion latency includes
 browser scheduling; Firefox's 100 ms idle poll can mimic slow GPU work. Keep bounded
 submissions and the RAF completion workaround covered; see [README](../README.md#viewing-and-performance).
 
 Follow [State](SOT.md) priorities; identify each change's product gap.
-Distinguish performance optimization from perceptual progress. Keep experiments
-outside defaults until numerical gates and human fusion checks pass.
-Minimize tokens: reuse context, target reads, omit repeated logs;
-report changes, evidence and blockers briefly. Evidence is historical;
-documentation edits need inexpensive checks.
+Distinguish performance optimization from perceptual progress. Human-authorized research
+defaults are not acceptance; promotion requires numerical and human checks.
+Reuse context and target reads; report evidence and blockers briefly.
 
 ## Change-sensitive boundaries and recovery
 

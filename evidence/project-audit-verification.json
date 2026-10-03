@@ -1,0 +1,800 @@
+{
+  "schemaVersion": 1,
+  "scope": "Project audit and focused repairs; working tree on codex/v0.6 based on 545de5a. Existing uncommitted implementation preserved. No perceptual acceptance or motion-carrier promotion.",
+  "environment": {
+    "os": "Windows",
+    "node": "22.22.3",
+    "npm": "10.2.3",
+    "browser": "Codex in-app Chromium",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "gpu": "NVIDIA Ampere",
+    "observedRafHz": 240
+  },
+  "checks": {
+    "lint": "passed",
+    "unitTests": {
+      "passed": 187,
+      "failed": 0
+    },
+    "build": "passed",
+    "dependencyAudit": {
+      "knownAdvisories": 0,
+      "scope": "Resolved unchanged lockfile; npm audit --json during initial audit. Not a penetration test."
+    },
+    "gpuGameplay": [
+      {
+        "name": "depth-first pink starts with simple controls and conservative depth",
+        "pass": true
+      },
+      {
+        "name": "simple texture selection and E stay in depth-first modes without moving the player",
+        "pass": true
+      },
+      {
+        "name": "stationary scene and stable pattern",
+        "pass": true,
+        "detail": "1280 × 720"
+      },
+      {
+        "name": "GPU depth agrees with raycast geometry",
+        "pass": true,
+        "detail": "68 surfaces, 9 sky, max error 0.000011"
+      },
+      {
+        "name": "demo supplies scalar depth without material, color or normal metadata",
+        "pass": true,
+        "detail": "RG depth only; B=0 and A=255 throughout"
+      },
+      {
+        "name": "live stereo output agrees with the independent CPU reference",
+        "pass": true,
+        "detail": "921600 exact constraint roots; 99.99% exact RGB, mean channel difference 0.001/255"
+      },
+      {
+        "name": "rendered city has correct stereo pixel pairs",
+        "pass": true,
+        "detail": "99.75% of 4814 interior pairs"
+      },
+      {
+        "name": "live city retains strong dot contrast",
+        "pass": true,
+        "detail": "RMS contrast 0.605"
+      },
+      {
+        "name": "optional scene-color input matches the actual normal render",
+        "pass": true,
+        "detail": "100.00% exact channels; mean difference 0.0000/255 including lighting/textures"
+      },
+      {
+        "name": "legacy reference retains its fixed fine dots, spacing, depth and contours",
+        "pass": true
+      },
+      {
+        "name": "edge definition changes only contour classes and restores without camera motion",
+        "pass": true,
+        "detail": "58819 contour samples; 33.3% of matching pixels emphasized"
+      },
+      {
+        "name": "scene/generated/classic styles preserve camera and restore source colors",
+        "pass": true
+      },
+      {
+        "name": "neutral pattern and dot size preserve pose and restore deterministically",
+        "pass": true
+      },
+      {
+        "name": "all views preserve camera pose",
+        "pass": true
+      },
+      {
+        "name": "R cycles views and E cycles all styles without requesting mouse release",
+        "pass": true,
+        "detail": "no Pointer Lock exit calls; pose preserved (actual capture requires a permitted browser)"
+      },
+      {
+        "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+        "pass": true,
+        "detail": "WebGPU → CPU → WebGPU"
+      },
+      {
+        "name": "quiet mode updates support, preserves all classes and reproduces CPU source fitting",
+        "pass": true,
+        "detail": "support restores deterministically; complete stereo class RGB exact"
+      },
+      {
+        "name": "Quiet shimmer comparison is opt-in, preserves pose and restores baseline",
+        "pass": true,
+        "detail": "on/off reaches renderer; unchanged stationary pixels and camera"
+      },
+      {
+        "name": "depth direction reverses live relief on this backend, preserves pose and restores output",
+        "pass": true,
+        "detail": "reversed pixels match CPU reference; exact restoration; pose retained"
+      },
+      {
+        "name": "dark ink and wider spacing reach the renderer, retain pose and restore baseline",
+        "pass": true,
+        "detail": "live CPU reference parity; stationary ink; exact baseline restoration; full image"
+      },
+      {
+        "name": "paired-color experiment preserves pose, source orientation and CPU/GPU output",
+        "pass": true,
+        "detail": "aligned source colors; CPU match; stability enabled; no texture drift after walking/turning/stopping; pose restored"
+      },
+      {
+        "name": "active stereo renderer follows walking and turning without stationary drift",
+        "pass": true,
+        "detail": "WebGPU camera/depth/pattern update"
+      },
+      {
+        "name": "W/S forward and backward DOM controls",
+        "pass": true
+      },
+      {
+        "name": "A/D strafe DOM controls",
+        "pass": true
+      },
+      {
+        "name": "arrow turn DOM controls",
+        "pass": true
+      },
+      {
+        "name": "Shift sprint is faster and key release returns to walking",
+        "pass": true,
+        "detail": "1.99× walking distance; 2.99 walking speed after Shift release"
+      },
+      {
+        "name": "Escape clears held movement immediately",
+        "pass": true
+      },
+      {
+        "name": "focusing viewing controls clears held movement before tuning",
+        "pass": true
+      },
+      {
+        "name": "building collision in the running game",
+        "pass": true,
+        "detail": "stopped at x=7.520"
+      },
+      {
+        "name": "HUD hide and restore",
+        "pass": true
+      },
+      {
+        "name": "guide pauses movement",
+        "pass": true
+      },
+      {
+        "name": "five walk-in collections and completion UI",
+        "pass": true
+      },
+      {
+        "name": "central stereo sizes preserve pose and the outer original render",
+        "pass": true,
+        "detail": "2/3/4 widths; exact outside RGB; no camera changes"
+      },
+      {
+        "name": "reset viewing settings preserves the walk and restores the saved baseline controls",
+        "pass": true,
+        "detail": "default controls, live rendering, labels, camera and collected beacons"
+      },
+      {
+        "name": "closing F3 restores normal and depth views without moving the camera",
+        "pass": true,
+        "detail": "normal/depth views restored after capture cancellation"
+      },
+      {
+        "name": "F3 records captured settings and exports exact native PNG pixels",
+        "pass": true,
+        "detail": "640×360 lossless pixels; captured settings; calibrated comparison link"
+      },
+      {
+        "name": "demo switching preserves pose, signals, settings and backend",
+        "pass": true,
+        "detail": "both directions; new stereo frames; source world carried into comparisons"
+      },
+      {
+        "name": "foundation game modes match the full-frame reference on the selected backend",
+        "pass": true,
+        "detail": "binary/white/pink; CPU agreement within one grayscale level; mean error below .01/255"
+      },
+      {
+        "name": "foundation rendering preserves playable movement and source-view switching",
+        "pass": true,
+        "detail": "walk, stop, source/depth/stereo at unchanged pose"
+      },
+      {
+        "name": "motion comparison changes only contrast at the same pose and held frame",
+        "pass": true,
+        "detail": "A/B labels; exact contrast mapping; unchanged pose/collectibles; release settled by 300 ms and held exact pixels; baseline: 26/26 refreshed; contrast: 26/26 refreshed"
+      },
+      {
+        "name": "foundation motion suppresses traveling texture in real city turns and forward movement",
+        "pass": true,
+        "detail": "16 city frames, both contrasts; directional correlation 0.686 → 0.108; worst decoded-depth loss 0.00 points; exact freeze at rest"
+      }
+    ],
+    "cpuGameplay": [
+      {
+        "name": "depth-first pink starts with simple controls and conservative depth",
+        "pass": true
+      },
+      {
+        "name": "simple texture selection and E stay in depth-first modes without moving the player",
+        "pass": true
+      },
+      {
+        "name": "stationary scene and stable pattern",
+        "pass": true,
+        "detail": "1280 × 720"
+      },
+      {
+        "name": "GPU depth agrees with raycast geometry",
+        "pass": true,
+        "detail": "68 surfaces, 9 sky, max error 0.000011"
+      },
+      {
+        "name": "demo supplies scalar depth without material, color or normal metadata",
+        "pass": true,
+        "detail": "RG depth only; B=0 and A=255 throughout"
+      },
+      {
+        "name": "live stereo output agrees with the independent CPU reference",
+        "pass": true,
+        "detail": "921600 exact CPU/worker pixels, no engine objects supplied"
+      },
+      {
+        "name": "rendered city has correct stereo pixel pairs",
+        "pass": true,
+        "detail": "99.75% of 4814 interior pairs"
+      },
+      {
+        "name": "live city retains strong dot contrast",
+        "pass": true,
+        "detail": "RMS contrast 0.605"
+      },
+      {
+        "name": "optional scene-color input matches the actual normal render",
+        "pass": true,
+        "detail": "100.00% exact channels; mean difference 0.0000/255 including lighting/textures"
+      },
+      {
+        "name": "legacy reference retains its fixed fine dots, spacing, depth and contours",
+        "pass": true
+      },
+      {
+        "name": "edge definition changes only contour classes and restores without camera motion",
+        "pass": true,
+        "detail": "58819 contour samples; 33.3% of matching pixels emphasized"
+      },
+      {
+        "name": "scene/generated/classic styles preserve camera and restore source colors",
+        "pass": true
+      },
+      {
+        "name": "neutral pattern and dot size preserve pose and restore deterministically",
+        "pass": true
+      },
+      {
+        "name": "all views preserve camera pose",
+        "pass": true
+      },
+      {
+        "name": "R cycles views and E cycles all styles without requesting mouse release",
+        "pass": true,
+        "detail": "no Pointer Lock exit calls; pose preserved (actual capture requires a permitted browser)"
+      },
+      {
+        "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+        "pass": true,
+        "detail": "CPU fallback retained"
+      },
+      {
+        "name": "quiet mode updates support, preserves all classes and reproduces CPU source fitting",
+        "pass": true,
+        "detail": "support restores deterministically; complete stereo class RGB exact"
+      },
+      {
+        "name": "Quiet shimmer comparison is opt-in, preserves pose and restores baseline",
+        "pass": true,
+        "detail": "on/off reaches renderer; unchanged stationary pixels and camera"
+      },
+      {
+        "name": "depth direction reverses live relief on this backend, preserves pose and restores output",
+        "pass": true,
+        "detail": "reversed pixels match CPU reference; exact restoration; pose retained"
+      },
+      {
+        "name": "dark ink and wider spacing reach the renderer, retain pose and restore baseline",
+        "pass": true,
+        "detail": "live CPU reference parity; stationary ink; exact baseline restoration; full image"
+      },
+      {
+        "name": "paired-color experiment preserves pose, source orientation and CPU/GPU output",
+        "pass": true,
+        "detail": "aligned source colors; CPU match; stability enabled; no texture drift after walking/turning/stopping; pose restored"
+      },
+      {
+        "name": "active stereo renderer follows walking and turning without stationary drift",
+        "pass": true,
+        "detail": "CPU camera/depth/pattern update"
+      },
+      {
+        "name": "W/S forward and backward DOM controls",
+        "pass": true
+      },
+      {
+        "name": "A/D strafe DOM controls",
+        "pass": true
+      },
+      {
+        "name": "arrow turn DOM controls",
+        "pass": true
+      },
+      {
+        "name": "Shift sprint is faster and key release returns to walking",
+        "pass": true,
+        "detail": "1.99× walking distance; 2.99 walking speed after Shift release"
+      },
+      {
+        "name": "Escape clears held movement immediately",
+        "pass": true
+      },
+      {
+        "name": "focusing viewing controls clears held movement before tuning",
+        "pass": true
+      },
+      {
+        "name": "building collision in the running game",
+        "pass": true,
+        "detail": "stopped at x=7.520"
+      },
+      {
+        "name": "HUD hide and restore",
+        "pass": true
+      },
+      {
+        "name": "guide pauses movement",
+        "pass": true
+      },
+      {
+        "name": "five walk-in collections and completion UI",
+        "pass": true
+      },
+      {
+        "name": "central stereo sizes preserve pose and the outer original render",
+        "pass": true,
+        "detail": "2/3/4 widths; exact outside RGB; no camera changes"
+      },
+      {
+        "name": "reset viewing settings preserves the walk and restores the saved baseline controls",
+        "pass": true,
+        "detail": "default controls, live rendering, labels, camera and collected beacons"
+      },
+      {
+        "name": "closing F3 restores normal and depth views without moving the camera",
+        "pass": true,
+        "detail": "normal/depth views restored after capture cancellation"
+      },
+      {
+        "name": "F3 records captured settings and exports exact native PNG pixels",
+        "pass": true,
+        "detail": "640×360 lossless pixels; captured settings; calibrated comparison link"
+      },
+      {
+        "name": "demo switching preserves pose, signals, settings and backend",
+        "pass": true,
+        "detail": "both directions; new stereo frames; source world carried into comparisons"
+      },
+      {
+        "name": "foundation game modes match the full-frame reference on the selected backend",
+        "pass": true,
+        "detail": "binary/white/pink; CPU agreement within one grayscale level; mean error below .01/255"
+      },
+      {
+        "name": "foundation rendering preserves playable movement and source-view switching",
+        "pass": true,
+        "detail": "walk, stop, source/depth/stereo at unchanged pose"
+      },
+      {
+        "name": "motion comparison changes only contrast at the same pose and held frame",
+        "pass": true,
+        "detail": "A/B labels; exact contrast mapping; unchanged pose/collectibles; release settled by 300 ms and held exact pixels; baseline: 42/42 refreshed; contrast: 46/46 refreshed"
+      },
+      {
+        "name": "foundation motion suppresses traveling texture in real city turns and forward movement",
+        "pass": true,
+        "detail": "16 city frames, both contrasts; directional correlation 0.686 → 0.109; worst decoded-depth loss 0.29 points; exact freeze at rest"
+      }
+    ],
+    "gpuFixtures": [
+      {
+        "name": "GPU foundation carriers preserve reference pixels, visibility and row centering",
+        "pass": true,
+        "detail": "9 frames; exact binary/white/pink pixels, roots and visible pairs; legacy controls ignored"
+      },
+      {
+        "name": "GPU foundation motion uses current depth only and holds exactly when stopped",
+        "pass": true,
+        "detail": "8 motion/hold/revisit frames; exact current-frame reference; zero held-frame changes; no image history"
+      },
+      {
+        "name": "GPU foundation presentation and seed changes match native reference pixels",
+        "pass": true,
+        "detail": "220,000 exact presented pixels; non-256-aligned carrier upload; seed invalidation; bounded cache"
+      },
+      {
+        "name": "Dynamic GPU foundation texture keeps current stereo pairs, CPU agreement and held frames",
+        "pass": true,
+        "detail": "27 carrier/frame/contrast cases; exact current pairs and held frames; worst CPU tone error 0/255, max 0/255"
+      },
+      {
+        "name": "GPU flat depths have only the intended stereo correlation",
+        "pass": true,
+        "detail": "5 depths; exact intended correlation and strong contrast"
+      },
+      {
+        "name": "GPU union classes match the CPU occlusion solver exactly",
+        "pass": true,
+        "detail": "660,000 root labels; overlaps, annulus and curved depths; stable pixels"
+      },
+      {
+        "name": "GPU coloring agrees with the portable filter on planar depth",
+        "pass": true,
+        "detail": "all three styles; exact RGB equality"
+      },
+      {
+        "name": "GPU constraints and seed sizing follow all viewing controls",
+        "pass": true,
+        "detail": "5 settings combinations, 1.1 million exact root labels"
+      },
+      {
+        "name": "GPU scene-color mode falls back to generated colors without an optional input",
+        "pass": true,
+        "detail": "exact generated-color fallback"
+      },
+      {
+        "name": "GPU pixel-only readback equals full diagnostics in dense and paired modes",
+        "pass": true,
+        "detail": "Exact native RGBA equality with 50% / 75% less mapped data"
+      },
+      {
+        "name": "GPU scene colors match CPU coloring and preserve every class across overlaps",
+        "pass": true,
+        "detail": "220,000 exact classes; deterministic RGB; mean CPU difference 0.00000/255"
+      },
+      {
+        "name": "GPU surface and quiet modes preserve support classes and agree with CPU color fitting",
+        "pass": true,
+        "detail": "6 settings; stationary equality; 41289 sparse pairs; worst mean CPU error 0.00005/255"
+      },
+      {
+        "name": "GPU temporal carrier agrees with CPU, reduces motion changes and holds current disparity",
+        "pass": true,
+        "detail": "16 moving frames; brightness-change RMS ratio 0.6686; mean CPU error 0.00000/255; exact current grayscale pairs; stable after stopping"
+      },
+      {
+        "name": "GPU Quiet history preserves colored pairs, CPU parity and stationary output",
+        "pass": true,
+        "detail": "10 motion/hold frames; exact RGB pairs; settings reset; worst CPU RGB error 0.00000/255"
+      },
+      {
+        "name": "Explicit GPU camera-cut reset matches fresh output without reallocating buffers",
+        "pass": true,
+        "detail": "6 full-width/window configurations; exact post-cut pixels; retained allocations; idempotent reset"
+      },
+      {
+        "name": "GPU reversed depth matches CPU near/far order, occlusion and direction resets",
+        "pass": true,
+        "detail": "24 direction/pattern/window configurations; worst RGB error 0.00069/255; canonical near/far reversal"
+      },
+      {
+        "name": "Depth direction preserves physical floor normals, palette and contour placement",
+        "pass": true,
+        "detail": "Identical physical normal/palette codes across reversal; CPU/GPU corrected contour output agrees"
+      },
+      {
+        "name": "GPU soft paired preserves CPU projection and stationary output",
+        "pass": true,
+        "detail": "5 frames including motion and hold; worst CPU RGB error 0.00000/255"
+      },
+      {
+        "name": "GPU pipeline reports no validation errors",
+        "pass": true,
+        "detail": "compute, atomics and presentation completed"
+      },
+      {
+        "name": "GPU paired color aligns foreground hues and prevents remote object-color spill",
+        "pass": true,
+        "detail": "3 settings; worst mean CPU RGB error 0.00000/255; paired linear-light error 0.00413; 16576 foreground hue pairs aligned; zero recoloring outside projected ring silhouettes. Previews: same depth/source, different color treatment."
+      },
+      {
+        "name": "Dark ink matches CPU at both depth directions, wide spacing and scaled output",
+        "pass": true,
+        "detail": "20 configurations; matched RGB, stationary output, worst CPU error 0.00000/255"
+      },
+      {
+        "name": "Bounded center: graph isolation, exact outer scene, CPU agreement and stability",
+        "pass": true,
+        "detail": "18 configurations; no pairs or color propagation cross the boundary; outside equals source exactly"
+      }
+    ],
+    "hostLifecycle": [
+      {
+        "name": "stationary foundation stops submissions without changing grain or quality",
+        "pass": true,
+        "detail": "gpu; 0 extra frames over 1200 ms; grain/quality held"
+      },
+      {
+        "name": "walking wakes rendering and returning to rest holds again",
+        "pass": true,
+        "detail": "59 frames during the walk; 0 extra frames at rest"
+      },
+      {
+        "name": "settings wake an idle renderer; sight guides do not alter pixels",
+        "pass": true,
+        "detail": "texture updated; independent UI crosses; no guide-induced render"
+      },
+      {
+        "name": "diagnostic capture obtains a current frame while gameplay is held",
+        "pass": true,
+        "detail": "1280 × 720; current camera captured"
+      },
+      {
+        "name": "actual GPU device destruction falls back to live CPU frames",
+        "pass": true,
+        "detail": "real GPUDevice.destroy(); CPU presented both fallback and changed pose"
+      },
+      {
+        "name": "silent CPU worker failure settles the frame and shows recovery guidance",
+        "pass": true,
+        "detail": "terminated worker detected after 15031 ms; visible reload guidance"
+      }
+    ],
+    "foundationsUI": {
+      "passed": true,
+      "scope": "Black/white/pink, source/depth, 960-to-640 size change, motion/hold, Block study, Play city then browser Back and another treatment render.",
+      "beforeRepair": {
+        "restoredControlWidth": 640,
+        "canvasWidth": 960,
+        "canvasHeight": 540
+      },
+      "afterRepair": {
+        "restoredControlWidth": 640,
+        "canvasWidth": 640,
+        "canvasHeight": 360,
+        "scene": "retro",
+        "cityLink": "../index.html?foundation=pink&world=retro",
+        "failed": false
+      },
+      "bfcacheHitEstablished": false
+    },
+    "viewportRecovery": {
+      "observed": [
+        {
+          "width": 240,
+          "height": 720
+        },
+        {
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "backend": "gpu",
+      "fallback": false,
+      "belowSpacingBranch": "Not exercised: browser override clamps width to 240; guard source-reviewed."
+    },
+    "productionFaultHooks": "runtime-checks, terminateCPUWorker and loseGPU absent from built game assets",
+    "documentation": {
+      "files": 9,
+      "brokenFileLinks": 0,
+      "budgets": "passed"
+    }
+  },
+  "idlePerformance": {
+    "baseline": {
+      "completedFps": 239,
+      "refreshHz": 240,
+      "pattern": "foundation-pink",
+      "world": "retro",
+      "quality": "1",
+      "pose": "stationary spawn"
+    },
+    "after": {
+      "additionalFrames": 0,
+      "intervalMs": 1200,
+      "qualityUnchanged": true,
+      "grainUnchanged": true
+    },
+    "scope": "Host avoided work only; not GPU execution-time, power or moving-frame performance measurement."
+  },
+  "reviewCycles": [
+    {
+      "id": "A1",
+      "change": "Bound and validate CPU worker requests; shared lifecycle ownership.",
+      "review": "13 focused tests passed, including actual transferred-buffer worker rendering; faults covered; main recovery exercised later."
+    },
+    {
+      "id": "A2",
+      "change": "Hold unchanged foundation frames without suppressing admission retries or captures.",
+      "review": "3 focused scheduling tests passed; live stationary, walking, settings, guide and capture checks passed."
+    },
+    {
+      "id": "A3",
+      "change": "Exercise real GPU loss/CPU silence; guard narrow output; repair Foundations worker lifetime and restored controls.",
+      "review": "6 live lifecycle checks passed. Back test first exposed 640-control/960-output mismatch; repaired repeat gave 640x360 and correct scene link. Sub-spacing browser case unavailable."
+    },
+    {
+      "id": "A4",
+      "change": "Reconcile YAIML and README evidence; shared worker module; portable motion lint boundaries.",
+      "review": "Current findings replace stale audit; historical evidence retained; documentation links/budgets checked separately."
+    },
+    {
+      "id": "A5",
+      "change": "Combined regression and independent integration review.",
+      "review": "187 tests, lint, build; 41 gameplay checks per backend; 22 GPU fixtures. No blocking regression found. Human comfort remains unresolved."
+    }
+  ],
+  "limitations": [
+    "Moving static remains unacceptable to the user; no renderer/grain/default changes in this audit.",
+    "Earlier tiny-step and perceptual measurements remain historical and were not rerun as new motion research.",
+    "External Firefox, captured mouse, physical hardware failure, driver image processing, and a hardware floor were not newly verified.",
+    "Actual BFCache hit not confirmed; ordinary browser-Back restoration verified.",
+    "Viewport narrower than spacing not exercised by the embedded host.",
+    "Intermittent mouse-only Auto quality adaptation remains unmeasured."
+  ],
+  "recordedAt": "2026-10-03T03:50:48.104Z",
+  "baseRevision": "545de5a7e8cd83e9afafda429b63a35bd0b82889",
+  "branch": "codex/v0.6",
+  "sourceHashes": {
+    "eslint.config.js": "9ea48bca03ecb7e947cb0601b71ae28f3b09af8c40b2f4481213193de7fad0a9",
+    "index.html": "82367e6eed8938d913fd07c335fbbac7607e9ac8a61219eeba510ac8707c20c2",
+    "package-lock.json": "fe8e96953f460a32f7ae73fd8274a644c1fa10c504bc641c156ce36c716f4c17",
+    "package.json": "67dc66f1419abd7cbdaeda41edbc137bc58ddda5711761277d6a7c10574cc6ce",
+    "src/adapters/three-depth.js": "e089710b5346d2f6fb1773981d190b0f0176c07c9fc150be7929995bee5a582a",
+    "src/adapters/three-webgpu-depth.js": "9a17f34d1e10f5f936e3284e4de06bea5c364f1df7fb816ce36b7077aa9c69a8",
+    "src/chroma-stereo.js": "f49c25bc911cef6600b4058ce0c2e9dc14d960f4cdbfc6d000dbabdd04501f28",
+    "src/city.js": "fd2ff69a79034da4290c830c801ba8593b1f67d3ee47e9540abcccce6f9e0d57",
+    "src/contours.js": "213c6fa1db7f734a2b4627558312bfd50c0b0ab7e4125cf6a599b69e101b143d",
+    "src/debug/appearance-synthesis.js": "f97b079ef6218cc5bae24854d6a6eb96fc2210932b0bc70349fbfa37f63ffa2c",
+    "src/debug/benchmark.js": "b02bbb8223b38c367027a396e4310a3583ecfb72ea84efd6f67342e024661889",
+    "src/debug/bounded-color.js": "9585c2a1f13f10c603490fbc241fe2923597d17ebdab47d6238e38f8e029dd28",
+    "src/debug/candidate-gates.js": "7b1f1372097b3bd00ed022782cf84075098a9f0d7910decbcb4b8af675d067bf",
+    "src/debug/color-base.js": "5c0df774b2094b2c46c4ce347a0c6db3240232d7a2a527bea732a4676da36114",
+    "src/debug/color-constraints.js": "727fd28cb7b299cc4025994012488691617685e247e54cab1012e75faaad8da7",
+    "src/debug/comparison-settings.js": "294192387a5174176d514802c7c74a35e1e5b75e81cae3ded70d84bb3d5025da",
+    "src/debug/feature-synthesis.js": "30d43ae8c7168dc58fffd0176b113afc3463ef8bc26066301cf596b0daed926c",
+    "src/debug/image-fidelity.js": "9ff4c981f200bfebd1ea9dfa9704c13b55690b726d6fe4f6006c8e79efab1671",
+    "src/debug/ink-synthesis.js": "e7ef3d619fbdcf4c07de6e3bb952a3b46871564f0e98149d26f3c46cbb30c399",
+    "src/debug/isolation-scene.js": "43ce4bd5988615d2ab81b5f657f3824eefd155d9847d05d78e150f66ae0ae541",
+    "src/debug/multiscale-contrast.js": "ae4b711d428607863650e0e4218e5d3d2d90bab97ea0e29994c671e931279e48",
+    "src/debug/observer.js": "d214f338e82c144a120aaa3cce2b5e27e24b208ea28e5f30c0c9394b59a42f89",
+    "src/debug/observer.worker.js": "95c999ad3decc8b9d7048ec4a8cf569ca5122995a85de114410ed157fe55a0f9",
+    "src/debug/panel.js": "bc6fd9db5bd188f2028bd1ca701522bff4036bebbbafe631904e726f6e403653",
+    "src/debug/rank-color.js": "d96ccae395996e62dd88664f8607262df6b5010aff33246147094a1d3e9ee020",
+    "src/debug/reconstruct.js": "c7552bda0eade634b9ed242e6e77d924d1958e91349d47a06b375211dc6aa7ac",
+    "src/debug/reconstruct.worker.js": "1d35f8df6d25b052da825bc343c8abc0e43834264d306bfdbaa1070bd48d2060",
+    "src/debug/save-png.js": "9aefcde90d054ec27140efe38a98b3e45bdd63118d745f822578a055bef42bb5",
+    "src/debug/worker-client.js": "c0eb006b61e5cc7eef4806e4d73e00cad0599a4d17feaef483784b2993cd534c",
+    "src/depth-direction.js": "b0de9c2a756405a80795b0f6c31166d9be192bfe394284b56d083fbd0a4173a9",
+    "src/depth-frame.js": "e751d96f815d11514bb9987c5500aac3e54fac57f1002eaeaa7be2a4bceeba45",
+    "src/depthwalk.js": "04eea81ecdda02345fa6bb63488cff6f2962c6b0f5c7ecae37c841bc17c23330",
+    "src/foundation-motion.js": "279d0c95e837c0e1b669349bc9e6846425692ce229b2a0cfe9f2cf881f22ed81",
+    "src/foundation-stereo.js": "937b2440859e26f69f0ccc204265a2465f1a8d26588c532af4e43edb60d79713",
+    "src/foundation-texture.js": "f1b4e5691d9b8c1a7f6877b12356350daf7b64dd696bfb4130b16b62859af5d4",
+    "src/frame-demand.js": "a385ca3ee9403a197ec963eaee92e11435de03ad76baff863c7b2463726596ed",
+    "src/game.js": "c85faa798d443b322527d5d30ed995494c41dacf1be02fc712aa407adf2956d7",
+    "src/gpu/city-renderer.js": "e643939a6d608a2388e2184384400451620cb6c6d659ce49471b36b3d4ca193c",
+    "src/gpu/depthwalk-gpu.js": "afd47f40ae0080e0f72983c93f208cd18dfd7bd89d1819e8ffa391b85f3fd32f",
+    "src/gpu/frame-queue.js": "b8728c5666489d7216c7bebc2d4b1381f0a1602a2728dcd119475bc8d461d1a3",
+    "src/gpu/stereogram.wgsl": "fed551458dd414509218ab75bad7152c186561834391271d9a4e740987049173",
+    "src/main.js": "0efcb0b77cdb535e321bfaaa604763bb7e6cf02081184d6f15887dd208529fc3",
+    "src/pattern.js": "d61d6fbad51ddc92790655e2d4f16697a92c6a194ddc7896e88599f5de58b364",
+    "src/performance.js": "a47a8b8e83402a198488ae7078ee03bc4698409771cdb4c64237d5351720b94c",
+    "src/preferences.js": "f262c5a0c035b6c1eca5b527d6b570edb1004255f3367e1d4f3cf659061d9f30",
+    "src/scene-color.js": "d3aa0932c98ade5704d8fe3bb441ecdc536f3a75c2fb471c47ddfa0a0099b652",
+    "src/stereo-window.js": "425148fcd7c753b791039df018502f29d12665b17aa3816f6b6ec29811c6d295",
+    "src/stereo-worker-client.js": "8996ead3b033f247540332de28b6c158a8ee955ed4dde16ec45bcaf4325e5f10",
+    "src/stereo.worker.js": "48410a1242310ea5087b6cf765953d67ac2a1044948b2e811ebd129207e391a5",
+    "src/stereogram.js": "14cad13bbc7640a6b588a7c7839b2e98daff7abe43e7cbdd4dcedda485d3cae9",
+    "src/style.css": "cf8ba9d5cf12c16550b81d5688c299a684965dcf04aa64404eda8dfe543b0454",
+    "src/surface-stereo.js": "f663e2c7155df07129de403d46814c5d055e927a1cf007846a78876dc1a0301b",
+    "src/surfaces.js": "c757fc46bb4d63bf6664b0d7052623acc73f6630ae9475833c0950e5bc4a745a",
+    "src/worker-client.js": "04422f93fb153bff08606e177bccfb5b2a10f82cb69abc6ff5a42b8bde6b76bb",
+    "tests/appearance-research.js": "ad77a8640cec2aec3ca4e67530060444a071ceb32c3fdbb207512be67e93c9c7",
+    "tests/appearance-synthesis.test.js": "d8ff30934001d80f29df48b30a0a040cb7a5e9c6a3c5a9ce5e0126f9d5577e3c",
+    "tests/audit-regressions.test.js": "732bd1fc7e25932b8639b9ad8f60f0a737e0915a94f2a19282758f78659bad73",
+    "tests/banding-research.js": "39b3622f4d515934b266d54dbb43c3d71a48e1fea8c9010a35b62226a8a314ef",
+    "tests/benchmark.test.js": "e397f165d495f9ba20095a06d95755d661f873644a666eee8a52c87e585b8675",
+    "tests/bounded-color.test.js": "a8fc219cba33e9e714fc38fc9c0b8141d49974e3c23325d3a2b1c08e3e8aa2cb",
+    "tests/browser-checks.js": "80facb3bbdb1796d205635f70ccd457f00a0f84ddec7484cd1a2961cee4b8176",
+    "tests/chroma-motion.test.js": "354a36ac1369c4ba74de3aced00cc9813ac34288e3a6ff5794f53f2e65670267",
+    "tests/chroma-stereo.test.js": "a02cfd10242b5b4a3f4b71b6425efc90ded44323890029c679d2c01fbf0d0f3b",
+    "tests/color-base.test.js": "29b90d74f39883b42be2d51b4e5f56a4ef8896f9e99ff31fdbc59a46246ea4e4",
+    "tests/color-constraints.test.js": "bc7adc847c9ef8f385c769d991effd8fe66498e5b6a760e74ef3236fc97760ba",
+    "tests/comparison-settings.test.js": "dca53cd0c275a63521a5ab4246590a20b9ae584c593ddd063e8c216ff612e2b6",
+    "tests/contours.test.js": "d0b29afae0b6ea618e1c2eda23b2db64c6a91ec4725eced222c8c2cdc49abec4",
+    "tests/depth-direction.test.js": "d33c5148b88041f081b63999c3a3f1e2b865f8c4650c9e03f2fb5e9f9ae54412",
+    "tests/depthwalk.test.js": "eb88cb97bd8d92098841d1ceeaf56e4fe1cad0d1db69668013b1822a95fe30a0",
+    "tests/development-cycle.test.js": "a8e8e0dfc87a5db5d7b75fe83cdb52103d52cfb4cd57578d827e5c80cc22dbe4",
+    "tests/feature-synthesis.test.js": "76ef674c84fea3523050bf670486674f36aee441a7da38540f5c7d68dc0802af",
+    "tests/foundation-motion-quality.js": "a6e51e5a8acd0245b0282ea8d2399656d16564fc7bde47719f8dc25aecbba066",
+    "tests/foundation-motion.test.js": "3ee277ece006cc642cee30734a5cfd4f9b9f3573540a13092a59761e555641e3",
+    "tests/foundation-reuse-research.js": "b4abdc2c5f6759a5fffe29410862d22bf3afd837860a8ddefd45bd9304ebff4e",
+    "tests/foundation-worker.test.js": "3d2e8e44e7b4fd4b808b62a52400fae76028251b0853c7cf98f0bc55146f6b9c",
+    "tests/foundation.test.js": "e0616088f0db5f621e5473359fe671a69093e8cdf0e2a958c85e77d2e6f8f281",
+    "tests/foundation.worker.js": "62ca724040bf6df14350a3bac0b1a5f6176015f03ea3117e78f271f2abbb910e",
+    "tests/foundations.css": "40d6010847280ac473b3210b888d686d931e4e927fe11f5d5201372e87d2b1f7",
+    "tests/foundations.html": "2f1908fd7e909095784ecf2a579958753ccbf4197f613ba69de7034ed13da559",
+    "tests/foundations.js": "e8288852ce677c694c24cfb811788a409bac975d8deac6e4373ff86e227b3ab2",
+    "tests/frame-demand.test.js": "35ef18981f1c960e41d476829ba2cd589a8ec9b05f078c9242db348b369ccdb2",
+    "tests/frame-queue.test.js": "8479821e0cafd461f6c71a8f7f50f7a36e80736da98476343cfa543241d47e6e",
+    "tests/fusion-research.js": "83bd204a6510e57a86e4d252fc4b21e9a0ce1cc0b001c18da476407248c2a331",
+    "tests/game.test.js": "120b840dd3286599cbd25fb75ae58d90a4f0f7d59df4d2db314ec67476f8e78a",
+    "tests/gpu-checks.html": "eb3dc4d7e7b7f20a969ac41a4cd3bea88f5671008165d26764414f1f4b806006",
+    "tests/gpu-checks.js": "7e38a819eca88c28dcc86936ffa1f313b7c6b85cc388846629b0eedffc1f574f",
+    "tests/history-transition.test.js": "a0f283152ba5f2cb22b68ecf90b7bb874100a53ed7e4e347fc43b6f6c263660f",
+    "tests/ink-contours.test.js": "ea857975af7dea762a196df7778b8a92f1a818bd0780e7a8c7d1fee8d48b8dca",
+    "tests/ink-research.js": "777cbb325e220671ee09eaa052ff9f1f1eabde4a3000ba9916d3b4238b2e517b",
+    "tests/multiscale-research.js": "2902f24ed78dd17f24d82e92d609b32f862637eb91fa695f1b9eea8bd9def665",
+    "tests/observer-benchmark.js": "b4f36b70f76888d9d102db5115bd4c2e603511c26179c0905ff25197de25a022",
+    "tests/observer-lab.css": "d36de8c2f4850ec80ca8fe8323fb3d2f0999d890c769518510671001dc722b9a",
+    "tests/observer-lab.html": "2d39e4587259472d2031b2575773396b51040d41333ed10cfb666d14811b362d",
+    "tests/observer-lab.js": "8f7a0afb4f8dc3c86e39e978c005b1979464a2872150d40131ecc3c64467cd62",
+    "tests/observer.test.js": "9983cf2ce1e2d8b2f41ea5a74c938535a6a733f68129527654d6b41c92bba209",
+    "tests/quiet-motion-research.js": "233a9b74202aa02647ec55ee2136557e63aae9ff45e51bb4ea7e8a73f93bad5f",
+    "tests/quiet-motion.test.js": "09f12d58668ab13e3641801ea45b071e525750529f7935560ebb767b3563b73d",
+    "tests/rank-color-research.js": "fcf3e6c31d7059dfbbf586dfd8438f27a592864767be327eed755c742788944e",
+    "tests/rank-color.test.js": "5d93309dcd20518c6c8f764326bc8c58e7c8d0e3f1377ca67203c7f452238606",
+    "tests/reconstruct.test.js": "dd858e0c790b7e3c5fcd5021515880c2c9a8833bc42b0cab27c0a882627f8c29",
+    "tests/runtime-checks.js": "fd30d063a826faf8a747e9ea99c90ec7b20ef6f573ed6ee5dc932531ff2b45e6",
+    "tests/scene-color.test.js": "65aefe288cd9ca5c05d7efdae8a506072e0cb553bc7ced86f75e742de35faa1c",
+    "tests/shading.test.js": "b31f818eb303824e8adc1c93d2a42245c514484b9e03bdfd4f11d0f18c045859",
+    "tests/stereo-quality.js": "805403b867a4c0c016c207988d4934446153d7fc41b57b88d13037d24da03bd6",
+    "tests/stereo-window.test.js": "f64c69b74d80b511a46021fccdb2802674e47f2bbbf22f15ea72c27341c7fca2",
+    "tests/stereo-worker-client.test.js": "1607b45b51bb1f559e3fa837b85483af70a68cf3911242b9de48fff4334f78a5",
+    "tests/stereogram.test.js": "3e22ed61ce80e6fd5957852b3d7cd72060c1620384bfee83d73a6533ff4b2988",
+    "tests/surface-lab.html": "a507cdba8f2369f6ad880d4e2a671647cbc1902e5a72902bff7aea21b105853c",
+    "tests/surface-lab.js": "acdaf02b33584f2cde94e406e002e5c483d44c5183cc4c1775cce27922e5f96a",
+    "tests/surface-stereo.test.js": "1f64c1747edd5107b6aba974e17ae6396a57bab9caa4618b0c2f6552d46b0130",
+    "tests/tiny-step-check.js": "c3349a56a913c6b0be00b46cf57cd59df439069b8225bf70ecd2bb98ade88b3c",
+    "tests/worker-client.test.js": "a9224cc30ad841ad122a54504b5cfe3b6d7e00deda1e8e6beaa05206bb5d471b",
+    "vite.config.js": "33787033f4f6471022d2e46a7e3f66819059cb375ded7ba56b3a35c0a0d4595e"
+  },
+  "memoryWords": {
+    "docs/SOT.md": {
+      "before": 650,
+      "after": 648,
+      "net": -2,
+      "budget": 650
+    },
+    "docs/ARCHITECTURE.md": {
+      "before": 650,
+      "after": 649,
+      "net": -1,
+      "budget": 650
+    },
+    "docs/MAINTAINER_GUIDE.md": {
+      "before": 738,
+      "after": 733,
+      "net": -5,
+      "budget": 750
+    },
+    "docs/AUDIT.md": {
+      "before": 955,
+      "after": 888,
+      "net": -67,
+      "budget": null
+    },
+    "README.md": {
+      "before": 4396,
+      "after": 3360,
+      "net": -1036,
+      "budget": null
+    }
+  }
+}

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {decodeDepth} from '../src/depth-frame.js';
 import {imageFidelity} from '../src/debug/image-fidelity.js';
-import {loadPreferences,savePreferences,sanitizePreferences} from '../src/preferences.js';
+import {VIEWING_DEFAULTS,loadPreferences,savePreferences,sanitizePreferences} from '../src/preferences.js';
 
 test('depth ingestion rejects truncated outputs and BigInt samples before writing',()=>{
   const frame={width:2,height:1,depth:new Float32Array([4,8])},short=new Float32Array([99]);
@@ -33,10 +33,21 @@ test('quieter preferences survive reload and corrupt or blocked storage stays us
   assert.equal(loadPreferences(storage)['quiet-stability'],false);
   assert.equal(savePreferences(storage,{pattern:'quiet','surface-detail':'15',spacing:'110'}),true);
   assert.equal(loadPreferences(storage)['surface-detail'],'15');
-  assert.equal(loadPreferences(storage).spacing,'110');saved='{broken';assert.equal(loadPreferences(storage).pattern,'quiet');
+  assert.equal(loadPreferences(storage).spacing,'110');saved='{broken';assert.equal(loadPreferences(storage).pattern,'foundation-pink');
   savePreferences(storage,{'quiet-stability':true});assert.equal(loadPreferences(storage)['quiet-stability'],true);
   assert.equal(sanitizePreferences({'quiet-stability':'true'})['quiet-stability'],false);
-  assert.equal(sanitizePreferences({spacing:'',strength:'900'}).strength,'50');
+  assert.equal(sanitizePreferences({spacing:'',strength:'900'}).strength,'33');
   const blocked={getItem(){throw Error('blocked');},setItem(){throw Error('blocked');}};
   assert.equal(loadPreferences(blocked)['surface-detail'],'35');assert.equal(savePreferences(blocked,{}),false);
+});
+
+test('saved tuning follows changed starting presets but survives reload within the same preset',()=>{
+  let saved;const storage={getItem:()=>saved,setItem:(_,value)=>saved=value};
+  savePreferences(storage,{pattern:'quiet',spacing:'170',strength:'50',edges:'3'});
+  assert.equal(loadPreferences(storage).pattern,'quiet');
+  const prior=JSON.parse(saved),signature=JSON.parse(prior.presetSignature);
+  signature.spacing='120';prior.presetSignature=JSON.stringify(signature);saved=JSON.stringify(prior);
+  assert.deepEqual(loadPreferences(storage),VIEWING_DEFAULTS,'new defaults must retire old tuning');
+  saved=JSON.stringify({pattern:'quiet',spacing:'180',layoutRevision:2,depthDirectionRevision:1});
+  assert.deepEqual(loadPreferences(storage),VIEWING_DEFAULTS,'legacy saves must not hide the new renderer');
 });

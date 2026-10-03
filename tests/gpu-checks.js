@@ -1,5 +1,6 @@
 import {DepthWalkGPU} from '../src/gpu/depthwalk-gpu.js';
 import {DepthWalkFilter} from '../src/depthwalk.js';
+import {FoundationFilter} from '../src/foundation-stereo.js';
 import {linkRow,separation} from '../src/stereogram.js';
 import {contrast,correlation} from './stereo-quality.js';
 import {linearLuminance} from '../src/chroma-stereo.js';
@@ -21,6 +22,82 @@ try{
     device.queue.writeTexture({texture:input},depth,{bytesPerRow:width*4},[width,height]);
     const encoder=device.createCommandEncoder();filter.encode(encoder,context.getCurrentTexture().createView(),settings);device.queue.submit([encoder.finish()]);return filter.readDiagnostics();
   }
+  const foundationCPU=new FoundationFilter();
+  function foundationReference(depth,settings){
+    return foundationCPU.render({width,height,depth,format:'packed-proximity-rg16'},
+      {carrier:settings.pattern.slice(11),spacing:Math.max(8,Math.round(settings.spacing*(settings.pixelRatio??1))),strength:settings.depthStrength,seed:settings.foundationSeed??173,noiseFrame:settings.noiseFrame??0,carrierContrast:settings.carrierContrast??1}).pixels;
+  }
+  await check('GPU foundation carriers preserve reference pixels, visibility and row centering',async()=>{
+    let frames=0;
+    const fixtures=[()=>.5,(x,y)=>Math.hypot(x-500,y-110)>38&&Math.hypot(x-500,y-110)<82?.95:.05,(x,y)=>.4+.3*Math.sin(x/70)*Math.cos(y/20)];
+    for(const carrier of ['binary','white','pink'])for(const [j,fixture] of fixtures.entries()){
+      const settings={pattern:'foundation-'+carrier,spacing:96+j,depthStrength:.333,pixelRatio:j===2?1.25:1,edges:3,dotSize:3,windowPeriods:3,invertDepth:true,temporalStability:true};
+      const depth=source(fixture),actual=await render(depth,settings),expected=foundationReference(depth,settings),spacing=Math.round(settings.spacing*settings.pixelRatio);
+      assert(expected.every((v,i)=>v===actual.pixels[i]),carrier+' reference pixel mismatch');
+      for(let y=0;y<height;y++){
+        const z=Float64Array.from({length:width},(_,x)=>(depth[(y*width+x)*4]*256+depth[(y*width+x)*4+1])/65535),accepted=new Uint8Array(width),same=linkRow(z,spacing,settings.depthStrength,new Int32Array(width),null,accepted,new Uint16Array(width),null,y);
+        for(let x=width-1;x>=0;x--){
+          if(same[x]!==x)same[x]=same[same[x]];
+          assert(actual.roots[y*width+x]===y*width+same[x],'foundation root mismatch');
+          const s=separation(z[x],spacing,settings.depthStrength),l=x-((s+(s&1)*(y&1))>>1),pair=accepted[x]?((l|((l+s)<<16))>>>0):0xffffffff;
+          assert(actual.pairs[y*width+x]===pair,'foundation visibility/centering mismatch');
+        }
+      }
+      frames++;
+    }
+    return `${frames} frames; exact binary/white/pink pixels, roots and visible pairs; legacy controls ignored`;
+  });
+  await check('GPU foundation motion uses current depth only and holds exactly when stopped',async()=>{
+    const settings={pattern:'foundation-pink',spacing:96,depthStrength:.33,temporalStability:true};
+    let first,previous,changed=0;
+    for(const offset of [0,2,4,6,8,8,8,0]){
+      const depth=source((x,y)=>Math.hypot(x-480-offset,y-100)>28&&Math.hypot(x-480-offset,y-100)<80?.92:.12);
+      const actual=(await render(depth,settings)).pixels,expected=foundationReference(depth,settings);
+      assert(expected.every((v,i)=>v===actual[i]),'moving foundation differs from current-frame reference');
+      if(offset===0){if(first)assert(first.every((v,i)=>v===actual[i]),'revisited pose retained image history');else first=actual;}
+      if(previous){const count=actual.reduce((n,v,i)=>n+Number(v!==previous.pixels[i]),0);if(offset===previous.offset)assert(count===0,'held depth shimmered');else changed+=count;}
+      previous={offset,pixels:actual};
+    }
+    assert(changed>0,'moving depth did not update output');
+    const pixels=await filter.readPixels();assert(first.every((v,i)=>v===pixels[i]),'pixel-only capture differs');
+    return '8 motion/hold/revisit frames; exact current-frame reference; zero held-frame changes; no image history';
+  });
+  await check('GPU foundation presentation and seed changes match native reference pixels',async()=>{
+    const target=device.createTexture({size:[width,height],format,usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.COPY_SRC});
+    const pitch=Math.ceil(width*4/256)*256,read=device.createBuffer({size:pitch*height,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
+    try{
+      const depth=source((x,y)=>(x+y)/(width+height)),settings={pattern:'foundation-pink',spacing:96,depthStrength:.33,foundationSeed:42};
+      device.queue.writeTexture({texture:input},depth,{bytesPerRow:width*4},[width,height]);
+      const encoder=device.createCommandEncoder();filter.encode(encoder,target.createView(),settings);
+      encoder.copyTextureToBuffer({texture:target},{buffer:read,bytesPerRow:pitch},[width,height]);device.queue.submit([encoder.finish()]);
+      await read.mapAsync(GPUMapMode.READ);const bytes=new Uint8Array(read.getMappedRange()),expected=foundationReference(depth,settings);
+      for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+        const i=y*pitch+x*4,value=expected[y*width+x]&255;
+        assert(bytes[i]===value&&bytes[i+1]===value&&bytes[i+2]===value&&bytes[i+3]===255,'presented foundation pixel differs');
+      }
+      read.unmap();assert(filter.foundationTextures.size<=3,'carrier cache exceeds bound');
+      assert(!validationErrors.length,validationErrors.join('\n'));
+      return '220,000 exact presented pixels; non-256-aligned carrier upload; seed invalidation; bounded cache';
+    }finally{read.destroy();target.destroy();}
+  });
+  await check('Dynamic GPU foundation texture keeps current stereo pairs, CPU agreement and held frames',async()=>{
+    let worst=0,maximum=0,cases=0;
+    for(const carrier of ['binary','white','pink'])for(const noiseFrame of [1,2,0xffffffff])for(const carrierContrast of [1,.75,.5]){
+      const depth=source((x,y)=>x>350+noiseFrame%11&&x<650&&y>30&&y<190?.85:.1);
+      const settings={pattern:'foundation-'+carrier,spacing:96,depthStrength:.33,noiseFrame,carrierContrast};
+      const actual=await render(depth,settings),expected=foundationReference(depth,settings);let error=0;
+      for(let i=0;i<expected.length;i++){
+        const delta=Math.abs((actual.pixels[i]&255)-(expected[i]&255));error+=delta;maximum=Math.max(maximum,delta);
+        assert(actual.pixels[i]===actual.pixels[actual.roots[i]],'dynamic carrier broke a stereo class');
+      }
+      worst=Math.max(worst,error/expected.length);assert(worst<.01&&maximum<=1,'dynamic CPU/GPU color mismatch');
+      const held=await render(depth,settings);assert(actual.pixels.every((v,i)=>v===held.pixels[i]),'dynamic held frame drift');
+      const fixed=await render(depth,{...settings,noiseFrame:0});assert(actual.roots.every((v,i)=>v===fixed.roots[i])&&actual.pairs.every((v,i)=>v===fixed.pairs[i]),'refresh changed depth');
+      cases++;
+    }
+    assert(!validationErrors.length,validationErrors.join('\n'));
+    return `${cases} carrier/frame/contrast cases; exact current pairs and held frames; worst CPU tone error ${worst}/255, max ${maximum}/255`;
+  });
   await check('GPU flat depths have only the intended stereo correlation',async()=>{
     for(const z of [0,.15,.5,.85,1]){
       const {pixels}=await render(source(()=>z));const shift=separation(z,120,.5);

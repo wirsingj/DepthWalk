@@ -1,13 +1,24 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createPlayer,stepPlayer,blocked,collectNearby,BEACONS,BUILDINGS,PLANTERS} from '../src/game.js';
+import {FoundationMotion} from '../src/foundation-motion.js';
 const walk=(p,keys,seconds)=>{for(let t=0;t<seconds;t+=1/120)stepPlayer(p,new Set(keys),1/120);};
 test('stationary startup has no camera motion',()=>{const p=createPlayer();walk(p,[],5);assert.equal(p.x,0);assert.equal(p.z,13);assert.equal(p.yaw,0);});
 test('released movement and turn ease out and then stop exactly',()=>{
-  const p=createPlayer();walk(p,['KeyW','KeyD','ArrowLeft'],.5);
-  const speed=Math.hypot(p.vx,p.vz);stepPlayer(p,new Set(),1/120);assert.ok(Math.hypot(p.vx,p.vz)>speed*.8,'release should still ease out');
-  walk(p,[],1);assert.equal(p.vx,0);assert.equal(p.vz,0);assert.equal(p.turn,0);
-  const pose={...p};walk(p,[],4);assert.deepEqual(p,pose,'tiny residual motion changed depth after stopping');
+  for(const hz of [30,60,144,240])for(const controls of [['KeyW'],['KeyW','KeyD','ShiftLeft'],['ArrowRight']]){
+    const p=createPlayer(),keys=new Set(controls),motion=new FoundationMotion();let now=0;
+    const sample=()=>motion.update([p.x,p.z,p.yaw,p.pitch].join('/'),now,true);
+    for(let i=0;i<hz;i++){stepPlayer(p,keys,1/hz);now+=1000/hz;sample();}
+    const speed=Math.hypot(p.vx,p.vz,p.turn),released=now;
+    stepPlayer(p,new Set(),1/hz);now+=1000/hz;sample();
+    assert.ok(Math.hypot(p.vx,p.vz,p.turn)>0&&Math.hypot(p.vx,p.vz,p.turn)<speed,'release should ease out');
+    while((p.vx||p.vz||p.turn)&&now-released<1000){stepPlayer(p,new Set(),1/hz);now+=1000/hz;sample();}
+    assert.ok(now-released<=180,`${hz} Hz release took ${now-released} ms`);
+    const pose={...p},epoch=motion.frame;
+    for(let i=0;i<hz*2;i++){stepPlayer(p,new Set(),1/hz);now+=1000/hz;sample();}
+    assert.deepEqual(p,pose,'residual motion changed depth after stopping');
+    assert.equal(motion.frame,epoch,'grain kept changing after the camera stopped');
+  }
 });
 test('W/S and A/D move on the ground in the expected camera axes',()=>{
   for(const [key,axis,sign] of [['KeyW','z',-1],['KeyS','z',1],['KeyA','x',-1],['KeyD','x',1]]){

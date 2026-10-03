@@ -16,7 +16,7 @@ export function validateDepthFrame(frame){
   if(typeof depth[0]!=='number')throw Error('Depth samples must use a numeric typed array, not BigInt');
   if(packed&&!(depth instanceof Uint8Array||depth instanceof Uint8ClampedArray))throw Error('Packed depth requires RGBA bytes');
   if(![fullHeight,yOffset,cropTop,cropBottom].every(Number.isInteger)||fullHeight<height||yOffset<0||yOffset+height>fullHeight||cropTop<0||cropBottom<0||cropTop+cropBottom>=height)throw Error('Invalid depth stripe bounds');
-  if(!(verticalFov>0&&verticalFov<179))throw Error('verticalFov must be in degrees between 0 and 179');
+  if(!(Number.isFinite(verticalFov)&&verticalFov>0&&verticalFov<179))throw Error('verticalFov must be a finite number of degrees between 0 and 179');
   if(frame.projection!==undefined&&!['perspective','orthographic'].includes(frame.projection))throw Error('Unsupported depth projection');
   if(frame.reverseZ!==undefined&&typeof frame.reverseZ!=='boolean')throw Error('reverseZ must be boolean');
   if(frame.orthographicHeight!==undefined&&!(Number.isFinite(frame.orthographicHeight)&&frame.orthographicHeight>0))throw Error('orthographicHeight must be positive');

@@ -1,0 +1,258 @@
+{
+  "scope": "Synthetic CPU mechanism isolation, not gameplay or perceptual acceptance. No renderer candidate or changed defaults.",
+  "width": 640,
+  "height": 360,
+  "spacing": 96,
+  "strength": 0.33,
+  "seed": 173,
+  "regions": [
+    3,
+    3
+  ],
+  "results": [
+    {
+      "name": "fixed-depth-brightness-peak",
+      "epochs": [
+        51,
+        52
+      ],
+      "classChangeFraction": 0,
+      "exactCurrentPairs": true,
+      "change": {
+        "total": {
+          "rms": 69.16371147050309,
+          "signedMean": 16.841970486111112,
+          "meanSquare": 4783.618984375,
+          "globalMeanEnergyFraction": 0.05929652231533195,
+          "regionalMeanEnergyFraction": 0.07324546084898968,
+          "residualAfterGlobalMean": 67.08179346529103,
+          "residualAfterRegionalMeans": 66.58258486525195
+        },
+        "depthAtHeldCarrier": {
+          "rms": 0,
+          "signedMean": 0,
+          "meanSquare": 0,
+          "globalMeanEnergyFraction": null,
+          "regionalMeanEnergyFraction": null,
+          "residualAfterGlobalMean": 0,
+          "residualAfterRegionalMeans": 0
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 69.16371147050309,
+          "signedMean": 16.841970486111112,
+          "meanSquare": 4783.618984375,
+          "globalMeanEnergyFraction": 0.05929652231533195,
+          "regionalMeanEnergyFraction": 0.07324546084898968,
+          "residualAfterGlobalMean": 67.08179346529103,
+          "residualAfterRegionalMeans": 66.58258486525195
+        },
+        "crossTerm": 0,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 0,
+        "oldContrastSD": 48.25405102011978,
+        "projectedContrastSD": 48.25405102011978,
+        "retainedHorizontalVariance": 1,
+        "minimumRmsSameGlobalMeanAndSD": 0,
+        "minimumRmsSameEachRowMeanAndSD": 0,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "compared": 1944,
+        "meanDisparityError": 0,
+        "withinTwoPixels": 1,
+        "confident": 1727,
+        "confidentWrongFraction": 0,
+        "interior": 1890,
+        "interiorWithinTwoPixels": 1
+      }
+    },
+    {
+      "name": "unchanged-graph-tiny-depth-step",
+      "epochs": [
+        51,
+        52
+      ],
+      "classChangeFraction": 0,
+      "exactCurrentPairs": true,
+      "change": {
+        "total": {
+          "rms": 68.79595720897132,
+          "signedMean": 15.066419270833334,
+          "meanSquare": 4732.8837282986115,
+          "globalMeanEnergyFraction": 0.047961666222072916,
+          "regionalMeanEnergyFraction": 0.0626492880663615,
+          "residualAfterGlobalMean": 67.12590214406114,
+          "residualAfterRegionalMeans": 66.60609530831121
+        },
+        "depthAtHeldCarrier": {
+          "rms": 0,
+          "signedMean": 0,
+          "meanSquare": 0,
+          "globalMeanEnergyFraction": null,
+          "regionalMeanEnergyFraction": null,
+          "residualAfterGlobalMean": 0,
+          "residualAfterRegionalMeans": 0
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 68.79595720897132,
+          "signedMean": 15.066419270833334,
+          "meanSquare": 4732.8837282986115,
+          "globalMeanEnergyFraction": 0.047961666222072916,
+          "regionalMeanEnergyFraction": 0.0626492880663615,
+          "residualAfterGlobalMean": 67.12590214406114,
+          "residualAfterRegionalMeans": 66.60609530831121
+        },
+        "crossTerm": 0,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 0,
+        "oldContrastSD": 48.07905256254744,
+        "projectedContrastSD": 48.07905256254744,
+        "retainedHorizontalVariance": 1,
+        "minimumRmsSameGlobalMeanAndSD": 0,
+        "minimumRmsSameEachRowMeanAndSD": 0,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "compared": 1944,
+        "meanDisparityError": 0.22376543209876543,
+        "withinTwoPixels": 0.9753086419753086,
+        "confident": 1693,
+        "confidentWrongFraction": 0,
+        "interior": 1890,
+        "interiorWithinTwoPixels": 0.9746031746031746
+      }
+    },
+    {
+      "name": "flat-disparity-transition",
+      "epochs": [
+        1,
+        2
+      ],
+      "transition": {
+        "from": 0.266,
+        "to": 0.274
+      },
+      "classChangeFraction": 0.8578125,
+      "exactCurrentPairs": true,
+      "change": {
+        "total": {
+          "rms": 67.62345933627003,
+          "signedMean": -4.347947048611111,
+          "meanSquare": 4572.932252604167,
+          "globalMeanEnergyFraction": 0.00413403096596508,
+          "regionalMeanEnergyFraction": 0.007778420796228142,
+          "residualAfterGlobalMean": 67.48353583702206,
+          "residualAfterRegionalMeans": 67.35994404147593
+        },
+        "depthAtHeldCarrier": {
+          "rms": 56.45440792011826,
+          "signedMean": 0.02620659722222222,
+          "meanSquare": 3187.100173611111,
+          "globalMeanEnergyFraction": 2.1548922235149892e-7,
+          "regionalMeanEnergyFraction": 0.0000059192242674647586,
+          "residualAfterGlobalMean": 56.4544018374597,
+          "residualAfterRegionalMeans": 56.454240836720324
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 67.69126255957798,
+          "signedMean": -4.374153645833333,
+          "meanSquare": 4582.107026909723,
+          "globalMeanEnergyFraction": 0.004175637977243172,
+          "regionalMeanEnergyFraction": 0.007671458414495889,
+          "residualAfterGlobalMean": 67.54978761470953,
+          "residualAfterRegionalMeans": 67.43111732280592
+        },
+        "crossTerm": -3196.274947916667,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 38.613307144127496,
+        "oldContrastSD": 47.75190630652013,
+        "projectedContrastSD": 28.09371935683311,
+        "retainedHorizontalVariance": 0.3034777753636435,
+        "minimumRmsSameGlobalMeanAndSD": 43.329341129951594,
+        "minimumRmsSameEachRowMeanAndSD": 44.06874427461686,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "compared": 1944,
+        "meanDisparityError": 0,
+        "withinTwoPixels": 1,
+        "confident": 1819,
+        "confidentWrongFraction": 0,
+        "interior": 1890,
+        "interiorWithinTwoPixels": 1
+      }
+    },
+    {
+      "name": "occluding-edge-turn",
+      "epochs": [
+        1,
+        2
+      ],
+      "classChangeFraction": 0.032690972222222225,
+      "exactCurrentPairs": true,
+      "change": {
+        "total": {
+          "rms": 67.90311898365445,
+          "signedMean": -5.250095486111111,
+          "meanSquare": 4610.833567708333,
+          "globalMeanEnergyFraction": 0.005977986888601538,
+          "regionalMeanEnergyFraction": 0.010360071763933342,
+          "residualAfterGlobalMean": 67.69985277011354,
+          "residualAfterRegionalMeans": 67.5504626265085
+        },
+        "depthAtHeldCarrier": {
+          "rms": 11.826386972336245,
+          "signedMean": 0.0711545138888889,
+          "meanSquare": 139.86342881944444,
+          "globalMeanEnergyFraction": 0.000036199347388373245,
+          "regionalMeanEnergyFraction": 0.00015077568970724227,
+          "residualAfterGlobalMean": 11.826172916653878,
+          "residualAfterRegionalMeans": 11.825495372900848
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 67.9704256179153,
+          "signedMean": -5.32125,
+          "meanSquare": 4619.978758680556,
+          "globalMeanEnergyFraction": 0.006128967911226247,
+          "regionalMeanEnergyFraction": 0.010419559029847677,
+          "residualAfterGlobalMean": 67.76181120010042,
+          "residualAfterRegionalMeans": 67.61538742984352
+        },
+        "crossTerm": -149.00861979166666,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 5.319327428879982,
+        "oldContrastSD": 47.77715065121489,
+        "projectedContrastSD": 47.480110362689096,
+        "retainedHorizontalVariance": 0.9867930720800674,
+        "minimumRmsSameGlobalMeanAndSD": 5.327614590850398,
+        "minimumRmsSameEachRowMeanAndSD": 5.337106072533424,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "compared": 1944,
+        "meanDisparityError": 0.18724279835390947,
+        "withinTwoPixels": 0.9814814814814815,
+        "confident": 1781,
+        "confidentWrongFraction": 0,
+        "interior": 1836,
+        "interiorWithinTwoPixels": 0.9912854030501089
+      }
+    }
+  ]
+}

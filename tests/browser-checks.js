@@ -6,6 +6,7 @@ import {separation,linkRow} from '../src/stereogram.js';
 import {contrast} from './stereo-quality.js';
 import {detectContours} from '../src/contours.js';
 import {DepthWalkFilter} from '../src/depthwalk.js';
+import {FoundationFilter} from '../src/foundation-stereo.js';
 import {prepareGeometry} from '../src/depth-frame.js';
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const $=id=>document.getElementById(id);
@@ -432,6 +433,32 @@ export async function runChecks({player,scene,found,stop,getWorld,getFrame,captu
       for(const id of ['quiet-comparison','banding-comparison'])assert(new URL($(id).href).searchParams.get('world')===choice,'comparison lost selected world');
     }
     return 'both directions; new stereo frames; source world carried into comparisons';
+  });
+  await check('foundation game modes match the full-frame reference across worker seams',async()=>{
+    const saved=$('pattern').value;
+    try{
+      for(const carrier of ['binary','white','pink']){
+        const pattern='foundation-'+carrier;$('pattern').value=pattern;$('pattern').dispatchEvent(new Event('change'));
+        await until(()=>getFrame()?.pattern===pattern,'foundation workers did not finish',15000);
+        const f=getFrame(),expected=new FoundationFilter().render({width:f.width,height:f.height,depth:f.depth,format:'packed-proximity-rg16',origin:'bottom-left'},
+          {carrier,spacing:f.spacing,strength:f.strength}).pixels;
+        assert(expected.length===f.pixels.length&&expected.every((v,i)=>v===f.pixels[i]),'foundation differs across worker stripes');
+        assert($('performance').dataset.backend==='cpu'&&$('edges').disabled&&$('grain').disabled&&$('invert-depth').disabled,'foundation controls/backend misleading');
+      }
+      return 'binary/white/pink; every pixel matches standalone reference';
+    }finally{$('pattern').value=saved;$('pattern').dispatchEvent(new Event('change'));}
+  });
+  await check('foundation rendering preserves playable movement and source-view switching',async()=>{
+    const saved=$('pattern').value,pose={...player};
+    try{
+      $('pattern').value='foundation-binary';$('pattern').dispatchEvent(new Event('change'));fixture();
+      await until(()=>getFrame()?.pattern==='foundation-binary','foundation did not start');
+      const before=player.z;await key('KeyW',180);assert(player.z<before-.1,'foundation blocked movement');stop();
+      const moved=JSON.stringify(player);
+      for(const view of ['normal','depth','stereo'])document.querySelector(`[data-view="${view}"]`).click();
+      assert(JSON.stringify(player)===moved,'diagnostic views moved the player');
+      return 'walk, stop, source/depth/stereo at unchanged pose';
+    }finally{Object.assign(player,pose);$('pattern').value=saved;$('pattern').dispatchEvent(new Event('change'));}
   });
   report.dataset.results=JSON.stringify(results);report.dataset.complete='true';
   report.textContent+=`\n${results.filter(r=>r.pass).length}/${results.length} passed. Fullscreen and pointer lock require real clicks.\n`;

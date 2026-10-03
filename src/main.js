@@ -10,19 +10,24 @@ import {stereoWindow} from './stereo-window.js';
 import {comparisonQuery} from './debug/comparison-settings.js';
 
 const $=id=>document.getElementById(id);
+const isFoundation=()=>$('pattern').value.startsWith('foundation-');
 const usesSceneColor=()=>Number($('stereo-window').value)>0||['scene','surface','quiet','chroma','chroma-soft'].includes($('pattern').value);
-const temporalStability=()=>$('pattern').value==='quiet'?$('quiet-stability').checked:$('motion-stability').checked;
+const temporalStability=()=>isFoundation()?false:$('pattern').value==='quiet'?$('quiet-stability').checked:$('motion-stability').checked;
 function surfaceControls(){
+  const foundation=isFoundation();
+  if(foundation){$('stereo-window').value='0';$('invert-depth').checked=false;}
   const local=['chroma','chroma-soft'].includes($('pattern').value),active=['surface','quiet','chroma','chroma-soft'].includes($('pattern').value);
   $('surface-controls').hidden=!active;$('surface-detail').disabled=mode!=='stereo';
   $('surface-hint').textContent=$('pattern').value==='chroma-soft'?'Softer texture with more scene lighting. Try Quiet if colors look doubled.':local?'Local surface hues with flatter lighting. Try Quiet for more scene shading.':'Scene colors with continuous depth. Increase support for a stronger depth lock; wider spacing gives fewer repeats.';
-  $('edges').disabled=mode!=='stereo'||local;
+  $('edges').disabled=mode!=='stereo'||local||foundation;
+  for(const id of ['grain','stereo-window','invert-depth','backend'])$(id).disabled=mode!=='stereo'||foundation;
+  $('foundation-hint').hidden=!foundation;
   $('motion-controls').hidden=!local;$('motion-stability').disabled=mode!=='stereo';
   $('quiet-motion-controls').hidden=$('pattern').value!=='quiet';$('quiet-stability').disabled=mode!=='stereo';
 }
 const world=$('world'), stereo=$('stereo'), ctx=stereo.getContext('2d',{alpha:false});
 const gpuCanvas=$('gpu-stereo');let gpu=null,gpuFailure='',gpuPending=true;
-const useGPU=()=>!!gpu&&!gpu.failed&&$('backend').value!=='cpu';
+const useGPU=()=>!!gpu&&!gpu.failed&&$('backend').value!=='cpu'&&!isFoundation();
 const query=new URLSearchParams(location.search);
 $('demo').value=query.get('world')==='retro'?'retro':'original';
 if(query.has('verify'))$('stereo-window').value='0';
@@ -33,6 +38,10 @@ if(!query.has('verify')){
   for(const id of Object.keys(VIEWING_DEFAULTS))$(id).addEventListener('change',save);
 }
 if(['auto','1','0.75','0.5'].includes(query.get('quality')))$('quality').value=query.get('quality');
+if(['binary','white','pink'].includes(query.get('foundation'))){
+  $('pattern').value='foundation-'+query.get('foundation');$('spacing').value='96';$('strength').value='33';$('stereo-window').value='0';$('invert-depth').checked=false;
+}
+if(isFoundation()){$('stereo-window').value='0';$('invert-depth').checked=false;}
 $('spacing-value').textContent=$('spacing').value+' px';$('strength-value').textContent=$('strength').value+'%';$('surface-value').textContent=$('surface-detail').value+'%';
 function comparisonDirection(){
   $('quiet-comparison').href='./tests/observer-lab.html?'+comparisonQuery({invertDepth:$('invert-depth').checked,spacing:Number($('spacing').value),strength:Number($('strength').value)/100,surfaceDetail:Number($('surface-detail').value)/100,edges:Number($('edges').value),dotSize:Number($('grain').value)})+'&world='+$('demo').value;
@@ -72,7 +81,8 @@ let verificationFrame=null,frameCamera=null,capturedSceneKey=null;
 function resize(){
   const quality=$('quality').value==='auto'?adaptive.factor:Number($('quality').value), dpr=window.devicePixelRatio||1;
   // Native pixels up to 8.3 MP (4K). CSS spacing is independent of this cap.
-  scale=Math.min(dpr*quality,Math.sqrt(8294400/(innerWidth*innerHeight)),8192/innerWidth,8192/innerHeight);
+  const foundation=isFoundation(),limit=foundation?2000000:8294400,axis=foundation?2048:8192;
+  scale=Math.min(dpr*quality,Math.sqrt(limit/(innerWidth*innerHeight)),axis/innerWidth,axis/innerHeight);
   width=Math.max(1,Math.round(innerWidth*scale));height=Math.max(1,Math.round(innerHeight*scale));
   scale=width/innerWidth;
   renderer.setSize(width,height,false);target.setSize(width,height);
@@ -108,8 +118,8 @@ function setView(next){
 }
 function updateBackend(){
   const active=useGPU();stereo.hidden=mode!=='stereo'||active;gpuCanvas.hidden=mode!=='stereo'||!active;
-  $('backend-status').textContent=active?`GPU · ${gpu.adapterName||'WebGPU'}`:gpuPending&&$('backend').value!=='cpu'?'Starting GPU…':gpuFailure&&$('backend').value!=='cpu'?`CPU fallback · ${gpuFailure}`:'CPU · Web Workers';
-  $('live-backend').textContent=active?'WebGPU':gpuPending?'Starting GPU':'CPU workers';
+  $('backend-status').textContent=isFoundation()?'CPU · foundation research · up to 2 MP':active?`GPU · ${gpu.adapterName||'WebGPU'}`:gpuPending&&$('backend').value!=='cpu'?'Starting GPU…':gpuFailure&&$('backend').value!=='cpu'?`CPU fallback · ${gpuFailure}`:'CPU · Web Workers';
+  $('live-backend').textContent=isFoundation()?'CPU reference':active?'WebGPU':gpuPending?'Starting GPU':'CPU workers';
   $('performance').dataset.backend=active?'gpu':'cpu';
   $('performance').title=$('backend-status').textContent;
   if(cpuFailed&&!active&&!gpuPending&&$('fatal').dataset.reason!=='webgl'){
@@ -126,7 +136,7 @@ $('spacing').addEventListener('input',()=>{
 $('strength').addEventListener('input',()=>{$('strength-value').textContent=`${$('strength').value}%`;version++;ready=false;});
 $('quality').addEventListener('change',()=>{resize();$('quality').blur();});
 $('stereo-window').addEventListener('change',()=>{version++;ready=false;updateSurround();});
-$('pattern').addEventListener('change',()=>{version++;ready=false;surfaceControls();$('pattern').blur();});
+$('pattern').addEventListener('change',()=>{version++;ready=false;surfaceControls();resize();updateBackend();$('pattern').blur();});
 $('surface-detail').addEventListener('input',()=>{$('surface-value').textContent=$('surface-detail').value+'%';version++;ready=false;});
 $('motion-stability').addEventListener('change',()=>{version++;ready=false;});
 $('quiet-stability').addEventListener('change',()=>{version++;ready=false;});
@@ -221,8 +231,8 @@ for(const slot of workers){
     ctx.putImageData(frameImage,0,0);
     if(diagnosticCapture||debugCapture){
       const frame={depth:depthBuffer.slice(),color:usesSceneColor()?sceneBuffer.slice():undefined,pixels:new Uint32Array(frameImage.data.buffer.slice(0)),width,height,camera:frameCamera,spacing:Math.round(Number($('spacing').value)*scale),strength:Number($('strength').value)/100,pattern:$('pattern').value,surfaceDetail:Number($('surface-detail').value)/100,windowPeriods:Number($('stereo-window').value),temporalStability:temporalStability()};
-      frame.invertDepth=$('invert-depth').checked;frame.edges=Number($('edges').value);
-      frame.dotSize=Number($('grain').value);frame.pixelRatio=scale;frame.depthRange=22;acceptCapture(frame);
+      frame.invertDepth=$('invert-depth').checked;frame.edges=isFoundation()?0:Number($('edges').value);
+      frame.dotSize=isFoundation()?1/scale:Number($('grain').value);frame.pixelRatio=scale;frame.depthRange=22;acceptCapture(frame);
     }
     workAverage=performance.now()-submitTime;
     ready=true;frameCount++;presented++;
@@ -316,7 +326,7 @@ function render(){
     busy=true;pending=activeWorkers.length;stereoMs=0;
     activeWorkers.forEach((slot,i)=>{
       const yOffset=Math.floor(i*height/activeWorkers.length),stripeHeight=Math.floor((i+1)*height/activeWorkers.length)-yOffset;
-      const edges=Number($('edges').value),halo=requiredHalo(scale,edges);
+      const edges=isFoundation()?0:Number($('edges').value),halo=isFoundation()?0:requiredHalo(scale,edges);
       const topHalo=Math.min(halo,yOffset),bottomHalo=Math.min(halo,height-yOffset-stripeHeight);
       const inputHeight=stripeHeight+topHalo+bottomHalo,length=width*inputHeight*4;
       if(!slot.depth||slot.depth.byteLength!==length)slot.depth=new Uint8Array(length);

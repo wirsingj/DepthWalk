@@ -3,10 +3,12 @@
 ## Foundations and recovery direction
 
 **Human direction, 2026-10-02:** The original monochrome effect felt better than
-current noisy, vertically repeating modes. Study established work before further
-adjustment loops. Pure, convincing depth takes precedence over source color;
-edges and motion must preserve fusion. A monochrome reference is necessary, but
-does not itself solve source-color banding. No new rendering experiment is implied.
+current noisy, vertically repeating modes. Literature now informs the authorized
+v0.6 implementation. The enduring goal is a playable stereogram game and eventually
+a reusable game filter with explicit limits and accepted degradation. Earlier
+human implementation ideas are revisable hypotheses, not sources of technical
+truth. Pure depth takes precedence over source appearance; observations of failed
+fusion remain evidence. A monochrome reference does not solve source-color banding.
 
 ### Literature and scope
 
@@ -44,8 +46,8 @@ does not itself solve source-color banding. No new rendering experiment is impli
 
 ### Static implementation audit
 
-2026-10-02, Windows/Node 22.22.3, uncommitted `main`, no HEAD: source inspection
-only; no new render, benchmark or perceptual validation.
+2026-10-02, Windows/Node 22.22.3; first-attempt source now preserved at `v0.5` /
+`2a1278b`: static inspection only, not a render or perceptual validation.
 
 [CPU presentation](../src/main.js) assembles complete worker frames and rejects
 stale versions. [GPU presentation](../src/gpu/depthwalk-gpu.js) writes opaque current
@@ -68,16 +70,45 @@ artifact is unidentified. RG16 input also does not guarantee fine output depth:
 integer separations at P120/strength .5 allow 41 levels across the full canonical
 range; half-resolution P60 allows 21. Actual scene occupancy can be smaller.
 
-### Proposed extensions, not accepted fixes
+### v0.6 foundation implementation
 
-1. Recover an independently checked monochrome reference: visible-pair geometry,
-   correct foreground ordering, strong matching texture, fixed display calibration;
-   exclude source RGB, contour tint and history from this reference. Existing
-   geometry resembles the published construction; conformance is not yet established.
-2. Design a spatial 1/f carrier before correspondence assignment, preserving exact
-   matches and independent disocclusions. Verify its resulting texture structure;
-   filtering seeds alone may not preserve the intended spectrum after mapping.
-   This differs from the rejected solver below, which relaxed final matches.
+[FoundationFilter](../src/foundation-stereo.js) now supplies a depth-only reference
+and white/pink texture controls, reused by [the comparison](../tests/foundations.html)
+and the playable city's CPU workers. Both use the same visible-pair graph and
+foreground-near mapping. Odd-separation centering alternates by absolute row as
+in TIW figure 3; existing renderer calls retain their original centering. The
+historical original renderer remains unidentified, not retrospectively restored.
+
+[Carrier generation](../src/foundation-texture.js) uses deterministic Gaussian noise
+and a two-dimensional Fourier amplitude weight of `1/sqrt(f)` for pink `1/f`
+power. White/pink inputs share mean 128 and RMS 48 before byte clipping. Binary
+uses black/white extremes and therefore is not contrast-matched. Textures are
+cached by full-frame dimensions and seed, not regenerated during motion. Assign
+one texture sample per unconstrained class; never wrap seed coordinates at the
+stereo period or blur finished pixels. Correlated neighboring pink samples are
+intentional; distinct disocclusions are not forced into a shared seed identity.
+
+[Tests](../tests/foundation.test.js) cover an independent floating-point ray/union
+oracle, exact visible pairs, foreground ordering, absent color influence, held-frame
+restoration, origin/stripe agreement, an independent DFT power-exponent check and
+retained broad texture on a flat encoded surface. This is bounded numerical
+coverage; the spectrum after arbitrary occlusion mapping, fusion, motion comfort,
+and real-time performance are not established. No GPU implementation exists.
+
+The comparison starts still with synthetic depth shapes; Original city and Block
+study close-ups use the existing capture adapter. Treatment changes hold the same
+scene frame. A direct link opens the selected carrier in gameplay. The game
+explicitly uses CPU workers, caps foundation output near 2 MP and disables ignored
+color/ink/dot-size/reversal controls. CPU preparation can pause initially. API bounds
+and accepted formats live in [Integration](INTEGRATION.md#foundation-cpu-research-api).
+
+### Remaining extension hypotheses
+
+1. Establish usable fusion on the implemented reference during actual gameplay.
+   Display/viewer calibration and complex occlusions still need validation.
+2. Evaluate whether the pink carrier helps acquisition without sacrificing detail
+   after depth mapping. This differs from the rejected solver below, which relaxed
+   final matches. Spectral agreement alone is not a promotion criterion.
 3. Preserve texture contrast before adding compatible scene color. A scene-derived
    palette is a limited first step, not preservation of object paint. Local color
    must address conflicting class demands instead of hiding them with averages;
@@ -89,8 +120,8 @@ range; half-resolution P60 allows 21. Actual scene occupancy can be smaller.
 
 Separate necessary carrier repetition, false-depth echoes, source-color/contour
 replicas and integer-depth terracing. One banding score cannot identify all four.
-Existing metrics cannot certify human fusion. No coefficient sweep, new mode or
-default promotion follows from this literature review.
+Existing metrics cannot certify human fusion. These implementations are controlled
+research paths; no default promotion follows from numerical checks.
 
 ## What is established
 

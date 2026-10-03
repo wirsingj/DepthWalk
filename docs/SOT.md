@@ -13,33 +13,26 @@ agent-guidance: Verify claims against named evidence; preserve human intent and 
 
 ## Identity and human direction
 
-**Declared, project conversation, 2026-09-25:** Build a filter for any game/engine
-supplying depth. Optional scene colors should resemble the source render; retain
-generated colors and depth-derived edges as fallback. Demo: one level, five beacons;
-no accounts, multiplayer, combat or external services.
+**Reaffirmed human direction, 2026-10-02:** The goal is always a stereogram for a
+video game: this game first, eventually a reusable layer for other games, with
+explicit limits and accepted degradation. Strong, correctly ordered, stable depth
+comes before source-color fidelity. Research must advance playable usability.
 
-Target: real-time Magic Eye that reads as solid, natural 3D while preserving source appearance.
-Explore new synthesis, including static experiments; judge progress by usability,
-not accumulated tools or modes. Preserve
-restrained movement, ground collisions, stationary startup, explicit mouse capture,
-Escape release, alignment guidance and pose-preserving diagnostic views.
+The first attempt failed human acceptance and is preserved on `v0.5` at `2a1278b`;
+development continues on `codex/v0.6`. Earlier human suggestions about art style,
+color, ink, spacing and strength are hypotheses, not binding design requirements
+or technical evidence. Preserve reported observations and measured failures;
+reconsider mechanisms against papers and outcomes. Color and edges remain possible
+extensions, never reasons to weaken fusion.
 
-**Declared preference:** Fine dots, maximum spacing and depth looked better.
-Defaults: Fine / 120 display pixels / 50% depth, Bold contours, Auto quality.
-**Acceptance priorities, human direction 2026-10-02:**
-
-1. Pure foreground-near depth that visibly pops and holds fusion.
-2. Fix screen-wide banding and kaleidoscopic replicas.
-3. Essential edges, including dark ink, without weakening fusion.
-
-Source color must preserve fusion. Recover a monochrome reference;
-neutralization alone does not solve color preservation. Keep full-width output;
-central strips remain human-rejected.
+Demo scope remains one level and five beacons, without accounts, multiplayer,
+combat or services. Preserve restrained movement, ground collisions, stationary
+startup, explicit mouse capture, Escape release and pose-preserving views.
 
 ## Implemented capability
 
 Demo/API/lab defaults preserve foreground-near ordering. Full-image Quiet remains
-the demo style. Direction controls reach CPU/GPU, F3 and A/B;
+the legacy default. Direction controls reach CPU/GPU, F3 and A/B;
 legacy reversed preferences are corrected. Opt-in history reduces motion change;
 camera-cut resets preserve allocations. Reversal preserves physical normals/contours.
 Optional dark ink outlines both relief directions. Spacing extends to 180 pixels;
@@ -51,19 +44,20 @@ native PNG export, asset-free fixtures and rejection gates. F3 restores views;
 tuning focus stops movement.
 Controls: [README](../README.md#play).
 
+[Foundations](../tests/foundations.html) compares binary, white and spectral pink
+textures on held frames, with optional motion and source/depth views. The same
+depth-only CPU algorithm is selectable in the playable city. Scene color, ink,
+reversal and image history cannot alter these modes. No default promotion or
+human-fusion acceptance is implied. [Mechanism and limits](STEREO-CONSTRAINTS.md#v06-foundation-implementation).
+
 ## Evidence and limits
 
-**Verified, 2026-10-02:** `npm run check` passed lint, 157 tests and build.
-Windows, Node 22.22.3, npm 10.2.3; uncommitted `main`, no HEAD commit.
-[Earlier depth correction](../evidence/depth-order-verification.json): independent foreground/background
-reconstruction and 35/35 gameplay checks per backend. [Prior audit](../evidence/audit-ten-verification.json):
-18 GPU fixtures, not rerun for this preference correction.
-[Prior contour correction](../evidence/contour-verification.json)
-reduced reversed-floor false contours, 5440→640 pixels.
-[Ink comparisons](OBSERVER.md#ink-contours) preserve matched RGB and stationary output;
-darker source colors remain a tradeoff. Human acceptance is pending.
-Projected-lighting and fractional-depth candidates regressed and were removed.
-Metrics do not establish comfort.
+**Verified, 2026-10-02:** [Current checks](../evidence/foundation-verification.json): lint, 165 tests and build passed.
+Windows, Node 22.22.3, npm 10.2.3; `codex/v0.6` changes based on `2a1278b`.
+[Earlier depth](../evidence/depth-order-verification.json),
+[contour](../evidence/contour-verification.json) and [ink](OBSERVER.md#ink-contours)
+checks remain historical, not v0.6 acceptance. Projected-lighting and fractional-depth
+candidates regressed and were removed. Metrics do not establish comfort.
 
 **Human-reported, 2026-09-26:** Synthesis regressed across several modes; foreground
 trees look cut into background. The harness remains valuable; clarity/color ambition
@@ -86,9 +80,10 @@ engine plugins remain future work. Off-center/jittered projections and lens
 distortion are unsupported. Depth cannot identify semantic materials or recover
 absent geometry. Full-width repeated-object bands and motion shimmer remain unresolved.
 
-**Next:** [Foundations before adjustment loops](STEREO-CONSTRAINTS.md#foundations-and-recovery-direction).
-User prefers original monochrome. Recover reference before color extensions;
-prototypes remain rejected. Static audit: no application frame blending; fusion unresolved.
+**Next:** Establish foundation fusion during gameplay before color extensions or
+GPU promotion. Pink texture has numerical coverage, not human acceptance. The
+foundation path is CPU-only and bounded to about 2 MP; general engine integration
+and performance remain unfinished. No application frame blending was found.
 
 **Unknown:** First external engine target, supported hardware floor,
 deployment/release destination, repository visibility and reviewer ownership.

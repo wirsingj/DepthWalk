@@ -6,6 +6,19 @@ The city is also the test scene for engine-independent **DepthWalk CPU and WebGP
 
 ## Launch
 
+The **v0.6 foundation platform** is at [Depth first](tests/foundations.html).
+Compare black-and-white, white-noise and spectral pink-noise carriers on the same
+depth frame, then choose **Play this in the city** to use that renderer with
+movement and collectibles. City links also accept `?foundation=binary`,
+`?foundation=white` or `?foundation=pink`. These research modes use CPU workers,
+full-image depth and one-pixel texture, without source tint, added ink, reversal
+or frame blending. The first texture preparation can pause; output is capped near
+2 MP. Fusion improvement remains unconfirmed. Legacy GPU modes remain available.
+
+The goal remains a stereogram video game and eventually a reusable layer for
+other games, with explicit limits and accepted degradation. Earlier design
+suggestions are hypotheses; the first attempt is preserved on branch `v0.5`.
+
 Use Node.js 22.13+ (22.x), 20.19+ (20.x), or 24+. From this folder:
 
 ```sh

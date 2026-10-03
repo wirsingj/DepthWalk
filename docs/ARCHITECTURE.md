@@ -37,10 +37,9 @@ Device `reverseZ` requires a boolean.
    RGB; history reuses seeds one-to-one.
    Paired projects hues, neutralizes incompatible partners and omits contours.
    Soft paired adds lighting, relaxing luminance equality.
-5. Optional `windowPeriods` bounds matching to the central 2–4 pattern widths,
-   requiring source RGB outside. CPU crops columns before synthesis; GPU bounds
-   links/gathering. F3 analyzes this region. The demo softens the surround with
-   an exterior-only CSS blur; stereo pixels remain unfiltered. API defaults full-image.
+5. Optional `windowPeriods` bounds matching to 2–4 central pattern widths; source
+   RGB fills outside. CPU crops input; GPU bounds links/gathering. F3 analyzes
+   the region. Exterior CSS blur never filters stereo pixels. Default: full image.
 
 GPU uses atomic unions and deterministic history claims, reusing lists for final
 pixels. Canonical depth/strength aligns visibility/rounding with CPU; float
@@ -48,20 +47,23 @@ normals may alter reference colors.
 
 ## Demo responsibilities
 
-[main.js](../src/main.js) prefers WebGPU and exposes backend choice/status. GPU rendering
-stays on-device. Two frames can overlap;
-RAF empty submissions service Firefox's delayed completions. Diagnostic captures
-are exclusive. Completion latency includes browser scheduling, not just GPU execution.
-Its adapter uploads static geometry and updates beacon visibility.
-Failure selects CPU. WebGL supplies views and optional color via GPU copies
-or CPU readback. Auto quality adapts; fixed quality stays fixed.
+[main.js](../src/main.js) normally prefers WebGPU. Its adapter uploads static geometry
+and updates beacon visibility. Two submissions overlap; RAF empty submissions
+service Firefox completions. Diagnostics are exclusive. Completion latency includes
+scheduling. Failure selects CPU; WebGL supplies views/color. Quality can adapt or stay fixed.
 
-CPU uses ≤4 [workers](../src/stereo.worker.js) with halo rows and complete-frame
-assembly. Pose/visibility/version caching stabilizes inputs; versions reject stale output.
-Auto quality accounts for CPU/refresh ceilings. QA readback stops after checks.
-Diagnostics reconstruct pixels before truth comparison; absent evidence stays unmeasured.
-The [lab](OBSERVER.md) provides native PNGs, calibrated A/B/C and rejection gates;
-C shows source colors. F3 restores views; relief renders on demand.
+CPU assembles complete frames from ≤4 [workers](../src/stereo.worker.js); legacy
+filters need halos. Pose/visibility caching stabilizes inputs; versions reject stale
+output. Quality respects CPU/refresh ceilings; QA readback stops after checks.
+[Diagnostics](OBSERVER.md) reconstruct pixels before truth comparison, expose missing
+evidence, export native PNGs and restore prior views; relief renders on demand.
+
+[FoundationFilter](../src/foundation-stereo.js) serves gameplay and
+[Foundations](../tests/foundations.html): canonical proximity, alternating
+row centering, exact visible pairs and cached binary/white/pink carriers. Full-frame
+seed coordinates keep worker stripes identical. It omits source tint, contours and
+history. Game selection forces CPU, full image and foreground-near direction;
+limits follow [Integration](INTEGRATION.md#foundation-cpu-research-api).
 
 [city.js](../src/city.js): Original/Block study share layout; Block simplifies geometry/materials.
 Switching preserves pose/collection/settings, disposes scenery, rebuilds GPU geometry,
@@ -75,14 +77,14 @@ resets history. Resolution limits stereo precision despite RG16 input.
 - Standard modes require identical class RGB. Paired color explicitly relaxes this
   to linear-light luminance; Soft paired relaxes that equality further. Human fusion
   remains separate from numerical acceptance.
-- Keep seeds stable and independent at unconstrained pixels. Wrapping seeds at the
+- Keep seed identities stable and unaliased at unconstrained pixels. Wrapping at the
   pattern period previously created false matches around occlusions.
-- Reference palettes share eight ordered luminance tones and one seed tone index.
+- Legacy palettes share eight ordered luminance tones and one seed tone index.
   Quiet stereo shares a class seed and contrast amplitude. Preserve matching contrast
   and keep highlights in gamut; averaging unrelated noise previously weakened fusion.
 - Express spacing, dot size and contour width in display pixels and scale them into
   render pixels. Native output is generated at its chosen dimensions, currently
-  capped at approximately 4K pixel count.
+  capped at 8.3 MP, or 2 MP for foundation gameplay.
 - Keep depth-range mapping fixed across frames. Per-frame min/max normalization
   would change perceived depth as scene contents change.
 - Present complete current frames; no old RGB/depth accumulation, temporal antialiasing

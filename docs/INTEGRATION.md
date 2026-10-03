@@ -42,6 +42,33 @@ Output has the input dimensions and top-left origin. `pixels` is a Uint32Array a
 
 The example core call is synchronous. Run it in Web Workers as the city's compatibility renderer does, or use the GPU interface below. The host owns camera movement, depth acquisition, scheduling and presentation.
 
+### Foundation CPU research API
+
+`FoundationFilter` from `src/foundation-stereo.js` is the v0.6 depth-only path,
+also used by the city's three `foundation-*` styles. It is separate from
+`DepthWalkFilter` / `DepthWalkGPU`; their pattern enums have not expanded.
+
+```js
+import {FoundationFilter} from './src/foundation-stereo.js';
+const reference = new FoundationFilter();
+const result = reference.render({
+  width, height, depth, format: 'proximity', origin: 'top-left',
+}, {carrier: 'pink', spacing: 96, strength: .333, seed: 173});
+```
+
+Inputs are canonical near=1/far=0 `proximity` floats or `packed-proximity-rg16`
+RGBA bytes. Origins, full-height stripe offsets and crop rows follow the existing
+frame contract. Other encodings require host conversion; scene RGB is ignored.
+Width/full-height must each be at most 2048 and their product at most 2,097,152.
+`spacing` is an integer in output pixels, at least 8 and smaller than width;
+`strength` is 0–0.5, rounded to thousandths for matching. `seed` is uint32.
+Carriers are `binary`, `white` and `pink`; no contour, reversal, color, history,
+dot-size or window options exist. Results contain top-left `pixels`, `width` and
+`height`. Output is reused; optionally supply a matching Uint32Array as argument
+three. Each worker caches a full-frame carrier, preserving stripe boundaries.
+Texture construction is an initial CPU cost. No GPU implementation or general
+game-engine compatibility claim follows. [Construction and evidence](STEREO-CONSTRAINTS.md#v06-foundation-implementation).
+
 ### Bounded central stereo
 
 `windowPeriods: 0 | 2 | 3 | 4` defaults to `0` (full image) in both filters.
@@ -70,9 +97,10 @@ Pass `frame.color` as a `Uint8Array` or `Uint8ClampedArray` of display/sRGB RGBA
 Quiet stereo retains the complete visible correspondence graph and fits source RGB
 within each class, with low-density matching marks and contour emphasis.
 `surfaceDetail` controls mark density/contrast (0–1; default 0.35) without removing
-constraints. Every linked pixel remains identical on CPU/GPU. This baseline fuses
-for the user but still has unacceptable repeated outlines. The neutral replacement
-was rejected by the user and reverted; removing scene cues is not a banding fix.
+constraints. Every linked pixel remains identical on CPU/GPU. Earlier fusion
+reports do not establish current acceptance: the first attempt was rejected.
+Removing scene cues is not a source-color banding fix; v0.6 uses depth-only
+references to recover fusion before attempting color preservation again.
 
 The older `'scene'` mode gathers colors from visible source constraints and converts them to eight sharp dot tones. Brightness is compressed and partly shared across a scanline; chroma remains local to a class. Both modes preserve source hue/material cues but cannot reproduce arbitrary artwork exactly or eliminate inherent alternate fusion layers.
 

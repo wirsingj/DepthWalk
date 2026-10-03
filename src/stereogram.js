@@ -18,14 +18,16 @@ export function createWorkspace(width) {
     visible:new Uint8Array(width), edges:new Uint8Array(width), proximity:new Float64Array(width), sceneSums:new Float64Array(width*3), rowWeight:0, rowProximity:0, rowLuma:0 };
 }
 
-export function linkRow(z, spacing, strength, same, stats, accepted=null,quantized=new Uint16Array(z.length),mask=null) {
+export function linkRow(z, spacing, strength, same, stats, accepted=null,quantized=new Uint16Array(z.length),mask=null,rowParity=0) {
   const width = z.length,mu=Math.round(strength*1000);
   for (let x = 0; x < width; x++){same[x]=x;quantized[x]=Math.round(z[x]*65535);}
   if(accepted)accepted.fill(0);
   for (let x = 0; x < width; x++) {
     if(mask&&!mask[x])continue;
     const s = canonicalSeparation(quantized[x],spacing,mu);
-    let left = x - (s >> 1), right = left + s;
+    // TIW figure 3 alternates odd-separation centering by row. Legacy callers
+    // retain their original centering; only the foundation reference opts in.
+    let left = x - ((s + (s & 1) * (rowParity & 1)) >> 1), right = left + s;
     if (left < 0 || right >= width) continue;
     // Check both eye rays. Nearer samples on either ray hide this constraint.
     // E = 2 * far-plane spacing; z increases toward the observer.

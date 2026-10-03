@@ -1,4 +1,4 @@
-const choices={'stereo-window':['0','2','3','4'],pattern:['quiet','chroma','chroma-soft','scene','geometry','classic','mono'],grain:['1','2','3'],edges:['0','1','2','3'],quality:['auto','1','0.75','0.5']};
+const choices={'stereo-window':['0','2','3','4'],pattern:['quiet','chroma','chroma-soft','scene','geometry','classic','mono','foundation-binary','foundation-white','foundation-pink'],grain:['1','2','3'],edges:['0','1','2','3'],quality:['auto','1','0.75','0.5']};
 const ranges={spacing:[48,180],strength:[0,50],'surface-detail':[0,100]};
 export const VIEWING_DEFAULTS=Object.freeze({'stereo-window':'0',pattern:'quiet',grain:'1',edges:'2',quality:'auto',spacing:'120',strength:'50','surface-detail':'35','motion-stability':true,'quiet-stability':false,'invert-depth':false});
 const KEY='depthwalk-viewing-v1';

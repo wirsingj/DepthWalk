@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-03T01:17:57.420Z",
+  "baseRevision": "2a1278b",
+  "branch": "codex/v0.6",
+  "scope": "Depth-only binary/white/pink CPU foundation algorithm, standalone comparison, and playable-city integration. Not a release or human acceptance.",
+  "environment": {
+    "os": "Windows",
+    "node": "v22.22.3",
+    "browser": "Codex in-app Chromium",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1
+  },
+  "checks": {
+    "lint": "passed",
+    "unitTests": {
+      "passed": 165,
+      "failed": 0
+    },
+    "productionBuild": "passed",
+    "gameplay": "foundation-gameplay.json",
+    "gameplayPassedPerStartupBackend": 38,
+    "foundationBackend": "CPU workers even when the legacy game uses WebGPU",
+    "productionSmoke": "Reference, white/pink selection, shapes and both city sources, motion/pause, source/depth switching, native presentation and selected-carrier gameplay link. Final built smoke includes source-view world change followed by pink rendering. No captured console errors/warnings.",
+    "finalDiagnosticMetadata": {
+      "pattern": "foundation-binary",
+      "edges": 0,
+      "dotSize": 1,
+      "pixelRatio": 1,
+      "spacing": 96,
+      "strength": 0.33
+    }
+  },
+  "limitations": [
+    "No human fusion acceptance or anti-banding success claim.",
+    "No foundation GPU implementation; CPU image bounds and initial FFT preparation costs remain.",
+    "No end-to-end FPS benchmark or moving-game perceptual comparison.",
+    "Full gameplay runs preceded a metadata-only correction to foundation history/edge/dot-size reporting; lint/build and built F3 capture were checked afterward.",
+    "The new comparison PNG button was exercised, but its host download event timed out; downloaded file not verified. The existing gameplay PNG export check passed.",
+    "Full legacy GPU fixture suite, fullscreen and actual captured mouse were not rerun.",
+    "1/f spectrum is tested before geometry mapping; broad structure is checked on a flat encoded plane, not arbitrary occlusions."
+  ],
+  "sha256": {
+    "src/foundation-stereo.js": "3e1c4bbebffab59d2208f46abecbdc339e468635feff5c839d77092f55c6bb3f",
+    "src/foundation-texture.js": "f1b4e5691d9b8c1a7f6877b12356350daf7b64dd696bfb4130b16b62859af5d4",
+    "src/stereogram.js": "14cad13bbc7640a6b588a7c7839b2e98daff7abe43e7cbdd4dcedda485d3cae9",
+    "src/stereo.worker.js": "f0bb31ffaae3b0abebe3a2a5a7d7bfd7d8c68f53439877bd67f2dfdde8aea518",
+    "src/main.js": "6bc02cdf97d8512c227be515b327486843003064274d4131f23644a8cc92fd0d",
+    "src/preferences.js": "f70fc8cfd8e88e96475baca4ddea6dfcf68959303136aadea3120b8d572dada1",
+    "index.html": "fe84aef66105eea1c6835c2389a860398e8939fb0d6da23ec85e4fba53864fcd",
+    "tests/foundation.test.js": "e0616088f0db5f621e5473359fe671a69093e8cdf0e2a958c85e77d2e6f8f281",
+    "tests/foundation.worker.js": "7ebcc2e212b68478f209531124ff0102fffab7867afec99d05169f5bea546583",
+    "tests/foundations.html": "2f1908fd7e909095784ecf2a579958753ccbf4197f613ba69de7034ed13da559",
+    "tests/foundations.js": "68562101239ae1356c954970485f5446c1e3945ca360e446d126dfc69588ff37",
+    "tests/foundations.css": "40d6010847280ac473b3210b888d686d931e4e927fe11f5d5201372e87d2b1f7",
+    "tests/browser-checks.js": "9b721fae06ee4d776ea53ecb08601357c0a138f89919aabf3975fa36b9b1d3ed",
+    "tests/observer-lab.html": "2d39e4587259472d2031b2575773396b51040d41333ed10cfb666d14811b362d",
+    "vite.config.js": "79b8f9aed6688fe48841b73a4a39d24a4379fc7b8bae4a08151b237b805642f8",
+    "eslint.config.js": "cfb0fbc2a6e95f652deb645e1ca5b8abedf0c0d7b009040108bc66c334f0a6a7"
+  }
+}

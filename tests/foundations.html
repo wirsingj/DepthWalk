@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>DepthWalk · Foundations</title><link rel="stylesheet" href="./foundations.css"></head>
+<body><main>
+<header><div><p class="eyebrow">DEPTHWALK · v0.6</p><h1>Depth first.</h1></div><a id="play-city" href="../index.html?foundation=binary">Play this in the city →</a></header>
+<p>Find one solid shape in the pattern. Look through the screen and merge the two dots.</p>
+<section class="controls" aria-label="Viewing settings">
+<label>Scene<select id="scene"><option value="shapes">Depth shapes</option><option value="original">Original city · close-up</option><option value="retro">Block study · close-up</option></select></label>
+<label>Image width<select id="size"><option>640</option><option selected>960</option><option>1280</option></select></label>
+<label>Dot separation <output id="spacing-value">96 px</output><input id="spacing" type="range" min="48" max="160" value="96" step="1"></label>
+<label>Depth range <output id="strength-value">33%</output><input id="strength" type="range" min="0" max="50" value="33.3" step="0.1"></label>
+</section>
+<nav aria-label="Image treatment">
+<button data-view="binary" aria-pressed="true">Black &amp; white reference</button><button data-view="white" aria-pressed="false">White texture</button><button data-view="pink" aria-pressed="false">Pink texture · candidate</button><button data-view="source" aria-pressed="false">Source view</button><button data-view="depth" aria-pressed="false">Depth map</button>
+</nav>
+<div class="actions"><button id="motion" aria-pressed="false">Play motion</button><button id="reset">Reset view</button><button id="save">Save PNG</button><span id="status" role="status" aria-live="polite">Preparing reference…</span></div>
+<div class="viewport"><div id="native"><div id="guides" aria-label="Two alignment dots"><i></i><i></i></div><canvas id="image" aria-label="Native-size stereogram"></canvas></div></div>
+<p id="description">A clean black-and-white reference. No scene color, added outlines or frame blending.</p>
+<details><summary>What this comparison establishes</summary><p>White and pink textures use the same depth, visibility rules and input contrast. Pink texture includes broader features to help the eyes find a match. This is a candidate, not a proven improvement. The original v0.5 renderer is preserved separately.</p><p>The image stays at its chosen size without automatic scaling. Reduce image width if it does not fit. Dot separation is measured in image pixels; keep browser zoom at 100%. Lower image widths also reduce scene detail.</p><p>Switching treatments pauses at the same scene frame. Motion renders complete new frames; there is no blending, source-color tint, added outline or accumulated image history.</p><a href="./observer-lab.html">Earlier research lab →</a></details>
+</main><script type="module" src="./foundations.js"></script></body></html>

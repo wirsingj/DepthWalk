@@ -1,0 +1,109 @@
+{
+  "recordedAt": "2026-09-26T03:05:50.341Z",
+  "revision": "uncommitted main; no HEAD",
+  "sourceFingerprint": "f250c21d50dbb944ff395df2e49969ad26f1159ad84dfd9e96c8a72071842d85",
+  "environment": "Windows; Codex embedded browser",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "settings": {
+    "pattern": "geometry",
+    "dotSize": 1,
+    "spacing": 120,
+    "depthStrength": 0.5,
+    "edges": 2,
+    "quality": 1
+  },
+  "results": [
+    {
+      "name": "stationary scene and stable pattern",
+      "pass": true,
+      "detail": "1920 × 1080"
+    },
+    {
+      "name": "GPU depth agrees with raycast geometry",
+      "pass": true,
+      "detail": "68 surfaces, 9 sky, max error 0.000007"
+    },
+    {
+      "name": "demo supplies scalar depth without material, color or normal metadata",
+      "pass": true,
+      "detail": "RG depth only; B=0 and A=255 throughout"
+    },
+    {
+      "name": "standalone depth-only API reproduces the worker-rendered city exactly",
+      "pass": true,
+      "detail": "2073600 exact pixels, no engine objects supplied"
+    },
+    {
+      "name": "rendered city has correct stereo pixel pairs",
+      "pass": true,
+      "detail": "99.85% of 11903 interior pairs"
+    },
+    {
+      "name": "live city retains strong dot contrast",
+      "pass": true,
+      "detail": "RMS contrast 0.566"
+    },
+    {
+      "name": "live shaded palette distinguishes dark blue skyline from warm near ground",
+      "pass": true,
+      "detail": "ground/sky luminance gap 48.7 / 255; distinct amber/blue hue families"
+    },
+    {
+      "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+      "pass": true
+    },
+    {
+      "name": "edge definition changes only contour classes and restores without camera motion",
+      "pass": true,
+      "detail": "105593 contour samples; 36.6% of matching pixels emphasized"
+    },
+    {
+      "name": "classic/DepthWalk pattern switch preserves camera and changes image",
+      "pass": true
+    },
+    {
+      "name": "neutral pattern and dot size preserve pose and restore deterministically",
+      "pass": true
+    },
+    {
+      "name": "all views preserve camera pose",
+      "pass": true
+    },
+    {
+      "name": "W/S forward and backward DOM controls",
+      "pass": true
+    },
+    {
+      "name": "A/D strafe DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Q/E turn DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Escape clears held movement immediately",
+      "pass": true
+    },
+    {
+      "name": "building collision in the running game",
+      "pass": true,
+      "detail": "stopped at x=7.520"
+    },
+    {
+      "name": "HUD hide and restore",
+      "pass": true
+    },
+    {
+      "name": "guide pauses movement",
+      "pass": true
+    },
+    {
+      "name": "five walk-in collections and completion UI",
+      "pass": true
+    }
+  ]
+}

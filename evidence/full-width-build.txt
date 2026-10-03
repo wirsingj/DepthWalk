@@ -1,0 +1,27 @@
+
+> depthwalk@1.0.0 build
+> vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 44 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/tests/gpu-checks.html                    1.11 kB │ gzip:   0.63 kB
+dist/tests/observer-lab.html                  5.44 kB │ gzip:   2.21 kB
+dist/index.html                               8.30 kB │ gzip:   3.05 kB
+dist/assets/reconstruct.worker-TM4lzZI2.js   13.58 kB
+dist/assets/stereo.worker-BYtQZEU6.js        21.88 kB
+dist/assets/observer.worker-Bp09PHqi.js      35.90 kB
+dist/assets/observer-m1X4mXvW.css             2.44 kB │ gzip:   1.06 kB
+dist/assets/game-wRt_fgDf.css                11.04 kB │ gzip:   3.28 kB
+dist/assets/worker-client-Bi7wRu4N.js         1.49 kB │ gzip:   0.66 kB
+dist/assets/city-renderer-P3T6VPwx.js         7.08 kB │ gzip:   2.99 kB
+dist/assets/panel-R8Y7S_Yz.js                 9.04 kB │ gzip:   3.98 kB
+dist/assets/gpuChecks-DKNrPvqB.js            15.52 kB │ gzip:   5.58 kB
+dist/assets/game-BkTELNiE.js                 20.49 kB │ gzip:   7.74 kB
+dist/assets/depthwalk-8dIL-bE3.js            22.00 kB │ gzip:   8.73 kB
+dist/assets/depthwalk-gpu-DcX5siYF.js        24.54 kB │ gzip:   8.20 kB
+dist/assets/observer-cPc0XZ7s.js             55.40 kB │ gzip:  18.68 kB
+dist/assets/three-depth-B4pbitu9.js         490.35 kB │ gzip: 124.95 kB
+✓ built in 1.44s

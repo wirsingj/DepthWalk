@@ -1,0 +1,385 @@
+{
+  "recordedAt": "2026-09-26T04:58:40.102Z",
+  "dimensions": [
+    1000,
+    562
+  ],
+  "humanFeedback": {
+    "surface": "Does not fuse; doubled artwork with noise rectangles. Rejected from game.",
+    "quiet": "User confirmed it fuses."
+  },
+  "results": [
+    {
+      "pose": "Plaza",
+      "pattern": "scene",
+      "detail": 0.35,
+      "renderMs": 112.20000000298023,
+      "fidelity": {
+        "sourceRMSE": 63.247513410018065,
+        "broadColorRMSE": 37.866108048389684,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.8741,
+        "ambiguousFraction": 0.023,
+        "alternateLayerFraction": 0.7357,
+        "meanDotContrast": 0.5771298773951429,
+        "weakContrastFraction": 0.0001,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 0.6571,
+        "withinTwoPixels": 0.9561,
+        "confident": 8741,
+        "confidentWrongFraction": 0.0014872440224230638,
+        "interior": 8933,
+        "interiorWithinTwoPixels": 0.9786186051718347
+      }
+    },
+    {
+      "pose": "Plaza",
+      "pattern": "quiet",
+      "detail": 0.35,
+      "renderMs": 68.80000000447035,
+      "fidelity": {
+        "sourceRMSE": 31.608792500587487,
+        "broadColorRMSE": 23.432862105500757,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 488049,
+        "linked": 488040
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.1998,
+        "ambiguousFraction": 0.0628,
+        "alternateLayerFraction": 0.7779,
+        "meanDotContrast": 0.16750008994730065,
+        "weakContrastFraction": 0.8546,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 0.8774,
+        "withinTwoPixels": 0.944,
+        "confident": 1998,
+        "confidentWrongFraction": 0.0005005005005005005,
+        "interior": 8933,
+        "interiorWithinTwoPixels": 0.9696630471286242
+      }
+    },
+    {
+      "pose": "Plaza",
+      "pattern": "quiet",
+      "detail": 0.65,
+      "renderMs": 67.79999999701977,
+      "fidelity": {
+        "sourceRMSE": 36.72992112935238,
+        "broadColorRMSE": 23.48712111300497,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 488049,
+        "linked": 488040
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.5146,
+        "ambiguousFraction": 0.0385,
+        "alternateLayerFraction": 0.7616,
+        "meanDotContrast": 0.2499949534272877,
+        "weakContrastFraction": 0.5267,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 0.8406,
+        "withinTwoPixels": 0.9481,
+        "confident": 5146,
+        "confidentWrongFraction": 0.001554605518849592,
+        "interior": 8933,
+        "interiorWithinTwoPixels": 0.972013881114967
+      }
+    },
+    {
+      "pose": "Plaza",
+      "pattern": "surface",
+      "detail": 0.35,
+      "renderMs": 113.89999999850988,
+      "fidelity": {
+        "sourceRMSE": 24.765875912778956,
+        "broadColorRMSE": 5.7292283245143185,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 89866,
+        "linked": 89866
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.2555,
+        "ambiguousFraction": 0.0764,
+        "alternateLayerFraction": 0.6292,
+        "meanDotContrast": 0.23965183103433155,
+        "weakContrastFraction": 0.5908,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 2.1446,
+        "withinTwoPixels": 0.8557,
+        "confident": 2555,
+        "confidentWrongFraction": 0.011350293542074364,
+        "interior": 8933,
+        "interiorWithinTwoPixels": 0.883913578864883
+      }
+    },
+    {
+      "pose": "Plaza",
+      "pattern": "surface",
+      "detail": 0.65,
+      "renderMs": 90.39999999850988,
+      "fidelity": {
+        "sourceRMSE": 31.79363206271072,
+        "broadColorRMSE": 7.089112873020536,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 120159,
+        "linked": 120159
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.4228,
+        "ambiguousFraction": 0.0611,
+        "alternateLayerFraction": 0.6275,
+        "meanDotContrast": 0.30972004529340835,
+        "weakContrastFraction": 0.4081,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 1.5781,
+        "withinTwoPixels": 0.8917,
+        "confident": 4228,
+        "confidentWrongFraction": 0.005676442762535478,
+        "interior": 8933,
+        "interiorWithinTwoPixels": 0.9173849770513826
+      }
+    },
+    {
+      "pose": "Near beacon",
+      "pattern": "scene",
+      "detail": 0.35,
+      "renderMs": 83.80000000447035,
+      "fidelity": {
+        "sourceRMSE": 76.04600409248447,
+        "broadColorRMSE": 50.037145663357116,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.8839,
+        "ambiguousFraction": 0.0183,
+        "alternateLayerFraction": 0.7464,
+        "meanDotContrast": 0.5840347520463229,
+        "weakContrastFraction": 0.0002,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 0.5556,
+        "withinTwoPixels": 0.9635,
+        "confident": 8839,
+        "confidentWrongFraction": 0.0009050797601538635,
+        "interior": 9157,
+        "interiorWithinTwoPixels": 0.9769575188380474
+      }
+    },
+    {
+      "pose": "Near beacon",
+      "pattern": "quiet",
+      "detail": 0.35,
+      "renderMs": 54.69999999552965,
+      "fidelity": {
+        "sourceRMSE": 36.376603550685545,
+        "broadColorRMSE": 28.742782850793954,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 494590,
+        "linked": 494570
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.1042,
+        "ambiguousFraction": 0.0438,
+        "alternateLayerFraction": 0.7829,
+        "meanDotContrast": 0.13921583175682264,
+        "weakContrastFraction": 0.9363,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 0.8827,
+        "withinTwoPixels": 0.9453,
+        "confident": 1042,
+        "confidentWrongFraction": 0,
+        "interior": 9157,
+        "interiorWithinTwoPixels": 0.9675657966582942
+      }
+    },
+    {
+      "pose": "Near beacon",
+      "pattern": "quiet",
+      "detail": 0.65,
+      "renderMs": 53.29999999701977,
+      "fidelity": {
+        "sourceRMSE": 40.93517398470134,
+        "broadColorRMSE": 28.7730060046192,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 494590,
+        "linked": 494570
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.3582,
+        "ambiguousFraction": 0.0338,
+        "alternateLayerFraction": 0.7691,
+        "meanDotContrast": 0.20718609400462695,
+        "weakContrastFraction": 0.7007,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 0.7404,
+        "withinTwoPixels": 0.9529,
+        "confident": 3582,
+        "confidentWrongFraction": 0.00027917364600781687,
+        "interior": 9157,
+        "interiorWithinTwoPixels": 0.9716064213170252
+      }
+    },
+    {
+      "pose": "Near beacon",
+      "pattern": "surface",
+      "detail": 0.35,
+      "renderMs": 77.19999999552965,
+      "fidelity": {
+        "sourceRMSE": 25.069464561110653,
+        "broadColorRMSE": 6.4102047913454525,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 86166,
+        "linked": 86166
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.171,
+        "ambiguousFraction": 0.0603,
+        "alternateLayerFraction": 0.6066,
+        "meanDotContrast": 0.20601166118314854,
+        "weakContrastFraction": 0.6996,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 2.1646,
+        "withinTwoPixels": 0.8508,
+        "confident": 1710,
+        "confidentWrongFraction": 0.005263157894736842,
+        "interior": 9157,
+        "interiorWithinTwoPixels": 0.8662225619744458
+      }
+    },
+    {
+      "pose": "Near beacon",
+      "pattern": "surface",
+      "detail": 0.65,
+      "renderMs": 76.90000000596046,
+      "fidelity": {
+        "sourceRMSE": 32.11876321058978,
+        "broadColorRMSE": 7.886389113501803,
+        "broadWindow": [
+          25,
+          9
+        ],
+        "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+      },
+      "support": {
+        "selected": 116990,
+        "linked": 116990
+      },
+      "reconstruction": {
+        "sampled": 11583,
+        "valid": 10000,
+        "reliableFraction": 0.3064,
+        "ambiguousFraction": 0.0521,
+        "alternateLayerFraction": 0.6106,
+        "meanDotContrast": 0.26319122808280887,
+        "weakContrastFraction": 0.5489,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 10000,
+        "meanDisparityError": 1.6644,
+        "withinTwoPixels": 0.8865,
+        "confident": 3064,
+        "confidentWrongFraction": 0.0039164490861618795,
+        "interior": 9157,
+        "interiorWithinTwoPixels": 0.9020421535437371
+      }
+    }
+  ]
+}

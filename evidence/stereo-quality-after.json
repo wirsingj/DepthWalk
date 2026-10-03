@@ -1,0 +1,134 @@
+{
+  "uniform": {
+    "mean": 135.82144238278502,
+    "sd": 68.2701054647083,
+    "rms": 0.5026460054245554
+  },
+  "mixed": {
+    "mean": 135.70022508301506,
+    "sd": 68.28765812260056,
+    "rms": 0.5032243541292976
+  },
+  "ringFalseMatches": 0.016348021900388556,
+  "unlinkedMatches": 0.011933174224343675,
+  "unlinkedPairs": 6285,
+  "wrongShiftCorrelations": [
+    {
+      "shift": 50,
+      "correlation": 0.008706339829303055
+    },
+    {
+      "shift": 51,
+      "correlation": -0.025414304653559542
+    },
+    {
+      "shift": 52,
+      "correlation": 0.007544897779751741
+    },
+    {
+      "shift": 53,
+      "correlation": 0.02563425274428232
+    },
+    {
+      "shift": 54,
+      "correlation": -0.010365189746819409
+    },
+    {
+      "shift": 55,
+      "correlation": -0.029189854817382958
+    },
+    {
+      "shift": 56,
+      "correlation": -0.007519127454761179
+    },
+    {
+      "shift": 57,
+      "correlation": 0.008505829268871466
+    },
+    {
+      "shift": 58,
+      "correlation": 0.011431097182101762
+    },
+    {
+      "shift": 59,
+      "correlation": 0.013428618720608364
+    },
+    {
+      "shift": 60,
+      "correlation": 0.007082778118721766
+    },
+    {
+      "shift": 61,
+      "correlation": -0.008465408400604063
+    },
+    {
+      "shift": 62,
+      "correlation": -0.013109412944507742
+    },
+    {
+      "shift": 63,
+      "correlation": -0.010964673640852154
+    },
+    {
+      "shift": 64,
+      "correlation": -0.007295605363659914
+    },
+    {
+      "shift": 65,
+      "correlation": 0.00584780459392613
+    },
+    {
+      "shift": 66,
+      "correlation": 0.023923723065197966
+    },
+    {
+      "shift": 67,
+      "correlation": 0.029149286811796515
+    },
+    {
+      "shift": 68,
+      "correlation": 0.008092429842576639
+    },
+    {
+      "shift": 69,
+      "correlation": -0.001984991705093421
+    },
+    {
+      "shift": 70,
+      "correlation": 0.006392083324143761
+    },
+    {
+      "shift": 71,
+      "correlation": 0.00796269113033059
+    },
+    {
+      "shift": 72,
+      "correlation": 0.005825450676262105
+    },
+    {
+      "shift": 73,
+      "correlation": 0.00300312968975707
+    },
+    {
+      "shift": 74,
+      "correlation": -0.00296838187542724
+    },
+    {
+      "shift": 75,
+      "correlation": -0.0038914919592198853
+    },
+    {
+      "shift": 76,
+      "correlation": 0.49271521567699744
+    },
+    {
+      "shift": 77,
+      "correlation": 1
+    }
+  ],
+  "neutralUnlinkedMatches": {
+    "equal": 827,
+    "total": 6285,
+    "rate": 0.13158313444709627
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-09-26T05:43:14.165Z",
+  "scope": "One stationary normal-page sample; embedded Chromium, no QA readback; not an external Firefox benchmark",
+  "state": {
+    "x": 0,
+    "z": 13,
+    "yaw": 0,
+    "pitch": 0,
+    "mode": "stereo",
+    "pattern": "chroma",
+    "backend": "gpu",
+    "found": 0,
+    "width": 1280,
+    "height": 720,
+    "scale": 1,
+    "stereoMs": 5.7,
+    "readMs": 0,
+    "presented": 2803,
+    "pointerLocked": false,
+    "fullscreen": false
+  },
+  "timing": {
+    "fps": 240,
+    "refresh": 240,
+    "completionMs": 5.700000002980232,
+    "colorMs": 0.6000000014901161,
+    "readMs": 0,
+    "diagnosticCapture": false,
+    "autoScale": 1,
+    "fallback": "",
+    "adapter": "nvidia · ampere",
+    "build": "paired-chroma-3"
+  }
+}

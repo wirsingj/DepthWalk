@@ -1,0 +1,127 @@
+{
+  "uniform": {
+    "mean": 156.47874829591146,
+    "sd": 46.47202219127863,
+    "rms": 0.296986157528542
+  },
+  "mixed": {
+    "mean": 138.7263216479545,
+    "sd": 16.215971046668624,
+    "rms": 0.11689181154690932
+  },
+  "ringFalseMatches": 0.12635773578240905,
+  "wrongShiftCorrelations": [
+    {
+      "shift": 50,
+      "correlation": -0.039234292414313074
+    },
+    {
+      "shift": 51,
+      "correlation": -0.022098881748230763
+    },
+    {
+      "shift": 52,
+      "correlation": 0.011327155225487441
+    },
+    {
+      "shift": 53,
+      "correlation": 0.07758883055324758
+    },
+    {
+      "shift": 54,
+      "correlation": 0.0869077264907159
+    },
+    {
+      "shift": 55,
+      "correlation": 0.05014295130283724
+    },
+    {
+      "shift": 56,
+      "correlation": 0.034882873975897
+    },
+    {
+      "shift": 57,
+      "correlation": 0.020301303927030404
+    },
+    {
+      "shift": 58,
+      "correlation": 0.023484587848259148
+    },
+    {
+      "shift": 59,
+      "correlation": 0.03150192604084968
+    },
+    {
+      "shift": 60,
+      "correlation": 0.025953448134907565
+    },
+    {
+      "shift": 61,
+      "correlation": 0.06815399547210256
+    },
+    {
+      "shift": 62,
+      "correlation": 0.10652619837394807
+    },
+    {
+      "shift": 63,
+      "correlation": 0.06491797704579769
+    },
+    {
+      "shift": 64,
+      "correlation": 0.0011883027457907272
+    },
+    {
+      "shift": 65,
+      "correlation": -0.03237015798193006
+    },
+    {
+      "shift": 66,
+      "correlation": -0.02149417456483442
+    },
+    {
+      "shift": 67,
+      "correlation": -0.004630966774129766
+    },
+    {
+      "shift": 68,
+      "correlation": 0.02858898395773597
+    },
+    {
+      "shift": 69,
+      "correlation": 0.09450738634287473
+    },
+    {
+      "shift": 70,
+      "correlation": 0.1013635084563779
+    },
+    {
+      "shift": 71,
+      "correlation": 0.057694870464015925
+    },
+    {
+      "shift": 72,
+      "correlation": 0.04113363091089184
+    },
+    {
+      "shift": 73,
+      "correlation": 0.015142813344745086
+    },
+    {
+      "shift": 74,
+      "correlation": 0.04246875181593004
+    },
+    {
+      "shift": 75,
+      "correlation": 0.08010895602463337
+    },
+    {
+      "shift": 76,
+      "correlation": 0.4138977447475736
+    },
+    {
+      "shift": 77,
+      "correlation": 1
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "viewport": "1920x1080",
+  "browser": "Codex in-app Chromium",
+  "results": [
+    {
+      "name": "stationary scene and stable pattern",
+      "pass": true,
+      "detail": "1920 × 1080"
+    },
+    {
+      "name": "GPU depth agrees with raycast geometry",
+      "pass": true,
+      "detail": "68 surfaces, 9 sky, max error 0.000007"
+    },
+    {
+      "name": "GPU supplies all ten surface families and procedural detail",
+      "pass": true,
+      "detail": "10 surface families, 205 detail levels"
+    },
+    {
+      "name": "rendered city has correct stereo pixel pairs",
+      "pass": true,
+      "detail": "99.99% of 12425 interior pairs"
+    },
+    {
+      "name": "classic/material pattern switch preserves camera and changes image",
+      "pass": true
+    },
+    {
+      "name": "all views preserve camera pose",
+      "pass": true
+    },
+    {
+      "name": "W/S forward and backward DOM controls",
+      "pass": true
+    },
+    {
+      "name": "A/D strafe DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Q/E turn DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Escape clears held movement immediately",
+      "pass": true
+    },
+    {
+      "name": "building collision in the running game",
+      "pass": true,
+      "detail": "stopped at x=7.520"
+    },
+    {
+      "name": "HUD hide and restore",
+      "pass": true
+    },
+    {
+      "name": "guide pauses movement",
+      "pass": true
+    },
+    {
+      "name": "five walk-in collections and completion UI",
+      "pass": true
+    }
+  ],
+  "mouseLook": "User confirmed working; automated host declined capture."
+}

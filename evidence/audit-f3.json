@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "recordedAt": "2026-09-26T07:50:46.815Z",
+  "pattern": "quiet",
+  "dimensions": [
+    1280,
+    720
+  ],
+  "calibration": {
+    "spacing": 120,
+    "strength": 0.5
+  },
+  "search": [
+    54,
+    270
+  ],
+  "grid": [
+    320,
+    180
+  ],
+  "reconstruction": {
+    "sampled": 57600,
+    "valid": 51840,
+    "reliableFraction": 0.5334876543209877,
+    "ambiguousFraction": 0.032928240740740744,
+    "alternateLayerFraction": 0.8109182098765432,
+    "meanDotContrast": 0.2510016554166368,
+    "weakContrastFraction": 0.5202546296296297,
+    "zeroStrength": false
+  },
+  "comparison": {
+    "compared": 51840,
+    "meanDisparityError": 0.7138310185185185,
+    "withinTwoPixels": 0.955979938271605,
+    "confident": 27656,
+    "confidentWrongFraction": 0.0013017066820943013,
+    "interior": 47582,
+    "interiorWithinTwoPixels": 0.9775965701315623
+  },
+  "analysisMs": 888.7999999970198,
+  "performance": {
+    "backend": "CPU workers",
+    "adapter": null,
+    "fallback": null,
+    "completionMs": 0,
+    "colorMs": 36.69999999552965,
+    "readbackMs": 4.100000001490116,
+    "width": 1280,
+    "height": 720,
+    "quality": "auto",
+    "build": "paired-chroma-3"
+  },
+  "capturePerformance": {
+    "backend": "WebGPU",
+    "adapter": "nvidia · ampere",
+    "fallback": null,
+    "completionMs": 92.20000000298023,
+    "colorMs": 1.8000000044703484,
+    "readbackMs": 0,
+    "width": 1280,
+    "height": 720,
+    "quality": "auto",
+    "build": "paired-chroma-3",
+    "scope": "One-frame diagnostic readback; not interactive frame timing"
+  },
+  "limitations": [
+    "Local normalized correlation on native pixels, sampled on a grid; not a human perceptual model.",
+    "Alternate matches include inherent harmonic repetitions; they are candidates, not proof of perceived ghost layers."
+  ],
+  "surfaceDetail": 0.65,
+  "fidelity": {
+    "sourceRMSE": 37.00173604105736,
+    "broadColorRMSE": 24.234080568238475,
+    "broadWindow": [
+      25,
+      9
+    ],
+    "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+  },
+  "temporalStability": false,
+  "signalMode": "Dense correspondence graph",
+  "observer": {
+    "version": "observer-1.1",
+    "summary": {
+      "eligible": 2088,
+      "valid": 2088,
+      "coverage": 1,
+      "supportedFraction": 0.7351532567049809,
+      "colorConflictFraction": 0.009263773768893223,
+      "colorPairs": 2051,
+      "roundTripFailureFraction": 0.07567049808429119,
+      "scaleDisagreementFraction": 0.05459770114942529,
+      "ambiguousFraction": 0.07088122605363985,
+      "harmonicAlternativeFraction": 0.5761494252873564,
+      "nonharmonicAlternativeFraction": 0.3486590038314176,
+      "meanLumaResidual": 0.0086952989035007,
+      "meanContrast": 0.07456315602029169,
+      "largestUnsupportedRegion": 0.007662835249042145,
+      "zeroStrength": false
+    },
+    "evaluation": {
+      "all": {
+        "samples": 2088,
+        "within2": 0.9425287356321839,
+        "mean": 0.9200191570881227,
+        "p95": 6
+      },
+      "boundaries": {
+        "samples": 139,
+        "within2": 0.60431654676259,
+        "mean": 6.273381294964029,
+        "p95": 27
+      },
+      "interiors": {
+        "samples": 1949,
+        "within2": 0.9666495638789122,
+        "mean": 0.5382247306310929,
+        "p95": 1
+      }
+    },
+    "unsupportedRegions": [
+      {
+        "samples": 16,
+        "bounds": [
+          60,
+          580,
+          180,
+          60
+        ]
+      },
+      {
+        "samples": 16,
+        "bounds": [
+          1020,
+          580,
+          200,
+          60
+        ]
+      },
+      {
+        "samples": 15,
+        "bounds": [
+          740,
+          40,
+          140,
+          140
+        ]
+      },
+      {
+        "samples": 15,
+        "bounds": [
+          340,
+          380,
+          200,
+          60
+        ]
+      },
+      {
+        "samples": 14,
+        "bounds": [
+          440,
+          580,
+          160,
+          60
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "alternate-depths",
+        "message": "Strong nonharmonic matches exist outside the calibrated depth range."
+      }
+    ],
+    "scope": "Image-only, linear-luminance multiscale correlation and chromaticity disagreement. Engineering thresholds are not calibrated human comfort probabilities."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "recordedAt": "2026-09-26T06:04:27.214Z",
+  "revision": "uncommitted main; no HEAD",
+  "observerVersion": "observer-1",
+  "sourceFingerprint": "61e1a2faaf812ee0f8de9a60650274689219dfd64d86de9422abf24d6623786c",
+  "sourceFiles": 54,
+  "fingerprintMethod": "SHA256 of sorted path:SHA256(file) newline records; src/, tests/, index.html, package manifests and vite.config.js; forward-slash paths",
+  "environment": "Windows; embedded Chromium; NVIDIA Ampere; Node 22.22.3; npm 10.2.3",
+  "unitTests": {
+    "passed": 89,
+    "failed": 0,
+    "skipped": 0,
+    "todos": 0
+  },
+  "productionBuild": "passed; game, observer lab and GPU fixture entries included; no chunk advisory",
+  "calibrationTests": [
+    "Analytical repeated image: correct disparity, aligned eye color, harmonics separated",
+    "Blank image: no support, comparison truth cannot change reconstruction",
+    "Valid carrier with conflicting eye colors: color disagreement detected",
+    "Wrong intended disparity: rejected despite strong image evidence",
+    "Fresh random but valid stereo each frame: stationary drift detected",
+    "Correct intended motion: zero truth-corrected disparity jitter; stale output detected",
+    "Local color edit versus remote copies: intervention distinguishes propagation",
+    "Borders remain unscored; no-flags message does not claim comfort"
+  ],
+  "benchmarkSuites": {
+    "synthetic": {
+      "dataset": "Layered shapes",
+      "dimensions": [
+        640,
+        256
+      ],
+      "spacing": 96,
+      "profiles": 8,
+      "analyzedFrames": 80,
+      "extraColorProbeRenders": 16,
+      "backend": "CPU CLI",
+      "frontier": [
+        "quiet",
+        "paired",
+        "unsteady",
+        "quiet-strong",
+        "paired-quiet",
+        "dense"
+      ]
+    },
+    "cityGPU": {
+      "dataset": "City plaza walk and turn",
+      "dimensions": [
+        640,
+        360
+      ],
+      "spacing": 96,
+      "profiles": 8,
+      "analyzedFrames": 80,
+      "extraColorProbeRenders": 16,
+      "backend": "gpu",
+      "frontier": [
+        "quiet",
+        "paired",
+        "unsteady",
+        "quiet-strong",
+        "paired-quiet",
+        "dense"
+      ]
+    },
+    "nearGPU": {
+      "dataset": "City near beacon",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "spacing": 120,
+      "profiles": 8,
+      "analyzedFrames": 80,
+      "extraColorProbeRenders": 16,
+      "backend": "gpu",
+      "frontier": [
+        "quiet",
+        "paired",
+        "unsteady",
+        "quiet-strong",
+        "paired-quiet",
+        "dense"
+      ]
+    },
+    "packagedCPU": {
+      "dataset": "Layered shapes",
+      "dimensions": [
+        640,
+        360
+      ],
+      "spacing": 96,
+      "profiles": 4,
+      "analyzedFrames": 40,
+      "extraColorProbeRenders": 8,
+      "backend": "cpu",
+      "frontier": [
+        "quiet",
+        "paired",
+        "unsteady"
+      ]
+    }
+  },
+  "analyzedFrames": 280,
+  "extraColorProbeRenders": 56,
+  "files": [
+    "observer-synthetic.json",
+    "observer-city-gpu.json",
+    "observer-near-gpu.json",
+    "observer-cpu-ui.json",
+    "observer-live-f3.json"
+  ],
+  "uiChecks": {
+    "cancellationAndRestart": true,
+    "profileSelection": true,
+    "pointCostCurve": true,
+    "playback": true,
+    "frameScrubbing": true,
+    "reliefRendered": true,
+    "productionF3CaptureAndClose": true,
+    "productionLabAndWorker": true,
+    "consoleErrors": [],
+    "scope": "Browser UI exercised on development and production builds. Orbit drag, downloads and 1920x1080 lab run were not automated; interactive relief rendering and export report data were inspected."
+  },
+  "observations": {
+    "cityPaired": {
+      "accuracy": 0.9597894736842105,
+      "colorConflict": 0.1793942602592682,
+      "remoteColorSpread": 0
+    },
+    "cityQuiet": {
+      "accuracy": 0.9375789473684211,
+      "colorConflict": 0.006658303370893108,
+      "remoteColorSpread": 0.5335554031546977
+    },
+    "closeBeaconPaired": {
+      "accuracy": 0.9768959435626099,
+      "colorConflict": 0.22897881875169906
+    },
+    "interpretation": "High decoded accuracy coexists with chromatic disagreement. Quiet limits eye-color conflict but a local color edit propagates farther. These support distinct engineering diagnoses, not a perceptual equivalence claim."
+  },
+  "boundaries": [
+    "The observer imports no renderer/encoder or truth data; evaluation introduces ground truth after matching.",
+    "Thresholds are heuristic, versioned and not trained against a human comfort dataset.",
+    "Known human-rejected and negative profiles cannot appear on the candidate frontier.",
+    "Screen-space frame change includes intended motion; jitter subtracts intended disparity change but is not optical flow.",
+    "Relief interpolates confident nearby reconstructed samples; missing regions stay missing.",
+    "Existing gameplay and external Firefox results remain historical; this update did not reverify captured mouse/fullscreen or change the gameplay renderer."
+  ]
+}

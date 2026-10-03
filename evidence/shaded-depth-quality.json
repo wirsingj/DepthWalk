@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-09-26T03:05:34.023Z",
+  "revision": "uncommitted main; no HEAD",
+  "sourceFingerprint": "f250c21d50dbb944ff395df2e49969ad26f1159ad84dfd9e96c8a72071842d85",
+  "fingerprintMethod": "SHA256 of sorted path:SHA256(file) newline records for src/, tests/, index.html, package.json and package-lock.json; forward-slash relative paths",
+  "environment": {
+    "os": "win32",
+    "node": "v22.22.3"
+  },
+  "fixture": {
+    "width": 1000,
+    "height": 80,
+    "pattern": "geometry",
+    "dotSize": 1,
+    "spacing": 120,
+    "depthStrength": 0.5,
+    "edges": 0,
+    "depthRange": 22
+  },
+  "measurements": [
+    {
+      "distance": 60,
+      "meanLuminance": 66.63036135994535,
+      "luminanceStandardDeviation": 33.65957079289341,
+      "rmsContrast": 0.50516866644412,
+      "intendedDisparity": 118,
+      "correlation": 1,
+      "maxCompetingCorrelation": 0.02168273221922273
+    },
+    {
+      "distance": 30,
+      "meanLuminance": 82.3519481725435,
+      "luminanceStandardDeviation": 40.55716366653849,
+      "rmsContrast": 0.49248578286895256,
+      "intendedDisparity": 112,
+      "correlation": 1,
+      "maxCompetingCorrelation": 0.020479843468147952
+    },
+    {
+      "distance": 14,
+      "meanLuminance": 105.09818898745935,
+      "luminanceStandardDeviation": 50.542891332773785,
+      "rmsContrast": 0.4809111538430479,
+      "intendedDisparity": 102,
+      "correlation": 1,
+      "maxCompetingCorrelation": 0.029190794983365576
+    },
+    {
+      "distance": 4,
+      "meanLuminance": 130.58083859258738,
+      "luminanceStandardDeviation": 61.73196959206506,
+      "rmsContrast": 0.4727490668417975,
+      "intendedDisparity": 88,
+      "correlation": 1,
+      "maxCompetingCorrelation": 0.03396417992709104
+    }
+  ]
+}

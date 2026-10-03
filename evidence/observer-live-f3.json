@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "recordedAt": "2026-09-26T06:02:06.007Z",
+  "pattern": "chroma",
+  "dimensions": [
+    1280,
+    720
+  ],
+  "calibration": {
+    "spacing": 120,
+    "strength": 0.5
+  },
+  "search": [
+    54,
+    270
+  ],
+  "grid": [
+    320,
+    180
+  ],
+  "reconstruction": {
+    "sampled": 57600,
+    "valid": 51840,
+    "reliableFraction": 0.5119212962962963,
+    "ambiguousFraction": 0.0189429012345679,
+    "alternateLayerFraction": 0.8109953703703704,
+    "meanDotContrast": 0.23153607815499624,
+    "weakContrastFraction": 0.6552083333333333,
+    "zeroStrength": false
+  },
+  "comparison": {
+    "compared": 51840,
+    "meanDisparityError": 0.49716435185185187,
+    "withinTwoPixels": 0.9702353395061728,
+    "confident": 26538,
+    "confidentWrongFraction": 0.0005652272213429799,
+    "interior": 47582,
+    "interiorWithinTwoPixels": 0.9881467781934344
+  },
+  "analysisMs": 962.2000000029802,
+  "performance": {
+    "backend": "WebGPU",
+    "adapter": "nvidia · ampere",
+    "fallback": null,
+    "completionMs": 7.9000000059604645,
+    "colorMs": 0.6000000014901161,
+    "readbackMs": 0,
+    "width": 1280,
+    "height": 720,
+    "quality": "auto",
+    "build": "paired-chroma-3"
+  },
+  "capturePerformance": {
+    "backend": "WebGPU",
+    "adapter": "nvidia · ampere",
+    "fallback": null,
+    "completionMs": 34.29999999701977,
+    "colorMs": 1.1999999955296516,
+    "readbackMs": 0,
+    "width": 1280,
+    "height": 720,
+    "quality": "auto",
+    "build": "paired-chroma-3",
+    "scope": "One-frame diagnostic readback; not interactive frame timing"
+  },
+  "limitations": [
+    "Local normalized correlation on native pixels, sampled on a grid; not a human perceptual model.",
+    "Alternate matches include inherent harmonic repetitions; they are candidates, not proof of perceived ghost layers."
+  ],
+  "surfaceDetail": 0.65,
+  "fidelity": {
+    "sourceRMSE": 58.16379169013269,
+    "broadColorRMSE": 46.80772287964929,
+    "broadWindow": [
+      25,
+      9
+    ],
+    "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+  },
+  "temporalStability": true,
+  "signalMode": "Complete linear-luminance graph; hues projected to visible eye pairs with nearest-surface ownership.",
+  "observer": {
+    "version": "observer-1",
+    "summary": {
+      "eligible": 2088,
+      "valid": 2088,
+      "coverage": 1,
+      "supportedFraction": 0.9382183908045977,
+      "colorConflictFraction": 0.18549172346640702,
+      "colorPairs": 2054,
+      "roundTripFailureFraction": 0.039272030651340994,
+      "scaleDisagreementFraction": 0.031130268199233715,
+      "ambiguousFraction": 0.03065134099616858,
+      "harmonicAlternativeFraction": 0.5862068965517241,
+      "nonharmonicAlternativeFraction": 0.24952107279693486,
+      "meanLumaResidual": 0.013114462981471961,
+      "meanContrast": 0.11361276463530506,
+      "largestUnsupportedRegion": 0.006226053639846743,
+      "zeroStrength": false
+    },
+    "evaluation": {
+      "all": {
+        "samples": 2088,
+        "within2": 0.967911877394636,
+        "mean": 0.5651340996168582,
+        "p95": 1
+      },
+      "boundaries": {
+        "samples": 139,
+        "within2": 0.7266187050359713,
+        "mean": 4.525179856115108,
+        "p95": 23
+      },
+      "interiors": {
+        "samples": 1949,
+        "within2": 0.9851205746536685,
+        "mean": 0.28270908158029756,
+        "p95": 0
+      }
+    },
+    "unsupportedRegions": [
+      {
+        "samples": 13,
+        "bounds": [
+          520,
+          100,
+          20,
+          260
+        ]
+      },
+      {
+        "samples": 8,
+        "bounds": [
+          740,
+          220,
+          20,
+          160
+        ]
+      },
+      {
+        "samples": 7,
+        "bounds": [
+          1180,
+          40,
+          40,
+          120
+        ]
+      },
+      {
+        "samples": 5,
+        "bounds": [
+          1060,
+          120,
+          100,
+          20
+        ]
+      },
+      {
+        "samples": 5,
+        "bounds": [
+          160,
+          340,
+          20,
+          100
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "color-conflict",
+        "message": "Corresponding eye patches disagree in chromaticity; doubled or rival colors are a risk."
+      },
+      {
+        "severity": "warning",
+        "code": "alternate-depths",
+        "message": "Strong nonharmonic matches exist outside the calibrated depth range."
+      }
+    ],
+    "scope": "Image-only, linear-luminance multiscale correlation and chromaticity disagreement. Engineering thresholds are not calibrated human comfort probabilities."
+  }
+}

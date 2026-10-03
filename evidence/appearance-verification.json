@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-26",
+  "sourceFingerprint": "1b28dd22175d0350d45004b55d141b3311addbac49d0346b9d485f1a8c347a09",
+  "sourceFiles": 64,
+  "scope": "Appearance-first static synthesis, CPU research only; Quiet baseline restored, no perceptual fix claimed.",
+  "validation": {
+    "unitTests": 107,
+    "lint": "passed",
+    "build": "passed",
+    "syntheticFrames": 50,
+    "nearBeaconFrames": 50
+  },
+  "findings": [
+    "Neutral metric success rejected by human; marked control, not eligible frontier.",
+    "Soft RGB constraint optimization improves color fidelity but uniformly relaxing matches trades banding for eye-color disagreement.",
+    "Near-beacon weak setting fails unchanged accuracy gate; stronger setting retains remote color spill."
+  ],
+  "evidence": [
+    "appearance-research.json",
+    "appearance-near.json"
+  ],
+  "limitations": [
+    "No human acceptance",
+    "No GPU implementation of new solver",
+    "No claim of novelty",
+    "Game banding unresolved"
+  ]
+}

@@ -1,0 +1,5225 @@
+{
+  "schema": 1,
+  "observerVersion": "observer-1.1",
+  "recordedAt": "2026-09-26T07:47:19.160Z",
+  "dataset": "Layered shapes",
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "spacing": 96,
+  "depthStrength": 0.5,
+  "frameCount": 10,
+  "preview": {
+    "frameIndices": [
+      0,
+      9
+    ],
+    "nativePixelBytes": 132710400,
+    "budgetBytes": 134217728,
+    "scope": "Native stereo previews only. Inputs, diagnostic maps and filter workspaces consume additional memory. All frames are analyzed."
+  },
+  "results": [
+    {
+      "profile": {
+        "id": "quiet",
+        "label": "Quiet · 65%",
+        "pattern": "quiet",
+        "surfaceDetail": 0.65
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 1242,
+        "coverage": 1,
+        "supportedFraction": 0.8814009661835749,
+        "colorConflictFraction": 0.011406698368272095,
+        "colorPairs": 1227.1,
+        "roundTripFailureFraction": 0.02640901771336554,
+        "scaleDisagreementFraction": 0.026489533011272142,
+        "ambiguousFraction": 0.021900161030595812,
+        "harmonicAlternativeFraction": 0.8128824476650562,
+        "nonharmonicAlternativeFraction": 0.13083735909822866,
+        "meanLumaResidual": 0.0034989148791817583,
+        "meanContrast": 0.08094276551520233,
+        "largestUnsupportedRegion": 0.022544283413848627,
+        "zeroStrength": false
+      },
+      "accuracy": 0.9730273752012882,
+      "motion": {
+        "screenLumaRMS": 0.01586566292283601,
+        "correspondenceLoss": 0.005546438578759703,
+        "truthCorrectedDisparityRMS": 0.9023405983016333,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 170835,
+        "remote": 119486,
+        "remoteFraction": 0.6994234202593146,
+        "farthestPixels": 903,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 25.229113301125693,
+      "renderAndReadbackMs": 138.239999999851,
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "color-spread",
+          "message": "A local source-color edit propagates well beyond its stereo-pair neighborhood."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8896940418679549,
+            "colorConflictFraction": 0.010586319218241042,
+            "colorPairs": 1228,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.026570048309178744,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8051529790660226,
+            "nonharmonicAlternativeFraction": 0.12721417069243157,
+            "meanLumaResidual": 0.0030015186028604876,
+            "meanContrast": 0.08060203297258882,
+            "largestUnsupportedRegion": 0.021739130434782608,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9734299516908212,
+              "mean": 0.5193236714975845,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 7.6,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9771801140994295,
+              "mean": 0.43276283618581907,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.63197170220155,
+            "broadColorRMSE": 25.120938946000127,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8896940418679549,
+            "colorConflictFraction": 0.010586319218241042,
+            "colorPairs": 1228,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.026570048309178744,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8051529790660226,
+            "nonharmonicAlternativeFraction": 0.12721417069243157,
+            "meanLumaResidual": 0.0030015186028604876,
+            "meanContrast": 0.08060203297258882,
+            "largestUnsupportedRegion": 0.021739130434782608,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9734299516908212,
+              "mean": 0.5193236714975845,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 7.6,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9771801140994295,
+              "mean": 0.43276283618581907,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.63197170220155,
+            "broadColorRMSE": 25.120938946000127,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8856682769726248,
+            "colorConflictFraction": 0.011419249592169658,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.02818035426731079,
+            "scaleDisagreementFraction": 0.02818035426731079,
+            "ambiguousFraction": 0.021739130434782608,
+            "harmonicAlternativeFraction": 0.8059581320450886,
+            "nonharmonicAlternativeFraction": 0.13123993558776167,
+            "meanLumaResidual": 0.0035525437339441147,
+            "meanContrast": 0.08099634688312189,
+            "largestUnsupportedRegion": 0.021739130434782608,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9726247987117552,
+              "mean": 0.48711755233494364,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 8.333333333333334,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9771801140994295,
+              "mean": 0.39119804400978,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.623281304039295,
+            "broadColorRMSE": 25.15015385642059,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8840579710144928,
+            "colorConflictFraction": 0.012976480129764802,
+            "colorPairs": 1233,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.02576489533011272,
+            "ambiguousFraction": 0.021739130434782608,
+            "harmonicAlternativeFraction": 0.8067632850241546,
+            "nonharmonicAlternativeFraction": 0.13043478260869565,
+            "meanLumaResidual": 0.003265371296459095,
+            "meanContrast": 0.08070797830380194,
+            "largestUnsupportedRegion": 0.021739130434782608,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.4307568438003221,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 8.333333333333334,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.980440097799511,
+              "mean": 0.3341483292583537,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.66872428421024,
+            "broadColorRMSE": 25.193457107951456,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8808373590982287,
+            "colorConflictFraction": 0.01380991064175467,
+            "colorPairs": 1231,
+            "roundTripFailureFraction": 0.023349436392914653,
+            "scaleDisagreementFraction": 0.0249597423510467,
+            "ambiguousFraction": 0.02254428341384863,
+            "harmonicAlternativeFraction": 0.8132045088566827,
+            "nonharmonicAlternativeFraction": 0.12640901771336555,
+            "meanLumaResidual": 0.0035382580792744727,
+            "meanContrast": 0.08096636093082653,
+            "largestUnsupportedRegion": 0.021739130434782608,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9742351046698873,
+              "mean": 0.44524959742351045,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 8.6,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9788101059494703,
+              "mean": 0.34555827220863894,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.68327228806109,
+            "broadColorRMSE": 25.22747130792279,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8800322061191627,
+            "colorConflictFraction": 0.012205044751830757,
+            "colorPairs": 1229,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.026570048309178744,
+            "ambiguousFraction": 0.020933977455716585,
+            "harmonicAlternativeFraction": 0.8172302737520128,
+            "nonharmonicAlternativeFraction": 0.13768115942028986,
+            "meanLumaResidual": 0.0031909466283182226,
+            "meanContrast": 0.08015116760791849,
+            "largestUnsupportedRegion": 0.023349436392914653,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9734299516908212,
+              "mean": 0.44363929146537845,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 8.333333333333334,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9779951100244498,
+              "mean": 0.3471882640586797,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.69447355485009,
+            "broadColorRMSE": 25.26583413790026,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8760064412238325,
+            "colorConflictFraction": 0.010620915032679739,
+            "colorPairs": 1224,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.026570048309178744,
+            "ambiguousFraction": 0.023349436392914653,
+            "harmonicAlternativeFraction": 0.8188405797101449,
+            "nonharmonicAlternativeFraction": 0.1320450885668277,
+            "meanLumaResidual": 0.0038597479620251763,
+            "meanContrast": 0.08135043387029418,
+            "largestUnsupportedRegion": 0.023349436392914653,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9718196457326892,
+              "mean": 0.4428341384863124,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.4827586206896552,
+              "mean": 8.517241379310345,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.24979389942291838,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.726231205305076,
+            "broadColorRMSE": 25.303084677265385,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8760064412238325,
+            "colorConflictFraction": 0.010620915032679739,
+            "colorPairs": 1224,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.026570048309178744,
+            "ambiguousFraction": 0.023349436392914653,
+            "harmonicAlternativeFraction": 0.8188405797101449,
+            "nonharmonicAlternativeFraction": 0.1320450885668277,
+            "meanLumaResidual": 0.0038597479620251763,
+            "meanContrast": 0.08135043387029418,
+            "largestUnsupportedRegion": 0.023349436392914653,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9718196457326892,
+              "mean": 0.4428341384863124,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.4827586206896552,
+              "mean": 8.517241379310345,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.24979389942291838,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.726231205305076,
+            "broadColorRMSE": 25.303084677265385,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8760064412238325,
+            "colorConflictFraction": 0.010620915032679739,
+            "colorPairs": 1224,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.026570048309178744,
+            "ambiguousFraction": 0.023349436392914653,
+            "harmonicAlternativeFraction": 0.8188405797101449,
+            "nonharmonicAlternativeFraction": 0.1320450885668277,
+            "meanLumaResidual": 0.0038597479620251763,
+            "meanContrast": 0.08135043387029418,
+            "largestUnsupportedRegion": 0.023349436392914653,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9718196457326892,
+              "mean": 0.4428341384863124,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.4827586206896552,
+              "mean": 8.517241379310345,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.24979389942291838,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.726231205305076,
+            "broadColorRMSE": 25.303084677265385,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.8760064412238325,
+            "colorConflictFraction": 0.010620915032679739,
+            "colorPairs": 1224,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.026570048309178744,
+            "ambiguousFraction": 0.023349436392914653,
+            "harmonicAlternativeFraction": 0.8188405797101449,
+            "nonharmonicAlternativeFraction": 0.1320450885668277,
+            "meanLumaResidual": 0.0038597479620251763,
+            "meanContrast": 0.08135043387029418,
+            "largestUnsupportedRegion": 0.023349436392914653,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9718196457326892,
+              "mean": 0.4428341384863124,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.4827586206896552,
+              "mean": 8.517241379310345,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.24979389942291838,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 36.726231205305076,
+            "broadColorRMSE": 25.303084677265385,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.02848754500104038,
+          "changedPixelFraction": 0.09266878858024691,
+          "correspondenceLoss": 0.014414414414414415,
+          "truthCorrectedDisparityRMS": 2.133620149801574,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.02805958315532093,
+          "changedPixelFraction": 0.0928245563271605,
+          "correspondenceLoss": 0.009990917347865577,
+          "truthCorrectedDisparityRMS": 1.6211166903315435,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.02889868148179192,
+          "changedPixelFraction": 0.09287229938271604,
+          "correspondenceLoss": 0.00909090909090909,
+          "truthCorrectedDisparityRMS": 1.1678737716627778,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.02871034597645808,
+          "changedPixelFraction": 0.09296537422839506,
+          "correspondenceLoss": 0.009115770282588878,
+          "truthCorrectedDisparityRMS": 1.570152356269977,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.028634810690912792,
+          "changedPixelFraction": 0.09328655478395062,
+          "correspondenceLoss": 0.0073059360730593605,
+          "truthCorrectedDisparityRMS": 1.6283024166488276,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "paired",
+        "label": "Paired · stable · 65%",
+        "pattern": "chroma",
+        "surfaceDetail": 0.65,
+        "temporalStability": true
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 1242,
+        "coverage": 1,
+        "supportedFraction": 0.9678743961352657,
+        "colorConflictFraction": 0.11734260742563252,
+        "colorPairs": 1230.6,
+        "roundTripFailureFraction": 0.02423510466988728,
+        "scaleDisagreementFraction": 0.018518518518518517,
+        "ambiguousFraction": 0.010305958132045085,
+        "harmonicAlternativeFraction": 0.8126409017713365,
+        "nonharmonicAlternativeFraction": 0.1029790660225443,
+        "meanLumaResidual": 0.004226327633314091,
+        "meanContrast": 0.11129641253852869,
+        "largestUnsupportedRegion": 0.009822866344605474,
+        "zeroStrength": false
+      },
+      "accuracy": 0.9783413848631242,
+      "motion": {
+        "screenLumaRMS": 0.013046224154628215,
+        "correspondenceLoss": 0.0011023121729230743,
+        "truthCorrectedDisparityRMS": 0.5824998265618898,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 23865,
+        "remote": 0,
+        "remoteFraction": 0,
+        "farthestPixels": 105,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 33.56842897249612,
+      "renderAndReadbackMs": 14.770000001043082,
+      "findings": [
+        {
+          "severity": "info",
+          "code": "no-flags",
+          "message": "No configured engineering threshold was crossed. Human comfort remains unmeasured."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.11047928513403736,
+            "colorPairs": 1231,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.02254428341384863,
+            "ambiguousFraction": 0.011272141706924315,
+            "harmonicAlternativeFraction": 0.8027375201288245,
+            "nonharmonicAlternativeFraction": 0.09098228663446055,
+            "meanLumaResidual": 0.0043797636358996195,
+            "meanContrast": 0.1116292610982109,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9766505636070854,
+              "mean": 0.3896940418679549,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.7333333333333333,
+              "mean": 5.2,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.33088834555827223,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.823406354296765,
+            "broadColorRMSE": 33.59093013229316,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.11047928513403736,
+            "colorPairs": 1231,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.02254428341384863,
+            "ambiguousFraction": 0.011272141706924315,
+            "harmonicAlternativeFraction": 0.8027375201288245,
+            "nonharmonicAlternativeFraction": 0.09098228663446055,
+            "meanLumaResidual": 0.0043797636358996195,
+            "meanContrast": 0.1116292610982109,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9766505636070854,
+              "mean": 0.3896940418679549,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.7333333333333333,
+              "mean": 5.2,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.33088834555827223,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.823406354296765,
+            "broadColorRMSE": 33.59093013229316,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9685990338164251,
+            "colorConflictFraction": 0.11363636363636363,
+            "colorPairs": 1232,
+            "roundTripFailureFraction": 0.021739130434782608,
+            "scaleDisagreementFraction": 0.018518518518518517,
+            "ambiguousFraction": 0.00966183574879227,
+            "harmonicAlternativeFraction": 0.8067632850241546,
+            "nonharmonicAlternativeFraction": 0.09339774557165861,
+            "meanLumaResidual": 0.004335686005196922,
+            "meanContrast": 0.1114046583002963,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9790660225442834,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.7333333333333333,
+              "mean": 4.866666666666666,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9820700896495518,
+              "mean": 0.3235533822330888,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.81089680618587,
+            "broadColorRMSE": 33.585679933437916,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9710144927536232,
+            "colorConflictFraction": 0.11678832116788321,
+            "colorPairs": 1233,
+            "roundTripFailureFraction": 0.021739130434782608,
+            "scaleDisagreementFraction": 0.015297906602254429,
+            "ambiguousFraction": 0.00966183574879227,
+            "harmonicAlternativeFraction": 0.8075684380032206,
+            "nonharmonicAlternativeFraction": 0.09742351046698873,
+            "meanLumaResidual": 0.0038180314557857238,
+            "meanContrast": 0.11123117238939952,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.3462157809983897,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 5.933333333333334,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9853300733496333,
+              "mean": 0.27791361043194784,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.832490874235376,
+            "broadColorRMSE": 33.58620305723822,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9718196457326892,
+            "colorConflictFraction": 0.11860276198212835,
+            "colorPairs": 1231,
+            "roundTripFailureFraction": 0.02254428341384863,
+            "scaleDisagreementFraction": 0.014492753623188406,
+            "ambiguousFraction": 0.008856682769726247,
+            "harmonicAlternativeFraction": 0.8107890499194848,
+            "nonharmonicAlternativeFraction": 0.10144927536231885,
+            "meanLumaResidual": 0.0038970565054665712,
+            "meanContrast": 0.11120468732055666,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9806763285024155,
+              "mean": 0.29871175523349436,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.7333333333333333,
+              "mean": 4.866666666666666,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9837000814995925,
+              "mean": 0.24286878565607173,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.823181880008036,
+            "broadColorRMSE": 33.574074018303584,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9718196457326892,
+            "colorConflictFraction": 0.11563517915309446,
+            "colorPairs": 1228,
+            "roundTripFailureFraction": 0.023349436392914653,
+            "scaleDisagreementFraction": 0.014492753623188406,
+            "ambiguousFraction": 0.007246376811594203,
+            "harmonicAlternativeFraction": 0.8172302737520128,
+            "nonharmonicAlternativeFraction": 0.10466988727858294,
+            "meanLumaResidual": 0.0038681696316044526,
+            "meanContrast": 0.11085629851970755,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9822866344605475,
+              "mean": 0.2995169082125604,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.7333333333333333,
+              "mean": 5.4,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9853300733496333,
+              "mean": 0.2371638141809291,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.80911660126412,
+            "broadColorRMSE": 33.563491137188926,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.12195121951219512,
+            "colorPairs": 1230,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.011272141706924315,
+            "harmonicAlternativeFraction": 0.8196457326892109,
+            "nonharmonicAlternativeFraction": 0.11272141706924316,
+            "meanLumaResidual": 0.004396201365821999,
+            "meanContrast": 0.11125219666472627,
+            "largestUnsupportedRegion": 0.008856682769726247,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9766505636070854,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6206896551724138,
+              "mean": 6.275862068965517,
+              "p95": 22
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.23742786479802144,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.80844364956274,
+            "broadColorRMSE": 33.54824532855157,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.12195121951219512,
+            "colorPairs": 1230,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.011272141706924315,
+            "harmonicAlternativeFraction": 0.8196457326892109,
+            "nonharmonicAlternativeFraction": 0.11272141706924316,
+            "meanLumaResidual": 0.004396201365821999,
+            "meanContrast": 0.11125219666472627,
+            "largestUnsupportedRegion": 0.008856682769726247,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9766505636070854,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6206896551724138,
+              "mean": 6.275862068965517,
+              "p95": 22
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.23742786479802144,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.80844364956274,
+            "broadColorRMSE": 33.54824532855157,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.12195121951219512,
+            "colorPairs": 1230,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.011272141706924315,
+            "harmonicAlternativeFraction": 0.8196457326892109,
+            "nonharmonicAlternativeFraction": 0.11272141706924316,
+            "meanLumaResidual": 0.004396201365821999,
+            "meanContrast": 0.11125219666472627,
+            "largestUnsupportedRegion": 0.008856682769726247,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9766505636070854,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6206896551724138,
+              "mean": 6.275862068965517,
+              "p95": 22
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.23742786479802144,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.80844364956274,
+            "broadColorRMSE": 33.54824532855157,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.12195121951219512,
+            "colorPairs": 1230,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.011272141706924315,
+            "harmonicAlternativeFraction": 0.8196457326892109,
+            "nonharmonicAlternativeFraction": 0.11272141706924316,
+            "meanLumaResidual": 0.004396201365821999,
+            "meanContrast": 0.11125219666472627,
+            "largestUnsupportedRegion": 0.008856682769726247,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9766505636070854,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6206896551724138,
+              "mean": 6.275862068965517,
+              "p95": 22
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.23742786479802144,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.80844364956274,
+            "broadColorRMSE": 33.54824532855157,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.02263852939221187,
+          "changedPixelFraction": 0.01857445987654321,
+          "correspondenceLoss": 0.0008312551953449709,
+          "truthCorrectedDisparityRMS": 1.1434895880606961,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.023523109181654824,
+          "changedPixelFraction": 0.018696952160493826,
+          "correspondenceLoss": 0.0024834437086092716,
+          "truthCorrectedDisparityRMS": 1.3089558966796766,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.024156351540506816,
+          "changedPixelFraction": 0.018878761574074074,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 1.0711409781952523,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.023359623941842933,
+          "changedPixelFraction": 0.01918161651234568,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0.508383817877982,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.023738403335437495,
+          "changedPixelFraction": 0.01941213348765432,
+          "correspondenceLoss": 0.006606110652353427,
+          "truthCorrectedDisparityRMS": 1.2105281582434013,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "unsteady",
+        "label": "Paired · history off",
+        "pattern": "chroma",
+        "surfaceDetail": 0.65,
+        "temporalStability": false
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 1242,
+        "coverage": 1,
+        "supportedFraction": 0.9677938808373592,
+        "colorConflictFraction": 0.11346733543780667,
+        "colorPairs": 1221.5,
+        "roundTripFailureFraction": 0.02286634460547504,
+        "scaleDisagreementFraction": 0.01956521739130435,
+        "ambiguousFraction": 0.006602254428341383,
+        "harmonicAlternativeFraction": 0.8095813204508856,
+        "nonharmonicAlternativeFraction": 0.09428341384863123,
+        "meanLumaResidual": 0.004513505385475633,
+        "meanContrast": 0.11701155943825436,
+        "largestUnsupportedRegion": 0.012077294685990338,
+        "zeroStrength": false
+      },
+      "accuracy": 0.978582930756844,
+      "motion": {
+        "screenLumaRMS": 0.01712936032354406,
+        "correspondenceLoss": 0.0010133763238359818,
+        "truthCorrectedDisparityRMS": 0.9521098024640041,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 23865,
+        "remote": 0,
+        "remoteFraction": 0,
+        "farthestPixels": 105,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 33.50010851790727,
+      "renderAndReadbackMs": 14.55,
+      "findings": [
+        {
+          "severity": "info",
+          "code": "no-flags",
+          "message": "No configured engineering threshold was crossed. Human comfort remains unmeasured."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9685990338164251,
+            "colorConflictFraction": 0.1119281045751634,
+            "colorPairs": 1224,
+            "roundTripFailureFraction": 0.020933977455716585,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.005636070853462158,
+            "harmonicAlternativeFraction": 0.8043478260869565,
+            "nonharmonicAlternativeFraction": 0.0893719806763285,
+            "meanLumaResidual": 0.004228156219674294,
+            "meanContrast": 0.11700976491978492,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.3285024154589372,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 4.333333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9837000814995925,
+              "mean": 0.2795436022819886,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.85631008743954,
+            "broadColorRMSE": 33.51195007941797,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9685990338164251,
+            "colorConflictFraction": 0.1119281045751634,
+            "colorPairs": 1224,
+            "roundTripFailureFraction": 0.020933977455716585,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.005636070853462158,
+            "harmonicAlternativeFraction": 0.8043478260869565,
+            "nonharmonicAlternativeFraction": 0.0893719806763285,
+            "meanLumaResidual": 0.004228156219674294,
+            "meanContrast": 0.11700976491978492,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.3285024154589372,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 4.333333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9837000814995925,
+              "mean": 0.2795436022819886,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.85631008743954,
+            "broadColorRMSE": 33.51195007941797,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9702093397745571,
+            "colorConflictFraction": 0.1111111111111111,
+            "colorPairs": 1224,
+            "roundTripFailureFraction": 0.01932367149758454,
+            "scaleDisagreementFraction": 0.01610305958132045,
+            "ambiguousFraction": 0.008051529790660225,
+            "harmonicAlternativeFraction": 0.8043478260869565,
+            "nonharmonicAlternativeFraction": 0.09178743961352658,
+            "meanLumaResidual": 0.004402903274121099,
+            "meanContrast": 0.11708073015113325,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.32045088566827695,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 4.333333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9837000814995925,
+              "mean": 0.2713936430317848,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.820837382937256,
+            "broadColorRMSE": 33.50127111099441,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9702093397745571,
+            "colorConflictFraction": 0.1104746317512275,
+            "colorPairs": 1222,
+            "roundTripFailureFraction": 0.02254428341384863,
+            "scaleDisagreementFraction": 0.017713365539452495,
+            "ambiguousFraction": 0.007246376811594203,
+            "harmonicAlternativeFraction": 0.8051529790660226,
+            "nonharmonicAlternativeFraction": 0.09178743961352658,
+            "meanLumaResidual": 0.0041067772637347925,
+            "meanContrast": 0.1165143895983078,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9806763285024155,
+              "mean": 0.3421900161030596,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 4.333333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9828850855745721,
+              "mean": 0.293398533007335,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.83753252944162,
+            "broadColorRMSE": 33.50202945279713,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9694041867954911,
+            "colorConflictFraction": 0.11074651353568499,
+            "colorPairs": 1219,
+            "roundTripFailureFraction": 0.021739130434782608,
+            "scaleDisagreementFraction": 0.020128824476650563,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8059581320450886,
+            "nonharmonicAlternativeFraction": 0.09420289855072464,
+            "meanLumaResidual": 0.004236084303713176,
+            "meanContrast": 0.11664262525550743,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9798711755233495,
+              "mean": 0.32930756843800324,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 4.333333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9820700896495518,
+              "mean": 0.280358598207009,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.83822729258421,
+            "broadColorRMSE": 33.500205500496506,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9694041867954911,
+            "colorConflictFraction": 0.11001642036124795,
+            "colorPairs": 1218,
+            "roundTripFailureFraction": 0.023349436392914653,
+            "scaleDisagreementFraction": 0.02254428341384863,
+            "ambiguousFraction": 0.005636070853462158,
+            "harmonicAlternativeFraction": 0.8091787439613527,
+            "nonharmonicAlternativeFraction": 0.0966183574879227,
+            "meanLumaResidual": 0.004366749421678876,
+            "meanContrast": 0.11651475096877296,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9774557165861514,
+              "mean": 0.3607085346215781,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 4.333333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.3121434392828036,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.830809883797954,
+            "broadColorRMSE": 33.49894448136222,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.11711711711711711,
+            "colorPairs": 1221,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.020128824476650563,
+            "ambiguousFraction": 0.007246376811594203,
+            "harmonicAlternativeFraction": 0.8156199677938808,
+            "nonharmonicAlternativeFraction": 0.09742351046698873,
+            "meanLumaResidual": 0.00489155678803995,
+            "meanContrast": 0.11733589214231316,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6551724137931034,
+              "mean": 6.379310344827586,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.23495465787304204,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.84307159872187,
+            "broadColorRMSE": 33.493683618646635,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.11711711711711711,
+            "colorPairs": 1221,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.020128824476650563,
+            "ambiguousFraction": 0.007246376811594203,
+            "harmonicAlternativeFraction": 0.8156199677938808,
+            "nonharmonicAlternativeFraction": 0.09742351046698873,
+            "meanLumaResidual": 0.00489155678803995,
+            "meanContrast": 0.11733589214231316,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6551724137931034,
+              "mean": 6.379310344827586,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.23495465787304204,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.84307159872187,
+            "broadColorRMSE": 33.493683618646635,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.11711711711711711,
+            "colorPairs": 1221,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.020128824476650563,
+            "ambiguousFraction": 0.007246376811594203,
+            "harmonicAlternativeFraction": 0.8156199677938808,
+            "nonharmonicAlternativeFraction": 0.09742351046698873,
+            "meanLumaResidual": 0.00489155678803995,
+            "meanContrast": 0.11733589214231316,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6551724137931034,
+              "mean": 6.379310344827586,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.23495465787304204,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.84307159872187,
+            "broadColorRMSE": 33.493683618646635,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.965378421900161,
+            "colorConflictFraction": 0.11711711711711711,
+            "colorPairs": 1221,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.020128824476650563,
+            "ambiguousFraction": 0.007246376811594203,
+            "harmonicAlternativeFraction": 0.8156199677938808,
+            "nonharmonicAlternativeFraction": 0.09742351046698873,
+            "meanLumaResidual": 0.00489155678803995,
+            "meanContrast": 0.11733589214231316,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.3784219001610306,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.6551724137931034,
+              "mean": 6.379310344827586,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.23495465787304204,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 46.84307159872187,
+            "broadColorRMSE": 33.493683618646635,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.030406240061426563,
+          "changedPixelFraction": 0.03191116898148148,
+          "correspondenceLoss": 0.0008305647840531562,
+          "truthCorrectedDisparityRMS": 2.093237328177886,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.030687635452039033,
+          "changedPixelFraction": 0.03187451774691358,
+          "correspondenceLoss": 0.0024834437086092716,
+          "truthCorrectedDisparityRMS": 2.077213232871102,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.03144501140534568,
+          "changedPixelFraction": 0.0319579475308642,
+          "correspondenceLoss": 0.0016570008285004142,
+          "truthCorrectedDisparityRMS": 1.5650160901149996,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.030704613607153007,
+          "changedPixelFraction": 0.03191984953703704,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 1.3123346456686351,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.030920742385932263,
+          "changedPixelFraction": 0.03215856481481481,
+          "correspondenceLoss": 0.004149377593360996,
+          "truthCorrectedDisparityRMS": 1.5211869253434138,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "sparse",
+        "label": "Rejected sparse control",
+        "pattern": "surface",
+        "surfaceDetail": 0.65,
+        "control": "human-rejected"
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 1242,
+        "coverage": 1,
+        "supportedFraction": 0.7658615136876006,
+        "colorConflictFraction": 0.11204820111722864,
+        "colorPairs": 1187.8,
+        "roundTripFailureFraction": 0.05877616747181965,
+        "scaleDisagreementFraction": 0.04661835748792271,
+        "ambiguousFraction": 0.028180354267310793,
+        "harmonicAlternativeFraction": 0.6141706924315619,
+        "nonharmonicAlternativeFraction": 0.13244766505636069,
+        "meanLumaResidual": 0.06138135032024652,
+        "meanContrast": 0.08734332527213293,
+        "largestUnsupportedRegion": 0.05136876006441223,
+        "zeroStrength": false
+      },
+      "accuracy": 0.949597423510467,
+      "motion": {
+        "screenLumaRMS": 0.01891349334003435,
+        "correspondenceLoss": 0.004880036335746849,
+        "truthCorrectedDisparityRMS": 1.2036738097872377,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 21454,
+        "remote": 651,
+        "remoteFraction": 0.030343991796401605,
+        "farthestPixels": 434,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 4.563962415975442,
+      "renderAndReadbackMs": 132.47999999821187,
+      "findings": [
+        {
+          "severity": "info",
+          "code": "no-flags",
+          "message": "No configured engineering threshold was crossed. Human comfort remains unmeasured."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7640901771336553,
+            "colorConflictFraction": 0.11260504201680673,
+            "colorPairs": 1190,
+            "roundTripFailureFraction": 0.057971014492753624,
+            "scaleDisagreementFraction": 0.04106280193236715,
+            "ambiguousFraction": 0.02818035426731079,
+            "harmonicAlternativeFraction": 0.6022544283413849,
+            "nonharmonicAlternativeFraction": 0.13123993558776167,
+            "meanLumaResidual": 0.060771427699523775,
+            "meanContrast": 0.08692576955436168,
+            "largestUnsupportedRegion": 0.06602254428341385,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9541062801932367,
+              "mean": 0.6706924315619968,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.3333333333333333,
+              "mean": 7.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9616951915240424,
+              "mean": 0.5908720456397718,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.83960846836873,
+            "broadColorRMSE": 4.60300347619214,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7640901771336553,
+            "colorConflictFraction": 0.11260504201680673,
+            "colorPairs": 1190,
+            "roundTripFailureFraction": 0.057971014492753624,
+            "scaleDisagreementFraction": 0.04106280193236715,
+            "ambiguousFraction": 0.02818035426731079,
+            "harmonicAlternativeFraction": 0.6022544283413849,
+            "nonharmonicAlternativeFraction": 0.13123993558776167,
+            "meanLumaResidual": 0.060771427699523775,
+            "meanContrast": 0.08692576955436168,
+            "largestUnsupportedRegion": 0.06602254428341385,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9541062801932367,
+              "mean": 0.6706924315619968,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.3333333333333333,
+              "mean": 7.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9616951915240424,
+              "mean": 0.5908720456397718,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.83960846836873,
+            "broadColorRMSE": 4.60300347619214,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7648953301127214,
+            "colorConflictFraction": 0.11483654652137469,
+            "colorPairs": 1193,
+            "roundTripFailureFraction": 0.05877616747181964,
+            "scaleDisagreementFraction": 0.04669887278582931,
+            "ambiguousFraction": 0.0322061191626409,
+            "harmonicAlternativeFraction": 0.6078904991948471,
+            "nonharmonicAlternativeFraction": 0.13285024154589373,
+            "meanLumaResidual": 0.06090141306292251,
+            "meanContrast": 0.08689132517700335,
+            "largestUnsupportedRegion": 0.05152979066022544,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9533011272141707,
+              "mean": 0.7214170692431562,
+              "p95": 1
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.3333333333333333,
+              "mean": 7.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.960880195599022,
+              "mean": 0.6422167889160554,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.821178458860498,
+            "broadColorRMSE": 4.592481938564935,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7657004830917874,
+            "colorConflictFraction": 0.11528822055137844,
+            "colorPairs": 1197,
+            "roundTripFailureFraction": 0.05314009661835749,
+            "scaleDisagreementFraction": 0.04508856682769726,
+            "ambiguousFraction": 0.02576489533011272,
+            "harmonicAlternativeFraction": 0.6111111111111112,
+            "nonharmonicAlternativeFraction": 0.1392914653784219,
+            "meanLumaResidual": 0.060897385465302246,
+            "meanContrast": 0.08707083825200931,
+            "largestUnsupportedRegion": 0.04669887278582931,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9508856682769726,
+              "mean": 0.6867954911433173,
+              "p95": 2
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.3333333333333333,
+              "mean": 7.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9584352078239609,
+              "mean": 0.6071719641401793,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.823471430931292,
+            "broadColorRMSE": 4.572491329910765,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7648953301127214,
+            "colorConflictFraction": 0.11335012594458438,
+            "colorPairs": 1191,
+            "roundTripFailureFraction": 0.05958132045088567,
+            "scaleDisagreementFraction": 0.04669887278582931,
+            "ambiguousFraction": 0.03140096618357488,
+            "harmonicAlternativeFraction": 0.6175523349436393,
+            "nonharmonicAlternativeFraction": 0.13043478260869565,
+            "meanLumaResidual": 0.06120753754531428,
+            "meanContrast": 0.08706965819865237,
+            "largestUnsupportedRegion": 0.04508856682769726,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9476650563607085,
+              "mean": 0.7729468599033816,
+              "p95": 3
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.3333333333333333,
+              "mean": 7.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9551752241238793,
+              "mean": 0.6943765281173594,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.80123816011792,
+            "broadColorRMSE": 4.56124571716071,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7624798711755234,
+            "colorConflictFraction": 0.10922946655376799,
+            "colorPairs": 1181,
+            "roundTripFailureFraction": 0.061996779388083734,
+            "scaleDisagreementFraction": 0.04911433172302738,
+            "ambiguousFraction": 0.026570048309178744,
+            "harmonicAlternativeFraction": 0.6175523349436393,
+            "nonharmonicAlternativeFraction": 0.1280193236714976,
+            "meanLumaResidual": 0.061377993715026405,
+            "meanContrast": 0.08713683469207054,
+            "largestUnsupportedRegion": 0.04830917874396135,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9484702093397746,
+              "mean": 0.7979066022544283,
+              "p95": 3
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.3333333333333333,
+              "mean": 7.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9559902200488998,
+              "mean": 0.7196414017929911,
+              "p95": 1
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.79935446436743,
+            "broadColorRMSE": 4.550591497457349,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7681159420289855,
+            "colorConflictFraction": 0.11064189189189189,
+            "colorPairs": 1184,
+            "roundTripFailureFraction": 0.05958132045088567,
+            "scaleDisagreementFraction": 0.04911433172302738,
+            "ambiguousFraction": 0.027375201288244767,
+            "harmonicAlternativeFraction": 0.6207729468599034,
+            "nonharmonicAlternativeFraction": 0.13285024154589373,
+            "meanLumaResidual": 0.06197157950371305,
+            "meanContrast": 0.08785326432321756,
+            "largestUnsupportedRegion": 0.04750402576489533,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9468599033816425,
+              "mean": 0.7262479871175523,
+              "p95": 3
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.3448275862068966,
+              "mean": 7.103448275862069,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9612530915086562,
+              "mean": 0.5737840065952184,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.80227256525899,
+            "broadColorRMSE": 4.539201681069096,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7681159420289855,
+            "colorConflictFraction": 0.11064189189189189,
+            "colorPairs": 1184,
+            "roundTripFailureFraction": 0.05958132045088567,
+            "scaleDisagreementFraction": 0.04911433172302738,
+            "ambiguousFraction": 0.027375201288244767,
+            "harmonicAlternativeFraction": 0.6207729468599034,
+            "nonharmonicAlternativeFraction": 0.13285024154589373,
+            "meanLumaResidual": 0.06197157950371305,
+            "meanContrast": 0.08785326432321756,
+            "largestUnsupportedRegion": 0.04750402576489533,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9468599033816425,
+              "mean": 0.7262479871175523,
+              "p95": 3
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.3448275862068966,
+              "mean": 7.103448275862069,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9612530915086562,
+              "mean": 0.5737840065952184,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.80227256525899,
+            "broadColorRMSE": 4.539201681069096,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7681159420289855,
+            "colorConflictFraction": 0.11064189189189189,
+            "colorPairs": 1184,
+            "roundTripFailureFraction": 0.05958132045088567,
+            "scaleDisagreementFraction": 0.04911433172302738,
+            "ambiguousFraction": 0.027375201288244767,
+            "harmonicAlternativeFraction": 0.6207729468599034,
+            "nonharmonicAlternativeFraction": 0.13285024154589373,
+            "meanLumaResidual": 0.06197157950371305,
+            "meanContrast": 0.08785326432321756,
+            "largestUnsupportedRegion": 0.04750402576489533,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9468599033816425,
+              "mean": 0.7262479871175523,
+              "p95": 3
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.3448275862068966,
+              "mean": 7.103448275862069,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9612530915086562,
+              "mean": 0.5737840065952184,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.80227256525899,
+            "broadColorRMSE": 4.539201681069096,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.7681159420289855,
+            "colorConflictFraction": 0.11064189189189189,
+            "colorPairs": 1184,
+            "roundTripFailureFraction": 0.05958132045088567,
+            "scaleDisagreementFraction": 0.04911433172302738,
+            "ambiguousFraction": 0.027375201288244767,
+            "harmonicAlternativeFraction": 0.6207729468599034,
+            "nonharmonicAlternativeFraction": 0.13285024154589373,
+            "meanLumaResidual": 0.06197157950371305,
+            "meanContrast": 0.08785326432321756,
+            "largestUnsupportedRegion": 0.04750402576489533,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9468599033816425,
+              "mean": 0.7262479871175523,
+              "p95": 3
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.3448275862068966,
+              "mean": 7.103448275862069,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9612530915086562,
+              "mean": 0.5737840065952184,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 27.80227256525899,
+            "broadColorRMSE": 4.539201681069096,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.03390242767672447,
+          "changedPixelFraction": 0.03784818672839506,
+          "correspondenceLoss": 0.005230125523012552,
+          "truthCorrectedDisparityRMS": 2.0026150375765828,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.033672602665761615,
+          "changedPixelFraction": 0.03779031635802469,
+          "correspondenceLoss": 0.008359456635318705,
+          "truthCorrectedDisparityRMS": 1.6366868855565064,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.03400704915902323,
+          "changedPixelFraction": 0.03797984182098765,
+          "correspondenceLoss": 0.0125,
+          "truthCorrectedDisparityRMS": 2.322784990635469,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.03429150694552439,
+          "changedPixelFraction": 0.03800733024691358,
+          "correspondenceLoss": 0.008376963350785341,
+          "truthCorrectedDisparityRMS": 2.4078842584838727,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.03434785361327546,
+          "changedPixelFraction": 0.03814284336419753,
+          "correspondenceLoss": 0.009453781512605041,
+          "truthCorrectedDisparityRMS": 2.4630931158327085,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "quiet-strong",
+        "label": "Quiet · 100%",
+        "pattern": "quiet",
+        "surfaceDetail": 1
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 1242,
+        "coverage": 1,
+        "supportedFraction": 0.941304347826087,
+        "colorConflictFraction": 0.009622940169288904,
+        "colorPairs": 1226.2,
+        "roundTripFailureFraction": 0.025442834138486314,
+        "scaleDisagreementFraction": 0.021900161030595805,
+        "ambiguousFraction": 0.01916264090177134,
+        "harmonicAlternativeFraction": 0.8104669887278583,
+        "nonharmonicAlternativeFraction": 0.12238325281803544,
+        "meanLumaResidual": 0.004963721701354855,
+        "meanContrast": 0.12375495386316933,
+        "largestUnsupportedRegion": 0.01183574879227053,
+        "zeroStrength": false
+      },
+      "accuracy": 0.9762479871175523,
+      "motion": {
+        "screenLumaRMS": 0.021985543458892413,
+        "correspondenceLoss": 0.0022728948017161164,
+        "truthCorrectedDisparityRMS": 0.8932962008760907,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 168475,
+        "remote": 117677,
+        "remoteFraction": 0.6984834545184746,
+        "farthestPixels": 903,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 25.337790906493545,
+      "renderAndReadbackMs": 138.53999999910593,
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "color-spread",
+          "message": "A local source-color edit propagates well beyond its stereo-pair neighborhood."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9412238325281803,
+            "colorConflictFraction": 0.010603588907014683,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.023349436392914653,
+            "scaleDisagreementFraction": 0.02254428341384863,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8051529790660226,
+            "nonharmonicAlternativeFraction": 0.11916264090177134,
+            "meanLumaResidual": 0.004170524990513839,
+            "meanContrast": 0.12317318543477865,
+            "largestUnsupportedRegion": 0.011272141706924315,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9774557165861514,
+              "mean": 0.40660225442834136,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 6.533333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9812550937245313,
+              "mean": 0.33170334148329256,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 44.968159370701244,
+            "broadColorRMSE": 25.23284744790921,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9412238325281803,
+            "colorConflictFraction": 0.010603588907014683,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.023349436392914653,
+            "scaleDisagreementFraction": 0.02254428341384863,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8051529790660226,
+            "nonharmonicAlternativeFraction": 0.11916264090177134,
+            "meanLumaResidual": 0.004170524990513839,
+            "meanContrast": 0.12317318543477865,
+            "largestUnsupportedRegion": 0.011272141706924315,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9774557165861514,
+              "mean": 0.40660225442834136,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 6.533333333333333,
+              "p95": 24
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9812550937245313,
+              "mean": 0.33170334148329256,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 44.968159370701244,
+            "broadColorRMSE": 25.23284744790921,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9388083735909822,
+            "colorConflictFraction": 0.011419249592169658,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.02254428341384863,
+            "ambiguousFraction": 0.0249597423510467,
+            "harmonicAlternativeFraction": 0.8059581320450886,
+            "nonharmonicAlternativeFraction": 0.12318840579710146,
+            "meanLumaResidual": 0.0049822248197356565,
+            "meanContrast": 0.12420102895216721,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.4669887278582931,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 6.8,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.3895680521597392,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 44.94111076930006,
+            "broadColorRMSE": 25.260127962305585,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9444444444444444,
+            "colorConflictFraction": 0.008156606851549755,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.024154589371980676,
+            "scaleDisagreementFraction": 0.020933977455716585,
+            "ambiguousFraction": 0.01610305958132045,
+            "harmonicAlternativeFraction": 0.8075684380032206,
+            "nonharmonicAlternativeFraction": 0.11594202898550725,
+            "meanLumaResidual": 0.004425046969783424,
+            "meanContrast": 0.12317588814146452,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9798711755233495,
+              "mean": 0.35104669887278583,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 6.8,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9837000814995925,
+              "mean": 0.2722086389568052,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 44.98012329115266,
+            "broadColorRMSE": 25.303461997390567,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9420289855072463,
+            "colorConflictFraction": 0.010577705451586655,
+            "colorPairs": 1229,
+            "roundTripFailureFraction": 0.021739130434782608,
+            "scaleDisagreementFraction": 0.020933977455716585,
+            "ambiguousFraction": 0.018518518518518517,
+            "harmonicAlternativeFraction": 0.8091787439613527,
+            "nonharmonicAlternativeFraction": 0.12077294685990338,
+            "meanLumaResidual": 0.004557100547808191,
+            "meanContrast": 0.12298100530507522,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.38405797101449274,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 6.8,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.3056234718826406,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 44.97888793022011,
+            "broadColorRMSE": 25.33788044348743,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9436392914653784,
+            "colorConflictFraction": 0.008979591836734694,
+            "colorPairs": 1225,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.02254428341384863,
+            "ambiguousFraction": 0.01610305958132045,
+            "harmonicAlternativeFraction": 0.8123993558776168,
+            "nonharmonicAlternativeFraction": 0.12640901771336555,
+            "meanLumaResidual": 0.005003707039190191,
+            "meanContrast": 0.12270747336419136,
+            "largestUnsupportedRegion": 0.011272141706924315,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.39855072463768115,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6666666666666666,
+              "mean": 6.8,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.3202933985330073,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 44.97829455700194,
+            "broadColorRMSE": 25.377536083047897,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9404186795491143,
+            "colorConflictFraction": 0.00897226753670473,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8148148148148148,
+            "nonharmonicAlternativeFraction": 0.1247987117552335,
+            "meanLumaResidual": 0.005582021914000856,
+            "meanContrast": 0.12453444299980947,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9750402576489533,
+              "mean": 0.3993558776167472,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 8.275862068965518,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.2110469909315746,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 45.01208586487515,
+            "broadColorRMSE": 25.408301920721392,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9404186795491143,
+            "colorConflictFraction": 0.00897226753670473,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8148148148148148,
+            "nonharmonicAlternativeFraction": 0.1247987117552335,
+            "meanLumaResidual": 0.005582021914000856,
+            "meanContrast": 0.12453444299980947,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9750402576489533,
+              "mean": 0.3993558776167472,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 8.275862068965518,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.2110469909315746,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 45.01208586487515,
+            "broadColorRMSE": 25.408301920721392,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9404186795491143,
+            "colorConflictFraction": 0.00897226753670473,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8148148148148148,
+            "nonharmonicAlternativeFraction": 0.1247987117552335,
+            "meanLumaResidual": 0.005582021914000856,
+            "meanContrast": 0.12453444299980947,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9750402576489533,
+              "mean": 0.3993558776167472,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 8.275862068965518,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.2110469909315746,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 45.01208586487515,
+            "broadColorRMSE": 25.408301920721392,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9404186795491143,
+            "colorConflictFraction": 0.00897226753670473,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.027375201288244767,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.01932367149758454,
+            "harmonicAlternativeFraction": 0.8148148148148148,
+            "nonharmonicAlternativeFraction": 0.1247987117552335,
+            "meanLumaResidual": 0.005582021914000856,
+            "meanContrast": 0.12453444299980947,
+            "largestUnsupportedRegion": 0.012077294685990338,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9750402576489533,
+              "mean": 0.3993558776167472,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 8.275862068965518,
+              "p95": 25
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9851607584501236,
+              "mean": 0.2110469909315746,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 45.01208586487515,
+            "broadColorRMSE": 25.408301920721392,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.039390918609385074,
+          "changedPixelFraction": 0.09400125385802469,
+          "correspondenceLoss": 0.007666098807495741,
+          "truthCorrectedDisparityRMS": 2.0341290911395693,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.03933515155377151,
+          "changedPixelFraction": 0.09387008101851851,
+          "correspondenceLoss": 0.0025662959794696323,
+          "truthCorrectedDisparityRMS": 2.0144406207413397,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.0402236584501635,
+          "changedPixelFraction": 0.09411651234567901,
+          "correspondenceLoss": 0.005106382978723404,
+          "truthCorrectedDisparityRMS": 1.2475418664456202,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.039472728891164016,
+          "changedPixelFraction": 0.09408371913580246,
+          "correspondenceLoss": 0.0008547008547008547,
+          "truthCorrectedDisparityRMS": 1.597602874195991,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.03944743362554764,
+          "changedPixelFraction": 0.09451581790123456,
+          "correspondenceLoss": 0.004262574595055414,
+          "truthCorrectedDisparityRMS": 1.1459513553622958,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "paired-quiet",
+        "label": "Paired · stable · 35%",
+        "pattern": "chroma",
+        "surfaceDetail": 0.35,
+        "temporalStability": true
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 1242,
+        "coverage": 1,
+        "supportedFraction": 0.9668276972624799,
+        "colorConflictFraction": 0.11364343204509857,
+        "colorPairs": 1225.7,
+        "roundTripFailureFraction": 0.025684380032206123,
+        "scaleDisagreementFraction": 0.017310789049919482,
+        "ambiguousFraction": 0.00789049919484702,
+        "harmonicAlternativeFraction": 0.8115942028985506,
+        "nonharmonicAlternativeFraction": 0.10128824476650564,
+        "meanLumaResidual": 0.003351126967807728,
+        "meanContrast": 0.0873741531625585,
+        "largestUnsupportedRegion": 0.009661835748792272,
+        "zeroStrength": false
+      },
+      "accuracy": 0.9817230273752013,
+      "motion": {
+        "screenLumaRMS": 0.010178720340203253,
+        "correspondenceLoss": 0.0010123090761032158,
+        "truthCorrectedDisparityRMS": 0.6753836152165714,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 23865,
+        "remote": 0,
+        "remoteFraction": 0,
+        "farthestPixels": 105,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 33.54134268340057,
+      "renderAndReadbackMs": 13.699999997764825,
+      "findings": [
+        {
+          "severity": "info",
+          "code": "no-flags",
+          "message": "No configured engineering threshold was crossed. Human comfort remains unmeasured."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.10474631751227496,
+            "colorPairs": 1222,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.020933977455716585,
+            "ambiguousFraction": 0.008051529790660225,
+            "harmonicAlternativeFraction": 0.8027375201288245,
+            "nonharmonicAlternativeFraction": 0.0893719806763285,
+            "meanLumaResidual": 0.0034815362336314366,
+            "meanContrast": 0.08746866356807684,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9798711755233495,
+              "mean": 0.29871175523349436,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 3.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9820700896495518,
+              "mean": 0.2632436837815811,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.77964875357702,
+            "broadColorRMSE": 33.55995824193865,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.10474631751227496,
+            "colorPairs": 1222,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.020933977455716585,
+            "ambiguousFraction": 0.008051529790660225,
+            "harmonicAlternativeFraction": 0.8027375201288245,
+            "nonharmonicAlternativeFraction": 0.0893719806763285,
+            "meanLumaResidual": 0.0034815362336314366,
+            "meanContrast": 0.08746866356807684,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9798711755233495,
+              "mean": 0.29871175523349436,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 3.2,
+              "p95": 18
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9820700896495518,
+              "mean": 0.2632436837815811,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.77964875357702,
+            "broadColorRMSE": 33.55995824193865,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9677938808373591,
+            "colorConflictFraction": 0.11083944580277098,
+            "colorPairs": 1227,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.00966183574879227,
+            "harmonicAlternativeFraction": 0.8051529790660226,
+            "nonharmonicAlternativeFraction": 0.09259259259259259,
+            "meanLumaResidual": 0.0034748461741689347,
+            "meanContrast": 0.08745331578042435,
+            "largestUnsupportedRegion": 0.00644122383252818,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9798711755233495,
+              "mean": 0.34057971014492755,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 3.533333333333333,
+              "p95": 17
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9820700896495518,
+              "mean": 0.3015484922575387,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.76922279663063,
+            "broadColorRMSE": 33.553894443011465,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9718196457326892,
+            "colorConflictFraction": 0.1132844335778321,
+            "colorPairs": 1227,
+            "roundTripFailureFraction": 0.021739130434782608,
+            "scaleDisagreementFraction": 0.015297906602254429,
+            "ambiguousFraction": 0.00644122383252818,
+            "harmonicAlternativeFraction": 0.8083735909822867,
+            "nonharmonicAlternativeFraction": 0.09581320450885668,
+            "meanLumaResidual": 0.0030760870573371666,
+            "meanContrast": 0.0874948477979405,
+            "largestUnsupportedRegion": 0.00644122383252818,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9830917874396136,
+              "mean": 0.3172302737520129,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8,
+              "mean": 3.533333333333333,
+              "p95": 17
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9853300733496333,
+              "mean": 0.27791361043194784,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.78248580506089,
+            "broadColorRMSE": 33.553600022213246,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9702093397745571,
+            "colorConflictFraction": 0.11563517915309446,
+            "colorPairs": 1228,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.011272141706924315,
+            "ambiguousFraction": 0.004025764895330112,
+            "harmonicAlternativeFraction": 0.8099838969404187,
+            "nonharmonicAlternativeFraction": 0.09742351046698873,
+            "meanLumaResidual": 0.0031374356020971565,
+            "meanContrast": 0.08741450280351762,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9863123993558777,
+              "mean": 0.25201288244766507,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8666666666666667,
+              "mean": 2.466666666666667,
+              "p95": 10
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9877750611246944,
+              "mean": 0.22493887530562348,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.77567511517079,
+            "broadColorRMSE": 33.545880068448405,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9694041867954911,
+            "colorConflictFraction": 0.11409942950285248,
+            "colorPairs": 1227,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.017713365539452495,
+            "ambiguousFraction": 0.004025764895330112,
+            "harmonicAlternativeFraction": 0.8180354267310789,
+            "nonharmonicAlternativeFraction": 0.10386473429951691,
+            "meanLumaResidual": 0.003057842959976389,
+            "meanContrast": 0.08716277317143659,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9822866344605475,
+              "mean": 0.3309178743961353,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.8666666666666667,
+              "mean": 3.066666666666667,
+              "p95": 19
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9837000814995925,
+              "mean": 0.2974735126324368,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.77091595474091,
+            "broadColorRMSE": 33.5392466741352,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9637681159420289,
+            "colorConflictFraction": 0.11827079934747145,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.016908212560386472,
+            "ambiguousFraction": 0.00966183574879227,
+            "harmonicAlternativeFraction": 0.8172302737520128,
+            "nonharmonicAlternativeFraction": 0.1111111111111111,
+            "meanLumaResidual": 0.003450496354308689,
+            "meanContrast": 0.08731969123402804,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.30193236714975846,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.7241379310344828,
+              "mean": 4.689655172413793,
+              "p95": 20
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9876339653751031,
+              "mean": 0.19703215169002472,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.7649010069473,
+            "broadColorRMSE": 33.52522228558,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9637681159420289,
+            "colorConflictFraction": 0.11827079934747145,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.016908212560386472,
+            "ambiguousFraction": 0.00966183574879227,
+            "harmonicAlternativeFraction": 0.8172302737520128,
+            "nonharmonicAlternativeFraction": 0.1111111111111111,
+            "meanLumaResidual": 0.003450496354308689,
+            "meanContrast": 0.08731969123402804,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.30193236714975846,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.7241379310344828,
+              "mean": 4.689655172413793,
+              "p95": 20
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9876339653751031,
+              "mean": 0.19703215169002472,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.7649010069473,
+            "broadColorRMSE": 33.52522228558,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9637681159420289,
+            "colorConflictFraction": 0.11827079934747145,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.016908212560386472,
+            "ambiguousFraction": 0.00966183574879227,
+            "harmonicAlternativeFraction": 0.8172302737520128,
+            "nonharmonicAlternativeFraction": 0.1111111111111111,
+            "meanLumaResidual": 0.003450496354308689,
+            "meanContrast": 0.08731969123402804,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.30193236714975846,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.7241379310344828,
+              "mean": 4.689655172413793,
+              "p95": 20
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9876339653751031,
+              "mean": 0.19703215169002472,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.7649010069473,
+            "broadColorRMSE": 33.52522228558,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9637681159420289,
+            "colorConflictFraction": 0.11827079934747145,
+            "colorPairs": 1226,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.016908212560386472,
+            "ambiguousFraction": 0.00966183574879227,
+            "harmonicAlternativeFraction": 0.8172302737520128,
+            "nonharmonicAlternativeFraction": 0.1111111111111111,
+            "meanLumaResidual": 0.003450496354308689,
+            "meanContrast": 0.08731969123402804,
+            "largestUnsupportedRegion": 0.010466988727858293,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9814814814814815,
+              "mean": 0.30193236714975846,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.7241379310344828,
+              "mean": 4.689655172413793,
+              "p95": 20
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9876339653751031,
+              "mean": 0.19703215169002472,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 42.7649010069473,
+            "broadColorRMSE": 33.52522228558,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.017643233769830576,
+          "changedPixelFraction": 0.018489583333333334,
+          "correspondenceLoss": 0.0008312551953449709,
+          "truthCorrectedDisparityRMS": 1.1477065277116851,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.01843600953145212,
+          "changedPixelFraction": 0.01865113811728395,
+          "correspondenceLoss": 0.0008305647840531562,
+          "truthCorrectedDisparityRMS": 1.4292211542971576,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.018749804624829437,
+          "changedPixelFraction": 0.018820891203703703,
+          "correspondenceLoss": 0.0008271298593879239,
+          "truthCorrectedDisparityRMS": 1.115330154105503,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.018404980982408014,
+          "changedPixelFraction": 0.01907937885802469,
+          "correspondenceLoss": 0.0008271298593879239,
+          "truthCorrectedDisparityRMS": 1.1526067913468743,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.01837445415330912,
+          "changedPixelFraction": 0.01934027777777778,
+          "correspondenceLoss": 0.005794701986754967,
+          "truthCorrectedDisparityRMS": 1.2335879094879225,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "dense",
+        "label": "Dense scene reference",
+        "pattern": "scene",
+        "surfaceDetail": 0.65
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 1242,
+        "coverage": 1,
+        "supportedFraction": 0.9670692431561998,
+        "colorConflictFraction": 0.005355771607732716,
+        "colorPairs": 1213.1,
+        "roundTripFailureFraction": 0.025845410628019323,
+        "scaleDisagreementFraction": 0.0214975845410628,
+        "ambiguousFraction": 0.004750402576489533,
+        "harmonicAlternativeFraction": 0.8074074074074072,
+        "nonharmonicAlternativeFraction": 0.09669887278582931,
+        "meanLumaResidual": 0.0049920774900423705,
+        "meanContrast": 0.12509217645971946,
+        "largestUnsupportedRegion": 0.016103059581320446,
+        "zeroStrength": false
+      },
+      "accuracy": 0.9750402576489534,
+      "motion": {
+        "screenLumaRMS": 0.022325161064376563,
+        "correspondenceLoss": 0.0006473011150314064,
+        "truthCorrectedDisparityRMS": 0.8005498680148043,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 173646,
+        "remote": 121659,
+        "remoteFraction": 0.7006150444006772,
+        "farthestPixels": 903,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 40.03482692752715,
+      "renderAndReadbackMs": 129.56000000014902,
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "color-spread",
+          "message": "A local source-color edit propagates well beyond its stereo-pair neighborhood."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966183574879227,
+            "colorConflictFraction": 0.004125412541254125,
+            "colorPairs": 1212,
+            "roundTripFailureFraction": 0.02818035426731079,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8011272141706924,
+            "nonharmonicAlternativeFraction": 0.09178743961352658,
+            "meanLumaResidual": 0.004859438855724256,
+            "meanContrast": 0.12521171456756303,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9750402576489533,
+              "mean": 0.3856682769726248,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 5.733333333333333,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.3202933985330073,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.343478609174575,
+            "broadColorRMSE": 40.00074020649799,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966183574879227,
+            "colorConflictFraction": 0.004125412541254125,
+            "colorPairs": 1212,
+            "roundTripFailureFraction": 0.02818035426731079,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8011272141706924,
+            "nonharmonicAlternativeFraction": 0.09178743961352658,
+            "meanLumaResidual": 0.004859438855724256,
+            "meanContrast": 0.12521171456756303,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9750402576489533,
+              "mean": 0.3856682769726248,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 5.733333333333333,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.3202933985330073,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.343478609174575,
+            "broadColorRMSE": 40.00074020649799,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9677938808373591,
+            "colorConflictFraction": 0.009046052631578948,
+            "colorPairs": 1216,
+            "roundTripFailureFraction": 0.023349436392914653,
+            "scaleDisagreementFraction": 0.01932367149758454,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8019323671497585,
+            "nonharmonicAlternativeFraction": 0.09178743961352658,
+            "meanLumaResidual": 0.004961422246703439,
+            "meanContrast": 0.12489834264971436,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9782608695652174,
+              "mean": 0.3027375201288245,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 5.733333333333333,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9828850855745721,
+              "mean": 0.23634881825590873,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.36094643404769,
+            "broadColorRMSE": 40.011300428825884,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.9685990338164251,
+            "colorConflictFraction": 0.0032948929159802307,
+            "colorPairs": 1214,
+            "roundTripFailureFraction": 0.0249597423510467,
+            "scaleDisagreementFraction": 0.020933977455716585,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8019323671497585,
+            "nonharmonicAlternativeFraction": 0.09420289855072464,
+            "meanLumaResidual": 0.00478027623113712,
+            "meanContrast": 0.12490528747566455,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9774557165861514,
+              "mean": 0.34541062801932365,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 5.733333333333333,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9820700896495518,
+              "mean": 0.2795436022819886,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.376767257585165,
+            "broadColorRMSE": 40.02988331575342,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.004125412541254125,
+            "colorPairs": 1212,
+            "roundTripFailureFraction": 0.026570048309178744,
+            "scaleDisagreementFraction": 0.023349436392914653,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8027375201288245,
+            "nonharmonicAlternativeFraction": 0.09420289855072464,
+            "meanLumaResidual": 0.004807855136654091,
+            "meanContrast": 0.1245339347919114,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9758454106280193,
+              "mean": 0.3639291465378422,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 5.733333333333333,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.980440097799511,
+              "mean": 0.2982885085574572,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.35235144575358,
+            "broadColorRMSE": 39.997890646912026,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.0024813895781637717,
+            "colorPairs": 1209,
+            "roundTripFailureFraction": 0.024154589371980676,
+            "scaleDisagreementFraction": 0.020933977455716585,
+            "ambiguousFraction": 0.004025764895330112,
+            "harmonicAlternativeFraction": 0.8091787439613527,
+            "nonharmonicAlternativeFraction": 0.09742351046698873,
+            "meanLumaResidual": 0.004800536893027042,
+            "meanContrast": 0.12474024020877239,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9750402576489533,
+              "mean": 0.39533011272141705,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 15,
+              "within2": 0.6,
+              "mean": 5.733333333333333,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1227,
+              "within2": 0.9796251018744906,
+              "mean": 0.33007334963325186,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.34921872234481,
+            "broadColorRMSE": 39.991156410929435,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.006589785831960461,
+            "colorPairs": 1214,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8140096618357487,
+            "nonharmonicAlternativeFraction": 0.10144927536231885,
+            "meanLumaResidual": 0.005212951670363374,
+            "meanContrast": 0.1253551325840015,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9734299516908212,
+              "mean": 0.4331723027375201,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 7.620689655172414,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.26133553173948887,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.41243757926425,
+            "broadColorRMSE": 40.07913951496371,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.006589785831960461,
+            "colorPairs": 1214,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8140096618357487,
+            "nonharmonicAlternativeFraction": 0.10144927536231885,
+            "meanLumaResidual": 0.005212951670363374,
+            "meanContrast": 0.1253551325840015,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9734299516908212,
+              "mean": 0.4331723027375201,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 7.620689655172414,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.26133553173948887,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.41243757926425,
+            "broadColorRMSE": 40.07913951496371,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.006589785831960461,
+            "colorPairs": 1214,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8140096618357487,
+            "nonharmonicAlternativeFraction": 0.10144927536231885,
+            "meanLumaResidual": 0.005212951670363374,
+            "meanContrast": 0.1253551325840015,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9734299516908212,
+              "mean": 0.4331723027375201,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 7.620689655172414,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.26133553173948887,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.41243757926425,
+            "broadColorRMSE": 40.07913951496371,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 1242,
+            "coverage": 1,
+            "supportedFraction": 0.966988727858293,
+            "colorConflictFraction": 0.006589785831960461,
+            "colorPairs": 1214,
+            "roundTripFailureFraction": 0.02576489533011272,
+            "scaleDisagreementFraction": 0.021739130434782608,
+            "ambiguousFraction": 0.004830917874396135,
+            "harmonicAlternativeFraction": 0.8140096618357487,
+            "nonharmonicAlternativeFraction": 0.10144927536231885,
+            "meanLumaResidual": 0.005212951670363374,
+            "meanContrast": 0.1253551325840015,
+            "largestUnsupportedRegion": 0.01610305958132045,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 1242,
+              "within2": 0.9734299516908212,
+              "mean": 0.4331723027375201,
+              "p95": 0
+            },
+            "boundaries": {
+              "samples": 29,
+              "within2": 0.5517241379310345,
+              "mean": 7.620689655172414,
+              "p95": 23
+            },
+            "interiors": {
+              "samples": 1213,
+              "within2": 0.9835119538334708,
+              "mean": 0.26133553173948887,
+              "p95": 0
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 63.41243757926425,
+            "broadColorRMSE": 40.07913951496371,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.040292203971767394,
+          "changedPixelFraction": 0.07982735339506172,
+          "correspondenceLoss": 0.0016666666666666668,
+          "truthCorrectedDisparityRMS": 1.7988634808862913,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.03943987694939848,
+          "changedPixelFraction": 0.08133101851851852,
+          "correspondenceLoss": 0.0016638935108153079,
+          "truthCorrectedDisparityRMS": 1.6043921197992945,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.0403515106621069,
+          "changedPixelFraction": 0.08120611496913581,
+          "correspondenceLoss": 0.0016625103906899418,
+          "truthCorrectedDisparityRMS": 1.2937979144666532,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.04042850818938102,
+          "changedPixelFraction": 0.08145351080246914,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 1.3746614280861869,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.04041434980673528,
+          "changedPixelFraction": 0.08299286265432099,
+          "correspondenceLoss": 0.0008326394671107411,
+          "truthCorrectedDisparityRMS": 1.133233868894813,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "original",
+        "label": "Flat original · negative control",
+        "original": true,
+        "control": "negative"
+      },
+      "summary": {
+        "eligible": 1242,
+        "valid": 433.2,
+        "coverage": 0.348792270531401,
+        "supportedFraction": 0.09847020933977454,
+        "colorConflictFraction": 0.20583112852549174,
+        "colorPairs": 421.7,
+        "roundTripFailureFraction": 0.14900702310394692,
+        "scaleDisagreementFraction": 0.17354616787724483,
+        "ambiguousFraction": 0.333838452187475,
+        "harmonicAlternativeFraction": 0.5915401662984847,
+        "nonharmonicAlternativeFraction": 0.36567571666416765,
+        "meanLumaResidual": 0.03993015435235063,
+        "meanContrast": 0.03282910531032725,
+        "largestUnsupportedRegion": 0.901207729468599,
+        "zeroStrength": false
+      },
+      "accuracy": 0.011981129149323744,
+      "motion": {
+        "screenLumaRMS": 0.00814923967562636,
+        "correspondenceLoss": 0.005277340332458443,
+        "truthCorrectedDisparityRMS": 0.2761760165142324,
+        "stationaryMaxChangedFraction": 0,
+        "scope": "Screen changes include intended motion. Disparity jitter subtracts the change in intended disparity at each screen sample; this is not world-space optical flow."
+      },
+      "colorSpread": {
+        "affected": 14835,
+        "remote": 0,
+        "remoteFraction": 0,
+        "farthestPixels": 0,
+        "envelopePixels": 144,
+        "threshold": 0.025,
+        "scope": "Response to a local source-color intervention with identical depth, not a perceptual ghost score."
+      },
+      "broadColorRMSE": 0,
+      "renderAndReadbackMs": 2.4399999991059302,
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "weak-support",
+          "message": "Large areas lack consistent, distinctive matching evidence. Inspect the unsupported-region map."
+        },
+        {
+          "severity": "warning",
+          "code": "color-conflict",
+          "message": "Corresponding eye patches disagree in chromaticity; doubled or rival colors are a risk."
+        },
+        {
+          "severity": "warning",
+          "code": "competing-depths",
+          "message": "Multiple depths inside the calibrated range have similar evidence."
+        },
+        {
+          "severity": "warning",
+          "code": "alternate-depths",
+          "message": "Strong nonharmonic matches exist outside the calibrated depth range."
+        },
+        {
+          "severity": "fail",
+          "code": "wrong-depth",
+          "message": "More than 10% of decoded samples miss intended disparity by over two pixels."
+        }
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 427,
+            "coverage": 0.3438003220611916,
+            "supportedFraction": 0.10064412238325282,
+            "colorConflictFraction": 0.20476190476190476,
+            "colorPairs": 420,
+            "roundTripFailureFraction": 0.13348946135831383,
+            "scaleDisagreementFraction": 0.16627634660421545,
+            "ambiguousFraction": 0.3395784543325527,
+            "harmonicAlternativeFraction": 0.6065573770491803,
+            "nonharmonicAlternativeFraction": 0.37236533957845436,
+            "meanLumaResidual": 0.038123171034127705,
+            "meanContrast": 0.03153333458819213,
+            "largestUnsupportedRegion": 0.8993558776167472,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 427,
+              "within2": 0.00936768149882904,
+              "mean": 15.576112412177986,
+              "p95": 25
+            },
+            "boundaries": {
+              "samples": 10,
+              "within2": 0,
+              "mean": 23.2,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 417,
+              "within2": 0.009592326139088728,
+              "mean": 15.393285371702637,
+              "p95": 23
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 1,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 427,
+            "coverage": 0.3438003220611916,
+            "supportedFraction": 0.10064412238325282,
+            "colorConflictFraction": 0.20476190476190476,
+            "colorPairs": 420,
+            "roundTripFailureFraction": 0.13348946135831383,
+            "scaleDisagreementFraction": 0.16627634660421545,
+            "ambiguousFraction": 0.3395784543325527,
+            "harmonicAlternativeFraction": 0.6065573770491803,
+            "nonharmonicAlternativeFraction": 0.37236533957845436,
+            "meanLumaResidual": 0.038123171034127705,
+            "meanContrast": 0.03153333458819213,
+            "largestUnsupportedRegion": 0.8993558776167472,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 427,
+              "within2": 0.00936768149882904,
+              "mean": 15.576112412177986,
+              "p95": 25
+            },
+            "boundaries": {
+              "samples": 10,
+              "within2": 0,
+              "mean": 23.2,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 417,
+              "within2": 0.009592326139088728,
+              "mean": 15.393285371702637,
+              "p95": 23
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 2,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 427,
+            "coverage": 0.3438003220611916,
+            "supportedFraction": 0.10064412238325282,
+            "colorConflictFraction": 0.20476190476190476,
+            "colorPairs": 420,
+            "roundTripFailureFraction": 0.13348946135831383,
+            "scaleDisagreementFraction": 0.1686182669789227,
+            "ambiguousFraction": 0.3395784543325527,
+            "harmonicAlternativeFraction": 0.6088992974238876,
+            "nonharmonicAlternativeFraction": 0.36533957845433257,
+            "meanLumaResidual": 0.038123171034127705,
+            "meanContrast": 0.03153333458819213,
+            "largestUnsupportedRegion": 0.8993558776167472,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 427,
+              "within2": 0.00936768149882904,
+              "mean": 15.576112412177986,
+              "p95": 25
+            },
+            "boundaries": {
+              "samples": 10,
+              "within2": 0,
+              "mean": 23.2,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 417,
+              "within2": 0.009592326139088728,
+              "mean": 15.393285371702637,
+              "p95": 23
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 3,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 432,
+            "coverage": 0.34782608695652173,
+            "supportedFraction": 0.10064412238325282,
+            "colorConflictFraction": 0.20476190476190476,
+            "colorPairs": 420,
+            "roundTripFailureFraction": 0.14583333333333334,
+            "scaleDisagreementFraction": 0.1712962962962963,
+            "ambiguousFraction": 0.33564814814814814,
+            "harmonicAlternativeFraction": 0.5995370370370371,
+            "nonharmonicAlternativeFraction": 0.36342592592592593,
+            "meanLumaResidual": 0.04083834062176784,
+            "meanContrast": 0.03229393113618298,
+            "largestUnsupportedRegion": 0.8993558776167472,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 432,
+              "within2": 0.009259259259259259,
+              "mean": 15.497685185185185,
+              "p95": 27
+            },
+            "boundaries": {
+              "samples": 10,
+              "within2": 0,
+              "mean": 23.2,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 422,
+              "within2": 0.009478672985781991,
+              "mean": 15.315165876777252,
+              "p95": 23
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 4,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 433,
+            "coverage": 0.34863123993558776,
+            "supportedFraction": 0.0998389694041868,
+            "colorConflictFraction": 0.20853080568720378,
+            "colorPairs": 422,
+            "roundTripFailureFraction": 0.14780600461893764,
+            "scaleDisagreementFraction": 0.17551963048498845,
+            "ambiguousFraction": 0.3348729792147806,
+            "harmonicAlternativeFraction": 0.5981524249422633,
+            "nonharmonicAlternativeFraction": 0.3625866050808314,
+            "meanLumaResidual": 0.04105852241434297,
+            "meanContrast": 0.032668724417698025,
+            "largestUnsupportedRegion": 0.9001610305958132,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 433,
+              "within2": 0.011547344110854504,
+              "mean": 15.450346420323326,
+              "p95": 25
+            },
+            "boundaries": {
+              "samples": 10,
+              "within2": 0,
+              "mean": 23.2,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 423,
+              "within2": 0.01182033096926714,
+              "mean": 15.267139479905437,
+              "p95": 23
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 5,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 438,
+            "coverage": 0.3526570048309179,
+            "supportedFraction": 0.09903381642512077,
+            "colorConflictFraction": 0.20803782505910165,
+            "colorPairs": 423,
+            "roundTripFailureFraction": 0.1643835616438356,
+            "scaleDisagreementFraction": 0.1735159817351598,
+            "ambiguousFraction": 0.3310502283105023,
+            "harmonicAlternativeFraction": 0.5799086757990868,
+            "nonharmonicAlternativeFraction": 0.365296803652968,
+            "meanLumaResidual": 0.04160277471773631,
+            "meanContrast": 0.033733347702414825,
+            "largestUnsupportedRegion": 0.9009661835748792,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 438,
+              "within2": 0.01598173515981735,
+              "mean": 15.349315068493151,
+              "p95": 27
+            },
+            "boundaries": {
+              "samples": 10,
+              "within2": 0,
+              "mean": 23.2,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 428,
+              "within2": 0.016355140186915886,
+              "mean": 15.16588785046729,
+              "p95": 24
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 6,
+          "phase": "move",
+          "observer": {
+            "eligible": 1242,
+            "valid": 437,
+            "coverage": 0.35185185185185186,
+            "supportedFraction": 0.09581320450885668,
+            "colorConflictFraction": 0.20567375886524822,
+            "colorPairs": 423,
+            "roundTripFailureFraction": 0.15789473684210525,
+            "scaleDisagreementFraction": 0.17848970251716248,
+            "ambiguousFraction": 0.3295194508009153,
+            "harmonicAlternativeFraction": 0.5789473684210527,
+            "nonharmonicAlternativeFraction": 0.36384439359267734,
+            "meanLumaResidual": 0.040358098166819,
+            "meanContrast": 0.033748761520600065,
+            "largestUnsupportedRegion": 0.9033816425120773,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 437,
+              "within2": 0.013729977116704805,
+              "mean": 15.382151029748284,
+              "p95": 26
+            },
+            "boundaries": {
+              "samples": 16,
+              "within2": 0.0625,
+              "mean": 18.3125,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 421,
+              "within2": 0.011876484560570071,
+              "mean": 15.270783847980997,
+              "p95": 24
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 7,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 437,
+            "coverage": 0.35185185185185186,
+            "supportedFraction": 0.09581320450885668,
+            "colorConflictFraction": 0.20567375886524822,
+            "colorPairs": 423,
+            "roundTripFailureFraction": 0.15789473684210525,
+            "scaleDisagreementFraction": 0.17848970251716248,
+            "ambiguousFraction": 0.3295194508009153,
+            "harmonicAlternativeFraction": 0.5789473684210527,
+            "nonharmonicAlternativeFraction": 0.36384439359267734,
+            "meanLumaResidual": 0.040358098166819,
+            "meanContrast": 0.033748761520600065,
+            "largestUnsupportedRegion": 0.9033816425120773,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 437,
+              "within2": 0.013729977116704805,
+              "mean": 15.382151029748284,
+              "p95": 26
+            },
+            "boundaries": {
+              "samples": 16,
+              "within2": 0.0625,
+              "mean": 18.3125,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 421,
+              "within2": 0.011876484560570071,
+              "mean": 15.270783847980997,
+              "p95": 24
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 8,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 437,
+            "coverage": 0.35185185185185186,
+            "supportedFraction": 0.09581320450885668,
+            "colorConflictFraction": 0.20567375886524822,
+            "colorPairs": 423,
+            "roundTripFailureFraction": 0.15789473684210525,
+            "scaleDisagreementFraction": 0.17848970251716248,
+            "ambiguousFraction": 0.3295194508009153,
+            "harmonicAlternativeFraction": 0.5789473684210527,
+            "nonharmonicAlternativeFraction": 0.36384439359267734,
+            "meanLumaResidual": 0.040358098166819,
+            "meanContrast": 0.033748761520600065,
+            "largestUnsupportedRegion": 0.9033816425120773,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 437,
+              "within2": 0.013729977116704805,
+              "mean": 15.382151029748284,
+              "p95": 26
+            },
+            "boundaries": {
+              "samples": 16,
+              "within2": 0.0625,
+              "mean": 18.3125,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 421,
+              "within2": 0.011876484560570071,
+              "mean": 15.270783847980997,
+              "p95": 24
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        },
+        {
+          "index": 9,
+          "phase": "hold",
+          "observer": {
+            "eligible": 1242,
+            "valid": 437,
+            "coverage": 0.35185185185185186,
+            "supportedFraction": 0.09581320450885668,
+            "colorConflictFraction": 0.20567375886524822,
+            "colorPairs": 423,
+            "roundTripFailureFraction": 0.15789473684210525,
+            "scaleDisagreementFraction": 0.17848970251716248,
+            "ambiguousFraction": 0.3295194508009153,
+            "harmonicAlternativeFraction": 0.5789473684210527,
+            "nonharmonicAlternativeFraction": 0.36384439359267734,
+            "meanLumaResidual": 0.040358098166819,
+            "meanContrast": 0.033748761520600065,
+            "largestUnsupportedRegion": 0.9033816425120773,
+            "zeroStrength": false
+          },
+          "evaluation": {
+            "all": {
+              "samples": 437,
+              "within2": 0.013729977116704805,
+              "mean": 15.382151029748284,
+              "p95": 26
+            },
+            "boundaries": {
+              "samples": 16,
+              "within2": 0.0625,
+              "mean": 18.3125,
+              "p95": 29
+            },
+            "interiors": {
+              "samples": 421,
+              "within2": 0.011876484560570071,
+              "mean": 15.270783847980997,
+              "p95": 24
+            }
+          },
+          "fidelity": {
+            "sourceRMSE": 0,
+            "broadColorRMSE": 0,
+            "broadWindow": [
+              25,
+              9
+            ],
+            "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "from": 0,
+          "to": 1,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "phase": "move",
+          "screenLumaRMS": 0.01466824427774043,
+          "changedPixelFraction": 0.0016194058641975308,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "phase": "move",
+          "screenLumaRMS": 0.014675186832805729,
+          "changedPixelFraction": 0.0016194058641975308,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0.14518017554874818,
+          "stationary": false
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "phase": "move",
+          "screenLumaRMS": 0.014671142983722333,
+          "changedPixelFraction": 0.0016194058641975308,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0.44617717789469474,
+          "stationary": false
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "phase": "move",
+          "screenLumaRMS": 0.01467070228656378,
+          "changedPixelFraction": 0.0016194058641975308,
+          "correspondenceLoss": 0.031496062992125984,
+          "truthCorrectedDisparityRMS": 0.9742646898621751,
+          "stationary": false
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "phase": "move",
+          "screenLumaRMS": 0.014657880699804967,
+          "changedPixelFraction": 0.0016194058641975308,
+          "correspondenceLoss": 0.016,
+          "truthCorrectedDisparityRMS": 0.9199621053224735,
+          "stationary": false
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": false
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "phase": "hold",
+          "screenLumaRMS": 0,
+          "changedPixelFraction": 0,
+          "correspondenceLoss": 0,
+          "truthCorrectedDisparityRMS": 0,
+          "stationary": true
+        }
+      ]
+    }
+  ],
+  "frontier": [
+    "quiet",
+    "paired",
+    "unsteady",
+    "quiet-strong",
+    "paired-quiet",
+    "dense"
+  ],
+  "criteria": {
+    "minimumAccuracy": 0.9,
+    "minimumSupport": 0.4,
+    "stationaryDrift": 0,
+    "scope": "Engineering gates and Pareto tradeoffs, not human comfort acceptance. Diagnostic readback timings are not interactive FPS."
+  },
+  "backend": "gpu",
+  "adapter": "nvidia ampere",
+  "gpuErrors": []
+}

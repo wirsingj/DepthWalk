@@ -1,0 +1,680 @@
+
+> depthwalk@1.0.0 check
+> npm run lint && npm test && npm run build
+
+
+> depthwalk@1.0.0 lint
+> eslint .
+
+
+> depthwalk@1.0.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: depth ingestion rejects truncated outputs and BigInt samples before writing
+ok 1 - depth ingestion rejects truncated outputs and BigInt samples before writing
+  ---
+  duration_ms: 2.6918
+  type: 'test'
+  ...
+# Subtest: image fidelity rejects malformed comparisons instead of emitting NaN scores
+ok 2 - image fidelity rejects malformed comparisons instead of emitting NaN scores
+  ---
+  duration_ms: 0.2959
+  type: 'test'
+  ...
+# Subtest: quieter preferences survive reload and corrupt or blocked storage stays usable
+ok 3 - quieter preferences survive reload and corrupt or blocked storage stays usable
+  ---
+  duration_ms: 0.4178
+  type: 'test'
+  ...
+# Subtest: 1080p full sweeps bound retained native pixels while covering sequence endpoints
+ok 4 - 1080p full sweeps bound retained native pixels while covering sequence endpoints
+  ---
+  duration_ms: 2.0029
+  type: 'test'
+  ...
+# Subtest: bounded previews preserve all benchmark measurements and accept unaligned color bytes
+ok 5 - bounded previews preserve all benchmark measurements and accept unaligned color bytes
+  ---
+  duration_ms: 358.1349
+  type: 'test'
+  ...
+# Subtest: cancellation after the last analyzed frame prevents extra color-probe renders
+ok 6 - cancellation after the last analyzed frame prevents extra color-probe renders
+  ---
+  duration_ms: 152.363
+  type: 'test'
+  ...
+# Subtest: benchmark rejects calibration changes and incompatible ground truth before rendering
+ok 7 - benchmark rejects calibration changes and incompatible ground truth before rendering
+  ---
+  duration_ms: 57.8445
+  type: 'test'
+  ...
+# {"motionRMSRatio":0.6961842650390436,"reusedFraction":0.9190302309782609,"contrastRatio":0.99957740276801}
+# Subtest: carrier transport reduces motion flicker without blur, stale disparity or stationary drift
+ok 8 - carrier transport reduces motion flicker without blur, stale disparity or stationary drift
+  ---
+  duration_ms: 2052.738
+  type: 'test'
+  ...
+# Subtest: local chroma matches linear luminance across saturated colors without clipping the carrier
+ok 9 - local chroma matches linear luminance across saturated colors without clipping the carrier
+  ---
+  duration_ms: 4.5766
+  type: 'test'
+  ...
+# Subtest: diamond color reaches its visible eye pair but cannot propagate remote bands
+ok 10 - diamond color reaches its visible eye pair but cannot propagate remote bands
+  ---
+  duration_ms: 524.7954
+  type: 'test'
+  ...
+# Subtest: local colors retain the complete stereo graph in linear luminance, not identical RGB
+ok 11 - local colors retain the complete stereo graph in linear luminance, not identical RGB
+  ---
+  duration_ms: 231.8417
+  type: 'test'
+  ...
+# Subtest: local color is stable, seam-free, origin-aware and falls back without color
+ok 12 - local color is stable, seam-free, origin-aware and falls back without color
+  ---
+  duration_ms: 1651.5273
+  type: 'test'
+  ...
+# Subtest: background color loses saturation when its eye partner belongs to a different foreground hue
+ok 13 - background color loses saturation when its eye partner belongs to a different foreground hue
+  ---
+  duration_ms: 79.0286
+  type: 'test'
+  ...
+# Subtest: silhouette contours stay on the foreground side and leave interiors clear
+ok 14 - silhouette contours stay on the foreground side and leave interiors clear
+  ---
+  duration_ms: 3.4358
+  type: 'test'
+  ...
+# Subtest: normal discontinuities reveal building corners at continuous depth
+ok 15 - normal discontinuities reveal building corners at continuous depth
+  ---
+  duration_ms: 1.9489
+  type: 'test'
+  ...
+# Subtest: smooth planes and texture metadata do not create false geometry contours
+ok 16 - smooth planes and texture metadata do not create false geometry contours
+  ---
+  duration_ms: 2.6133
+  type: 'test'
+  ...
+# Subtest: contour width tracks CSS pixels and bold is wider than crisp
+ok 17 - contour width tracks CSS pixels and bold is wider than crisp
+  ---
+  duration_ms: 2.7921
+  type: 'test'
+  ...
+# Subtest: bold contours strengthen contrast at their actual stereo depth in every pattern
+ok 18 - bold contours strengthen contrast at their actual stereo depth in every pattern
+  ---
+  duration_ms: 157.1849
+  type: 'test'
+  ...
+# Subtest: hidden contours cannot tint a visible equivalence class
+ok 19 - hidden contours cannot tint a visible equivalence class
+  ---
+  duration_ms: 8.0285
+  type: 'test'
+  ...
+# Subtest: halo rows preserve identical contours and pixels across worker seams
+ok 20 - halo rows preserve identical contours and pixels across worker seams
+  ---
+  duration_ms: 78.4544
+  type: 'test'
+  ...
+# Subtest: linear and perspective/reversed/orthographic device depth agree in world units
+ok 21 - linear and perspective/reversed/orthographic device depth agree in world units
+  ---
+  duration_ms: 4.5571
+  type: 'test'
+  ...
+# Subtest: row origins and packed RG depth ignore every host color/normal byte
+ok 22 - row origins and packed RG depth ignore every host color/normal byte
+  ---
+  duration_ms: 3.7262
+  type: 'test'
+  ...
+# Subtest: normalized proximity maps to the same scalar distances as view-Z
+ok 23 - normalized proximity maps to the same scalar distances as view-Z
+  ---
+  duration_ms: 0.3772
+  type: 'test'
+  ...
+# Subtest: depth-only geometry reconstructs a floor without any supplied normals or labels
+ok 24 - depth-only geometry reconstructs a floor without any supplied normals or labels
+  ---
+  duration_ms: 48.5787
+  type: 'test'
+  ...
+# Subtest: depth-only creases are found where planes meet without a depth jump
+ok 25 - depth-only creases are found where planes meet without a depth jump
+  ---
+  duration_ms: 26.7705
+  type: 'test'
+  ...
+# Subtest: orthographic planar depth also stays free of false contour bands
+ok 26 - orthographic planar depth also stays free of false contour bands
+  ---
+  duration_ms: 12.1944
+  type: 'test'
+  ...
+# Subtest: public filter produces real stable stereo from an engine-free scalar depth map
+ok 27 - public filter produces real stable stereo from an engine-free scalar depth map
+  ---
+  duration_ms: 79.6179
+  type: 'test'
+  ...
+# Subtest: filter stripe halos reproduce full-frame shading and contours at all qualities
+ok 28 - filter stripe halos reproduce full-frame shading and contours at all qualities
+  ---
+  duration_ms: 333.0707
+  type: 'test'
+  ...
+# Subtest: API rejects ambiguous frame formats and invalid bounds
+ok 29 - API rejects ambiguous frame formats and invalid bounds
+  ---
+  duration_ms: 1.2768
+  type: 'test'
+  ...
+# Subtest: two-frame pipeline stays bounded, exclusive readbacks drain and block rendering
+ok 30 - two-frame pipeline stays bounded, exclusive readbacks drain and block rendering
+  ---
+  duration_ms: 2.2816
+  type: 'test'
+  ...
+# Subtest: RAF polling releases submission-triggered Firefox callbacks without unbounded rendering
+ok 31 - RAF polling releases submission-triggered Firefox callbacks without unbounded rendering
+  ---
+  duration_ms: 2.5495
+  type: 'test'
+  ...
+# Subtest: slow devices cannot accumulate real frames and duplicate polls are bounded
+ok 32 - slow devices cannot accumulate real frames and duplicate polls are bounded
+  ---
+  duration_ms: 0.2689
+  type: 'test'
+  ...
+# Subtest: stationary startup has no camera motion
+ok 33 - stationary startup has no camera motion
+  ---
+  duration_ms: 9.8704
+  type: 'test'
+  ...
+# Subtest: released movement and turn ease out and then stop exactly
+ok 34 - released movement and turn ease out and then stop exactly
+  ---
+  duration_ms: 5.3559
+  type: 'test'
+  ...
+# Subtest: W/S and A/D move on the ground in the expected camera axes
+ok 35 - W/S and A/D move on the ground in the expected camera axes
+  ---
+  duration_ms: 1.7105
+  type: 'test'
+  ...
+# Subtest: arrow keys turn smoothly and movement follows orientation
+ok 36 - arrow keys turn smoothly and movement follows orientation
+  ---
+  duration_ms: 2.7197
+  type: 'test'
+  ...
+# Subtest: either Shift sprints, releases smoothly and retains collision protection
+ok 37 - either Shift sprints, releases smoothly and retains collision protection
+  ---
+  duration_ms: 8.5143
+  type: 'test'
+  ...
+# Subtest: diagonal speed is normalized
+ok 38 - diagonal speed is normalized
+  ---
+  duration_ms: 1.2744
+  type: 'test'
+  ...
+# Subtest: building collisions stop the player and allow sliding
+ok 39 - building collisions stop the player and allow sliding
+  ---
+  duration_ms: 6.9374
+  type: 'test'
+  ...
+# Subtest: perimeter containment and long-frame protection
+ok 40 - perimeter containment and long-frame protection
+  ---
+  duration_ms: 10.7677
+  type: 'test'
+  ...
+# Subtest: all beacon positions are walkable and collections are unique
+ok 41 - all beacon positions are walkable and collections are unique
+  ---
+  duration_ms: 0.6077
+  type: 'test'
+  ...
+# Subtest: every beacon is reachable from the plaza through collision-free routes
+ok 42 - every beacon is reachable from the plaza through collision-free routes
+  ---
+  duration_ms: 54.3624
+  type: 'test'
+  ...
+# Subtest: building interiors are solid
+ok 43 - building interiors are solid
+  ---
+  duration_ms: 0.4898
+  type: 'test'
+  ...
+# Subtest: new planters are solid while center streets remain open
+ok 44 - new planters are solid while center streets remain open
+  ---
+  duration_ms: 2.6506
+  type: 'test'
+  ...
+# Subtest: independent observer recovers an analytical repeat, flags harmonics separately, and aligns eye colors
+ok 45 - independent observer recovers an analytical repeat, flags harmonics separately, and aligns eye colors
+  ---
+  duration_ms: 47.4673
+  type: 'test'
+  ...
+# Subtest: flat images have no supported depth and cannot gain confidence from ground truth
+ok 46 - flat images have no supported depth and cannot gain confidence from ground truth
+  ---
+  duration_ms: 11.6578
+  type: 'test'
+  ...
+# Subtest: an apparently decodable stereo carrier still exposes eye-color disagreement
+ok 47 - an apparently decodable stereo carrier still exposes eye-color disagreement
+  ---
+  duration_ms: 47.4526
+  type: 'test'
+  ...
+# Subtest: wrong disparity is rejected independently of image contrast and coverage
+ok 48 - wrong disparity is rejected independently of image contrast and coverage
+  ---
+  duration_ms: 19.064
+  type: 'test'
+  ...
+# Subtest: freshly randomized but valid stereo detects motion static that single-frame disparity misses
+ok 49 - freshly randomized but valid stereo detects motion static that single-frame disparity misses
+  ---
+  duration_ms: 52.4256
+  type: 'test'
+  ...
+# Subtest: region maps leave image-border exclusions unscored and thresholds do not claim comfort
+ok 50 - region maps leave image-border exclusions unscored and thresholds do not claim comfort
+  ---
+  duration_ms: 25.889
+  type: 'test'
+  ...
+# Subtest: temporal disparity evaluation removes intended motion but detects stale decoded depth
+ok 51 - temporal disparity evaluation removes intended motion but detects stale decoded depth
+  ---
+  duration_ms: 48.2848
+  type: 'test'
+  ...
+# Subtest: counterfactual color probe distinguishes local edits from remote repeated outlines
+ok 52 - counterfactual color probe distinguishes local edits from remote repeated outlines
+  ---
+  duration_ms: 2.0324
+  type: 'test'
+  ...
+# Subtest: linear color distance transform handles disconnected masks, empty rows and image boundaries
+ok 53 - linear color distance transform handles disconnected masks, empty rows and image boundaries
+  ---
+  duration_ms: 1.9054
+  type: 'test'
+  ...
+# Subtest: observer rejects malformed grids and unbounded calibration rather than silently reporting empty success
+ok 54 - observer rejects malformed grids and unbounded calibration rather than silently reporting empty success
+  ---
+  duration_ms: 39.996
+  type: 'test'
+  ...
+# Subtest: a remote color-spread warning cannot also claim that no thresholds were crossed
+ok 55 - a remote color-spread warning cannot also claim that no thresholds were crossed
+  ---
+  duration_ms: 0.3212
+  type: 'test'
+  ...
+# Subtest: independent decoder recovers a hand-constructed repeat period without source depth
+ok 56 - independent decoder recovers a hand-constructed repeat period without source depth
+  ---
+  duration_ms: 112.6529
+  type: 'test'
+  ...
+# Subtest: changing comparison ground truth never changes the recovered image
+ok 57 - changing comparison ground truth never changes the recovered image
+  ---
+  duration_ms: 16.6769
+  type: 'test'
+  ...
+# Subtest: blank and blurred signals do not receive the confidence of sharp dots
+ok 58 - blank and blurred signals do not receive the confidence of sharp dots
+  ---
+  duration_ms: 64.491
+  type: 'test'
+  ...
+# Subtest: overlapping geometry can be decoded independently with error and ambiguity exposed
+ok 59 - overlapping geometry can be decoded independently with error and ambiguity exposed
+  ---
+  duration_ms: 86.3154
+  type: 'test'
+  ...
+# Subtest: scene color is optional and geometry fallback remains byte-identical
+ok 60 - scene color is optional and geometry fallback remains byte-identical
+  ---
+  duration_ms: 104.4944
+  type: 'test'
+  ...
+# Subtest: scene colors influence hue while all geometry correspondences remain identical
+ok 61 - scene colors influence hue while all geometry correspondences remain identical
+  ---
+  duration_ms: 69.5543
+  type: 'test'
+  ...
+# Subtest: scene colors preserve row origin, worker seams and input buffers
+ok 62 - scene colors preserve row origin, worker seams and input buffers
+  ---
+  duration_ms: 60.1696
+  type: 'test'
+  ...
+# Subtest: scene-color dots retain a unique intended separation at fixed depth
+ok 63 - scene-color dots retain a unique intended separation at fixed depth
+  ---
+  duration_ms: 27.4711
+  type: 'test'
+  ...
+# Subtest: automatic quality responds to sustained work bottlenecks, not refresh limits alone
+ok 64 - automatic quality responds to sustained work bottlenecks, not refresh limits alone
+  ---
+  duration_ms: 0.4338
+  type: 'test'
+  ...
+# Subtest: CPU auto quality can recover at its intentional 40 fps cap
+ok 65 - CPU auto quality can recover at its intentional 40 fps cap
+  ---
+  duration_ms: 0.202
+  type: 'test'
+  ...
+# Subtest: exposed roots cannot form high-contrast vertical color ribbons
+ok 66 - exposed roots cannot form high-contrast vertical color ribbons
+  ---
+  duration_ms: 27.8326
+  type: 'test'
+  ...
+# Subtest: shaded ramps retain eight ordered opaque tones through the nearest contour highlight
+ok 67 - shaded ramps retain eight ordered opaque tones through the nearest contour highlight
+  ---
+  duration_ms: 5.6952
+  type: 'test'
+  ...
+# Subtest: the same surface gets distinctly brighter with proximity without weakening stereo contrast
+ok 68 - the same surface gets distinctly brighter with proximity without weakening stereo contrast
+  ---
+  duration_ms: 168.4126
+  type: 'test'
+  ...
+# Subtest: depth-derived colors use paving, masonry and consistent foliage-like greens
+ok 69 - depth-derived colors use paving, masonry and consistent foliage-like greens
+  ---
+  duration_ms: 110.76
+  type: 'test'
+  ...
+# Subtest: a local hue change cannot tint unrelated stereo classes across the same row
+ok 70 - a local hue change cannot tint unrelated stereo classes across the same row
+  ---
+  duration_ms: 5.4246
+  type: 'test'
+  ...
+# Subtest: background is dark blue and remains sharply fuseable at the far spacing
+ok 71 - background is dark blue and remains sharply fuseable at the far spacing
+  ---
+  duration_ms: 33.8547
+  type: 'test'
+  ...
+# Subtest: overlapping shaded geometry preserves every final stereo link and independent exposed seeds
+ok 72 - overlapping shaded geometry preserves every final stereo link and independent exposed seeds
+  ---
+  duration_ms: 172.9357
+  type: 'test'
+  ...
+# Subtest: shaded contours keep their contrast advantage at both far and near depths
+ok 73 - shaded contours keep their contrast advantage at both far and near depths
+  ---
+  duration_ms: 54.2181
+  type: 'test'
+  ...
+# Subtest: parallel viewing: near surfaces have smaller disparity than far surfaces
+ok 74 - parallel viewing: near surfaces have smaller disparity than far surfaces
+  ---
+  duration_ms: 2.0098
+  type: 'test'
+  ...
+# Subtest: canonical depth gives deterministic round-half-up pixel separation
+ok 75 - canonical depth gives deterministic round-half-up pixel separation
+  ---
+  duration_ms: 0.3455
+  type: 'test'
+  ...
+# Subtest: flat depth creates exact binocular correspondences at its predicted spacing
+ok 76 - flat depth creates exact binocular correspondences at its predicted spacing
+  ---
+  duration_ms: 33.1658
+  type: 'test'
+  ...
+# Subtest: foreground slab and background encode distinct measurable disparities
+ok 77 - foreground slab and background encode distinct measurable disparities
+  ---
+  duration_ms: 4.4273
+  type: 'test'
+  ...
+# Subtest: overlap edges reject hidden eye-ray constraints
+ok 78 - overlap edges reject hidden eye-ray constraints
+  ---
+  duration_ms: 1.2533
+  type: 'test'
+  ...
+# Subtest: zero depth strength is a uniform repeated texture regardless of geometry
+ok 79 - zero depth strength is a uniform repeated texture regardless of geometry
+  ---
+  duration_ms: 4.7332
+  type: 'test'
+  ...
+# Subtest: identical depth frames are byte-identical over time
+ok 80 - identical depth frames are byte-identical over time
+  ---
+  duration_ms: 15.1968
+  type: 'test'
+  ...
+# Subtest: GPU bottom-up rows become correct top-down output rows
+ok 81 - GPU bottom-up rows become correct top-down output rows
+  ---
+  duration_ms: 0.4214
+  type: 'test'
+  ...
+# Subtest: DPR and quality preserve apparent pattern spacing
+ok 82 - DPR and quality preserve apparent pattern spacing
+  ---
+  duration_ms: 0.4669
+  type: 'test'
+  ...
+# Subtest: 1080p output is generated at native dimensions
+ok 83 - 1080p output is generated at native dimensions
+  ---
+  duration_ms: 155.0753
+  type: 'test'
+  ...
+# Subtest: parallel row chunks reproduce the exact single-worker image without seams
+ok 84 - parallel row chunks reproduce the exact single-worker image without seams
+  ---
+  duration_ms: 13.6454
+  type: 'test'
+  ...
+# Subtest: surface colors preserve exact matching pixels across mixed materials and detail
+ok 85 - surface colors preserve exact matching pixels across mixed materials and detail
+  ---
+  duration_ms: 11.9059
+  type: 'test'
+  ...
+# Subtest: surface families have different hues without changing depth
+ok 86 - surface families have different hues without changing depth
+  ---
+  duration_ms: 8.7132
+  type: 'test'
+  ...
+# Subtest: material encoding is stable and parallel chunks are bit-identical
+ok 87 - material encoding is stable and parallel chunks are bit-identical
+  ---
+  duration_ms: 35.7442
+  type: 'test'
+  ...
+# Subtest: classic style ignores material metadata
+ok 88 - classic style ignores material metadata
+  ---
+  duration_ms: 2.5239
+  type: 'test'
+  ...
+# Subtest: unconstrained edge pixels retain the surface palette instead of sky outlines
+ok 89 - unconstrained edge pixels retain the surface palette instead of sky outlines
+  ---
+  duration_ms: 0.2145
+  type: 'test'
+  ...
+# Subtest: mixing materials retains the full sharp contrast signal
+ok 90 - mixing materials retains the full sharp contrast signal
+  ---
+  duration_ms: 24.0731
+  type: 'test'
+  ...
+# Subtest: only the intended separation has a strong correlation peak within the depth range
+ok 91 - only the intended separation has a strong correlation peak within the depth range
+  ---
+  duration_ms: 22.994
+  type: 'test'
+  ...
+# Subtest: occlusion-freed seeds do not wrap and falsely match across repeated periods
+ok 92 - occlusion-freed seeds do not wrap and falsely match across repeated periods
+  ---
+  duration_ms: 46.3012
+  type: 'test'
+  ...
+# Subtest: dot size follows CSS pixels across display scaling and worker row boundaries
+ok 93 - dot size follows CSS pixels across display scaling and worker row boundaries
+  ---
+  duration_ms: 0.7964
+  type: 'test'
+  ...
+# Subtest: neutral mode preserves correspondence without material or chromatic cues
+ok 94 - neutral mode preserves correspondence without material or chromatic cues
+  ---
+  duration_ms: 2.5704
+  type: 'test'
+  ...
+# Subtest: surface color fit reduces original-image error without violating selected visible pairs
+ok 95 - surface color fit reduces original-image error without violating selected visible pairs
+  ---
+  duration_ms: 145.4969
+  type: 'test'
+  ...
+# Subtest: quiet mode retains the complete dense constraint graph with reduced grain
+ok 96 - quiet mode retains the complete dense constraint graph with reduced grain
+  ---
+  duration_ms: 71.5079
+  type: 'test'
+  ...
+# Subtest: surface styles remain deterministic, immutable and seamless across worker stripes
+ok 97 - surface styles remain deterministic, immutable and seamless across worker stripes
+  ---
+  duration_ms: 310.1176
+  type: 'test'
+  ...
+# Subtest: surface support changes coverage while absent colors retain the portable fallback
+ok 98 - surface support changes coverage while absent colors retain the portable fallback
+  ---
+  duration_ms: 72.1965
+  type: 'test'
+  ...
+# Subtest: surface texture supplies measurable image-only depth, with weak areas left uncertain
+ok 99 - surface texture supplies measurable image-only depth, with weak areas left uncertain
+  ---
+  duration_ms: 82.7772
+  type: 'test'
+  ...
+# Subtest: image-fidelity metrics preserve row origin and separate fine grain from broad color shifts
+ok 100 - image-fidelity metrics preserve row origin and separate fine grain from broad color shifts
+  ---
+  duration_ms: 2.8448
+  type: 'test'
+  ...
+# Subtest: diagnostic requests match IDs even when replies arrive out of order
+ok 101 - diagnostic requests match IDs even when replies arrive out of order
+  ---
+  duration_ms: 2.5498
+  type: 'test'
+  ...
+# Subtest: aborting active analysis terminates computation and rejects every waiter
+ok 102 - aborting active analysis terminates computation and rejects every waiter
+  ---
+  duration_ms: 3.2676
+  type: 'test'
+  ...
+# Subtest: worker crashes, bad messages, send failures and timeouts settle promises
+ok 103 - worker crashes, bad messages, send failures and timeouts settle promises
+  ---
+  duration_ms: 12.2673
+  type: 'test'
+  ...
+# Subtest: already aborted requests never dispatch work
+ok 104 - already aborted requests never dispatch work
+  ---
+  duration_ms: 0.3111
+  type: 'test'
+  ...
+# Subtest: malformed worker envelopes settle active requests immediately
+ok 105 - malformed worker envelopes settle active requests immediately
+  ---
+  duration_ms: 8.1215
+  type: 'test'
+  ...
+1..105
+# tests 105
+# suites 0
+# pass 105
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2684.7869
+
+> depthwalk@1.0.0 build
+> vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 40 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/tests/gpu-checks.html                    1.11 kB │ gzip:   0.63 kB
+dist/tests/observer-lab.html                  5.33 kB │ gzip:   2.18 kB
+dist/index.html                               7.37 kB │ gzip:   2.81 kB
+dist/assets/reconstruct.worker-TM4lzZI2.js   13.58 kB
+dist/assets/stereo.worker-ZVQmDrez.js        20.27 kB
+dist/assets/observer.worker-CxphGYZz.js      28.02 kB
+dist/assets/observer-m1X4mXvW.css             2.44 kB │ gzip:   1.06 kB
+dist/assets/game-Oueotf1y.css                 9.85 kB │ gzip:   3.01 kB
+dist/assets/worker-client-Bi7wRu4N.js         1.49 kB │ gzip:   0.66 kB
+dist/assets/city-renderer-iCof2vNd.js         7.04 kB │ gzip:   2.98 kB
+dist/assets/panel-CTaEKAaL.js                 8.63 kB │ gzip:   3.83 kB
+dist/assets/gpuChecks-C7JdsJMo.js            13.87 kB │ gzip:   5.07 kB
+dist/assets/game-Cw274-Ho.js                 19.35 kB │ gzip:   7.47 kB
+dist/assets/depthwalk-DvOMIlES.js            20.41 kB │ gzip:   8.20 kB
+dist/assets/depthwalk-gpu-DRZk0Mz0.js        23.91 kB │ gzip:   8.02 kB
+dist/assets/observer-DvYO8yUN.js             52.10 kB │ gzip:  17.40 kB
+dist/assets/three-depth-B4pbitu9.js         490.35 kB │ gzip: 124.95 kB
+✓ built in 1.46s

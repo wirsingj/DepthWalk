@@ -1,0 +1,523 @@
+{
+  "scope": "Bounded stereo window; local Chromium WebGPU and CPU workers; uncommitted checkout",
+  "gpuFixtures": [
+    {
+      "name": "GPU flat depths have only the intended stereo correlation",
+      "pass": true,
+      "detail": "5 depths; exact intended correlation and strong contrast"
+    },
+    {
+      "name": "GPU union classes match the CPU occlusion solver exactly",
+      "pass": true,
+      "detail": "660,000 root labels; overlaps, annulus and curved depths; stable pixels"
+    },
+    {
+      "name": "GPU coloring agrees with the portable filter on planar depth",
+      "pass": true,
+      "detail": "all three styles; exact RGB equality"
+    },
+    {
+      "name": "GPU constraints and seed sizing follow all viewing controls",
+      "pass": true,
+      "detail": "5 settings combinations, 1.1 million exact root labels"
+    },
+    {
+      "name": "GPU scene-color mode falls back to generated colors without an optional input",
+      "pass": true,
+      "detail": "exact generated-color fallback"
+    },
+    {
+      "name": "GPU pixel-only readback equals full diagnostics in dense and paired modes",
+      "pass": true,
+      "detail": "Exact native RGBA equality with 50% / 75% less mapped data"
+    },
+    {
+      "name": "GPU scene colors match CPU coloring and preserve every class across overlaps",
+      "pass": true,
+      "detail": "220,000 exact classes; deterministic RGB; mean CPU difference 0.00000/255"
+    },
+    {
+      "name": "GPU surface and quiet modes preserve support classes and agree with CPU color fitting",
+      "pass": true,
+      "detail": "6 settings; stationary equality; 41289 sparse pairs; worst mean CPU error 0.00005/255"
+    },
+    {
+      "name": "GPU temporal carrier agrees with CPU, reduces motion changes and holds current disparity",
+      "pass": true,
+      "detail": "16 moving frames; brightness-change RMS ratio 0.6686; mean CPU error 0.00000/255; exact current grayscale pairs; stable after stopping"
+    },
+    {
+      "name": "GPU soft paired preserves CPU projection and stationary output",
+      "pass": true,
+      "detail": "5 frames including motion and hold; worst CPU RGB error 0.00000/255"
+    },
+    {
+      "name": "GPU pipeline reports no validation errors",
+      "pass": true,
+      "detail": "compute, atomics and presentation completed"
+    },
+    {
+      "name": "GPU paired color aligns foreground hues and prevents remote object-color spill",
+      "pass": true,
+      "detail": "3 settings; worst mean CPU RGB error 0.00000/255; paired linear-light error 0.00413; 16576 foreground hue pairs aligned; zero recoloring outside projected ring silhouettes. Previews: same depth/source, different color treatment."
+    },
+    {
+      "name": "Bounded center: graph isolation, exact outer scene, CPU agreement and stability",
+      "pass": true,
+      "detail": "18 configurations; no pairs or color propagation cross the boundary; outside equals source exactly"
+    }
+  ],
+  "gpuGame": [
+    {
+      "name": "quiet stereo has adjustable support and the rejected sparse experiment is outside the game",
+      "pass": true
+    },
+    {
+      "name": "stationary scene and stable pattern",
+      "pass": true,
+      "detail": "1280 × 720"
+    },
+    {
+      "name": "GPU depth agrees with raycast geometry",
+      "pass": true,
+      "detail": "68 surfaces, 9 sky, max error 0.000011"
+    },
+    {
+      "name": "demo supplies scalar depth without material, color or normal metadata",
+      "pass": true,
+      "detail": "RG depth only; B=0 and A=255 throughout"
+    },
+    {
+      "name": "live stereo output agrees with the independent CPU reference",
+      "pass": true,
+      "detail": "921600 exact constraint roots; 99.99% exact RGB, mean channel difference 0.001/255"
+    },
+    {
+      "name": "rendered city has correct stereo pixel pairs",
+      "pass": true,
+      "detail": "99.75% of 4814 interior pairs"
+    },
+    {
+      "name": "live city retains strong dot contrast",
+      "pass": true,
+      "detail": "RMS contrast 0.605"
+    },
+    {
+      "name": "optional scene-color input matches the actual normal render",
+      "pass": true,
+      "detail": "100.00% exact channels; mean difference 0.0000/255 including lighting/textures"
+    },
+    {
+      "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+      "pass": true
+    },
+    {
+      "name": "edge definition changes only contour classes and restores without camera motion",
+      "pass": true,
+      "detail": "58819 contour samples; 33.3% of matching pixels emphasized"
+    },
+    {
+      "name": "scene/generated/classic styles preserve camera and restore source colors",
+      "pass": true
+    },
+    {
+      "name": "neutral pattern and dot size preserve pose and restore deterministically",
+      "pass": true
+    },
+    {
+      "name": "all views preserve camera pose",
+      "pass": true
+    },
+    {
+      "name": "R cycles views and E cycles all styles without requesting mouse release",
+      "pass": true,
+      "detail": "no Pointer Lock exit calls; pose preserved (actual capture requires a permitted browser)"
+    },
+    {
+      "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+      "pass": true,
+      "detail": "WebGPU → CPU → WebGPU"
+    },
+    {
+      "name": "quiet mode updates support, preserves all classes and reproduces CPU source fitting",
+      "pass": true,
+      "detail": "support restores deterministically; complete stereo class RGB exact"
+    },
+    {
+      "name": "paired-color experiment preserves pose, source orientation and CPU/GPU output",
+      "pass": true,
+      "detail": "aligned source colors; CPU match; stability enabled; no texture drift after walking/turning/stopping; pose restored"
+    },
+    {
+      "name": "active stereo renderer follows walking and turning without stationary drift",
+      "pass": true,
+      "detail": "WebGPU camera/depth/pattern update"
+    },
+    {
+      "name": "W/S forward and backward DOM controls",
+      "pass": true
+    },
+    {
+      "name": "A/D strafe DOM controls",
+      "pass": true
+    },
+    {
+      "name": "arrow turn DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Shift sprint is faster and key release returns to walking",
+      "pass": true,
+      "detail": "1.99× walking distance; 2.99 walking speed after Shift release"
+    },
+    {
+      "name": "Escape clears held movement immediately",
+      "pass": true
+    },
+    {
+      "name": "building collision in the running game",
+      "pass": true,
+      "detail": "stopped at x=7.520"
+    },
+    {
+      "name": "HUD hide and restore",
+      "pass": true
+    },
+    {
+      "name": "guide pauses movement",
+      "pass": true
+    },
+    {
+      "name": "five walk-in collections and completion UI",
+      "pass": true
+    },
+    {
+      "name": "central stereo sizes preserve pose and the outer original render",
+      "pass": true,
+      "detail": "2/3/4 widths; exact outside RGB; no camera changes"
+    }
+  ],
+  "cpuGame": [
+    {
+      "name": "quiet stereo has adjustable support and the rejected sparse experiment is outside the game",
+      "pass": true
+    },
+    {
+      "name": "stationary scene and stable pattern",
+      "pass": true,
+      "detail": "1280 × 720"
+    },
+    {
+      "name": "GPU depth agrees with raycast geometry",
+      "pass": true,
+      "detail": "68 surfaces, 9 sky, max error 0.000011"
+    },
+    {
+      "name": "demo supplies scalar depth without material, color or normal metadata",
+      "pass": true,
+      "detail": "RG depth only; B=0 and A=255 throughout"
+    },
+    {
+      "name": "live stereo output agrees with the independent CPU reference",
+      "pass": true,
+      "detail": "921600 exact CPU/worker pixels, no engine objects supplied"
+    },
+    {
+      "name": "rendered city has correct stereo pixel pairs",
+      "pass": true,
+      "detail": "99.75% of 4814 interior pairs"
+    },
+    {
+      "name": "live city retains strong dot contrast",
+      "pass": true,
+      "detail": "RMS contrast 0.605"
+    },
+    {
+      "name": "optional scene-color input matches the actual normal render",
+      "pass": true,
+      "detail": "100.00% exact channels; mean difference 0.0000/255 including lighting/textures"
+    },
+    {
+      "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+      "pass": true
+    },
+    {
+      "name": "edge definition changes only contour classes and restores without camera motion",
+      "pass": true,
+      "detail": "58819 contour samples; 33.3% of matching pixels emphasized"
+    },
+    {
+      "name": "scene/generated/classic styles preserve camera and restore source colors",
+      "pass": true
+    },
+    {
+      "name": "neutral pattern and dot size preserve pose and restore deterministically",
+      "pass": true
+    },
+    {
+      "name": "all views preserve camera pose",
+      "pass": true
+    },
+    {
+      "name": "R cycles views and E cycles all styles without requesting mouse release",
+      "pass": true,
+      "detail": "no Pointer Lock exit calls; pose preserved (actual capture requires a permitted browser)"
+    },
+    {
+      "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+      "pass": true,
+      "detail": "CPU fallback retained"
+    },
+    {
+      "name": "quiet mode updates support, preserves all classes and reproduces CPU source fitting",
+      "pass": true,
+      "detail": "support restores deterministically; complete stereo class RGB exact"
+    },
+    {
+      "name": "paired-color experiment preserves pose, source orientation and CPU/GPU output",
+      "pass": true,
+      "detail": "aligned source colors; CPU match; stability enabled; no texture drift after walking/turning/stopping; pose restored"
+    },
+    {
+      "name": "active stereo renderer follows walking and turning without stationary drift",
+      "pass": true,
+      "detail": "CPU camera/depth/pattern update"
+    },
+    {
+      "name": "W/S forward and backward DOM controls",
+      "pass": true
+    },
+    {
+      "name": "A/D strafe DOM controls",
+      "pass": true
+    },
+    {
+      "name": "arrow turn DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Shift sprint is faster and key release returns to walking",
+      "pass": true,
+      "detail": "2.00× walking distance; 2.99 walking speed after Shift release"
+    },
+    {
+      "name": "Escape clears held movement immediately",
+      "pass": true
+    },
+    {
+      "name": "building collision in the running game",
+      "pass": true,
+      "detail": "stopped at x=7.520"
+    },
+    {
+      "name": "HUD hide and restore",
+      "pass": true
+    },
+    {
+      "name": "guide pauses movement",
+      "pass": true
+    },
+    {
+      "name": "five walk-in collections and completion UI",
+      "pass": true
+    },
+    {
+      "name": "central stereo sizes preserve pose and the outer original render",
+      "pass": true,
+      "detail": "2/3/4 widths; exact outside RGB; no camera changes"
+    }
+  ],
+  "reconstruction": {
+    "schema": 1,
+    "recordedAt": "2026-09-26T09:44:34.236Z",
+    "pattern": "quiet",
+    "dimensions": [
+      480,
+      720
+    ],
+    "calibration": {
+      "spacing": 120,
+      "strength": 0.5
+    },
+    "search": [
+      54,
+      270
+    ],
+    "grid": [
+      120,
+      180
+    ],
+    "reconstruction": {
+      "sampled": 21600,
+      "valid": 15840,
+      "reliableFraction": 0.2775252525252525,
+      "ambiguousFraction": 0.05435606060606061,
+      "alternateLayerFraction": 0.6985479797979798,
+      "meanDotContrast": 0.17977868608751482,
+      "weakContrastFraction": 0.7780934343434344,
+      "zeroStrength": false
+    },
+    "comparison": {
+      "compared": 15840,
+      "meanDisparityError": 0.8705176767676768,
+      "withinTwoPixels": 0.9531565656565657,
+      "confident": 4396,
+      "confidentWrongFraction": 0.00045495905368516835,
+      "interior": 14212,
+      "interiorWithinTwoPixels": 0.9791021671826625
+    },
+    "analysisMs": 368.90000000596046,
+    "performance": {
+      "backend": "WebGPU",
+      "adapter": "nvidia · ampere",
+      "fallback": null,
+      "completionMs": 17.899999991059303,
+      "colorMs": 1,
+      "readbackMs": 0,
+      "width": 1280,
+      "height": 720,
+      "quality": "auto",
+      "build": "paired-chroma-3"
+    },
+    "capturePerformance": {
+      "backend": "WebGPU",
+      "adapter": "nvidia · ampere",
+      "fallback": null,
+      "completionMs": 99.90000000596046,
+      "colorMs": 0.800000011920929,
+      "readbackMs": 0,
+      "width": 1280,
+      "height": 720,
+      "quality": "auto",
+      "build": "paired-chroma-3",
+      "scope": "One-frame diagnostic readback; not interactive frame timing"
+    },
+    "limitations": [
+      "Local normalized correlation on native pixels, sampled on a grid; not a human perceptual model.",
+      "Alternate matches include inherent harmonic repetitions; they are candidates, not proof of perceived ghost layers."
+    ],
+    "stereoRegion": {
+      "left": 400,
+      "right": 880,
+      "width": 480,
+      "periods": 4
+    },
+    "surfaceDetail": 0.35,
+    "fidelity": {
+      "sourceRMSE": 25.28059475680341,
+      "broadColorRMSE": 15.420099958708972,
+      "broadWindow": [
+        25,
+        9
+      ],
+      "scope": "RGB error versus aligned original render; not a perceptual fusion score"
+    },
+    "temporalStability": false,
+    "signalMode": "Dense correspondence graph",
+    "observer": {
+      "version": "observer-1.1",
+      "summary": {
+        "eligible": 760,
+        "valid": 760,
+        "coverage": 1,
+        "supportedFraction": 0.5407894736842105,
+        "colorConflictFraction": 0.0174496644295302,
+        "colorPairs": 745,
+        "roundTripFailureFraction": 0.06842105263157895,
+        "scaleDisagreementFraction": 0.05394736842105263,
+        "ambiguousFraction": 0.04736842105263158,
+        "harmonicAlternativeFraction": 0.5184210526315789,
+        "nonharmonicAlternativeFraction": 0.26842105263157895,
+        "meanLumaResidual": 0.006245471690121651,
+        "meanContrast": 0.04944397235272211,
+        "largestUnsupportedRegion": 0.15921052631578947,
+        "zeroStrength": false
+      },
+      "evaluation": {
+        "all": {
+          "samples": 760,
+          "within2": 0.9434210526315789,
+          "mean": 1.3592105263157894,
+          "p95": 6
+        },
+        "boundaries": {
+          "samples": 59,
+          "within2": 0.6610169491525424,
+          "mean": 7.47457627118644,
+          "p95": 32
+        },
+        "interiors": {
+          "samples": 701,
+          "within2": 0.9671897289586305,
+          "mean": 0.8445078459343794,
+          "p95": 0
+        }
+      },
+      "unsupportedRegions": [
+        {
+          "samples": 121,
+          "bounds": [
+            72,
+            0,
+            342,
+            252
+          ]
+        },
+        {
+          "samples": 40,
+          "bounds": [
+            180,
+            576,
+            162,
+            144
+          ]
+        },
+        {
+          "samples": 20,
+          "bounds": [
+            180,
+            306,
+            108,
+            108
+          ]
+        },
+        {
+          "samples": 20,
+          "bounds": [
+            72,
+            576,
+            126,
+            108
+          ]
+        },
+        {
+          "samples": 17,
+          "bounds": [
+            72,
+            162,
+            54,
+            126
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "weak-support",
+          "message": "Large areas lack consistent, distinctive matching evidence. Inspect the unsupported-region map."
+        },
+        {
+          "severity": "warning",
+          "code": "alternate-depths",
+          "message": "Strong nonharmonic matches exist outside the calibrated depth range."
+        }
+      ],
+      "scope": "Image-only, linear-luminance multiscale correlation and chromaticity disagreement. Engineering thresholds are not calibrated human comfort probabilities."
+    }
+  },
+  "limits": [
+    "Central decoding is not human fusion confirmation.",
+    "CSS surround is excluded from decoded stereo pixels.",
+    "Fullscreen and pointer lock were not reverified."
+  ]
+}

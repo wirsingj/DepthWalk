@@ -1,0 +1,27 @@
+{
+  "beforeC": {
+    "frame": "1",
+    "profile": "quiet"
+  },
+  "originalState": {
+    "disabled": true,
+    "frame": "1",
+    "guidesHidden": true,
+    "height": 360,
+    "profile": "original",
+    "width": 640
+  },
+  "restoredState": {
+    "disabled": false,
+    "frame": "1",
+    "guidesHidden": false,
+    "height": 360,
+    "profile": "quiet",
+    "width": 640
+  },
+  "bState": {
+    "frame": "1",
+    "guidesHidden": false,
+    "profile": "quiet-stable"
+  }
+}

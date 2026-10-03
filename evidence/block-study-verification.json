@@ -1,0 +1,70 @@
+{
+  "recordedAt": "2026-10-03T00:24:12.6073645Z",
+  "revision": "Uncommitted main; no HEAD commit",
+  "environment": {
+    "browser": "Codex in-app Chromium",
+    "viewport": [
+      1280,
+      720
+    ],
+    "node": "22.22.3",
+    "os": "Windows",
+    "devicePixelRatio": 1,
+    "vite": "7.3.6",
+    "npm": "10.2.3",
+    "gpu": "NVIDIA Ampere"
+  },
+  "scope": "Opt-in Block study art variant and live demo selectors. Same city collision layout, beacon positions and filter. No perceptual acceptance or FPS speedup established.",
+  "checks": {
+    "gameplayScope": "Retro startup at native 1280x720; suite also changes resolution/backend; verifies switches in both directions and retained beacon visibility. Fullscreen and captured mouse not reverified.",
+    "productionBuild": "passed",
+    "unitTests": {
+      "passed": 157,
+      "failed": 0
+    },
+    "cpuGameplay": "block-study-cpu-gameplay.json",
+    "gameplayPassedPerBackend": 36,
+    "lint": "passed",
+    "gpuGameplay": "block-study-gpu-gameplay.json",
+    "productionSmoke": "Built preview: Block study loaded; Original/Block switches both ways; Colored 3D and Magic Eye work; NVIDIA WebGPU retained, zero signals retained, no captured console warnings/errors."
+  },
+  "comparison": {
+    "settings": "CPU; first collectible close-up; 640x360; spacing120; strength0.5; original direction; Quiet support0.55, edges3, dots1, temporal history",
+    "retro": "block-study-retro-close.json",
+    "original": "block-study-original-close.json",
+    "framesPerWorld": 30,
+    "profiles": [
+      "quiet",
+      "anchor",
+      "original"
+    ],
+    "conclusion": "Reduced scene complexity and modestly lower Quiet remote color spread/source error, similar decoded depth, greater screen-space motion change. Screen-wide repeated silhouettes persist. Anchor candidate still fails depth, conflict and motion gates."
+  },
+  "limitations": [
+    "No human stereo-fusion acceptance.",
+    "Geometry reduction is not a measured end-to-end FPS improvement.",
+    "An initial interrupted half-resolution integration preflight failed the tests expecting distinct thin/bold lines and 1/2px dots: those choices round to the same render pixels at scale0.5. Completed native-resolution runs pass.",
+    "Native GPU fixture suite was not rerun; filter implementation is unchanged."
+  ],
+  "sha256": {
+    "index.html": "08b3da576dac2e72db3e9000e9702f6a306f0c941836eec14a35472d09b60017",
+    "src/city.js": "fd2ff69a79034da4290c830c801ba8593b1f67d3ee47e9540abcccce6f9e0d57",
+    "src/main.js": "a47c29e93454d7de4a4adf3327bfc218e971c74d83ebc51bab7827550a24873a",
+    "src/style.css": "df5915569ffdc24bf44826d57d57b6dae9138877afd4e8e6242f4d0a28e21800",
+    "src/stereo.worker.js": "c57c6db6dd04ab8f818c5af8b405cb38ba9ceade56206bbbf33f45f6a097bfb9",
+    "src/game.js": "e4545ca2de6b934830f7ed78bcd129a09da7539502f238aaa6094642def16184",
+    "src/adapters/three-depth.js": "e089710b5346d2f6fb1773981d190b0f0176c07c9fc150be7929995bee5a582a",
+    "src/adapters/three-webgpu-depth.js": "9a17f34d1e10f5f936e3284e4de06bea5c364f1df7fb816ce36b7077aa9c69a8",
+    "src/gpu/city-renderer.js": "a3895fa5784df3b1b89463b9b0c970664a43445615d3045e51938f7c64885e9c",
+    "src/gpu/depthwalk-gpu.js": "d4237e3d8c35016a3a1641ff9c736091883430b12a15435a49ff464ad03303cb",
+    "src/gpu/stereogram.wgsl": "b0b49f471dc39c53724e9fa1859988b951b0c4d72e374712c20506f2d4ba3a8f",
+    "src/stereogram.js": "297703522a0d80b7250dc348e578c8353ea8303efbb4ce85bfa0208e89f4d775",
+    "src/depthwalk.js": "04eea81ecdda02345fa6bb63488cff6f2962c6b0f5c7ecae37c841bc17c23330",
+    "src/debug/benchmark.js": "b02bbb8223b38c367027a396e4310a3583ecfb72ea84efd6f67342e024661889",
+    "src/debug/rank-color.js": "d96ccae395996e62dd88664f8607262df6b5010aff33246147094a1d3e9ee020",
+    "tests/browser-checks.js": "e7f5827f268f4578343d9bb24790c2c4c46aae193dfa70d84106ba7afcc18b5b",
+    "tests/observer-lab.js": "8f7a0afb4f8dc3c86e39e978c005b1979464a2872150d40131ecc3c64467cd62",
+    "tests/observer-lab.html": "c0ea3cd3cedcc41b969ec1328634f10e5f184d00391088f09ec6b5b55c364edf",
+    "package-lock.json": "fe8e96953f460a32f7ae73fd8274a644c1fa10c504bc641c156ce36c716f4c17"
+  }
+}

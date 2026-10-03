@@ -1,0 +1,65 @@
+{
+  "scope": "Independent image-only reconstruction on constant-distance planes. This establishes encoded ordering, not human comfort.",
+  "dimensions": [
+    480,
+    24
+  ],
+  "spacing": 120,
+  "strength": 0.5,
+  "results": [
+    {
+      "pattern": "classic",
+      "invertDepth": false,
+      "foregroundDistance": 4,
+      "backgroundDistance": 40,
+      "foregroundSeparation": 88,
+      "backgroundSeparation": 115,
+      "foregroundHasSmallerSeparation": true
+    },
+    {
+      "pattern": "classic",
+      "invertDepth": true,
+      "foregroundDistance": 4,
+      "backgroundDistance": 40,
+      "foregroundSeparation": 115,
+      "backgroundSeparation": 88,
+      "foregroundHasSmallerSeparation": false
+    },
+    {
+      "pattern": "mono",
+      "invertDepth": false,
+      "foregroundDistance": 4,
+      "backgroundDistance": 40,
+      "foregroundSeparation": 88,
+      "backgroundSeparation": 115,
+      "foregroundHasSmallerSeparation": true
+    },
+    {
+      "pattern": "mono",
+      "invertDepth": true,
+      "foregroundDistance": 4,
+      "backgroundDistance": 40,
+      "foregroundSeparation": 115,
+      "backgroundSeparation": 88,
+      "foregroundHasSmallerSeparation": false
+    },
+    {
+      "pattern": "quiet",
+      "invertDepth": false,
+      "foregroundDistance": 4,
+      "backgroundDistance": 40,
+      "foregroundSeparation": 88,
+      "backgroundSeparation": 115,
+      "foregroundHasSmallerSeparation": true
+    },
+    {
+      "pattern": "quiet",
+      "invertDepth": true,
+      "foregroundDistance": 4,
+      "backgroundDistance": 40,
+      "foregroundSeparation": 115,
+      "backgroundSeparation": 88,
+      "foregroundHasSmallerSeparation": false
+    }
+  ]
+}

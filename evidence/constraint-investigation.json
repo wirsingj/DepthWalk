@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-26",
+  "sourceFingerprint": "5a5693579226872fd2ea5daaa145767836a7a53c58a5e93d667bddb9a3b3993c",
+  "sourceFiles": 66,
+  "scope": "CPU lab hypotheses and exact-color feasibility diagnostic; no game renderer changes this turn.",
+  "validation": {
+    "tests": 111,
+    "lint": "passed",
+    "build": "passed",
+    "syntheticFrames": 80,
+    "nearBeaconFrames": 80,
+    "browserErrors": []
+  },
+  "evidence": [
+    "ownership-synthetic.json",
+    "ownership-near.json",
+    "contrast-synthetic.json",
+    "contrast-near.json"
+  ],
+  "conclusion": "Projected ownership is scene-dependent. Selective weakening and single-scale local contrast reduce spill but fail city accuracy/color-conflict requirements. No candidate promoted.",
+  "memoryWords": {
+    "before": {
+      "SOT": 649,
+      "ARCHITECTURE": 650,
+      "MAINTAINER_GUIDE": 750,
+      "OBSERVER": 1769,
+      "STEREO-CONSTRAINTS": 0
+    },
+    "after": {
+      "SOT": 649,
+      "ARCHITECTURE": 650,
+      "MAINTAINER_GUIDE": 750,
+      "OBSERVER": 2009,
+      "STEREO-CONSTRAINTS": 507
+    }
+  },
+  "memoryGrowthReason": "Retain mathematical derivation, falsifiable hypotheses and held-out failures, not duplicate runtime logs."
+}

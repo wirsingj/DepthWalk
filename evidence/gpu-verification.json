@@ -1,0 +1,277 @@
+{
+  "recordedAt": "2026-09-26T03:29:22.762Z",
+  "revision": "uncommitted main; no HEAD",
+  "sourceFingerprint": "a5fde20f044e00ea2935c7bd4531f104e8285bdffe836e761101ddeb13479bf2",
+  "fingerprintMethod": "SHA256 of sorted path:SHA256(file) newline records for src/, tests/, index.html, package.json and package-lock.json; forward-slash paths",
+  "environment": "Windows; Codex embedded browser; Node 22.22.3",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "settings": {
+    "pattern": "geometry",
+    "dotSize": 1,
+    "spacing": 120,
+    "depthStrength": 0.5,
+    "edges": 2,
+    "quality": 1
+  },
+  "unitTests": {
+    "passed": 54,
+    "failed": 0
+  },
+  "productionBuild": "passed; Vite emitted a main-chunk size advisory",
+  "gpuFixtures": [
+    {
+      "name": "GPU flat depths have only the intended stereo correlation",
+      "pass": true,
+      "detail": "5 depths; exact intended correlation and strong contrast"
+    },
+    {
+      "name": "GPU union classes match the CPU occlusion solver exactly",
+      "pass": true,
+      "detail": "660,000 root labels; overlaps, annulus and curved depths; stable pixels"
+    },
+    {
+      "name": "GPU coloring agrees with the portable filter on planar depth",
+      "pass": true,
+      "detail": "all three styles; exact RGB equality"
+    },
+    {
+      "name": "GPU constraints and seed sizing follow all viewing controls",
+      "pass": true,
+      "detail": "5 settings combinations, 1.1 million exact root labels"
+    },
+    {
+      "name": "GPU pipeline reports no validation errors",
+      "pass": true,
+      "detail": "compute, atomics and presentation completed"
+    }
+  ],
+  "gpuGameplay": [
+    {
+      "name": "stationary scene and stable pattern",
+      "pass": true,
+      "detail": "1920 × 1080"
+    },
+    {
+      "name": "GPU depth agrees with raycast geometry",
+      "pass": true,
+      "detail": "68 surfaces, 9 sky, max error 0.000007"
+    },
+    {
+      "name": "demo supplies scalar depth without material, color or normal metadata",
+      "pass": true,
+      "detail": "RG depth only; B=0 and A=255 throughout"
+    },
+    {
+      "name": "live stereo output agrees with the independent CPU reference",
+      "pass": true,
+      "detail": "2073600 exact constraint roots; 99.46% exact RGB, mean channel difference 0.002/255"
+    },
+    {
+      "name": "rendered city has correct stereo pixel pairs",
+      "pass": true,
+      "detail": "99.85% of 11903 interior pairs"
+    },
+    {
+      "name": "live city retains strong dot contrast",
+      "pass": true,
+      "detail": "RMS contrast 0.564"
+    },
+    {
+      "name": "live shaded palette distinguishes dark blue skyline from warm near ground",
+      "pass": true,
+      "detail": "ground/sky luminance gap 48.3 / 255; distinct amber/blue hue families"
+    },
+    {
+      "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+      "pass": true
+    },
+    {
+      "name": "edge definition changes only contour classes and restores without camera motion",
+      "pass": true,
+      "detail": "105591 contour samples; 36.6% of matching pixels emphasized"
+    },
+    {
+      "name": "classic/DepthWalk pattern switch preserves camera and changes image",
+      "pass": true
+    },
+    {
+      "name": "neutral pattern and dot size preserve pose and restore deterministically",
+      "pass": true
+    },
+    {
+      "name": "all views preserve camera pose",
+      "pass": true
+    },
+    {
+      "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+      "pass": true,
+      "detail": "WebGPU → CPU → WebGPU"
+    },
+    {
+      "name": "active stereo renderer follows walking and turning without stationary drift",
+      "pass": true,
+      "detail": "WebGPU camera/depth/pattern update"
+    },
+    {
+      "name": "W/S forward and backward DOM controls",
+      "pass": true
+    },
+    {
+      "name": "A/D strafe DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Q/E turn DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Escape clears held movement immediately",
+      "pass": true
+    },
+    {
+      "name": "building collision in the running game",
+      "pass": true,
+      "detail": "stopped at x=7.520"
+    },
+    {
+      "name": "HUD hide and restore",
+      "pass": true
+    },
+    {
+      "name": "guide pauses movement",
+      "pass": true
+    },
+    {
+      "name": "five walk-in collections and completion UI",
+      "pass": true
+    }
+  ],
+  "cpuGameplay": [
+    {
+      "name": "stationary scene and stable pattern",
+      "pass": true,
+      "detail": "1920 × 1080"
+    },
+    {
+      "name": "GPU depth agrees with raycast geometry",
+      "pass": true,
+      "detail": "68 surfaces, 9 sky, max error 0.000007"
+    },
+    {
+      "name": "demo supplies scalar depth without material, color or normal metadata",
+      "pass": true,
+      "detail": "RG depth only; B=0 and A=255 throughout"
+    },
+    {
+      "name": "live stereo output agrees with the independent CPU reference",
+      "pass": true,
+      "detail": "2073600 exact CPU/worker pixels, no engine objects supplied"
+    },
+    {
+      "name": "rendered city has correct stereo pixel pairs",
+      "pass": true,
+      "detail": "99.85% of 11903 interior pairs"
+    },
+    {
+      "name": "live city retains strong dot contrast",
+      "pass": true,
+      "detail": "RMS contrast 0.564"
+    },
+    {
+      "name": "live shaded palette distinguishes dark blue skyline from warm near ground",
+      "pass": true,
+      "detail": "ground/sky luminance gap 48.3 / 255; distinct amber/blue hue families"
+    },
+    {
+      "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+      "pass": true
+    },
+    {
+      "name": "edge definition changes only contour classes and restores without camera motion",
+      "pass": true,
+      "detail": "105593 contour samples; 36.6% of matching pixels emphasized"
+    },
+    {
+      "name": "classic/DepthWalk pattern switch preserves camera and changes image",
+      "pass": true
+    },
+    {
+      "name": "neutral pattern and dot size preserve pose and restore deterministically",
+      "pass": true
+    },
+    {
+      "name": "all views preserve camera pose",
+      "pass": true
+    },
+    {
+      "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+      "pass": true,
+      "detail": "CPU fallback retained"
+    },
+    {
+      "name": "active stereo renderer follows walking and turning without stationary drift",
+      "pass": true,
+      "detail": "CPU camera/depth/pattern update"
+    },
+    {
+      "name": "W/S forward and backward DOM controls",
+      "pass": true
+    },
+    {
+      "name": "A/D strafe DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Q/E turn DOM controls",
+      "pass": true
+    },
+    {
+      "name": "Escape clears held movement immediately",
+      "pass": true
+    },
+    {
+      "name": "building collision in the running game",
+      "pass": true,
+      "detail": "stopped at x=7.520"
+    },
+    {
+      "name": "HUD hide and restore",
+      "pass": true
+    },
+    {
+      "name": "guide pauses movement",
+      "pass": true
+    },
+    {
+      "name": "five walk-in collections and completion UI",
+      "pass": true
+    }
+  ],
+  "performanceObservations": [
+    {
+      "backend": "gpu",
+      "width": 1920,
+      "height": 1080,
+      "fps": 167,
+      "submissionToCompletionMs": 4.3,
+      "depthReadbackMs": 0
+    },
+    {
+      "backend": "gpu",
+      "width": 3840,
+      "height": 2160,
+      "fps": 84,
+      "submissionToCompletionMs": 11.7,
+      "depthReadbackMs": 0
+    }
+  ],
+  "cpuFrameRateSample": "9 fps",
+  "bandFixture": {
+    "description": "Tone-averaged column luminance across a near slab and exposed sky, with identical depth rows",
+    "luminanceRange": 18.094325,
+    "assertedMaximum": 20
+  }
+}

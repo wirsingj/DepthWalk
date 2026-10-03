@@ -1,0 +1,170 @@
+{
+  "recordedAt": "2026-09-26T07:50:45Z",
+  "revision": "uncommitted main; no HEAD",
+  "environment": "Windows; embedded Chromium; NVIDIA Ampere; Node 22.22.3; npm 10.2.3",
+  "scope": "App host, diagnostic tooling, worker and GPU lifetime, quality adaptation, controls and development checks. No stereo encoding or acceptance-threshold changes.",
+  "observerVersion": "observer-1.1",
+  "checks": {
+    "command": "npm run check",
+    "lint": "passed",
+    "unitTests": {
+      "passed": 101,
+      "failed": 0,
+      "skipped": 0,
+      "todos": 0
+    },
+    "build": "passed; game, observer lab, GPU fixtures and workers bundled; no chunk advisory",
+    "dependencyAudit": {
+      "advisories": 0,
+      "report": "audit-dependencies.json"
+    }
+  },
+  "gameplay": [
+    {
+      "backend": "WebGPU",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "passed": 27,
+      "failed": 0,
+      "report": "audit-gameplay-gpu.json"
+    },
+    {
+      "backend": "CPU workers",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "passed": 27,
+      "failed": 0,
+      "report": "audit-gameplay-cpu.json"
+    }
+  ],
+  "gpuFixtures": {
+    "passed": 11,
+    "failed": 0,
+    "report": "audit-gpu-fixtures.json",
+    "newCoverage": "Pixel-only versus full diagnostic readback has identical native RGBA in Quiet and Paired modes. Maps 50%/75% fewer bytes respectively."
+  },
+  "observerRuns": [
+    {
+      "backend": "CPU CLI",
+      "dataset": "synthetic",
+      "dimensions": [
+        640,
+        256
+      ],
+      "spacing": 96,
+      "profiles": 8,
+      "analyzedFrames": 80,
+      "report": "audit-observer-synthetic.json",
+      "version": "observer-1.1"
+    },
+    {
+      "backend": "CPU browser worker",
+      "dataset": "synthetic",
+      "dimensions": [
+        640,
+        360
+      ],
+      "spacing": 96,
+      "profiles": 4,
+      "analyzedFrames": 40,
+      "report": "audit-lab-cpu.json",
+      "version": "observer-1",
+      "scope": "Audit implementation before final flag-composition correction; numeric measurements unchanged."
+    },
+    {
+      "backend": "WebGPU browser",
+      "dataset": "synthetic",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "spacing": 96,
+      "profiles": 8,
+      "analyzedFrames": 80,
+      "report": "audit-lab-native-gpu.json",
+      "version": "observer-1.1"
+    }
+  ],
+  "measurementEquivalence": {
+    "baseline": "observer-synthetic.json",
+    "current": "audit-observer-synthetic.json",
+    "profiles": 8,
+    "exactlyEqualFields": [
+      "accuracy",
+      "summary",
+      "motion",
+      "colorSpread"
+    ],
+    "intentionalReportChanges": [
+      "observer version",
+      "preview retention metadata",
+      "remove no-flags placeholder when a color-spread warning exists"
+    ]
+  },
+  "nativePreviewRetention": {
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "profiles": 8,
+    "analyzedFramesPerProfile": 10,
+    "retainedSourceIndices": [
+      0,
+      9
+    ],
+    "previousNativePixelBytes": 663552000,
+    "retainedNativePixelBytes": 132710400,
+    "budgetBytes": 134217728,
+    "scope": "Stereo preview arrays only; source inputs, diagnostic maps, filter workspaces and other browser memory are additional. Every frame still contributes metrics."
+  },
+  "colorSpreadPerformance": {
+    "fixture": "1920x1080; all output pixels recolored; each row has edited source columns 850 through 1069; spacing 120",
+    "beforeMs": [
+      1924.8876,
+      2028.3448,
+      2289.6852,
+      1019.6777
+    ],
+    "afterMs": [
+      34.1381,
+      27.7242,
+      26.2249,
+      21.3193
+    ],
+    "identicalSummary": {
+      "affected": 2073600,
+      "remote": 1447200,
+      "remoteFraction": 0.6979166666666666,
+      "farthestPixels": 850,
+      "envelopePixels": 180
+    },
+    "scope": "Local isolated diagnostic stress timings; includes JIT/scheduling variation; not an interactive FPS benchmark."
+  },
+  "uiChecks": [
+    "Cancel during capture and restart a CPU comparison",
+    "CPU encoding and analysis complete in diagnostic worker",
+    "Select profiles; play, pause and scrub retained frames",
+    "Native 1080p sampled preview labels disclose source frame gaps",
+    "Idle relief draw counter remains at 82 after playback stops",
+    "Keyboard Home plus Right changes native probe x from 960 to 961",
+    "F3 completes, retries, closes during work and reopens successfully",
+    "F3 native dialog focuses Close; Tab reaches Capture again; Escape returns focus to Analyze stereo",
+    "Fullscreen button enters and exits; native capture reaches 2560x1440 and returns to 1280x720",
+    "No error-level browser logs on checked lab and production game pages"
+  ],
+  "f3Report": "audit-f3.json",
+  "verificationLimits": [
+    "Embedded host declined Pointer Lock. Actual captured-mouse release was not freshly verified; external mouse look is earlier human evidence.",
+    "GPU device-loss/OOM cleanup was source-reviewed, not physically fault-injected. Worker error, timeout and cancellation paths use fake-worker regressions.",
+    "Gameplay and fixture runs precede the final error-banner/pagehide cleanup and CSS-only fixes. Final check and production modal smoke cover the finished checkout; ordinary movement/encoding code was not subsequently changed.",
+    "Observer metrics cannot establish human fusion or comfort. Existing banding, color rivalry and motion complaints remain unresolved.",
+    "Firefox interactive performance was not benchmarked anew. Keep the earlier user-reported 58-60 fps evidence distinct."
+  ],
+  "sourceFingerprint": "6b6165c19b99b5fdba4f4f53424945c48df88c09f6acb020bca9b45593916580",
+  "sourceFiles": 59,
+  "fingerprintMethod": "SHA256 of sorted path:SHA256(file) newline records; src/, tests/, .editorconfig, eslint.config.js, index.html, package manifests and vite.config.js; forward-slash paths"
+}

@@ -1,0 +1,150 @@
+[
+  {
+    "name": "quiet stereo has adjustable support and the rejected sparse experiment is outside the game",
+    "pass": true
+  },
+  {
+    "name": "stationary scene and stable pattern",
+    "pass": true,
+    "detail": "1280 × 720"
+  },
+  {
+    "name": "GPU depth agrees with raycast geometry",
+    "pass": true,
+    "detail": "68 surfaces, 9 sky, max error 0.000011"
+  },
+  {
+    "name": "demo supplies scalar depth without material, color or normal metadata",
+    "pass": true,
+    "detail": "RG depth only; B=0 and A=255 throughout"
+  },
+  {
+    "name": "live stereo output agrees with the independent CPU reference",
+    "pass": true,
+    "detail": "921600 exact CPU/worker pixels, no engine objects supplied"
+  },
+  {
+    "name": "rendered city has correct stereo pixel pairs",
+    "pass": true,
+    "detail": "99.75% of 4814 interior pairs"
+  },
+  {
+    "name": "live city retains strong dot contrast",
+    "pass": true,
+    "detail": "RMS contrast 0.605"
+  },
+  {
+    "name": "optional scene-color input matches the actual normal render",
+    "pass": true,
+    "detail": "100.00% exact channels; mean difference 0.0000/255 including lighting/textures"
+  },
+  {
+    "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+    "pass": true
+  },
+  {
+    "name": "edge definition changes only contour classes and restores without camera motion",
+    "pass": true,
+    "detail": "58819 contour samples; 33.3% of matching pixels emphasized"
+  },
+  {
+    "name": "scene/generated/classic styles preserve camera and restore source colors",
+    "pass": true
+  },
+  {
+    "name": "neutral pattern and dot size preserve pose and restore deterministically",
+    "pass": true
+  },
+  {
+    "name": "all views preserve camera pose",
+    "pass": true
+  },
+  {
+    "name": "R cycles views and E cycles all styles without requesting mouse release",
+    "pass": true,
+    "detail": "no Pointer Lock exit calls; pose preserved (actual capture requires a permitted browser)"
+  },
+  {
+    "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+    "pass": true,
+    "detail": "CPU fallback retained"
+  },
+  {
+    "name": "quiet mode updates support, preserves all classes and reproduces CPU source fitting",
+    "pass": true,
+    "detail": "support restores deterministically; complete stereo class RGB exact"
+  },
+  {
+    "name": "Quiet shimmer comparison is opt-in, preserves pose and restores baseline",
+    "pass": true,
+    "detail": "on/off reaches renderer; unchanged stationary pixels and camera"
+  },
+  {
+    "name": "depth direction reverses live relief on this backend, preserves pose and restores output",
+    "pass": true,
+    "detail": "reversed pixels match CPU reference; exact restoration; pose retained"
+  },
+  {
+    "name": "dark ink and wider spacing reach the renderer, retain pose and restore baseline",
+    "pass": true,
+    "detail": "live CPU reference parity; stationary ink; exact baseline restoration; full image"
+  },
+  {
+    "name": "paired-color experiment preserves pose, source orientation and CPU/GPU output",
+    "pass": true,
+    "detail": "aligned source colors; CPU match; stability enabled; no texture drift after walking/turning/stopping; pose restored"
+  },
+  {
+    "name": "active stereo renderer follows walking and turning without stationary drift",
+    "pass": true,
+    "detail": "CPU camera/depth/pattern update"
+  },
+  {
+    "name": "W/S forward and backward DOM controls",
+    "pass": true
+  },
+  {
+    "name": "A/D strafe DOM controls",
+    "pass": true
+  },
+  {
+    "name": "arrow turn DOM controls",
+    "pass": true
+  },
+  {
+    "name": "Shift sprint is faster and key release returns to walking",
+    "pass": true,
+    "detail": "2.00× walking distance; 2.99 walking speed after Shift release"
+  },
+  {
+    "name": "Escape clears held movement immediately",
+    "pass": true
+  },
+  {
+    "name": "building collision in the running game",
+    "pass": true,
+    "detail": "stopped at x=7.518"
+  },
+  {
+    "name": "HUD hide and restore",
+    "pass": true
+  },
+  {
+    "name": "guide pauses movement",
+    "pass": true
+  },
+  {
+    "name": "five walk-in collections and completion UI",
+    "pass": true
+  },
+  {
+    "name": "central stereo sizes preserve pose and the outer original render",
+    "pass": true,
+    "detail": "2/3/4 widths; exact outside RGB; no camera changes"
+  },
+  {
+    "name": "reset viewing settings preserves the walk and restores the saved baseline controls",
+    "pass": true,
+    "detail": "default controls, live rendering, labels, camera and collected beacons"
+  }
+]

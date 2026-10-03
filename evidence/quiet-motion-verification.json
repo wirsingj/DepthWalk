@@ -1,0 +1,158 @@
+{
+  "recordedAt": "2026-09-26T10:39:31.222Z",
+  "revision": "Uncommitted main; repository has no HEAD commit",
+  "environment": {
+    "os": "Windows",
+    "node": "v22.22.3",
+    "npm": "10.2.3",
+    "browser": "Codex in-app browser",
+    "gpu": "NVIDIA Ampere"
+  },
+  "sources": {
+    "src/surface-stereo.js": "0cfeb6e777a6fb082dbd8df08ebc0bbabcd5176dc62f937fd9732382c93c30cb",
+    "src/depthwalk.js": "58e29cb4a612613faf45f4d575387fc1fbb78085527878c40ba4397b07cc0165",
+    "src/gpu/stereogram.wgsl": "b204f7290bc1f8cbc900539efdf698692989673c1508744392855b27c2092def",
+    "src/gpu/depthwalk-gpu.js": "71e1776b469643514ea73097ba552b50540f0c69b799b45e175da97e9ab1f402",
+    "src/main.js": "75ecc5cdab36925cd564119f909195d984a0328bd8213ee8c5e2a73414ed9692",
+    "src/preferences.js": "fb3a40875272c9fe2a14fc9f6bdda2e5ed031bd469bada380504fe59e2fd4704",
+    "src/stereo.worker.js": "e10a13238f72b5d84cd4fea5f0b740ab414db27999f378c8156aa6fe6929cf65",
+    "src/debug/benchmark.js": "74479f13e33263dfbd52a17a2796d774040fac2f158b463721ec76480a6e20ee",
+    "src/debug/observer.js": "d214f338e82c144a120aaa3cce2b5e27e24b208ea28e5f30c0c9394b59a42f89",
+    "src/debug/reconstruct.js": "b52071211b43ba2d2ae3e08dbc169e31710356c4e62c8502e73b6b9a7e02cf14",
+    "index.html": "f78499b103944bbdd66962fc3b0975ab6f42e58f7abb3333dfdd6d7da1004529",
+    "tests/quiet-motion.test.js": "09f12d58668ab13e3641801ea45b071e525750529f7935560ebb767b3563b73d",
+    "tests/quiet-motion-research.js": "233a9b74202aa02647ec55ee2136557e63aae9ff45e51bb4ea7e8a73f93bad5f",
+    "tests/gpu-checks.js": "0f29e99f3d62a752df497afbb16bf4fbb2adfd18b86c36783bc6c74fa944d61c",
+    "tests/browser-checks.js": "e81b288f727019f12ddfb0b7d0e842740807fd328362026544b494db0b4be735",
+    "tests/observer-lab.js": "47851534b8a089cdddafef340bd68f913d69eae911cb91b346a89a4c3a401243",
+    "tests/observer-lab.html": "a338bd188b5ac1f9f587f420c8857cbc77a90b56008b44eea99211b688c57fd9",
+    "tests/observer-lab.css": "1ec9c4bed3cc228e479abf72f0c5fc0c1e0f247e4f5c875c73ea1121f0609aff"
+  },
+  "evidenceHashes": {
+    "evidence/quiet-motion-research.json": "b3257b15fea2de1f2e92669607fda9e0c57a8b4f511519863b9293ee65e3a735",
+    "evidence/quiet-motion-gpu-fixtures.json": "30fc4329f3eb46f3cbfb4792e8eae3e58206bfb94bdc650f6561e83f6f653852",
+    "evidence/quiet-motion-gameplay-initial.json": "cac06777b005007f9f6412ec2ed896c6c51adeacda00b493727cebdfb86391d6",
+    "evidence/quiet-motion-gameplay-gpu.json": "6f69ecbee288002d569ed708f2cd993719c71e15360a90f5486b4ee7f8bfb5d6",
+    "evidence/quiet-motion-gameplay-cpu.json": "4d724940a23436af2b89b6670cd4c894e9ac06a2a48c8dca97dcd1201bb87320",
+    "evidence/quiet-motion-city-gpu.json": "e6a64fc814bdb6512d386b6fd53ff34fb62a51a022092d55612d167f202a9986",
+    "evidence/quiet-motion-near-gpu.json": "1367647140854bf6a6236a33de5c6193952e51cf55f024946b63cbfe49970cad"
+  },
+  "check": {
+    "lint": true,
+    "unitTests": 123,
+    "productionBuild": true
+  },
+  "gpuFixtures": {
+    "path": "evidence/quiet-motion-gpu-fixtures.json",
+    "passed": 14,
+    "total": 14,
+    "dimensions": [
+      1000,
+      220
+    ]
+  },
+  "gameplay": {
+    "gpu": {
+      "path": "evidence/quiet-motion-gameplay-gpu.json",
+      "passed": 29,
+      "total": 29,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    "cpu": {
+      "path": "evidence/quiet-motion-gameplay-cpu.json",
+      "passed": 29,
+      "total": 29,
+      "viewport": [
+        1280,
+        720
+      ]
+    }
+  },
+  "comparisons": {
+    "city": {
+      "path": "evidence/quiet-motion-city-gpu.json",
+      "dimensions": [
+        640,
+        360
+      ],
+      "frames": 10,
+      "spacing": 120,
+      "adapter": "nvidia ampere",
+      "motionReduction": 0.08792402916151687,
+      "pass": {
+        "depth": true,
+        "support": true,
+        "colorConflict": true,
+        "motion": false,
+        "stationary": true,
+        "colorLocality": true,
+        "sourceColor": true
+      },
+      "allGatesPassed": false,
+      "gpuErrors": []
+    },
+    "near": {
+      "path": "evidence/quiet-motion-near-gpu.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "frames": 10,
+      "spacing": 120,
+      "adapter": "nvidia ampere",
+      "motionReduction": 0.12036938643695305,
+      "pass": {
+        "depth": true,
+        "support": true,
+        "colorConflict": true,
+        "motion": true,
+        "stationary": true,
+        "colorLocality": true,
+        "sourceColor": true
+      },
+      "allGatesPassed": true,
+      "gpuErrors": []
+    }
+  },
+  "gates": {
+    "accuracyLoss": 0.01,
+    "supportRatio": 0.9,
+    "colorConflictIncrease": 0.02,
+    "motionRatio": 0.9,
+    "remoteColorRatio": 1.05,
+    "sourceErrorIncrease": 1,
+    "stationaryChanges": 0
+  },
+  "initialFailure": "Initial GPU gameplay run: 27/29. Replaced fixed 500ms style waits with requested-frame readiness, then reran in isolation: 29/29. Original failures retained.",
+  "ui": {
+    "viewport": [
+      1280,
+      720
+    ],
+    "optInInitiallyOff": true,
+    "optInPersistsAcrossReload": true,
+    "restoredOptInOff": true,
+    "gameLinkVerified": true,
+    "nativeComparison": {
+      "width": 1280,
+      "height": 720,
+      "cssWidth": 1280,
+      "cssHeight": 720,
+      "sameFrameOnSwitch": true,
+      "keyboardAB": true,
+      "playPause": true,
+      "escapeClosesAndStops": true,
+      "screenshot": "evidence/quiet-motion-comparison.png"
+    }
+  },
+  "decision": "Retain opt-in experimental comparison; no default promotion. City misses the fixed 10% motion-reduction target; human usefulness unverified.",
+  "limits": [
+    "Screen-space luminance change includes real motion; not motion-compensated perceptual flicker.",
+    "Repeated outlines and source-color propagation remain.",
+    "No native engine integration or deployment.",
+    "No new interactive FPS benchmark or human fusion validation."
+  ]
+}

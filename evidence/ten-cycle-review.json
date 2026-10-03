@@ -1,0 +1,114 @@
+{
+  "date": "2026-09-26",
+  "scope": "Uncommitted main, no HEAD. Ten audit/analyze/update/post-audit cycles. Partial research improvement, not human fusion acceptance or a novel synthesis claim.",
+  "cycles": [
+    {
+      "cycle": 1,
+      "area": "Depth ingestion",
+      "finding": "Truncated output silently discarded samples; BigInt became sky.",
+      "update": "Validate numeric samples and floating output length.",
+      "postAudit": "10 tests passed",
+      "yaiml": "INTEGRATION contract updated."
+    },
+    {
+      "cycle": 2,
+      "area": "Image fidelity",
+      "finding": "Malformed source buffers produced NaN scores.",
+      "update": "Validate dimensions, typed arrays and row origin; preserve missing-color null.",
+      "postAudit": "8 tests passed",
+      "yaiml": "OBSERVER comparison contract updated."
+    },
+    {
+      "cycle": 3,
+      "area": "Worker protocol",
+      "finding": "Malformed replies left pending tasks unresolved.",
+      "update": "Reject invalid envelopes immediately.",
+      "postAudit": "5 tests passed",
+      "yaiml": "OBSERVER worker failure contract updated."
+    },
+    {
+      "cycle": 4,
+      "area": "Viewing preference regression",
+      "finding": "Reload discarded the user's lower Quiet support.",
+      "update": "35% Quiet default; validated browser persistence, isolated from QA.",
+      "postAudit": "3 regression tests passed",
+      "yaiml": "SOT default updated to current human direction."
+    },
+    {
+      "cycle": 5,
+      "area": "Projected-lighting experiment",
+      "finding": "Candidate depth accuracy 85.4% versus Quiet35 93.3%; higher motion/color conflict.",
+      "update": "Rejected and removed candidate; retained baseline.",
+      "postAudit": "Independent 30-frame CPU comparison",
+      "yaiml": "OBSERVER records rejected approach and numerical reason."
+    },
+    {
+      "cycle": 6,
+      "area": "Bounded color chains",
+      "finding": "Spread .290\u2192.191 but depth accuracy .933\u2192.808.",
+      "update": "Rejected and removed shortened-chain mode.",
+      "postAudit": "20-frame independent comparison",
+      "yaiml": "OBSERVER records rejected chain-splitting approach."
+    },
+    {
+      "cycle": 7,
+      "area": "Learn from rejected combinations",
+      "finding": "25% projected lighting retained 95.2% synthetic accuracy and reduced motion change 17.7%; color conflict increased.",
+      "update": "Keep continuous carrier; fixed conservative 25% blend in experimental chroma-soft, preserve Quiet.",
+      "postAudit": "50-frame CPU sweep; full check 105 tests passed before UI wiring.",
+      "yaiml": "OBSERVER preserves improvements, failures and limitations."
+    },
+    {
+      "cycle": 8,
+      "area": "GPU soft projection",
+      "finding": "New blend needed matching GPU ownership/history handling.",
+      "update": "GPU mode7 preserves visible ownership; final shade blends25%; no extra dispatch/readback.",
+      "postAudit": "12 GPU fixtures pass; 5 new moving/hold frames CPU mean error0, no stationary drift.",
+      "yaiml": "INTEGRATION separates relaxed-luminance experiment from original contract."
+    },
+    {
+      "cycle": 9,
+      "area": "Actual city and integration",
+      "finding": "Candidate retained ~94% depth with improved motion/color error but22\u201325% color conflict; QA assumed obsolete65% support.",
+      "update": "Preserve experimental designation; UI/API docs state tradeoff; game QA uses selected support and restores prior value.",
+      "postAudit": "200 GPU city/near frames; targeted8 CPU tests; final27/27 gameplay checks pass per backend.",
+      "yaiml": "OBSERVER tradeoffs and SOT discovery goal updated."
+    },
+    {
+      "cycle": 10,
+      "area": "Post-audit and human direction",
+      "finding": "QA retained obsolete support constants; broader goal is static and real-time synthesis discovery, not merely styling.",
+      "update": "Actual-setting QA, persisted controls verified, retain useful failures and broader goal; keep experimental status.",
+      "postAudit": "Lint105tests/build pass;12 GPU fixtures;27/27gameplay each backend; selected mode/support survive reload. Live1280x720 GPU badge141fps/9.4ms one snapshot, not benchmark.",
+      "yaiml": "SOT/ARCHITECTURE/INTEGRATION/OBSERVER reconciled; core budgets checked."
+    }
+  ],
+  "validation": {
+    "unitTests": 105,
+    "gpuFixtures": 12,
+    "gameplay": {
+      "gpu": 27,
+      "cpu": 27
+    },
+    "cityFrames": 200,
+    "limitations": [
+      "Human fusion of Soft paired unverified",
+      "Eye-color conflict22\u201325% on city recordings",
+      "Quiet still has color-propagation bands",
+      "No new captured-mouse/fullscreen coverage in this review",
+      "Novel appearance-first solver remains proposed"
+    ]
+  },
+  "evidence": [
+    "ten-cycle-city.json",
+    "ten-cycle-near.json",
+    "ten-cycle-gpu.json",
+    "ten-cycle-gameplay.json",
+    "smooth-candidate-sweep.json"
+  ],
+  "sourceFingerprint": {
+    "sha256": "a10e0ee1455232c583a8b81c51142fab289a0d6fd1dfe8af0e9955c883334e70",
+    "files": 61,
+    "scope": "src/, tests/, .editorconfig, eslint.config.js, index.html, package manifests, vite.config.js"
+  }
+}

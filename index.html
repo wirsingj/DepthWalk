@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#101c24"><title>Depthwalk — The hidden city</title></head>
+<body>
+  <canvas id="world" aria-label="City scene"></canvas>
+  <canvas id="stereo" aria-label="Interactive Magic Eye city"></canvas>
+  <canvas id="gpu-stereo" aria-label="GPU Magic Eye city" hidden></canvas>
+  <div id="stereo-surround" aria-hidden="true" hidden><div class="surround-left"></div><div class="surround-right"></div></div>
+  <div id="center-alignment" role="img" aria-label="Two center alignment crosses: look through them until three appear" hidden><i aria-hidden="true"></i><i aria-hidden="true"></i></div>
+  <div id="interface">
+    <header>
+      <a class="brand" href="./" aria-label="Depthwalk home"><span class="brand-mark">▥</span> DEPTHWALK<span class="edition">EXPERIMENT 001</span></a>
+      <nav aria-label="Scene view"><button data-view="stereo" class="selected" aria-pressed="true">Magic Eye</button><button data-view="normal" aria-pressed="false">Colored 3D</button><button data-view="depth" aria-pressed="false">Depth map</button></nav>
+      <button id="fullscreen" class="outline">⛶ <span>Fullscreen</span></button>
+    </header>
+    <div id="alignment" aria-label="Two alignment dots"><i></i><i></i><span>LOOK THROUGH • MERGE THE DOTS</span></div>
+    <section id="intro" class="panel">
+      <div class="eyebrow"><span class="status-dot"></span> A STEREOGRAM EXPLORATION</div>
+      <h1>A city hiding<br>in plain sight<span>.</span></h1>
+      <p class="lede">Let your eyes wander beyond the screen.<br>There’s a whole world in the pattern.</p>
+      <div class="intro-rule"></div>
+      <div class="step"><span>01</span><div><h2>Find your focus</h2><p>Relax your eyes as if looking through the image. Merge the two dots into a third dot in the middle. Give the city a moment to appear.</p></div></div>
+      <div class="step"><span>02</span><div><h2>Take it slowly</h2><p>Walk with <b>W A S D</b>, hold <b>Shift</b> to sprint. Click “Mouse look” or turn with <b>← / →</b>. <b>R</b> cycles views, <b>E</b> cycles patterns while keeping mouse look. <b>Esc</b> releases the mouse.</p></div></div>
+      <div class="step"><span>03</span><div><h2>Bring the city online</h2><p>Find five sculptural signal beacons. Walk into each to collect it. Try Colored 3D whenever you need your bearings.</p></div></div>
+      <button id="begin" class="primary">Enter the hidden city <span>↗</span></button>
+      <div class="intro-foot">NO TIMER. NO RUSH. JUST A DIFFERENT WAY TO SEE.</div>
+    </section>
+    <aside id="tuning" class="panel">
+      <div class="panel-heading"><span>FIND YOUR DEPTH</span><button id="collapse" aria-expanded="true" aria-label="Collapse viewing controls">−</button></div>
+      <div id="tuning-body">
+        <label for="demo">Demo world</label>
+        <select id="demo" disabled><option value="original">Original city</option><option value="retro">Block study · simple shapes</option></select>
+        <p class="tuning-hint">Switch worlds at the same position with the same filter. Block study tests simpler shapes and flat colors. Try 50% render quality separately for chunkier pixels.</p>
+        <label for="pattern">Pattern style</label>
+        <select id="pattern"><option value="quiet">Quiet stereo · continuous depth</option><option value="chroma-soft">Soft paired - experimental</option><option value="chroma">Paired color · experimental</option><option value="scene">Scene colors · dense reference</option><option value="geometry">DepthWalk colors · natural</option><option value="classic">Classic colors · sharp dots</option><option value="mono">Neutral dots · fusion aid</option></select>
+        <p class="tuning-hint"><a id="banding-comparison" href="./tests/observer-lab.html?preview=rank" target="_blank" rel="noopener">Preview anti-banding prototype ↗</a><br>Recorded comparison. Not yet a live game style.</p>
+        <label for="stereo-window">Stereo area</label><select id="stereo-window"><option value="0">Full image</option><option value="4">Center · 4 pattern widths (experimental)</option><option value="3">Center · 3 pattern widths</option><option value="2">Center · 2 pattern widths</option></select><p class="tuning-hint">Full-width city. Y toggles center alignment guides. Narrow stereo windows remain experimental.</p>
+        <div id="surface-controls"><label for="surface-detail">Stereo support <output id="surface-value">35%</output></label><input id="surface-detail" type="range" min="0" max="100" value="35" step="5"><div class="range-labels"><span>Quieter surfaces</span><span>Stronger cues</span></div><p class="tuning-hint" id="surface-hint">Quiet shading with a continuous stereo pattern. Increase support for an easier depth lock. E compares with dense styles.</p></div>
+        <div id="motion-controls" hidden><label><input type="checkbox" id="motion-stability" checked> Stable texture during movement</label><p class="tuning-hint">Carries texture between matching surfaces without blurring depth.</p></div>
+        <div id="quiet-motion-controls"><label><input type="checkbox" id="quiet-stability"> Reduce Quiet shimmer · experimental</label><p class="tuning-hint">Keeps texture steadier while moving; repeated outlines remain. <a id="quiet-comparison" href="./tests/observer-lab.html?compare=quiet&amp;direction=original" target="_blank" rel="noopener">Compare the same recorded walk ↗</a></p></div>
+        <label for="grain">Dot size</label>
+        <select id="grain"><option value="1" selected>Fine · 1 px</option><option value="2">Medium · 2 px</option><option value="3">Large · 3 px</option></select>
+        <label for="edges">Edge definition</label>
+        <select id="edges"><option value="0">Off</option><option value="1">Crisp · thin</option><option value="2" selected>Bold · strong</option><option value="3">Dark ink · outlined</option></select>
+        <p class="tuning-hint">Dark ink emphasizes shape edges; repeated outlines can become more prominent.</p>
+        <label for="spacing">Pattern spacing <output id="spacing-value">120 px</output></label>
+        <input id="spacing" type="range" min="48" max="180" value="120" step="1">
+        <div class="range-labels"><span>Easier to fuse</span><span>Wider</span></div>
+        <p class="tuning-hint">Wider spacing gives fewer repeats. Reduce it if the guide dots won't merge.</p>
+        <label for="strength">Depth strength <output id="strength-value">50%</output></label>
+        <input id="strength" type="range" min="0" max="50" value="50" step="1">
+        <label><input id="invert-depth" type="checkbox"> Reverse depth direction</label><p class="tuning-hint">Normally off for looking through the screen. Turning this on swaps foreground and background.</p>
+        <label for="quality">Render quality</label>
+        <select id="quality"><option value="auto">Auto · target smooth motion</option><option value="1">Native · sharpest</option><option value="0.75">Balanced · 75%</option><option value="0.5">Performance · 50%</option></select>
+        <label for="backend">Renderer</label>
+        <select id="backend"><option value="auto">Auto · prefer GPU</option><option value="gpu">GPU · WebGPU</option><option value="cpu">CPU · compatibility</option></select>
+        <div id="backend-status" class="render-meta" role="status">Checking GPU…</div>
+        <div class="render-meta"><span id="resolution">Preparing scene…</span><span id="fps">— fps</span></div>
+        <button id="reset-viewing" class="outline">Reset viewing settings</button>
+        <p class="tuning-hint">Start still and merge the two guide dots into one center dot. If you see extra layers, pause and reacquire the dots. Try Neutral dots or lower depth strength for an easier lock.</p>
+      </div>
+    </aside>
+    <div id="performance" class="panel" aria-label="Live rendering performance"><strong id="live-fps">— fps</strong><span id="live-backend">Starting GPU</span><small id="perf-detail">Checking renderer…</small></div>
+    <div id="mission" class="panel" hidden><div class="mission-icon">◈</div><div><span class="eyebrow">SIGNALS RECOVERED</span><div class="mission-count"><strong id="count">0</strong><span>/ 5</span><div id="signals"><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <section id="complete" class="panel" hidden><div class="eyebrow">ALL SIGNALS CONNECTED</div><h2>The city is awake.</h2><p>Five beacons. One hidden world.<br>Stay a while — there’s nowhere you need to be.</p><button id="keep-walking" class="primary">Keep exploring <span>↗</span></button></section>
+    <footer><span><i class="status-dot"></i> <span id="location">CENTRAL PLAZA</span></span><div><span><kbd>WASD</kbd> walk · <kbd>Shift</kbd> sprint</span><span><kbd>R</kbd> view · <kbd>E</kbd> pattern</span><button id="center-guide" aria-pressed="false" title="Look through the two crosses until three appear. Alignment aid; scene fusion can still vary.">Center guides <kbd>Y</kbd></button><button id="capture">Mouse look ↗</button><button id="debug-open">Analyze stereo F3</button><button id="help">Guide</button><button id="hide">Hide HUD <kbd>H</kbd></button></div></footer>
+  </div>
+  <button id="show-hud" hidden>Show HUD <kbd>H</kbd></button>
+  <div id="fatal" hidden role="alert"></div>
+  <script type="module" src="/src/main.js"></script>
+</body></html>

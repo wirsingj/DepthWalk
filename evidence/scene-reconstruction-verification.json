@@ -1,0 +1,501 @@
+{
+  "recordedAt": "2026-09-26T04:43:09.855Z",
+  "revision": "uncommitted main; no HEAD",
+  "sourceFingerprint": "bbadc9711b4e0bb5902854c432240a5793cf45bcc13ef495a8959fad114dadc4",
+  "fingerprintMethod": "SHA256 of sorted path:SHA256(file) newline records for src/, tests/, index.html, package.json and package-lock.json; forward-slash paths",
+  "environment": "Windows; Codex embedded Chromium browser; NVIDIA Ampere; Node 22.22.3; npm 10.2.3",
+  "settings": {
+    "pattern": "scene",
+    "dotSize": 1,
+    "spacing": 120,
+    "depthStrength": 0.5,
+    "edges": 2
+  },
+  "unitTests": {
+    "passed": 68,
+    "failed": 0,
+    "skipped": 0
+  },
+  "productionBuild": "passed; Vite emitted a main-chunk size advisory",
+  "gpuFixtures": [
+    {
+      "name": "GPU flat depths have only the intended stereo correlation",
+      "pass": true,
+      "detail": "5 depths; exact intended correlation and strong contrast"
+    },
+    {
+      "name": "GPU union classes match the CPU occlusion solver exactly",
+      "pass": true,
+      "detail": "660,000 root labels; overlaps, annulus and curved depths; stable pixels"
+    },
+    {
+      "name": "GPU coloring agrees with the portable filter on planar depth",
+      "pass": true,
+      "detail": "all three styles; exact RGB equality"
+    },
+    {
+      "name": "GPU constraints and seed sizing follow all viewing controls",
+      "pass": true,
+      "detail": "5 settings combinations, 1.1 million exact root labels"
+    },
+    {
+      "name": "GPU scene-color mode falls back to generated colors without an optional input",
+      "pass": true,
+      "detail": "exact generated-color fallback"
+    },
+    {
+      "name": "GPU scene colors match CPU coloring and preserve every class across overlaps",
+      "pass": true,
+      "detail": "220,000 exact classes; deterministic RGB; mean CPU difference 0.00000/255"
+    },
+    {
+      "name": "GPU pipeline reports no validation errors",
+      "pass": true,
+      "detail": "compute, atomics and presentation completed"
+    }
+  ],
+  "gpuGameplay": {
+    "dimensions": [
+      1920,
+      1522
+    ],
+    "results": [
+      {
+        "name": "stationary scene and stable pattern",
+        "pass": true,
+        "detail": "1920 × 1522"
+      },
+      {
+        "name": "GPU depth agrees with raycast geometry",
+        "pass": true,
+        "detail": "66 surfaces, 11 sky, max error 0.000007"
+      },
+      {
+        "name": "demo supplies scalar depth without material, color or normal metadata",
+        "pass": true,
+        "detail": "RG depth only; B=0 and A=255 throughout"
+      },
+      {
+        "name": "live stereo output agrees with the independent CPU reference",
+        "pass": true,
+        "detail": "2922240 exact constraint roots; 100.00% exact RGB, mean channel difference 0.000/255"
+      },
+      {
+        "name": "rendered city has correct stereo pixel pairs",
+        "pass": true,
+        "detail": "99.87% of 17144 interior pairs"
+      },
+      {
+        "name": "live city retains strong dot contrast",
+        "pass": true,
+        "detail": "RMS contrast 0.604"
+      },
+      {
+        "name": "optional scene-color input matches the actual normal render",
+        "pass": true,
+        "detail": "100.00% exact channels; mean difference 0.0000/255 including lighting/textures"
+      },
+      {
+        "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+        "pass": true
+      },
+      {
+        "name": "edge definition changes only contour classes and restores without camera motion",
+        "pass": true,
+        "detail": "115090 contour samples; 31.8% of matching pixels emphasized"
+      },
+      {
+        "name": "scene/generated/classic styles preserve camera and restore source colors",
+        "pass": true
+      },
+      {
+        "name": "neutral pattern and dot size preserve pose and restore deterministically",
+        "pass": true
+      },
+      {
+        "name": "all views preserve camera pose",
+        "pass": true
+      },
+      {
+        "name": "R cycles views and E cycles all four styles without requesting mouse release",
+        "pass": true,
+        "detail": "no Pointer Lock exit calls; pose preserved (actual capture requires a permitted browser)"
+      },
+      {
+        "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+        "pass": true,
+        "detail": "WebGPU → CPU → WebGPU"
+      },
+      {
+        "name": "active stereo renderer follows walking and turning without stationary drift",
+        "pass": true,
+        "detail": "WebGPU camera/depth/pattern update"
+      },
+      {
+        "name": "W/S forward and backward DOM controls",
+        "pass": true
+      },
+      {
+        "name": "A/D strafe DOM controls",
+        "pass": true
+      },
+      {
+        "name": "arrow turn DOM controls",
+        "pass": true
+      },
+      {
+        "name": "Shift sprint is faster and key release returns to walking",
+        "pass": true,
+        "detail": "2.01× walking distance"
+      },
+      {
+        "name": "Escape clears held movement immediately",
+        "pass": true
+      },
+      {
+        "name": "building collision in the running game",
+        "pass": true,
+        "detail": "stopped at x=7.520"
+      },
+      {
+        "name": "HUD hide and restore",
+        "pass": true
+      },
+      {
+        "name": "guide pauses movement",
+        "pass": true
+      },
+      {
+        "name": "five walk-in collections and completion UI",
+        "pass": true
+      }
+    ]
+  },
+  "cpuGameplay": {
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "results": [
+      {
+        "name": "stationary scene and stable pattern",
+        "pass": true,
+        "detail": "1920 × 1080"
+      },
+      {
+        "name": "GPU depth agrees with raycast geometry",
+        "pass": true,
+        "detail": "68 surfaces, 9 sky, max error 0.000007"
+      },
+      {
+        "name": "demo supplies scalar depth without material, color or normal metadata",
+        "pass": true,
+        "detail": "RG depth only; B=0 and A=255 throughout"
+      },
+      {
+        "name": "live stereo output agrees with the independent CPU reference",
+        "pass": true,
+        "detail": "2073600 exact CPU/worker pixels, no engine objects supplied"
+      },
+      {
+        "name": "rendered city has correct stereo pixel pairs",
+        "pass": true,
+        "detail": "99.85% of 11903 interior pairs"
+      },
+      {
+        "name": "live city retains strong dot contrast",
+        "pass": true,
+        "detail": "RMS contrast 0.610"
+      },
+      {
+        "name": "optional scene-color input matches the actual normal render",
+        "pass": true,
+        "detail": "100.00% exact channels; mean difference 0.0000/255 including lighting/textures"
+      },
+      {
+        "name": "fine dots, wide spacing, strong depth and bold contours are the defaults",
+        "pass": true
+      },
+      {
+        "name": "edge definition changes only contour classes and restores without camera motion",
+        "pass": true,
+        "detail": "105593 contour samples; 36.6% of matching pixels emphasized"
+      },
+      {
+        "name": "scene/generated/classic styles preserve camera and restore source colors",
+        "pass": true
+      },
+      {
+        "name": "neutral pattern and dot size preserve pose and restore deterministically",
+        "pass": true
+      },
+      {
+        "name": "all views preserve camera pose",
+        "pass": true
+      },
+      {
+        "name": "R cycles views and E cycles all four styles without requesting mouse release",
+        "pass": true,
+        "detail": "no Pointer Lock exit calls; pose preserved (actual capture requires a permitted browser)"
+      },
+      {
+        "name": "GPU/CPU renderer switching preserves position and restores stereo output",
+        "pass": true,
+        "detail": "CPU fallback retained"
+      },
+      {
+        "name": "active stereo renderer follows walking and turning without stationary drift",
+        "pass": true,
+        "detail": "CPU camera/depth/pattern update"
+      },
+      {
+        "name": "W/S forward and backward DOM controls",
+        "pass": true
+      },
+      {
+        "name": "A/D strafe DOM controls",
+        "pass": true
+      },
+      {
+        "name": "arrow turn DOM controls",
+        "pass": true
+      },
+      {
+        "name": "Shift sprint is faster and key release returns to walking",
+        "pass": true,
+        "detail": "2.00× walking distance"
+      },
+      {
+        "name": "Escape clears held movement immediately",
+        "pass": true
+      },
+      {
+        "name": "building collision in the running game",
+        "pass": true,
+        "detail": "stopped at x=7.520"
+      },
+      {
+        "name": "HUD hide and restore",
+        "pass": true
+      },
+      {
+        "name": "guide pauses movement",
+        "pass": true
+      },
+      {
+        "name": "five walk-in collections and completion UI",
+        "pass": true
+      }
+    ]
+  },
+  "reconstruction": {
+    "scene": {
+      "schema": 1,
+      "recordedAt": "2026-09-26T04:41:59.053Z",
+      "pattern": "scene",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "calibration": {
+        "spacing": 120,
+        "strength": 0.5
+      },
+      "search": [
+        54,
+        270
+      ],
+      "grid": [
+        320,
+        180
+      ],
+      "reconstruction": {
+        "sampled": 57600,
+        "valid": 53820,
+        "reliableFraction": 0.9394834633965069,
+        "ambiguousFraction": 0.010813823857302118,
+        "alternateLayerFraction": 0.8456521739130435,
+        "meanDotContrast": 0.5797087500394534,
+        "weakContrastFraction": 0.00011148272017837236,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 53820,
+        "meanDisparityError": 0.3651430694908956,
+        "withinTwoPixels": 0.9765700483091787,
+        "confident": 50563,
+        "confidentWrongFraction": 0.0006130965330379923,
+        "interior": 50947,
+        "interiorWithinTwoPixels": 0.9856713839872809
+      },
+      "analysisMs": 578.6999999955297,
+      "performance": {
+        "backend": "WebGPU",
+        "adapter": "nvidia · ampere",
+        "fallback": null,
+        "completionMs": 15,
+        "colorMs": 1.1999999955296516,
+        "readbackMs": 0,
+        "width": 1920,
+        "height": 1080,
+        "quality": "1",
+        "build": "scene-reconstruction-2"
+      },
+      "capturePerformance": {
+        "backend": "WebGPU",
+        "adapter": "nvidia · ampere",
+        "fallback": null,
+        "completionMs": 231.80000000447035,
+        "colorMs": 0.8999999985098839,
+        "readbackMs": 0,
+        "width": 1920,
+        "height": 1080,
+        "quality": "1",
+        "build": "scene-reconstruction-2",
+        "scope": "One-frame diagnostic readback; not interactive frame timing"
+      },
+      "limitations": [
+        "Local normalized correlation on native pixels, sampled on a grid; not a human perceptual model.",
+        "Alternate matches include inherent harmonic repetitions; they are candidates, not proof of perceived ghost layers."
+      ]
+    },
+    "generated": {
+      "schema": 1,
+      "recordedAt": "2026-09-26T04:42:05.620Z",
+      "pattern": "geometry",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "calibration": {
+        "spacing": 120,
+        "strength": 0.5
+      },
+      "search": [
+        54,
+        270
+      ],
+      "grid": [
+        320,
+        180
+      ],
+      "reconstruction": {
+        "sampled": 57600,
+        "valid": 53820,
+        "reliableFraction": 0.939204756596061,
+        "ambiguousFraction": 0.011222593831289483,
+        "alternateLayerFraction": 0.8457450761798588,
+        "meanDotContrast": 0.541611987979659,
+        "weakContrastFraction": 0.0001300631735414344,
+        "zeroStrength": false
+      },
+      "comparison": {
+        "compared": 53820,
+        "meanDisparityError": 0.37116313638052767,
+        "withinTwoPixels": 0.9762356001486436,
+        "confident": 50548,
+        "confidentWrongFraction": 0.00059349529160402,
+        "interior": 50947,
+        "interiorWithinTwoPixels": 0.9853965886116945
+      },
+      "analysisMs": 580.7999999970198,
+      "performance": {
+        "backend": "WebGPU",
+        "adapter": "nvidia · ampere",
+        "fallback": null,
+        "completionMs": 5.200000002980232,
+        "colorMs": 0,
+        "readbackMs": 0,
+        "width": 1920,
+        "height": 1080,
+        "quality": "1",
+        "build": "scene-reconstruction-2"
+      },
+      "capturePerformance": {
+        "backend": "WebGPU",
+        "adapter": "nvidia · ampere",
+        "fallback": null,
+        "completionMs": 141.10000000149012,
+        "colorMs": 0,
+        "readbackMs": 0,
+        "width": 1920,
+        "height": 1080,
+        "quality": "1",
+        "build": "scene-reconstruction-2",
+        "scope": "One-frame diagnostic readback; not interactive frame timing"
+      },
+      "limitations": [
+        "Local normalized correlation on native pixels, sampled on a grid; not a human perceptual model.",
+        "Alternate matches include inherent harmonic repetitions; they are candidates, not proof of perceived ghost layers."
+      ]
+    }
+  },
+  "nativePerformance": {
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "sample": {
+      "fps": 173,
+      "refresh": 240,
+      "completionMs": 12.100000001490116,
+      "colorMs": 1.3000000044703484,
+      "readMs": 0,
+      "diagnosticCapture": false,
+      "autoScale": 1,
+      "fallback": "",
+      "adapter": "nvidia · ampere",
+      "build": "scene-reconstruction-2"
+    },
+    "scope": "One normal-page interval, no QA readback; not a hardware guarantee"
+  },
+  "externalFirefox": {
+    "source": "Human report after reloading normal page",
+    "beforeFps": 10,
+    "beforeCompletionMs": 99,
+    "afterFpsRange": [
+      58,
+      60
+    ],
+    "interpretation": "Confirms improvement after bounded scheduling and RAF completion polling; no local automated Firefox benchmark",
+    "afterCompletionMsRange": [
+      13,
+      30
+    ]
+  },
+  "uiChecks": {
+    "fullscreen": {
+      "entered": true,
+      "exited": true
+    },
+    "resize720": {
+      "x": 0,
+      "z": 13,
+      "yaw": 0,
+      "pitch": 0,
+      "mode": "stereo",
+      "pattern": "scene",
+      "backend": "gpu",
+      "found": 0,
+      "width": 1280,
+      "height": 720,
+      "scale": 1,
+      "stereoMs": 6.4,
+      "readMs": 0,
+      "presented": 15865,
+      "pointerLocked": false,
+      "fullscreen": false
+    },
+    "resize1080": {
+      "verified": true,
+      "source": "Final native reconstruction captures"
+    },
+    "pointerLock": "Embedded host declined capture. User previously confirmed external mouse look. R/E test checks no exitPointerLock calls, not a captured session."
+  },
+  "scopeNotes": [
+    "Gameplay and GPU fixture runs preceded a debugger-only layout/report-field edit. Renderer, controls and decoder were unchanged; final unit/build/reconstruction checks include that edit.",
+    "The decoder receives final pixels and calibration only; intended depth is introduced in a separate comparison step.",
+    "Alternate matches include inherent harmonics and are not proof of human ghost perception.",
+    "Scene hues remain shared by stereo equivalence classes; arbitrary original artwork cannot be reproduced exactly."
+  ]
+}

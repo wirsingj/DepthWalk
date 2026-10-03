@@ -1,0 +1,6 @@
+yaiml:
+  version: "0.2.0"
+  core:
+    state: docs/SOT.md
+    architecture: docs/ARCHITECTURE.md
+    maintainer_guide: docs/MAINTAINER_GUIDE.md

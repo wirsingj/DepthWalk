@@ -1,0 +1,179 @@
+{
+  "recordedAt": "2026-09-26T11:30:18.911Z",
+  "environment": {
+    "os": "Windows",
+    "node": "v22.22.3",
+    "npm": "10.2.3",
+    "browser": "Codex in-app Chromium",
+    "gpu": "NVIDIA Ampere"
+  },
+  "revision": "Uncommitted main; repository has no HEAD commit",
+  "scope": "Optional exact-RGB ink, wider spacing and settings reset. No acceptance claim for perceived depth, source-color realism or removal of repeated objects.",
+  "sources": {
+    "src/adapters/three-depth.js": "e089710b5346d2f6fb1773981d190b0f0176c07c9fc150be7929995bee5a582a",
+    "src/adapters/three-webgpu-depth.js": "9a17f34d1e10f5f936e3284e4de06bea5c364f1df7fb816ce36b7077aa9c69a8",
+    "src/chroma-stereo.js": "f49c25bc911cef6600b4058ce0c2e9dc14d960f4cdbfc6d000dbabdd04501f28",
+    "src/city.js": "f312385ba83c348d4049890aa0e1c93dd8c92cd560748d1bfb2be65ae47c0613",
+    "src/contours.js": "213c6fa1db7f734a2b4627558312bfd50c0b0ab7e4125cf6a599b69e101b143d",
+    "src/debug/appearance-synthesis.js": "f97b079ef6218cc5bae24854d6a6eb96fc2210932b0bc70349fbfa37f63ffa2c",
+    "src/debug/benchmark.js": "2325b3b45713921d2baeed33a889b8530661b63cc95675ded8351c08838c7dc4",
+    "src/debug/bounded-color.js": "9585c2a1f13f10c603490fbc241fe2923597d17ebdab47d6238e38f8e029dd28",
+    "src/debug/candidate-gates.js": "7b1f1372097b3bd00ed022782cf84075098a9f0d7910decbcb4b8af675d067bf",
+    "src/debug/color-constraints.js": "727fd28cb7b299cc4025994012488691617685e247e54cab1012e75faaad8da7",
+    "src/debug/feature-synthesis.js": "30d43ae8c7168dc58fffd0176b113afc3463ef8bc26066301cf596b0daed926c",
+    "src/debug/image-fidelity.js": "9ff4c981f200bfebd1ea9dfa9704c13b55690b726d6fe4f6006c8e79efab1671",
+    "src/debug/ink-synthesis.js": "e7ef3d619fbdcf4c07de6e3bb952a3b46871564f0e98149d26f3c46cbb30c399",
+    "src/debug/isolation-scene.js": "43ce4bd5988615d2ab81b5f657f3824eefd155d9847d05d78e150f66ae0ae541",
+    "src/debug/multiscale-contrast.js": "ae4b711d428607863650e0e4218e5d3d2d90bab97ea0e29994c671e931279e48",
+    "src/debug/observer.js": "d214f338e82c144a120aaa3cce2b5e27e24b208ea28e5f30c0c9394b59a42f89",
+    "src/debug/observer.worker.js": "5962e5f0fffc7365c580472dd65190c621c45314d4bea6cd1e742173f11e415f",
+    "src/debug/panel.js": "9b88b65f0d03735e9e62bacc39dbe807e573443538e81d4011cfc7f162852a3b",
+    "src/debug/reconstruct.js": "b52071211b43ba2d2ae3e08dbc169e31710356c4e62c8502e73b6b9a7e02cf14",
+    "src/debug/reconstruct.worker.js": "1d35f8df6d25b052da825bc343c8abc0e43834264d306bfdbaa1070bd48d2060",
+    "src/debug/worker-client.js": "220a3f77798cd31a58c1716078a0c23ef995a99cff625f9e27e5515a15c4a43f",
+    "src/depth-direction.js": "b0de9c2a756405a80795b0f6c31166d9be192bfe394284b56d083fbd0a4173a9",
+    "src/depth-frame.js": "e03e1603b8c9b7fbaf0f0bbc37b995dd4b334c611e9ffe885f869f620dc6e262",
+    "src/depthwalk.js": "312b04c6e9efba8e0acef24ebf6ffd37a269a5ebdfbff86226f5f2c73e580683",
+    "src/game.js": "e4545ca2de6b934830f7ed78bcd129a09da7539502f238aaa6094642def16184",
+    "src/gpu/city-renderer.js": "a3895fa5784df3b1b89463b9b0c970664a43445615d3045e51938f7c64885e9c",
+    "src/gpu/depthwalk-gpu.js": "d4237e3d8c35016a3a1641ff9c736091883430b12a15435a49ff464ad03303cb",
+    "src/gpu/frame-queue.js": "b8728c5666489d7216c7bebc2d4b1381f0a1602a2728dcd119475bc8d461d1a3",
+    "src/gpu/stereogram.wgsl": "b0b49f471dc39c53724e9fa1859988b951b0c4d72e374712c20506f2d4ba3a8f",
+    "src/main.js": "f53e27c939cf8597955f3dce4e04108c86d8f0985e589ff33fec14165e7a7387",
+    "src/pattern.js": "d61d6fbad51ddc92790655e2d4f16697a92c6a194ddc7896e88599f5de58b364",
+    "src/performance.js": "a47a8b8e83402a198488ae7078ee03bc4698409771cdb4c64237d5351720b94c",
+    "src/preferences.js": "655f8813aec1056aae88e4bdf742663186e9676e052ec1833591bd8f650685f1",
+    "src/scene-color.js": "d3aa0932c98ade5704d8fe3bb441ecdc536f3a75c2fb471c47ddfa0a0099b652",
+    "src/stereo-window.js": "425148fcd7c753b791039df018502f29d12665b17aa3816f6b6ec29811c6d295",
+    "src/stereo.worker.js": "45d02810b2088bee42432cb689fd64dfdc7b2d6e82b703c8f18ee492792590ef",
+    "src/stereogram.js": "297703522a0d80b7250dc348e578c8353ea8303efbb4ce85bfa0208e89f4d775",
+    "src/style.css": "0b9e2e347e77d004bed2f85dc8e465613000918d38ad238a45cfa9212fa22790",
+    "src/surface-stereo.js": "f663e2c7155df07129de403d46814c5d055e927a1cf007846a78876dc1a0301b",
+    "src/surfaces.js": "c757fc46bb4d63bf6664b0d7052623acc73f6630ae9475833c0950e5bc4a745a",
+    "tests/appearance-research.js": "ad77a8640cec2aec3ca4e67530060444a071ceb32c3fdbb207512be67e93c9c7",
+    "tests/appearance-synthesis.test.js": "d8ff30934001d80f29df48b30a0a040cb7a5e9c6a3c5a9ce5e0126f9d5577e3c",
+    "tests/audit-regressions.test.js": "3fc8bba324109e4d02024f8ae91fb93c595a6188518137afdecebc705f64647a",
+    "tests/banding-research.js": "39b3622f4d515934b266d54dbb43c3d71a48e1fea8c9010a35b62226a8a314ef",
+    "tests/benchmark.test.js": "e397f165d495f9ba20095a06d95755d661f873644a666eee8a52c87e585b8675",
+    "tests/bounded-color.test.js": "a8fc219cba33e9e714fc38fc9c0b8141d49974e3c23325d3a2b1c08e3e8aa2cb",
+    "tests/browser-checks.js": "79c06b931296eb534954185b3a5f97d3c8833878a751bea2bd3e95107c015adf",
+    "tests/chroma-motion.test.js": "354a36ac1369c4ba74de3aced00cc9813ac34288e3a6ff5794f53f2e65670267",
+    "tests/chroma-stereo.test.js": "a02cfd10242b5b4a3f4b71b6425efc90ded44323890029c679d2c01fbf0d0f3b",
+    "tests/color-constraints.test.js": "bc7adc847c9ef8f385c769d991effd8fe66498e5b6a760e74ef3236fc97760ba",
+    "tests/contours.test.js": "d0b29afae0b6ea618e1c2eda23b2db64c6a91ec4725eced222c8c2cdc49abec4",
+    "tests/depth-direction.test.js": "2ad7219d6c57112c07bd835c5e576372938b543ad209b8d2e8be10a7340ce7fb",
+    "tests/depthwalk.test.js": "eb88cb97bd8d92098841d1ceeaf56e4fe1cad0d1db69668013b1822a95fe30a0",
+    "tests/development-cycle.test.js": "a8e8e0dfc87a5db5d7b75fe83cdb52103d52cfb4cd57578d827e5c80cc22dbe4",
+    "tests/feature-synthesis.test.js": "76ef674c84fea3523050bf670486674f36aee441a7da38540f5c7d68dc0802af",
+    "tests/frame-queue.test.js": "8479821e0cafd461f6c71a8f7f50f7a36e80736da98476343cfa543241d47e6e",
+    "tests/game.test.js": "c874f905bf16e38d25063cd1b08df5178056d25db3780c30ed137187b4b85770",
+    "tests/gpu-checks.html": "eb3dc4d7e7b7f20a969ac41a4cd3bea88f5671008165d26764414f1f4b806006",
+    "tests/gpu-checks.js": "37f490c2fa9eb37bcde83da4be3fd80e65c9dcbbe7447e7ec2a956ac4b6662fe",
+    "tests/ink-contours.test.js": "bad8615b9e654a81e2a06cd7073bdd5e57ec9cf7f61b8158acc4143b80c59aa0",
+    "tests/ink-research.js": "777cbb325e220671ee09eaa052ff9f1f1eabde4a3000ba9916d3b4238b2e517b",
+    "tests/multiscale-research.js": "2902f24ed78dd17f24d82e92d609b32f862637eb91fa695f1b9eea8bd9def665",
+    "tests/observer-benchmark.js": "b4f36b70f76888d9d102db5115bd4c2e603511c26179c0905ff25197de25a022",
+    "tests/observer-lab.css": "6fb1b98edfb522296831ae342894f17d81eb16e42a12917be53abe55e95ac7ae",
+    "tests/observer-lab.html": "46f6f00a604b93a72493e430a13ffe3548e5aae38b14d9a9638c34a24b0bf615",
+    "tests/observer-lab.js": "f4c2f3b6d3458f1c7cf567314aa70e5285c5e9dae22ea77df959cd03358b467e",
+    "tests/observer.test.js": "9983cf2ce1e2d8b2f41ea5a74c938535a6a733f68129527654d6b41c92bba209",
+    "tests/quiet-motion-research.js": "233a9b74202aa02647ec55ee2136557e63aae9ff45e51bb4ea7e8a73f93bad5f",
+    "tests/quiet-motion.test.js": "09f12d58668ab13e3641801ea45b071e525750529f7935560ebb767b3563b73d",
+    "tests/reconstruct.test.js": "db85956c496b6754456e012e2bf13e333439a0482acd3c0ff53653a6e40ad6ba",
+    "tests/scene-color.test.js": "65aefe288cd9ca5c05d7efdae8a506072e0cb553bc7ced86f75e742de35faa1c",
+    "tests/shading.test.js": "b31f818eb303824e8adc1c93d2a42245c514484b9e03bdfd4f11d0f18c045859",
+    "tests/stereo-quality.js": "805403b867a4c0c016c207988d4934446153d7fc41b57b88d13037d24da03bd6",
+    "tests/stereo-window.test.js": "f64c69b74d80b511a46021fccdb2802674e47f2bbbf22f15ea72c27341c7fca2",
+    "tests/stereogram.test.js": "3e22ed61ce80e6fd5957852b3d7cd72060c1620384bfee83d73a6533ff4b2988",
+    "tests/surface-lab.html": "a507cdba8f2369f6ad880d4e2a671647cbc1902e5a72902bff7aea21b105853c",
+    "tests/surface-lab.js": "acdaf02b33584f2cde94e406e002e5c483d44c5183cc4c1775cce27922e5f96a",
+    "tests/surface-stereo.test.js": "1f64c1747edd5107b6aba974e17ae6396a57bab9caa4618b0c2f6552d46b0130",
+    "tests/worker-client.test.js": "a9224cc30ad841ad122a54504b5cfe3b6d7e00deda1e8e6beaa05206bb5d471b",
+    "index.html": "807484764cd06b1b8b9e6407ed0cdef3ce37cbd8c3fe4762837a73f8163f740e",
+    "package.json": "67dc66f1419abd7cbdaeda41edbc137bc58ddda5711761277d6a7c10574cc6ce",
+    "package-lock.json": "fe8e96953f460a32f7ae73fd8274a644c1fa10c504bc641c156ce36c716f4c17"
+  },
+  "checks": {
+    "lint": true,
+    "unitTests": 136,
+    "productionBuild": true,
+    "gpuFixtures": {
+      "passed": 18,
+      "file": "evidence/ink-gpu.json"
+    },
+    "gameplay": {
+      "gpu": {
+        "passed": 32,
+        "file": "evidence/ink-gameplay-gpu.json"
+      },
+      "cpu": {
+        "passed": 32,
+        "file": "evidence/ink-gameplay-cpu.json"
+      }
+    }
+  },
+  "cityReplays": [
+    {
+      "file": "evidence/ink-city-replay.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "spacing": 120,
+      "invertDepth": true
+    },
+    {
+      "file": "evidence/ink-wide-city-replay.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "spacing": 180,
+      "invertDepth": true
+    }
+  ],
+  "discarded": {
+    "projectedLighting": {
+      "file": "evidence/texture-city.json",
+      "reason": "Doubled shapes; eye-color conflict and motion regression"
+    },
+    "sharedHueLighting": {
+      "file": "evidence/texture-research.json",
+      "reason": "No color-locality improvement; motion and source-fidelity regression"
+    },
+    "rowDitheredDepth": {
+      "file": "evidence/anti-banding-city.json",
+      "reason": "Depth accuracy/support regression"
+    }
+  },
+  "manual": {
+    "savedResetReload": {
+      "spacing": 120,
+      "edges": 2,
+      "invertDepth": true
+    },
+    "performanceSnapshot": {
+      "fps": 60,
+      "resolution": [
+        1920,
+        1032
+      ],
+      "completionMs": 5.5,
+      "scope": "One stationary local preview snapshot; not a sustained performance benchmark"
+    },
+    "image": "evidence/ink-live-final.png",
+    "fullscreen": "Fullscreen UI expanded the preview to 1920×1032; exit restored 448×932. Both transitions observed.",
+    "preview": "Outlined example saved; live preview restored to defaults after the comparison.",
+    "documentationLinks": "PASS: all relative links in six affected documents resolve",
+    "finalControls": {
+      "edges": 2,
+      "spacing": 120,
+      "invertDepth": true
+    }
+  },
+  "limits": [
+    "Human stereo direction/fusion confirmation remains pending",
+    "Dark ink may emphasize existing repeated contours",
+    "Repeated color bands and arbitrary original-render fidelity remain unresolved"
+  ]
+}

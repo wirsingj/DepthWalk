@@ -1,0 +1,39 @@
+{
+  "recordedAt": "2026-09-26T10:57:15.262Z",
+  "direction": true,
+  "link": "./tests/observer-lab.html?compare=quiet&direction=reversed",
+  "performance": {
+    "adapter": "nvidia · ampere",
+    "autoScale": 1,
+    "build": "paired-chroma-3",
+    "colorMs": 0.5,
+    "completionMs": 4.299999997019768,
+    "diagnosticCapture": false,
+    "fallback": "",
+    "fps": 241,
+    "readMs": 0,
+    "refresh": 240
+  },
+  "state": {
+    "backend": "gpu",
+    "found": 0,
+    "fullscreen": false,
+    "height": 720,
+    "mode": "stereo",
+    "pattern": "quiet",
+    "pitch": 0,
+    "pointerLocked": false,
+    "presented": 3075,
+    "readMs": 0,
+    "scale": 1,
+    "stereoMs": 4.3,
+    "width": 1280,
+    "x": 0,
+    "yaw": 0,
+    "z": 13
+  },
+  "viewports": [
+    1280,
+    720
+  ]
+}

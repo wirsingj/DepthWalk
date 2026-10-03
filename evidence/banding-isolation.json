@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-26",
+  "sourceFingerprint": "042ec3802007ae60af30fa5ef4d411a8e9ecb4944ae0773d99c2b5467625c4d5",
+  "sourceFiles": 61,
+  "scope": "Quiet banding isolation, uncommitted main. CPU/GPU color-fit and contour modulation removed; depth graph unchanged.",
+  "tests": {
+    "unit": 106,
+    "gpuFixtures": 12,
+    "nearBeaconFrames": 100,
+    "syntheticFrames": 30
+  },
+  "findings": {
+    "quiet35NearAccuracy": 0.918,
+    "quiet35SyntheticAccuracy": 0.93655,
+    "remoteRecolorSpread": 0
+  },
+  "limitations": [
+    "Quiet sacrifices source colors; projected-color experiments remain available.",
+    "Color invariance establishes removal of color propagation, not absence of every stereo echo.",
+    "Human fusion of this revision not confirmed.",
+    "Gameplay suite not rerun for this rendering-only change."
+  ],
+  "evidence": [
+    "banding-synthetic.json",
+    "banding-near.json",
+    "banding-gpu.json"
+  ],
+  "humanOutcome": {
+    "status": "rejected",
+    "reported": "Does not work; just pixels.",
+    "consequence": "Neutral Quiet reverted; numerical results retained as counterexample, not a successful fix."
+  }
+}

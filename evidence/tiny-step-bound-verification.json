@@ -1,0 +1,839 @@
+{
+  "scope": "Actual game depth/output; one simulated input tick before release, not an absolute minimum tap. Controlled images vary depth or carrier independently. No renderer change.",
+  "world": "original",
+  "viewport": [
+    1280,
+    720
+  ],
+  "devicePixelRatio": 1,
+  "spacing": 96,
+  "strength": 0.33,
+  "seed": 173,
+  "reconstructionScope": "Independent image-only decoder; source comparison follows decoding. Confidence is contrast-sensitive; reconstruction is not human comfort.",
+  "cases": [
+    {
+      "pose": "spawn",
+      "hz": 240,
+      "forwardDistance": 0.00061,
+      "image": {
+        "width": 1280,
+        "height": 720,
+        "backend": "gpu",
+        "noiseFrames": [
+          2,
+          3
+        ],
+        "contrast": 1
+      },
+      "standingStill": {
+        "changedPercent": 0,
+        "changedAtLeast16Percent": 0,
+        "meanAbsByte": 0,
+        "rmsByte": 0,
+        "correlation": 1
+      },
+      "sourceRender": {
+        "changedPercent": 4.089735,
+        "meanAbsChannelByte": 0.053017
+      },
+      "changedStereoClassPercent": 0.374674,
+      "meanDepthChangeRG16": 1.747056,
+      "actualMovement": {
+        "changedPercent": 99.411133,
+        "changedAtLeast16Percent": 82.343099,
+        "meanAbsByte": 54.464544,
+        "rmsByte": 67.983067,
+        "correlation": -0.008202
+      },
+      "controlled": {
+        "fullContrast": {
+          "changedPercent": 99.411133,
+          "changedAtLeast16Percent": 82.343099,
+          "meanAbsByte": 54.464528,
+          "rmsByte": 67.983034,
+          "correlation": -0.008202
+        },
+        "halfContrast": {
+          "changedPercent": 98.830729,
+          "changedAtLeast16Percent": 65.315647,
+          "meanAbsByte": 27.235862,
+          "rmsByte": 34.00046,
+          "correlation": -0.008193
+        },
+        "depthOnlyHeldGrain": {
+          "changedPercent": 0.371636,
+          "changedAtLeast16Percent": 0.304253,
+          "meanAbsByte": 0.181838,
+          "rmsByte": 3.681279,
+          "correlation": 0.997023
+        },
+        "grainOnlyHeldDepth": {
+          "changedPercent": 99.407661,
+          "changedAtLeast16Percent": 82.347439,
+          "meanAbsByte": 54.470413,
+          "rmsByte": 67.981975,
+          "correlation": -0.008301
+        }
+      },
+      "mechanism": {
+        "total": {
+          "rms": 67.983033564615,
+          "signedMean": -6.535239800347222,
+          "meanSquare": 4621.692852647569,
+          "globalMeanEnergyFraction": 0.009241063958539788,
+          "regionalMeanEnergyFraction": 0.010093792499307053,
+          "residualAfterGlobalMean": 67.66818671576421,
+          "residualAfterRegionalMeans": 67.63906004667284
+        },
+        "depthAtHeldCarrier": {
+          "rms": 3.6812791806992853,
+          "signedMean": -0.01019314236111111,
+          "meanSquare": 13.55181640625,
+          "globalMeanEnergyFraction": 0.000007666880075645046,
+          "regionalMeanEnergyFraction": 0.00007669371479699345,
+          "residualAfterGlobalMean": 3.6812650687092345,
+          "residualAfterRegionalMeans": 3.6811380125047686
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 67.99136045536359,
+          "signedMean": -6.5250466579861115,
+          "meanSquare": 4622.82509657118,
+          "globalMeanEnergyFraction": 0.009210003190576075,
+          "regionalMeanEnergyFraction": 0.010074833688052459,
+          "residualAfterGlobalMean": 67.6775358792139,
+          "residualAfterRegionalMeans": 67.6479925981124
+        },
+        "crossTerm": -14.684060329861111,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 1.5801119750737438,
+        "oldContrastSD": 47.71104424775486,
+        "projectedContrastSD": 47.684871703271796,
+        "retainedHorizontalVariance": 0.9988416253408725,
+        "minimumRmsSameGlobalMeanAndSD": 1.5803287176585055,
+        "minimumRmsSameEachRowMeanAndSD": 1.5833049978928648,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "fullContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.233716,
+            "meanDisparityError": 0.082854,
+            "reliablePercent": 87.260536
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.850575,
+            "meanDisparityError": 0.101054,
+            "reliablePercent": 91.283525
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.14272,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.245211,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.14272
+          }
+        },
+        "halfContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.233716,
+            "meanDisparityError": 0.082854,
+            "reliablePercent": 3.783525
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.898467,
+            "meanDisparityError": 0.099138,
+            "reliablePercent": 6.369732
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.14272,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.245211,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.14272
+          }
+        },
+        "depthOnlyHeldGrain": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.233716,
+            "meanDisparityError": 0.082854,
+            "reliablePercent": 87.260536
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.233716,
+            "meanDisparityError": 0.085249,
+            "reliablePercent": 87.212644
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.002395,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 0.047893,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.002395
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 99.233716,
+            "meanDisparityError": 0.082854,
+            "reliablePercent": 87.260536
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.898467,
+            "meanDisparityError": 0.097222,
+            "reliablePercent": 91.139847
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.138889,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.197318,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.138889
+          }
+        }
+      },
+      "cpuReferenceError": 0.000016
+    },
+    {
+      "pose": "spawn",
+      "hz": 60,
+      "forwardDistance": 0.009063,
+      "image": {
+        "width": 1280,
+        "height": 720,
+        "backend": "gpu",
+        "noiseFrames": [
+          5,
+          6
+        ],
+        "contrast": 1
+      },
+      "standingStill": {
+        "changedPercent": 0,
+        "changedAtLeast16Percent": 0,
+        "meanAbsByte": 0,
+        "rmsByte": 0,
+        "correlation": 1
+      },
+      "sourceRender": {
+        "changedPercent": 19.03418,
+        "meanAbsChannelByte": 0.586997
+      },
+      "changedStereoClassPercent": 3.227105,
+      "meanDepthChangeRG16": 24.044857,
+      "actualMovement": {
+        "changedPercent": 99.379557,
+        "changedAtLeast16Percent": 81.996528,
+        "meanAbsByte": 53.98712,
+        "rmsByte": 67.354771,
+        "correlation": 0.0032
+      },
+      "controlled": {
+        "fullContrast": {
+          "changedPercent": 99.379557,
+          "changedAtLeast16Percent": 81.996528,
+          "meanAbsByte": 53.98712,
+          "rmsByte": 67.354771,
+          "correlation": 0.0032
+        },
+        "halfContrast": {
+          "changedPercent": 98.811415,
+          "changedAtLeast16Percent": 64.989475,
+          "meanAbsByte": 26.998439,
+          "rmsByte": 33.685293,
+          "correlation": 0.00322
+        },
+        "depthOnlyHeldGrain": {
+          "changedPercent": 3.197266,
+          "changedAtLeast16Percent": 2.549913,
+          "meanAbsByte": 1.540964,
+          "rmsByte": 10.824342,
+          "correlation": 0.974356
+        },
+        "grainOnlyHeldDepth": {
+          "changedPercent": 99.378147,
+          "changedAtLeast16Percent": 82.04362,
+          "meanAbsByte": 54.031745,
+          "rmsByte": 67.392239,
+          "correlation": 0.002971
+        }
+      },
+      "mechanism": {
+        "total": {
+          "rms": 67.35477146212641,
+          "signedMean": -0.9480121527777777,
+          "meanSquare": 4536.665238715278,
+          "globalMeanEnergyFraction": 0.00019810301058688294,
+          "regionalMeanEnergyFraction": 0.0010717945111084956,
+          "residualAfterGlobalMean": 67.34809954017607,
+          "residualAfterRegionalMeans": 67.3186665480956
+        },
+        "depthAtHeldCarrier": {
+          "rms": 10.824341721227977,
+          "signedMean": 0.03801215277777778,
+          "meanSquare": 117.16637369791667,
+          "globalMeanEnergyFraction": 0.000012332239303799595,
+          "regionalMeanEnergyFraction": 0.00003759825175111876,
+          "residualAfterGlobalMean": 10.824274976835994,
+          "residualAfterRegionalMeans": 10.824138231152705
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 67.36350208206531,
+          "signedMean": -0.9860243055555555,
+          "meanSquare": 4537.8414127604165,
+          "globalMeanEnergyFraction": 0.0002142525140725201,
+          "regionalMeanEnergyFraction": 0.0011291590827709845,
+          "residualAfterGlobalMean": 67.35628529565203,
+          "residualAfterRegionalMeans": 67.32545928482793
+        },
+        "crossTerm": -118.34254774305556,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 4.418794767263536,
+        "oldContrastSD": 47.79540836666869,
+        "projectedContrastSD": 47.590706169808165,
+        "retainedHorizontalVariance": 0.9910398429517838,
+        "minimumRmsSameGlobalMeanAndSD": 4.423533676213425,
+        "minimumRmsSameEachRowMeanAndSD": 4.437911859571668,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "fullContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.802682,
+            "meanDisparityError": 0.105364,
+            "reliablePercent": 89.08046
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.850575,
+            "meanDisparityError": 0.106322,
+            "reliablePercent": 85.536398
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.136015,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.484674,
+            "meanExpectedChangePixels": 0.007663,
+            "meanChangeErrorPixels": 0.131226
+          }
+        },
+        "halfContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.802682,
+            "meanDisparityError": 0.105364,
+            "reliablePercent": 4.40613
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.850575,
+            "meanDisparityError": 0.106322,
+            "reliablePercent": 2.873563
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.136015,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.484674,
+            "meanExpectedChangePixels": 0.007663,
+            "meanChangeErrorPixels": 0.131226
+          }
+        },
+        "depthOnlyHeldGrain": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.802682,
+            "meanDisparityError": 0.105364,
+            "reliablePercent": 89.08046
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.754789,
+            "meanDisparityError": 0.103927,
+            "reliablePercent": 88.457854
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.050287,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 0.335249,
+            "meanExpectedChangePixels": 0.007663,
+            "meanChangeErrorPixels": 0.047414
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.802682,
+            "meanDisparityError": 0.105364,
+            "reliablePercent": 89.08046
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.754789,
+            "meanDisparityError": 0.1159,
+            "reliablePercent": 85.680077
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.139847,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.484674,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.139847
+          }
+        }
+      },
+      "cpuReferenceError": 0
+    },
+    {
+      "pose": "near first diamond",
+      "hz": 240,
+      "forwardDistance": 0.00061,
+      "image": {
+        "width": 1280,
+        "height": 720,
+        "backend": "gpu",
+        "noiseFrames": [
+          8,
+          9
+        ],
+        "contrast": 1
+      },
+      "standingStill": {
+        "changedPercent": 0,
+        "changedAtLeast16Percent": 0,
+        "meanAbsByte": 0,
+        "rmsByte": 0,
+        "correlation": 1
+      },
+      "sourceRender": {
+        "changedPercent": 2.996094,
+        "meanAbsChannelByte": 0.034383
+      },
+      "changedStereoClassPercent": 0.066081,
+      "meanDepthChangeRG16": 0.828599,
+      "actualMovement": {
+        "changedPercent": 99.326606,
+        "changedAtLeast16Percent": 81.949219,
+        "meanAbsByte": 54.240858,
+        "rmsByte": 67.702796,
+        "correlation": -0.013131
+      },
+      "controlled": {
+        "fullContrast": {
+          "changedPercent": 99.326606,
+          "changedAtLeast16Percent": 81.949219,
+          "meanAbsByte": 54.240858,
+          "rmsByte": 67.702796,
+          "correlation": -0.013131
+        },
+        "halfContrast": {
+          "changedPercent": 98.707031,
+          "changedAtLeast16Percent": 65.011285,
+          "meanAbsByte": 27.123066,
+          "rmsByte": 33.858491,
+          "correlation": -0.013133
+        },
+        "depthOnlyHeldGrain": {
+          "changedPercent": 0.066081,
+          "changedAtLeast16Percent": 0.052626,
+          "meanAbsByte": 0.033867,
+          "rmsByte": 1.675382,
+          "correlation": 0.999386
+        },
+        "grainOnlyHeldDepth": {
+          "changedPercent": 99.326389,
+          "changedAtLeast16Percent": 81.953342,
+          "meanAbsByte": 54.246759,
+          "rmsByte": 67.704671,
+          "correlation": -0.013083
+        }
+      },
+      "mechanism": {
+        "total": {
+          "rms": 67.70279596748007,
+          "signedMean": -0.6055544704861111,
+          "meanSquare": 4583.668581814236,
+          "globalMeanEnergyFraction": 0.00008000059563219434,
+          "regionalMeanEnergyFraction": 0.00580299915390774,
+          "residualAfterGlobalMean": 67.70008778131319,
+          "residualAfterRegionalMeans": 67.50607051897018
+        },
+        "depthAtHeldCarrier": {
+          "rms": 1.6753821599696126,
+          "signedMean": -0.007376302083333334,
+          "meanSquare": 2.8069053819444445,
+          "globalMeanEnergyFraction": 0.00001938427735205525,
+          "regionalMeanEnergyFraction": 0.00004417893413357047,
+          "residualAfterGlobalMean": 1.6753659218546915,
+          "residualAfterRegionalMeans": 1.6753451512618098
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 67.70157515150436,
+          "signedMean": -0.5981781684027778,
+          "meanSquare": 4583.5032779947915,
+          "globalMeanEnergyFraction": 0.00007806629546259236,
+          "regionalMeanEnergyFraction": 0.005797884024032395,
+          "residualAfterGlobalMean": 67.6989324943432,
+          "residualAfterRegionalMeans": 67.50502690589201
+        },
+        "crossTerm": -2.6416015625,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 0.6572921977806422,
+        "oldContrastSD": 47.79360619386387,
+        "projectedContrastSD": 47.7890862015674,
+        "retainedHorizontalVariance": 0.9997988099463341,
+        "minimumRmsSameGlobalMeanAndSD": 0.6573077388816178,
+        "minimumRmsSameEachRowMeanAndSD": 0.6587020676831752,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "fullContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.180077,
+            "meanDisparityError": 0.181992,
+            "reliablePercent": 86.685824
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.275862,
+            "meanDisparityError": 0.148946,
+            "reliablePercent": 87.739464
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.189176,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.676245,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.189176
+          }
+        },
+        "halfContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.180077,
+            "meanDisparityError": 0.180556,
+            "reliablePercent": 3.208812
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.227969,
+            "meanDisparityError": 0.153736,
+            "reliablePercent": 3.87931
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.195402,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.676245,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.195402
+          }
+        },
+        "depthOnlyHeldGrain": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.180077,
+            "meanDisparityError": 0.181992,
+            "reliablePercent": 86.685824
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.180077,
+            "meanDisparityError": 0.179598,
+            "reliablePercent": 86.685824
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.002395,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 0.047893,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.002395
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.180077,
+            "meanDisparityError": 0.181992,
+            "reliablePercent": 86.685824
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.275862,
+            "meanDisparityError": 0.148946,
+            "reliablePercent": 87.835249
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.189176,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.676245,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.189176
+          }
+        }
+      },
+      "cpuReferenceError": 0
+    },
+    {
+      "pose": "near first diamond",
+      "hz": 60,
+      "forwardDistance": 0.009063,
+      "image": {
+        "width": 1280,
+        "height": 720,
+        "backend": "gpu",
+        "noiseFrames": [
+          11,
+          12
+        ],
+        "contrast": 1
+      },
+      "standingStill": {
+        "changedPercent": 0,
+        "changedAtLeast16Percent": 0,
+        "meanAbsByte": 0,
+        "rmsByte": 0,
+        "correlation": 1
+      },
+      "sourceRender": {
+        "changedPercent": 12.794271,
+        "meanAbsChannelByte": 0.699419
+      },
+      "changedStereoClassPercent": 3.410482,
+      "meanDepthChangeRG16": 47.583426,
+      "actualMovement": {
+        "changedPercent": 99.439019,
+        "changedAtLeast16Percent": 81.73546,
+        "meanAbsByte": 54.248979,
+        "rmsByte": 67.758335,
+        "correlation": 0.006246
+      },
+      "controlled": {
+        "fullContrast": {
+          "changedPercent": 99.439019,
+          "changedAtLeast16Percent": 81.73546,
+          "meanAbsByte": 54.248979,
+          "rmsByte": 67.758335,
+          "correlation": 0.006246
+        },
+        "halfContrast": {
+          "changedPercent": 98.866102,
+          "changedAtLeast16Percent": 64.808702,
+          "meanAbsByte": 27.127753,
+          "rmsByte": 33.888142,
+          "correlation": 0.006254
+        },
+        "depthOnlyHeldGrain": {
+          "changedPercent": 3.385742,
+          "changedAtLeast16Percent": 2.763672,
+          "meanAbsByte": 1.711288,
+          "rmsByte": 11.656385,
+          "correlation": 0.970244
+        },
+        "grainOnlyHeldDepth": {
+          "changedPercent": 99.437717,
+          "changedAtLeast16Percent": 81.672526,
+          "meanAbsByte": 54.240696,
+          "rmsByte": 67.787463,
+          "correlation": 0.005401
+        }
+      },
+      "mechanism": {
+        "total": {
+          "rms": 67.75833524698426,
+          "signedMean": 8.299931640625,
+          "meanSquare": 4591.1919954427085,
+          "globalMeanEnergyFraction": 0.015004570775395189,
+          "regionalMeanEnergyFraction": 0.021828233480814013,
+          "residualAfterGlobalMean": 67.2480715723779,
+          "residualAfterRegionalMeans": 67.01473259374345
+        },
+        "depthAtHeldCarrier": {
+          "rms": 11.656385490350463,
+          "signedMean": -0.07949544270833334,
+          "meanSquare": 135.87132269965278,
+          "globalMeanEnergyFraction": 0.00004651110540348083,
+          "regionalMeanEnergyFraction": 0.00009837898373017963,
+          "residualAfterGlobalMean": 11.656114411511298,
+          "residualAfterRegionalMeans": 11.655812104568584
+        },
+        "carrierAtCurrentDepth": {
+          "rms": 67.78217987362268,
+          "signedMean": 8.379427083333333,
+          "meanSquare": 4594.423908420139,
+          "globalMeanEnergyFraction": 0.015282612062900519,
+          "regionalMeanEnergyFraction": 0.022015816324268717,
+          "residualAfterGlobalMean": 67.26224134070495,
+          "residualAfterRegionalMeans": 67.03188730400281
+        },
+        "crossTerm": -139.10323567708335,
+        "interpretation": "Depth then carrier counterfactual; component energies are not additive without the signed cross term."
+      },
+      "exactGraphBound": {
+        "minimumRmsAnyContrast": 5.770204247132632,
+        "oldContrastSD": 47.77277380911747,
+        "projectedContrastSD": 47.42301825446709,
+        "retainedHorizontalVariance": 0.9846960689812881,
+        "minimumRmsSameGlobalMeanAndSD": 5.780794582203768,
+        "minimumRmsSameEachRowMeanAndSD": 5.802644553468814,
+        "globalContrastFeasible": true,
+        "rowContrastFeasible": true,
+        "scope": "Optimistic real-valued exact-class bounds for this old image. Row bound additionally fixes each old row mean/SD. Not a renderer, pixel-count bound or perceptual threshold."
+      },
+      "reconstruction": {
+        "fullContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.275862,
+            "meanDisparityError": 0.180556,
+            "reliablePercent": 90.181992
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.611111,
+            "meanDisparityError": 0.121169,
+            "reliablePercent": 88.122605
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.164272,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.819923,
+            "meanExpectedChangePixels": 0.118295,
+            "meanChangeErrorPixels": 0.23659
+          }
+        },
+        "halfContrast": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.275862,
+            "meanDisparityError": 0.180556,
+            "reliablePercent": 5.45977
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.563218,
+            "meanDisparityError": 0.124521,
+            "reliablePercent": 3.927203
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.166667,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.867816,
+            "meanExpectedChangePixels": 0.118295,
+            "meanChangeErrorPixels": 0.238985
+          }
+        },
+        "depthOnlyHeldGrain": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.275862,
+            "meanDisparityError": 0.180556,
+            "reliablePercent": 90.181992
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.850575,
+            "meanDisparityError": 0.108716,
+            "reliablePercent": 90.85249
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.064655,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 0.670498,
+            "meanExpectedChangePixels": 0.118295,
+            "meanChangeErrorPixels": 0.139847
+          }
+        },
+        "grainOnlyHeldDepth": {
+          "before": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.275862,
+            "meanDisparityError": 0.180556,
+            "reliablePercent": 90.181992
+          },
+          "after": {
+            "sampled": 2304,
+            "valid": 2088,
+            "withinTwoPixelsPercent": 98.132184,
+            "meanDisparityError": 0.184866,
+            "reliablePercent": 88.266284
+          },
+          "change": {
+            "compared": 2088,
+            "meanDisparityChangePixels": 0.181513,
+            "p95DisparityChangePixels": 0,
+            "changedOverTwoPixelsPercent": 1.867816,
+            "meanExpectedChangePixels": 0,
+            "meanChangeErrorPixels": 0.181513
+          }
+        }
+      },
+      "cpuReferenceError": 0
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {motionCoherence,temporalDiagnostics} from './foundation-motion-quality.js';
+import {linkRow,separation} from '../src/stereogram.js';
 
 const width=384,height=128;
 const pixel=v=>(0xff000000|v|v<<8|v<<16)>>>0;
@@ -115,6 +116,37 @@ test('column energy concentration distinguishes narrow refresh stripes from full
   assert.ok(stripe.columnEnergyCV>9);
   assert.equal(stripe.changedFraction,4/width);
   assert.equal(stripe.reliableFraction,null,'difference bands alone do not prove texture travel');
+});
+
+test('a correctly moving boundary also produces high column concentration',()=>{
+  const boundary=x0=>Uint32Array.from({length:width*height},(_,i)=>pixel(i%width<x0?128:224));
+  const result=temporalDiagnostics(boundary(190),boundary(194),width,height);
+  // This is the expected image change for a four-pixel boundary movement.
+  // Concentration alone cannot classify it as an unwanted refresh band.
+  assert.ok(Math.abs(result.columnEnergyCV-Math.sqrt(width/4-1))<1e-12);
+  assert.ok(result.columnEnergyCV>9);
+  assert.equal(result.changedFraction,4/width);
+  assert.equal(result.reliableFraction,null,'a flat boundary provides no reliable texture-flow evidence');
+});
+
+test('exact stereo pairs and translated matches cannot distinguish intended surface flow from carrier drift',()=>{
+  const depth=.5,spacing=96,strength=.33,period=separation(depth,spacing,strength),texture=noise();
+  const image=shift=>Uint32Array.from(texture,(_,i)=>texture[Math.floor(i/width)*width+(i%width-shift+period)%period]);
+  const a=image(0),b=image(4);
+  for(let y=0;y<height;y++){
+    const same=linkRow(new Float64Array(width).fill(depth),spacing,strength,new Int32Array(width),null,null,undefined,null,y);
+    for(let x=0;x<width;x++)for(const pixels of [a,b])assert.equal(pixels[y*width+x],pixels[y*width+same[x]]);
+  }
+  // An intended four-pixel translation of a textured plane and unwanted
+  // texture drift over a stationary plane can share these exact input images.
+  // Their geometric intentions are external to this image-only diagnostic.
+  const intendedSurfaceDx=4,stationarySurfaceDx=0;
+  const intended=temporalDiagnostics(a,b,width,height),unwanted=temporalDiagnostics(a,b,width,height);
+  assert.deepEqual(intended,unwanted);
+  assert.equal(intended.reliableFraction,1);
+  assert.equal(intended.meanDx,intendedSurfaceDx);
+  assert.notEqual(unwanted.meanDx,stationarySurfaceDx);
+  assert.equal(intended.meanDy,0);
 });
 
 test('temporal diagnostics reject malformed frames and unbounded settings',()=>{

@@ -291,14 +291,47 @@ real-valued bounds omit byte limits, spectrum and competing matches; preserving
 each row's moments adds a stricter constraint, reported separately. They are not
 renderers or comfort thresholds. Brightness correction alone cannot address the
 dominant change, and better class assignment cannot eliminate every transition.
-Apply these bounds to recorded gameplay before selecting another mechanism.
+
+**Actual-scene bounds and assignment, 2026-10-03:** [Tiny-step capture](../evidence/tiny-step-bound-verification.json)
+at 1280×720 gives fixed-contrast bounds of 0.66–5.78 RMS versus 67–68 actual change.
+[City study](../tests/motion-mechanism-check.js) captures four prescribed turn/approach
+routes, 72 transitions each (1.2 seconds nominally), including epochs 51→52.
+It is sequential QA capture, not a timed gameplay or interaction test.
+[Results](../evidence/game-motion-assignment-verification.json) retain worst-change,
+concentration, displacement and bound samples with reconstruction and local flow.
+
+The depth-only [assignment candidate](../tests/foundation-assignment.js) reuses
+existing greedy rank ownership, retaining procedural seed coordinates/epochs,
+never old RGB. It is not globally optimal matching. Mean changes fall from about
+67.5 to 11.3–25.7 RMS across routes; SD remains 47.34–47.82 and sampled worst-frame
+depth accuracy is at least 97.65%. However, close approach still bursts to 52.71
+RMS, with the candidate's own bound reaching 45.09 nearby. Neighbor differences
+increase from roughly 53 to 63: stable SD does not preserve pink spatial structure.
+[Synthetic controls](../evidence/foundation-assignment-verification.json) likewise
+retain a 55.05 RMS flat-plane burst. Keep it offline; lower averages do not establish
+comfortable movement or absence of traveling bands.
 
 **Fractional-method distinction:** the [removed row-dithered trial](OBSERVER.md#ink-contours)
 failed city checks. Its implementation is absent from current source and the
 available branch snapshots, so its exact rounding schedule is unverified. That
-failure does not reject all fractional spatial reconstruction. Tyler and Clarke's
-proposal remains untested here; TIW's grayscale palette still uses integer separation.
-Neither paper establishes a comfortable moving solution for this game.
+failure does not reject all fractional spatial reconstruction. TIW's grayscale
+palette still uses integer separation. [Petz, Goldlücke and Magnor, 2003](https://cvai.cit.tum.de/_media/spezial/bib/pgm03_has.pdf),
+sections 3–5, implements fractional texture projection within the current frame;
+repeated filtering accumulates blur. Its moving-view claims lack a controlled
+observer protocol. Neither paper establishes a comfortable game solution.
+
+**Fractional sampling control:** [Experiment](../tests/fractional-phase-research.js)
+and [evidence](../evidence/fractional-phase-verification.json) compare continuous
+versus rounded separation using the same fixed finite-Fourier field, amplitude,
+anchor and analytic pixel-area integration. This is our feasibility control,
+not a paper reproduction or scene renderer. Across a 1/16-pixel boundary step,
+byte-image RMS falls from 25.14 to 2.46; contrast stays near 26.15 in both controls,
+with no clipping or repeated filtering. Image-only fractional reconstruction
+recovers sampled periods within 1/32 pixel in its declared search range. This
+contrast differs from gameplay; it is not a comparison to runtime quality.
+Expansion/contraction remains measurable. No foreground visibility, disocclusion,
+display calibration or human comfort is validated. Next test a foreground/background
+edge with explicit two-eye visibility, without interpolating depth across silhouettes.
 
 **Rejected continuous-carrier hypothesis:** [Offline study](../tests/foundation-temporal-research.js)
 and [results](../evidence/foundation-temporal-verification.json) compare independent,
@@ -320,19 +353,21 @@ worker seams. The legacy correlation peak includes zero displacement: stationary
 texture scores one, so it cannot label travel. Additive [temporal diagnostics](../tests/foundation-motion-quality.js)
 separate zero-shift evidence, translated improvement, ambiguous peaks, direction,
 flicker and column concentration. Fixed, independent, translated, expanding and
-contracting controls verify their scope. Missing evidence is null; integer search
-limits and engineering thresholds remain explicit. Human fusion, direction judgment,
-interaction success and comfort remain separate acceptance requirements.
+contracting controls verify their scope. Added counterexamples show a correct moving
+boundary can have concentration CV 9.75, and intended surface motion can have the
+same image-only flow measurements as unwanted carrier drift. Neither metric alone
+classifies artifacts; inspect motion relative to geometry and retain worst patches.
+Missing evidence is null; integer search limits and engineering thresholds remain
+explicit. Human fusion, direction, interaction and comfort require separate acceptance.
 
 ### Remaining extension hypotheses
 
 1. Preserve accepted band reduction while improving moving-grain comfort and fusion.
-   Isolate class reassignment from carrier renewal and encoded brightness pumping.
-   Exact-class reuse and simple continuous carrier evolution are rejected above;
-   lowering average flicker alone is insufficient. Spatially distributed renewal
-   is untested and must confront the same flat-plane transition. Display/viewer
-   calibration and complex occlusions still need validation. No contrast or timing
-   optimum is established for this game.
+   Gameplay bounds and seed transport expose residual transition bursts; the
+   fractional flat-plane control motivates explicit visibility testing next.
+   Exact-class reuse and continuous carrier evolution remain unpromoted. Distributed
+   renewal is untested and must confront the same transition. Display/viewer
+   calibration and complex occlusions remain open; no contrast/timing optimum is established.
 2. Evaluate whether the pink carrier helps acquisition without sacrificing detail
    after depth mapping. This differs from the rejected solver below, which relaxed
    final matches. Spectral agreement alone is not a promotion criterion.

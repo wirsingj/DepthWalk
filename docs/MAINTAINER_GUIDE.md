@@ -35,8 +35,9 @@ hue locality, occlusion, stability, scaling and seam checks. Gameplay changes ne
 movement, collision and reachability checks.
 
 Use `?verify` for [gameplay checks](../tests/browser-checks.js); add `&renderer=cpu`
-for compatibility. `?verify=tiny-step&quality=1` isolates forward-step flicker and
-reconstructed depth. `tests/gpu-checks.html` checks GPU correspondence, visibility,
+for compatibility. `?verify=tiny-step&quality=1` measures small steps;
+`?verify=motion-mechanism&quality=1` measures prescribed city transitions and assignment.
+`tests/gpu-checks.html` checks GPU correspondence, visibility,
 stability and scaling against CPU. `?verify=runtime&quality=1` checks idle/wake-up
 and GPU/worker recovery. `?verify=startup&quality=1` checks preparation and recovery;
 also test with `&renderer=cpu`. Both inject faults: use a separate tab.
@@ -53,9 +54,9 @@ Use isolated objects before city A/B; C shows original colors, arrows step.
 `node tests/fusion-research.js` checks CPU prototypes on three fixed scenes. Keep
 controls/thresholds fixed; inspect worst frames and stationary captures.
 Human rejection overrides metrics; harmonics cannot establish ghosts.
-Offline diagnostics: `node tests/foundation-luminance-research.js`,
-`node tests/foundation-temporal-research.js`, `node tests/foundation-mechanism-research.js`.
-These measure brightness, motion and change mechanisms, not comfort.
+Offline: `node tests/foundation-{luminance,temporal,mechanism,assignment}-research.js`
+(run each expanded filename), and `node tests/fractional-phase-research.js`.
+These measure mechanisms, not comfort.
 
 For low FPS, read the persistent backend badge. WebGPU completion latency includes
 browser scheduling; Firefox's 100 ms idle poll can mimic slow GPU work. Keep bounded

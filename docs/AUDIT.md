@@ -9,7 +9,7 @@ read-with: SOT.md; ARCHITECTURE.md; MAINTAINER_GUIDE.md.
 
 # Project audit
 
-Scope: `codex/v0.6`, working changes based on `545de5a`; 2026-10-02 local
+Scope: `codex/v0.6`, working changes based on `4e3b5d8`; 2026-10-03 local
 audit. Existing edits are preserved. [State](SOT.md) owns human direction;
 [research](STEREO-CONSTRAINTS.md#motion-carrier) owns perceptual evidence.
 
@@ -28,8 +28,8 @@ stable, correctly ordered depth survives movement.
 | Priority | Area | Evidence and consequence |
 | --- | --- | --- |
 | P1 | Product alignment | Whole-image carrier replacement dominates tiny-step flicker; half contrast helps but fails human comfort. Do not promote another cosmetic adjustment as a motion fix. |
-| P1 | Motion transitions | Brightness shifts explain only a small part of static. Exact class transitions can force substantial changes even at optimally chosen tones. Synthetic bounds separate unavoidable change from assignment overhead; gameplay bounds remain unmeasured. [Research](STEREO-CONSTRAINTS.md#motion-carrier). |
-| Fixed | Research validity | Temporal diagnostics now distinguish stationary correlation from displacement and report missing/ambiguous evidence. Global and regional brightness checks expose changes hidden by averaging. |
+| P1 | Motion transitions | Actual-scene bounds expose avoidable renewal and expensive close-up transitions. Seed transport lowers average changes but retains bursts and alters spatial texture. A fractional flat-plane control passes its scoped checks; occlusions remain untested. [Research](STEREO-CONSTRAINTS.md#motion-carrier). |
+| Fixed | Research validity | Shared browser/Node bounds match prior synthetic evidence. Counterexamples prevent concentration or translated matches being treated as standalone artifact verdicts. Worst-transition reconstruction and local flow now accompany averages. |
 | Fixed | Input contract | CPU/GPU projection validation rejects coercible strings, booleans and objects before output writes. Adjacent projection quantities retain numerical bounds and the documented infinite-far exception. |
 | Fixed | CPU lifecycle | Validated stripe replies and 15-second deadlines prevent silent worker failures from leaving frames permanently busy. Shared ownership settles requests and terminates failed work. |
 | Verified | Failure coverage | Actual GPU device destruction now exercises continued CPU presentation; a terminated CPU worker reaches visible reload guidance within its deadline. |
@@ -55,8 +55,9 @@ methods, and added lifetime, motion-perception and interaction studies to the
 [literature account](STEREO-CONSTRAINTS.md#motion-carrier). Stereo pairs, static
 single-image results and gameplay acceptance remain distinct. No reviewed paper
 establishes an optimal game carrier. The continuous-carrier experiment preserves
-depth and lowers average flicker but fails the concentration/burst screen; it
-remains offline. Default rendering and accepted band reduction are unchanged.
+depth and lowers average flicker but retains bursts and unvalidated motion; it
+remains offline. Concentration alone is not an artifact verdict. Default rendering
+and accepted band reduction are unchanged.
 
 ## Remaining to-do list
 
@@ -64,17 +65,14 @@ Work in priority order. After each change inspect the affected diff and run its
 focused checks, then recheck combined behavior. Promote a renderer only with both
 numerical evidence and human acceptance.
 
-- [ ] **P1 — Motion mechanism:** apply least-change bounds to recorded tiny-step,
-  turn and approach frames. Distinguish needless carrier renewal from expensive
-  class transitions before another prototype. Compare assignment changes where
-  bounds are low; investigate spatial fractional sampling separately where they
-  are high. Preserve contrast, displacement and reconstruction checks. Prior
-  class-reuse, continuous evolution and row-dithered depth failures remain scoped
-  to those mechanisms; no replacement has passed.
+- [ ] **P1 — Fractional visibility:** extend the matched flat-plane sampling control
+  to a foreground/background edge with explicit visibility from both eyes. Preserve
+  silhouettes, local depth, contrast and distinct matches. Measure texture motion
+  against intended geometry; do not accept lower RMS caused by blur or lost fusion.
 - [ ] **P1 — Candidate coverage:** a numerical survivor must pass actual tiny-step,
   sustained turn/approach, disocclusion, pause/resume and exact-rest checks. The
-  synthetic candidates remain rejected; a bound calculation is not a replacement
-  renderer. Preserve the band-reduction baseline.
+  seed-transport trial retains bursts; the fractional control covers only a plane.
+  Neither is ready for promotion. Preserve the band-reduction baseline.
 - [ ] **P1 — Human gate:** only after numerical gates pass, compare the candidate
   while walking and turning. Require solid correctly ordered depth, correct motion
   direction/approach, successful object interaction, no recurring traveling bands
@@ -90,8 +88,15 @@ numerical evidence and human acceptance.
 
 ## Verification scope
 
+[Motion iteration evidence](../evidence/motion-iteration-verification.json) records
+222 passing tests, lint/build and the new browser/offline studies. Four tiny-step
+captures and 288 prescribed city transitions were measured at 1280×720; held output
+and exact current pairs passed. This is not real-time performance or human acceptance.
+Production code/defaults are unchanged; established gameplay/GPU lifecycle suites
+were not rerun for research-only edits.
+
 [Startup audit evidence](../evidence/startup-audit-verification.json) records source
-fingerprints and environment. Lint, 214 unit tests, build, 22 actual GPU fixtures,
+fingerprints and its earlier environment. Lint, 214 unit tests, build, 22 actual GPU fixtures,
 41 gameplay checks per backend, seven startup checks per initial backend and six
 runtime checks pass. Preparation presents exact reference pixels; timed 960×540
 preparation kept UI callbacks and guide input responsive. Navigation-to-first-accepted

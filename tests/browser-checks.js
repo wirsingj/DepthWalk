@@ -28,6 +28,10 @@ export async function runChecks({player,scene,found,stop,getWorld,getFrame,getMo
     const {runTinyStepCheck}=await import('./tiny-step-check.js');
     return runTinyStepCheck({player,stop,getFrame,captureNormalColor});
   }
+  if(new URLSearchParams(location.search).get('verify')==='motion-mechanism'){
+    const {runMotionMechanismCheck}=await import('./motion-mechanism-check.js');
+    return runMotionMechanismCheck({player,stop,getFrame});
+  }
   if(new URLSearchParams(location.search).get('verify')==='runtime'){
     const {runRuntimeChecks}=await import('./runtime-checks.js');
     return runRuntimeChecks({player,stop,getFrame,...runtime});

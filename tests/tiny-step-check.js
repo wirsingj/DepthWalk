@@ -2,10 +2,11 @@ import {createPlayer,stepPlayer} from '../src/game.js';
 import {FoundationFilter} from '../src/foundation-stereo.js';
 import {linkRow} from '../src/stereogram.js';
 import {reconstructStereogram,compareReconstruction} from '../src/debug/reconstruct.js';
+import {leastChangeBound,splitChange} from './foundation-mechanism.js';
 
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const round=value=>Number(value.toFixed(6));
-function delta(a,b){
+export function delta(a,b){
   let changed=0,large=0,sum=0,square=0,sa=0,sb=0,aa=0,bb=0,ab=0;
   for(let i=0;i<a.length;i++){
     const x=a[i]&255,y=b[i]&255,d=Math.abs(x-y);
@@ -20,7 +21,7 @@ function sourceDelta(a,b){
   for(let i=0;i<a.length;i+=4){let d=0;for(let c=0;c<3;c++)d+=Math.abs(a[i+c]-b[i+c]);changed+=d>0;sum+=d;}
   return {changedPercent:round(400*changed/a.length),meanAbsChannelByte:round(sum/(a.length/4*3))};
 }
-function roots(frame){
+export function roots(frame){
   if(frame.roots)return frame.roots;
   const {width,height,depth}=frame,out=new Uint32Array(width*height),z=new Float64Array(width),same=new Int32Array(width);
   for(let y=0;y<height;y++){
@@ -30,7 +31,7 @@ function roots(frame){
   }
   return out;
 }
-function decode(pixels,frame){
+export function decode(pixels,frame){
   // The decoder sees output pixels only. Source depth enters the comparison afterward.
   const decoded=reconstructStereogram({pixels,width:frame.width,height:frame.height,spacing:frame.spacing,strength:frame.strength,maxColumns:64,maxRows:36});
   const comparison=compareReconstruction(decoded,{depth:frame.depth,origin:'bottom-left'});
@@ -112,6 +113,8 @@ export async function runTinyStepCheck({player,stop,getFrame,captureNormalColor}
         actualMovement:delta(before.pixels,after.pixels),
         controlled:{fullContrast:delta(fullBefore,fullAfter),halfContrast:delta(halfBefore,halfAfter),
           depthOnlyHeldGrain:delta(fullBefore,depthOnly),grainOnlyHeldDepth:delta(fullBefore,grainOnly)},
+        mechanism:splitChange(fullBefore,fullAfter,depthOnly,after.width,after.height),
+        exactGraphBound:leastChangeBound(fullBefore,afterRoots,after.width,after.height),
         reconstruction,cpuReferenceError:parity.meanAbsByte});
       report.textContent=JSON.stringify(cases,null,2);
     }

@@ -82,8 +82,8 @@ absent geometry. Legacy color bands and harsh moving grain remain unresolved.
 **Human-reported, 2026-10-02:** Depth holds; harsh moving static persists despite
 half contrast. One possible brief diamond band qualifies the earlier band-free report.
 Keyboard release now settles within 180 ms in tested simulations.
-**Next:** Measure unavoidable transition change in gameplay before another grain mechanism.
-Continuous-carrier trials retained depth but failed motion screening. [Research, measurements and limits](STEREO-CONSTRAINTS.md#motion-carrier).
+**Next:** Test fractional spatial sampling across occlusions. Seed transport retains
+bursts; the flat-plane sampling control passes only its scoped checks. [Research and limits](STEREO-CONSTRAINTS.md#motion-carrier).
 [Audit and work queue](AUDIT.md). Foundation output stays near 2 MP; no image blending.
 
 **Unknown:** First external engine target, supported hardware floor,

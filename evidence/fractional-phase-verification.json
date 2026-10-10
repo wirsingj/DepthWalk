@@ -1,0 +1,655 @@
+{
+  "scope": "Offline synthetic flat plane only; no occlusion, gameplay, timed display or human comfort validation. No promotion.",
+  "hypothesis": "Continuous current-frame spatial phase removes an integer-separation jump without rendered-frame blending; coherent texture motion may remain.",
+  "fixture": {
+    "width": 384,
+    "height": 12,
+    "harmonics": 12,
+    "seed": 173,
+    "anchor": 191.5,
+    "mean": 128,
+    "peakBound": 120,
+    "separationMin": 47.25,
+    "separationMax": 47.75,
+    "amplitude": 26.6389645,
+    "carrierRmsBeforePixelArea": 1,
+    "analyticUnfilteredRange": [
+      8,
+      248
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://christophertyler.org/CWTyler/TylerPDFs/TylerClarkeAutosterSPIE1979.pdf",
+      "citation": "Tyler and Clarke (1990), The Autostereogram, p.187",
+      "evidence": "Proposes fractional repetition phase through grayscale sampling of higher-resolution noise; no tested temporal algorithm."
+    },
+    {
+      "url": "https://cvai.cit.tum.de/_media/spezial/bib/pgm03_has.pdf",
+      "citation": "Petz, Goldluecke and Magnor (2003), Hardware-accelerated Autostereogram Rendering, sections 3-5",
+      "evidence": "Fractional texture coordinates smooth depth steps; repeated spatial texture filtering blurs the pattern. Dynamic claims lack a specified controlled observer protocol."
+    }
+  ],
+  "engineeringInterpretation": "Finite Fourier phase, analytic pixel integration, fixed amplitude and anchor, decoder and thresholds are our controls, not a reproduction of either paper. Real separation replaces exact integer equality; no runtime gate is relaxed.",
+  "decoder": {
+    "min": 40,
+    "max": 56,
+    "step": 0.03125,
+    "radius": 12,
+    "sampleStep": 3,
+    "minSD": 2,
+    "minCorrelation": 0.97,
+    "minPeakMargin": 0.03,
+    "competitorDistance": 2,
+    "scope": "Image-only local search; no true separation or carrier coefficients passed. Does not inspect other harmonic periods outside [40,56], or establish human fusion.",
+    "method": "Normalized image correlation with radius-12 Lanczos reconstruction; competitor peak at least two pixels from best."
+  },
+  "route": [
+    47.25,
+    47.3125,
+    47.375,
+    47.4375,
+    47.5,
+    47.5625,
+    47.625,
+    47.6875,
+    47.75,
+    47.6875,
+    47.625,
+    47.5625,
+    47.5,
+    47.4375,
+    47.375,
+    47.3125,
+    47.25
+  ],
+  "sequences": {
+    "continuous": {
+      "float": {
+        "transitions": 16,
+        "changeRms": {
+          "min": 2.4074953,
+          "max": 2.4414505
+        },
+        "maxColumnEnergyCV": 0.9940724,
+        "contrastSD": {
+          "min": 26.1439469,
+          "max": 26.1513384
+        },
+        "horizontalDifferenceRms": {
+          "min": 15.750738,
+          "max": 15.8598039
+        },
+        "pixelRange": {
+          "min": 60.0655878,
+          "max": 204.3894125
+        },
+        "outOfGamut": 0,
+        "exactReturn": true
+      },
+      "byte": {
+        "transitions": 16,
+        "changeRms": {
+          "min": 2.4390131,
+          "max": 2.4776343
+        },
+        "maxColumnEnergyCV": 0.9779516,
+        "contrastSD": {
+          "min": 26.140053,
+          "max": 26.1579638
+        },
+        "horizontalDifferenceRms": {
+          "min": 15.7609978,
+          "max": 15.8717801
+        },
+        "pixelRange": {
+          "min": 60,
+          "max": 204
+        },
+        "outOfGamut": 0,
+        "exactReturn": true
+      },
+      "heldExact": true
+    },
+    "rounded": {
+      "float": {
+        "transitions": 16,
+        "changeRms": {
+          "min": 0,
+          "max": 25.1334163
+        },
+        "maxColumnEnergyCV": 0.73423,
+        "contrastSD": {
+          "min": 26.1428202,
+          "max": 26.1775621
+        },
+        "horizontalDifferenceRms": {
+          "min": 15.6734467,
+          "max": 15.9119624
+        },
+        "pixelRange": {
+          "min": 60.2500034,
+          "max": 201.9506105
+        },
+        "outOfGamut": 0,
+        "exactReturn": true
+      },
+      "byte": {
+        "transitions": 16,
+        "changeRms": {
+          "min": 0,
+          "max": 25.1449401
+        },
+        "maxColumnEnergyCV": 0.7338485,
+        "contrastSD": {
+          "min": 26.1428023,
+          "max": 26.1742956
+        },
+        "horizontalDifferenceRms": {
+          "min": 15.6867453,
+          "max": 15.9225989
+        },
+        "pixelRange": {
+          "min": 60,
+          "max": 202
+        },
+        "outOfGamut": 0,
+        "exactReturn": true
+      },
+      "heldExact": true
+    }
+  },
+  "crossings": [
+    {
+      "step": 0.25,
+      "from": 47.375,
+      "to": 47.625,
+      "continuous": {
+        "float": {
+          "rms": 9.3950923,
+          "maxAbs": 43.7020542,
+          "changedFraction": 1,
+          "columnEnergyCV": 0.9682316
+        },
+        "byte": {
+          "rms": 9.4040753,
+          "maxAbs": 44,
+          "changedFraction": 0.9036458,
+          "columnEnergyCV": 0.9662596
+        },
+        "reverseRms": 9.3950923
+      },
+      "rounded": {
+        "float": {
+          "rms": 25.1334163,
+          "maxAbs": 103.4042377,
+          "changedFraction": 1,
+          "columnEnergyCV": 0.73423
+        },
+        "byte": {
+          "rms": 25.1449401,
+          "maxAbs": 104,
+          "changedFraction": 0.9639757,
+          "columnEnergyCV": 0.7338485
+        },
+        "reverseRms": 25.1334163
+      }
+    },
+    {
+      "step": 0.125,
+      "from": 47.4375,
+      "to": 47.5625,
+      "continuous": {
+        "float": {
+          "rms": 4.814769,
+          "maxAbs": 22.4823105,
+          "changedFraction": 1,
+          "columnEnergyCV": 0.98458
+        },
+        "byte": {
+          "rms": 4.8204975,
+          "maxAbs": 23,
+          "changedFraction": 0.8272569,
+          "columnEnergyCV": 0.9780764
+        },
+        "reverseRms": 4.814769
+      },
+      "rounded": {
+        "float": {
+          "rms": 25.1334163,
+          "maxAbs": 103.4042377,
+          "changedFraction": 1,
+          "columnEnergyCV": 0.73423
+        },
+        "byte": {
+          "rms": 25.1449401,
+          "maxAbs": 104,
+          "changedFraction": 0.9639757,
+          "columnEnergyCV": 0.7338485
+        },
+        "reverseRms": 25.1334163
+      }
+    },
+    {
+      "step": 0.0625,
+      "from": 47.46875,
+      "to": 47.53125,
+      "continuous": {
+        "float": {
+          "rms": 2.4224026,
+          "maxAbs": 11.3215004,
+          "changedFraction": 1,
+          "columnEnergyCV": 0.9887223
+        },
+        "byte": {
+          "rms": 2.4598336,
+          "maxAbs": 12,
+          "changedFraction": 0.7120226,
+          "columnEnergyCV": 0.9677222
+        },
+        "reverseRms": 2.4224026
+      },
+      "rounded": {
+        "float": {
+          "rms": 25.1334163,
+          "maxAbs": 103.4042377,
+          "changedFraction": 1,
+          "columnEnergyCV": 0.73423
+        },
+        "byte": {
+          "rms": 25.1449401,
+          "maxAbs": 104,
+          "changedFraction": 0.9639757,
+          "columnEnergyCV": 0.7338485
+        },
+        "reverseRms": 25.1334163
+      }
+    }
+  ],
+  "decoded": [
+    {
+      "separation": 47.25,
+      "float": {
+        "accepted": true,
+        "separation": 47.25,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5325666,
+        "sd": 26.2263986,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.25,
+        "correlation": 0.9998774,
+        "peakMargin": 0.5332863,
+        "sd": 26.2124377,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.3125,
+      "float": {
+        "accepted": true,
+        "separation": 47.3125,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5308115,
+        "sd": 26.2283429,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.3125,
+        "correlation": 0.9998839,
+        "peakMargin": 0.5299679,
+        "sd": 26.217512,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.375,
+      "float": {
+        "accepted": true,
+        "separation": 47.375,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5298774,
+        "sd": 26.2288871,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.375,
+        "correlation": 0.9998754,
+        "peakMargin": 0.5302077,
+        "sd": 26.2367224,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.4375,
+      "float": {
+        "accepted": true,
+        "separation": 47.4375,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5300443,
+        "sd": 26.2273033,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.4375,
+        "correlation": 0.9998802,
+        "peakMargin": 0.5300354,
+        "sd": 26.2210075,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.5,
+      "float": {
+        "accepted": true,
+        "separation": 47.5,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5313947,
+        "sd": 26.2220997,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.5,
+        "correlation": 0.9998893,
+        "peakMargin": 0.5316641,
+        "sd": 26.2371254,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.5625,
+      "float": {
+        "accepted": true,
+        "separation": 47.5625,
+        "correlation": 0.9999999,
+        "peakMargin": 0.528023,
+        "sd": 26.2111545,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.5625,
+        "correlation": 0.9998855,
+        "peakMargin": 0.527798,
+        "sd": 26.218951,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.625,
+      "float": {
+        "accepted": true,
+        "separation": 47.625,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5234774,
+        "sd": 26.1922693,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.625,
+        "correlation": 0.9998826,
+        "peakMargin": 0.5238457,
+        "sd": 26.1908301,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.6875,
+      "float": {
+        "accepted": true,
+        "separation": 47.6875,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5182957,
+        "sd": 26.16402,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.6875,
+        "correlation": 0.9998788,
+        "peakMargin": 0.5182193,
+        "sd": 26.1593795,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 47.75,
+      "float": {
+        "accepted": true,
+        "separation": 47.75,
+        "correlation": 0.9999999,
+        "peakMargin": 0.5128533,
+        "sd": 26.126648,
+        "reason": "local disparity peak"
+      },
+      "byte": {
+        "accepted": true,
+        "separation": 47.75,
+        "correlation": 0.9998765,
+        "peakMargin": 0.5133455,
+        "sd": 26.1353485,
+        "reason": "local disparity peak"
+      }
+    }
+  ],
+  "roundedDecoded": [
+    {
+      "separation": 47,
+      "result": {
+        "accepted": true,
+        "separation": 47,
+        "correlation": 1,
+        "peakMargin": 0.5365907,
+        "sd": 26.208674,
+        "reason": "local disparity peak"
+      }
+    },
+    {
+      "separation": 48,
+      "result": {
+        "accepted": true,
+        "separation": 48,
+        "correlation": 1,
+        "peakMargin": 0.4979562,
+        "sd": 25.9674253,
+        "reason": "local disparity peak"
+      }
+    }
+  ],
+  "controls": {
+    "knownDifferentCarrier": [
+      {
+        "separation": 43.375,
+        "result": {
+          "accepted": true,
+          "separation": 43.375,
+          "correlation": 0.9998783,
+          "peakMargin": 0.5770443,
+          "sd": 26.0499326,
+          "reason": "local disparity peak"
+        }
+      },
+      {
+        "separation": 51.25,
+        "result": {
+          "accepted": true,
+          "separation": 51.25,
+          "correlation": 0.9998839,
+          "peakMargin": 0.4744175,
+          "sd": 26.2921074,
+          "reason": "local disparity peak"
+        }
+      }
+    ],
+    "flat": {
+      "accepted": false,
+      "separation": null,
+      "correlation": null,
+      "peakMargin": null,
+      "sd": 0,
+      "reason": "no contrast"
+    },
+    "unrelatedNoise": {
+      "accepted": false,
+      "separation": 50.78125,
+      "correlation": 0.0450258,
+      "peakMargin": 0.0035529,
+      "sd": 55.7343755,
+      "reason": "weak, ambiguous or uncorrelated"
+    },
+    "ambiguousPeriodic": {
+      "accepted": false,
+      "separation": 56,
+      "correlation": 1,
+      "peakMargin": 0,
+      "sd": 45.473966,
+      "reason": "weak, ambiguous or uncorrelated"
+    }
+  },
+  "spectrum": {
+    "construction": "fixed harmonic power proportional to 1/k; independent phases by row; no temporal renewal",
+    "scope": "Analytic unquantized field across continuous and rounded periods; byte rounding adds quantization error and is not strictly band-limited.",
+    "periodBounds": [
+      47,
+      48
+    ],
+    "maxCyclesPerPixel": 0.2553191,
+    "nyquist": 0.5,
+    "analyticFullPeriodSD": {
+      "min": 26.1584484,
+      "max": 26.1775621
+    },
+    "pixelAreaPowerRetention": {
+      "min": 0.9642492,
+      "max": 0.9656588
+    },
+    "repeatedFiltering": false
+  },
+  "motion": {
+    "separationSpan": 0.5,
+    "expansion": [
+      {
+        "center": 48,
+        "shift": -1.5,
+        "correlation": 0.9983913,
+        "zeroCorrelation": 0.6968861,
+        "improvement": 0.3015051,
+        "predictedShift": -1.5185185
+      },
+      {
+        "center": 144,
+        "shift": -0.5,
+        "correlation": 0.9983008,
+        "zeroCorrelation": 0.9482839,
+        "improvement": 0.0500169,
+        "predictedShift": -0.5026455
+      },
+      {
+        "center": 240,
+        "shift": 0.5,
+        "correlation": 0.9981801,
+        "zeroCorrelation": 0.9511062,
+        "improvement": 0.0470739,
+        "predictedShift": 0.5132275
+      },
+      {
+        "center": 336,
+        "shift": 1.5625,
+        "correlation": 0.9979774,
+        "zeroCorrelation": 0.6090509,
+        "improvement": 0.3889265,
+        "predictedShift": 1.5291005
+      }
+    ],
+    "contraction": [
+      {
+        "center": 48,
+        "shift": 1.5,
+        "correlation": 0.9983117,
+        "zeroCorrelation": 0.6968861,
+        "improvement": 0.3014256,
+        "predictedShift": 1.5026178
+      },
+      {
+        "center": 144,
+        "shift": 0.5,
+        "correlation": 0.9982716,
+        "zeroCorrelation": 0.9482839,
+        "improvement": 0.0499877,
+        "predictedShift": 0.4973822
+      },
+      {
+        "center": 240,
+        "shift": -0.5,
+        "correlation": 0.9983211,
+        "zeroCorrelation": 0.9511062,
+        "improvement": 0.0472149,
+        "predictedShift": -0.5078534
+      },
+      {
+        "center": 336,
+        "shift": -1.5,
+        "correlation": 0.9981755,
+        "zeroCorrelation": 0.6090509,
+        "improvement": 0.3891246,
+        "predictedShift": -1.513089
+      }
+    ],
+    "stationary": [
+      {
+        "center": 48,
+        "shift": 0,
+        "correlation": 1,
+        "zeroCorrelation": 1,
+        "improvement": 0
+      },
+      {
+        "center": 144,
+        "shift": 0,
+        "correlation": 1,
+        "zeroCorrelation": 1,
+        "improvement": 0
+      },
+      {
+        "center": 240,
+        "shift": 0,
+        "correlation": 1,
+        "zeroCorrelation": 1,
+        "improvement": 0
+      },
+      {
+        "center": 336,
+        "shift": 0,
+        "correlation": 1,
+        "zeroCorrelation": 1,
+        "improvement": 0
+      }
+    ]
+  },
+  "limitations": [
+    "Carrier contrast differs from the runtime procedural field; only the continuous/rounded matched pair is compared.",
+    "Finite sample interpolation and byte quantization are approximations; mathematical temporal continuity applies to the real-valued field, not byte values.",
+    "Phase anchoring induces expansion/contraction; lower frame RMS is insufficient for motion acceptance.",
+    "No visibility boundaries or disocclusion; a separate two-eye visibility experiment is required before any scene extension.",
+    "Grayscale code-value integration is not calibrated display luminance; no physical display reconstruction, viewing geometry calibration, color or comfort claim."
+  ],
+  "provenance": {
+    "date": "2026-10-03",
+    "node": "v22.22.3",
+    "platform": "win32",
+    "revision": "4e3b5d87b9dbff434e287e1a6d4f36d926f67f11",
+    "uncommittedResearch": true,
+    "command": "node tests/fractional-phase-research.js",
+    "sourceSHA256": {
+      "tests/fractional-phase-research.js": "597e67aa14779810a8ecd83cde9761e69aecdddb4cae5101e3b46dc92d55927f",
+      "tests/fractional-phase.test.js": "9dc01e5e211ec5f388c0376409cac3449a38adbdffb4605a711333bf28911da0"
+    }
+  }
+}

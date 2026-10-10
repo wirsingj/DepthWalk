@@ -1,0 +1,1483 @@
+{
+  "scope": "Offline synthetic depth-only use of existing greedy rank seed ownership; no old RGB mixing. Current pairs/contrast alone do not establish motion comfort. No promotion.",
+  "width": 384,
+  "height": 128,
+  "spacing": 72,
+  "strength": 0.33,
+  "frames": 48,
+  "seed": 173,
+  "results": [
+    {
+      "route": "unchanged-graph",
+      "treatment": "independent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 115.55659993489583,
+          "max": 138.21724446614584,
+          "mean": 128.04634518093536
+        },
+        "sd": {
+          "min": 46.11777062111321,
+          "max": 49.050022127302285,
+          "mean": 47.54472589778235
+        },
+        "neighborRmsX": {
+          "min": 51.167174204341606,
+          "max": 52.84640048965297,
+          "mean": 51.997938085264344
+        },
+        "neighborRmsY": {
+          "min": 51.06692623141136,
+          "max": 53.44597166581547,
+          "mean": 52.06406631290829
+        },
+        "clippedFraction": {
+          "min": 0.004618326822916667,
+          "max": 0.011006673177083334,
+          "mean": 0.006974538167317706
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 65.08949136683455,
+          "max": 71.83068465138683,
+          "mean": 67.70847805107489
+        },
+        "changedFraction": {
+          "min": 0.9930013020833334,
+          "max": 0.9959716796875,
+          "mean": 0.9940990691489363
+        },
+        "columnEnergyCV": {
+          "min": 0.12715076840792144,
+          "max": 0.18595171204909478,
+          "mean": 0.1509878157966229
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": 0.17375483972040992,
+          "max": 0.3179678219036621,
+          "mean": 0.2505011720917448
+        }
+      },
+      "worstTransition": {
+        "frame": 3,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.0357175037472085,
+        "translatedCorrelation": 0.2552422277595926,
+        "translatedImprovement": 0.21952472401238404,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 57.374959309895836,
+        "frameRmsByte": 71.83068465138683,
+        "frameMeanSignedByte": -22.66064453125,
+        "changedFraction": 0.9936319986979166,
+        "columnEnergyCV": 0.1719584417333226,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 3,
+          "compared": 608,
+          "meanDisparityError": 0.5625,
+          "withinTwoPixels": 0.9424342105263158,
+          "confident": 529,
+          "confidentWrongFraction": 0.005671077504725898,
+          "interior": 472,
+          "interiorWithinTwoPixels": 0.9978813559322034
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.4621710526315789,
+          "withinTwoPixels": 0.9457236842105263,
+          "confident": 474,
+          "confidentWrongFraction": 0.002109704641350211,
+          "interior": 472,
+          "interiorWithinTwoPixels": 0.9957627118644068
+        }
+      ]
+    },
+    {
+      "route": "unchanged-graph",
+      "treatment": "persistent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 134.09871419270834,
+          "max": 134.09871419270834,
+          "mean": 134.09871419270826
+        },
+        "sd": {
+          "min": 47.35194662242128,
+          "max": 47.35194662242128,
+          "mean": 47.3519466224213
+        },
+        "neighborRmsX": {
+          "min": 51.787156860542495,
+          "max": 51.787156860542495,
+          "mean": 51.78715686054243
+        },
+        "neighborRmsY": {
+          "min": 51.70054465145621,
+          "max": 51.70054465145621,
+          "mean": 51.70054465145626
+        },
+        "clippedFraction": {
+          "min": 0.0067138671875,
+          "max": 0.0067138671875,
+          "mean": 0.0067138671875
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "changedFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "columnEnergyCV": null,
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": -0.5342414286065994,
+          "max": -0.5342414286065994,
+          "mean": -0.5342414286065991
+        }
+      },
+      "worstTransition": {
+        "frame": 47,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 1,
+        "translatedCorrelation": 0.4657585713934007,
+        "translatedImprovement": -0.5342414286065994,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 0,
+        "frameRmsByte": 0,
+        "frameMeanSignedByte": 0,
+        "changedFraction": 0,
+        "columnEnergyCV": null,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        }
+      ]
+    },
+    {
+      "route": "unchanged-graph",
+      "treatment": "overlap-seeds",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 134.09871419270834,
+          "max": 134.09871419270834,
+          "mean": 134.09871419270826
+        },
+        "sd": {
+          "min": 47.35194662242128,
+          "max": 47.35194662242128,
+          "mean": 47.3519466224213
+        },
+        "neighborRmsX": {
+          "min": 51.787156860542495,
+          "max": 51.787156860542495,
+          "mean": 51.78715686054243
+        },
+        "neighborRmsY": {
+          "min": 51.70054465145621,
+          "max": 51.70054465145621,
+          "mean": 51.70054465145626
+        },
+        "clippedFraction": {
+          "min": 0.0067138671875,
+          "max": 0.0067138671875,
+          "mean": 0.0067138671875
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "changedFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "columnEnergyCV": null,
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": -0.5342414286065994,
+          "max": -0.5342414286065994,
+          "mean": -0.5342414286065991
+        }
+      },
+      "worstTransition": {
+        "frame": 47,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 1,
+        "translatedCorrelation": 0.4657585713934007,
+        "translatedImprovement": -0.5342414286065994,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 0,
+        "frameRmsByte": 0,
+        "frameMeanSignedByte": 0,
+        "changedFraction": 0,
+        "columnEnergyCV": null,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        }
+      ]
+    },
+    {
+      "route": "turn",
+      "treatment": "independent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 115.68648274739583,
+          "max": 138.8616739908854,
+          "mean": 128.1025021870931
+        },
+        "sd": {
+          "min": 46.23529612347111,
+          "max": 49.266838554760355,
+          "mean": 47.51855117049477
+        },
+        "neighborRmsX": {
+          "min": 51.18441642076427,
+          "max": 52.89399090468657,
+          "mean": 51.97589135583646
+        },
+        "neighborRmsY": {
+          "min": 50.93830722111301,
+          "max": 53.18425886707605,
+          "mean": 51.92766477051108
+        },
+        "clippedFraction": {
+          "min": 0.0047607421875,
+          "max": 0.010498046875,
+          "mean": 0.006949954562717013
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 65.34431261464711,
+          "max": 71.97471047356777,
+          "mean": 67.65636246283412
+        },
+        "changedFraction": {
+          "min": 0.9924112955729166,
+          "max": 0.9958699544270834,
+          "mean": 0.9940142259530146
+        },
+        "columnEnergyCV": {
+          "min": 0.1293820293020884,
+          "max": 0.18756404798483747,
+          "mean": 0.1506008226138372
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": 0.19578318581625886,
+          "max": 0.33632931363854,
+          "mean": 0.25304774301842964
+        }
+      },
+      "worstTransition": {
+        "frame": 3,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.026257855388496225,
+        "translatedCorrelation": 0.26219676658114827,
+        "translatedImprovement": 0.23593891119265203,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 57.42950439453125,
+        "frameRmsByte": 71.97471047356777,
+        "frameMeanSignedByte": -23.175191243489582,
+        "changedFraction": 0.9931437174479166,
+        "columnEnergyCV": 0.1642995674591621,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 3,
+          "compared": 608,
+          "meanDisparityError": 0.38651315789473684,
+          "withinTwoPixels": 0.9572368421052632,
+          "confident": 530,
+          "confidentWrongFraction": 0.005660377358490566,
+          "interior": 470,
+          "interiorWithinTwoPixels": 0.9872340425531915
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.20723684210526316,
+          "withinTwoPixels": 0.975328947368421,
+          "confident": 499,
+          "confidentWrongFraction": 0,
+          "interior": 486,
+          "interiorWithinTwoPixels": 0.9938271604938271
+        }
+      ]
+    },
+    {
+      "route": "turn",
+      "treatment": "persistent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 133.4826863606771,
+          "max": 134.9853515625,
+          "mean": 134.3960851033529
+        },
+        "sd": {
+          "min": 46.89033862205205,
+          "max": 47.50443719385276,
+          "mean": 47.24483481094364
+        },
+        "neighborRmsX": {
+          "min": 51.226668533366635,
+          "max": 51.86814517136965,
+          "mean": 51.547531496474505
+        },
+        "neighborRmsY": {
+          "min": 51.17133670776363,
+          "max": 51.85013950669291,
+          "mean": 51.52699687346034
+        },
+        "clippedFraction": {
+          "min": 0.006612141927083333,
+          "max": 0.00787353515625,
+          "mean": 0.007261488172743055
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 8.969184395330933,
+          "max": 13.794727058876745,
+          "mean": 11.689190433824827
+        },
+        "changedFraction": {
+          "min": 0.02099609375,
+          "max": 0.038859049479166664,
+          "mean": 0.030966467891179076
+        },
+        "columnEnergyCV": {
+          "min": 3.4565228421030483,
+          "max": 4.939672050256467,
+          "mean": 4.0512283329141
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": -0.5088670584334313,
+          "max": -0.4754386531897268,
+          "mean": -0.49230725491037025
+        }
+      },
+      "worstTransition": {
+        "frame": 1,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.9592695915741495,
+        "translatedCorrelation": 0.46219299822407656,
+        "translatedImprovement": -0.4970765933500728,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 2.1915079752604165,
+        "frameRmsByte": 13.794727058876745,
+        "frameMeanSignedByte": 0.20086669921875,
+        "changedFraction": 0.038492838541666664,
+        "columnEnergyCV": 3.492304007903978,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 1,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.9605263157894737,
+          "confident": 496,
+          "confidentWrongFraction": 0.004032258064516129,
+          "interior": 472,
+          "interiorWithinTwoPixels": 0.9978813559322034
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.1924342105263158,
+          "withinTwoPixels": 0.9769736842105263,
+          "confident": 504,
+          "confidentWrongFraction": 0,
+          "interior": 486,
+          "interiorWithinTwoPixels": 0.9958847736625515
+        }
+      ]
+    },
+    {
+      "route": "turn",
+      "treatment": "overlap-seeds",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 132.6826375325521,
+          "max": 134.1131388346354,
+          "mean": 133.35234493679465
+        },
+        "sd": {
+          "min": 47.19195242584934,
+          "max": 47.53233188197514,
+          "mean": 47.38098333081439
+        },
+        "neighborRmsX": {
+          "min": 51.787156860542495,
+          "max": 52.74549306814095,
+          "mean": 52.50204879532476
+        },
+        "neighborRmsY": {
+          "min": 51.70054465145621,
+          "max": 52.69870143753164,
+          "mean": 52.440875847939516
+        },
+        "clippedFraction": {
+          "min": 0.00628662109375,
+          "max": 0.0069580078125,
+          "mean": 0.006556616889105906
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 9.00982581757388,
+          "max": 10.853027596381228,
+          "mean": 9.898007840119124
+        },
+        "changedFraction": {
+          "min": 0.020894368489583332,
+          "max": 0.024759928385416668,
+          "mean": 0.021563590841090427
+        },
+        "columnEnergyCV": {
+          "min": 4.342397135243618,
+          "max": 5.157668773252584,
+          "mean": 4.834577646260365
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": -0.5518374294113018,
+          "max": -0.5197595339723545,
+          "mean": -0.5395681918414021
+        }
+      },
+      "worstTransition": {
+        "frame": 34,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.9731492955870674,
+        "translatedCorrelation": 0.44131102977388814,
+        "translatedImprovement": -0.5318382658131794,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 1.3393961588541667,
+        "frameRmsByte": 10.853027596381228,
+        "frameMeanSignedByte": -0.031941731770833336,
+        "changedFraction": 0.0238037109375,
+        "columnEnergyCV": 4.606829529811975,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 34,
+          "compared": 608,
+          "meanDisparityError": 0.24671052631578946,
+          "withinTwoPixels": 0.9720394736842105,
+          "confident": 506,
+          "confidentWrongFraction": 0.001976284584980237,
+          "interior": 470,
+          "interiorWithinTwoPixels": 0.9851063829787234
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.1611842105263158,
+          "withinTwoPixels": 0.9802631578947368,
+          "confident": 526,
+          "confidentWrongFraction": 0,
+          "interior": 486,
+          "interiorWithinTwoPixels": 0.9938271604938271
+        }
+      ]
+    },
+    {
+      "route": "approach",
+      "treatment": "independent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 115.97064208984375,
+          "max": 137.93119303385416,
+          "mean": 128.1985927157932
+        },
+        "sd": {
+          "min": 46.318112406781694,
+          "max": 49.118178972289044,
+          "mean": 47.532622698724765
+        },
+        "neighborRmsX": {
+          "min": 51.3233781040673,
+          "max": 53.00298709345523,
+          "mean": 52.07077912291664
+        },
+        "neighborRmsY": {
+          "min": 51.102313654021216,
+          "max": 53.28321565346836,
+          "mean": 52.081724206306774
+        },
+        "clippedFraction": {
+          "min": 0.004638671875,
+          "max": 0.01043701171875,
+          "mean": 0.006975809733072915
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 65.41823749316576,
+          "max": 71.5677776495037,
+          "mean": 67.66785052569139
+        },
+        "changedFraction": {
+          "min": 0.9925740559895834,
+          "max": 0.9960530598958334,
+          "mean": 0.9939947466478284
+        },
+        "columnEnergyCV": {
+          "min": 0.12635393618180807,
+          "max": 0.18375142675378367,
+          "mean": 0.15002988202727285
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": 0.17443360504683963,
+          "max": 0.36318029891671716,
+          "mean": 0.2570213350659266
+        }
+      },
+      "worstTransition": {
+        "frame": 3,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.028308295781534074,
+        "translatedCorrelation": 0.26337063188003773,
+        "translatedImprovement": 0.23506233609850366,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 57.195902506510414,
+        "frameRmsByte": 71.5677776495037,
+        "frameMeanSignedByte": -21.960550944010418,
+        "changedFraction": 0.9932454427083334,
+        "columnEnergyCV": 0.17376180182191944,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 3,
+          "compared": 608,
+          "meanDisparityError": 0.40460526315789475,
+          "withinTwoPixels": 0.9555921052631579,
+          "confident": 524,
+          "confidentWrongFraction": 0.003816793893129771,
+          "interior": 468,
+          "interiorWithinTwoPixels": 0.9764957264957265
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.48355263157894735,
+          "withinTwoPixels": 0.9506578947368421,
+          "confident": 476,
+          "confidentWrongFraction": 0.0021008403361344537,
+          "interior": 444,
+          "interiorWithinTwoPixels": 0.9864864864864865
+        }
+      ]
+    },
+    {
+      "route": "approach",
+      "treatment": "persistent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 133.90030924479166,
+          "max": 135.4333699544271,
+          "mean": 134.6022677951389
+        },
+        "sd": {
+          "min": 46.832977223176336,
+          "max": 47.78859361815199,
+          "mean": 47.29339183624146
+        },
+        "neighborRmsX": {
+          "min": 51.38975821611193,
+          "max": 51.91060525075777,
+          "mean": 51.6806293487748
+        },
+        "neighborRmsY": {
+          "min": 51.386693945344895,
+          "max": 51.9915795473846,
+          "mean": 51.77426843049982
+        },
+        "clippedFraction": {
+          "min": 0.0067138671875,
+          "max": 0.008097330729166666,
+          "mean": 0.007421705457899305
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 8.949129234875313,
+          "max": 14.251963697620102,
+          "mean": 10.274492616702963
+        },
+        "changedFraction": {
+          "min": 0.0177001953125,
+          "max": 0.038838704427083336,
+          "mean": 0.02395218653036348
+        },
+        "columnEnergyCV": {
+          "min": 3.379317550707394,
+          "max": 4.564482274179997,
+          "mean": 3.9470294347719683
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": -0.5122231801307005,
+          "max": -0.4807882064761398,
+          "mean": -0.49862976108485724
+        }
+      },
+      "worstTransition": {
+        "frame": 1,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.9644804979315363,
+        "translatedCorrelation": 0.4728465830852186,
+        "translatedImprovement": -0.4916339148463179,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 2.2641805013020835,
+        "frameRmsByte": 14.251963697620102,
+        "frameMeanSignedByte": 0.24407958984375,
+        "changedFraction": 0.038818359375,
+        "columnEnergyCV": 3.6538364595164023,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 1,
+          "compared": 608,
+          "meanDisparityError": 0.27631578947368424,
+          "withinTwoPixels": 0.9671052631578947,
+          "confident": 488,
+          "confidentWrongFraction": 0.004098360655737705,
+          "interior": 470,
+          "interiorWithinTwoPixels": 0.9936170212765958
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.3930921052631579,
+          "withinTwoPixels": 0.9539473684210527,
+          "confident": 483,
+          "confidentWrongFraction": 0.002070393374741201,
+          "interior": 444,
+          "interiorWithinTwoPixels": 0.9842342342342343
+        }
+      ]
+    },
+    {
+      "route": "approach",
+      "treatment": "overlap-seeds",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 133.27435302734375,
+          "max": 134.1935831705729,
+          "mean": 133.65288162231442
+        },
+        "sd": {
+          "min": 47.321303489334106,
+          "max": 47.5032676971891,
+          "mean": 47.403852194307206
+        },
+        "neighborRmsX": {
+          "min": 51.787156860542495,
+          "max": 52.836981305759906,
+          "mean": 52.62869200481597
+        },
+        "neighborRmsY": {
+          "min": 51.70054465145621,
+          "max": 52.78692295980421,
+          "mean": 52.54944159349521
+        },
+        "clippedFraction": {
+          "min": 0.00634765625,
+          "max": 0.0067138671875,
+          "mean": 0.006489223904079859
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 5.357508861815077,
+          "max": 10.24609598384459,
+          "mean": 6.292667253062095
+        },
+        "changedFraction": {
+          "min": 0.0069580078125,
+          "max": 0.021158854166666668,
+          "mean": 0.008798585715868796
+        },
+        "columnEnergyCV": {
+          "min": 5.125214240577184,
+          "max": 7.233923342756601,
+          "mean": 6.704623302074122
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": -0.5526635136793558,
+          "max": -0.5215423395910632,
+          "mean": -0.5436587298261475
+        }
+      },
+      "worstTransition": {
+        "frame": 1,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.9776718214876483,
+        "translatedCorrelation": 0.4561294818965852,
+        "translatedImprovement": -0.5215423395910632,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 1.20440673828125,
+        "frameRmsByte": 10.24609598384459,
+        "frameMeanSignedByte": 0.09486897786458333,
+        "changedFraction": 0.021158854166666668,
+        "columnEnergyCV": 5.125214240577184,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0.3305921052631579,
+          "withinTwoPixels": 0.962171052631579,
+          "confident": 495,
+          "confidentWrongFraction": 0,
+          "interior": 472,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 1,
+          "compared": 608,
+          "meanDisparityError": 0.2878289473684211,
+          "withinTwoPixels": 0.9654605263157895,
+          "confident": 486,
+          "confidentWrongFraction": 0.00411522633744856,
+          "interior": 470,
+          "interiorWithinTwoPixels": 0.9893617021276596
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0.4506578947368421,
+          "withinTwoPixels": 0.9457236842105263,
+          "confident": 486,
+          "confidentWrongFraction": 0.00411522633744856,
+          "interior": 444,
+          "interiorWithinTwoPixels": 0.9774774774774775
+        }
+      ]
+    },
+    {
+      "route": "flat-approach",
+      "treatment": "independent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 116.82773844401042,
+          "max": 138.413330078125,
+          "mean": 128.0213851928711
+        },
+        "sd": {
+          "min": 45.930949117118644,
+          "max": 48.76280140027787,
+          "mean": 47.47272616944582
+        },
+        "neighborRmsX": {
+          "min": 51.042616374532585,
+          "max": 52.37266043803486,
+          "mean": 51.688126426733845
+        },
+        "neighborRmsY": {
+          "min": 50.54404028371792,
+          "max": 52.532551268231245,
+          "mean": 51.47262745677761
+        },
+        "clippedFraction": {
+          "min": 0.004557291666666667,
+          "max": 0.010477701822916666,
+          "mean": 0.006939358181423609
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 64.68608420476613,
+          "max": 71.57922825202118,
+          "mean": 67.66721512472924
+        },
+        "changedFraction": {
+          "min": 0.9928181966145834,
+          "max": 0.995849609375,
+          "mean": 0.9941293702903369
+        },
+        "columnEnergyCV": {
+          "min": 0.12117584017430467,
+          "max": 0.198416112687484,
+          "mean": 0.15085331390146037
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "translatedImprovement": {
+          "min": 0.17955180561243816,
+          "max": 0.3296768179363422,
+          "mean": 0.24994659045850215
+        }
+      },
+      "worstTransition": {
+        "frame": 3,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.014319325663751908,
+        "translatedCorrelation": 0.2512675079342012,
+        "translatedImprovement": 0.23694818227044934,
+        "reliableFraction": 0,
+        "meanDx": null,
+        "meanDy": null,
+        "radialDisplacement": null,
+        "outwardFraction": null,
+        "inwardFraction": null,
+        "frameMeanAbsByte": 57.119405110677086,
+        "frameRmsByte": 71.57922825202118,
+        "frameMeanSignedByte": -21.585591634114582,
+        "changedFraction": 0.9933064778645834,
+        "columnEnergyCV": 0.18198048988858975,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 551,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 3,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 581,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 532,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        }
+      ]
+    },
+    {
+      "route": "flat-approach",
+      "treatment": "persistent",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 134.96954345703125,
+          "max": 135.41031901041666,
+          "mean": 135.27891879611545
+        },
+        "sd": {
+          "min": 46.83819316359808,
+          "max": 47.04781326180848,
+          "mean": 46.91723991348825
+        },
+        "neighborRmsX": {
+          "min": 51.27320030659444,
+          "max": 51.441404304901255,
+          "mean": 51.35537605521913
+        },
+        "neighborRmsY": {
+          "min": 50.93127095465447,
+          "max": 51.04779343484818,
+          "mean": 50.998484281308464
+        },
+        "clippedFraction": {
+          "min": 0.00665283203125,
+          "max": 0.007181803385416667,
+          "mean": 0.006825341118706599
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 0,
+          "max": 54.91030283491318,
+          "mean": 5.809113403630373
+        },
+        "changedFraction": {
+          "min": 0,
+          "max": 0.82794189453125,
+          "mean": 0.08754129612699468
+        },
+        "columnEnergyCV": {
+          "min": 0.5016507218493153,
+          "max": 0.5257958869209768,
+          "mean": 0.5126190689005481
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0.8928571428571429,
+          "mean": 0.09194528875379938
+        },
+        "translatedImprovement": {
+          "min": -0.5286326599850524,
+          "max": 0.7245272906226244,
+          "mean": -0.3902789498251296
+        }
+      },
+      "worstTransition": {
+        "frame": 41,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.18212525799896978,
+        "translatedCorrelation": 0.9066525486215941,
+        "translatedImprovement": 0.7245272906226244,
+        "reliableFraction": 0.8571428571428571,
+        "meanDx": 3.0416666666666665,
+        "meanDy": 0,
+        "radialDisplacement": -1.788634002332414,
+        "outwardFraction": 0.375,
+        "inwardFraction": 0.625,
+        "frameMeanAbsByte": 40.0625,
+        "frameRmsByte": 54.91030283491318,
+        "frameMeanSignedByte": -0.0552978515625,
+        "changedFraction": 0.82794189453125,
+        "columnEnergyCV": 0.5016507218493153,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 551,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 41,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 550,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 550,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        }
+      ]
+    },
+    {
+      "route": "flat-approach",
+      "treatment": "overlap-seeds",
+      "exactPairs": true,
+      "exactRest": true,
+      "appearance": {
+        "mean": {
+          "min": 134.7989298502604,
+          "max": 135.13480631510416,
+          "mean": 134.9780561659071
+        },
+        "sd": {
+          "min": 46.88246137954797,
+          "max": 47.10356597332054,
+          "mean": 46.98529766318276
+        },
+        "neighborRmsX": {
+          "min": 51.335129776000365,
+          "max": 52.40304732826624,
+          "mean": 52.102710654563715
+        },
+        "neighborRmsY": {
+          "min": 50.929295729961446,
+          "max": 51.05907156784266,
+          "mean": 50.98785864096926
+        },
+        "clippedFraction": {
+          "min": 0.00653076171875,
+          "max": 0.007181803385416667,
+          "mean": 0.006769392225477432
+        }
+      },
+      "temporal": {
+        "frameRmsByte": {
+          "min": 0,
+          "max": 55.0523148006408,
+          "mean": 5.83533012537799
+        },
+        "changedFraction": {
+          "min": 0,
+          "max": 0.8281656901041666,
+          "mean": 0.08755687957114362
+        },
+        "columnEnergyCV": {
+          "min": 0.5020784702108092,
+          "max": 0.5276217605953931,
+          "mean": 0.5162392149972849
+        },
+        "reliableFraction": {
+          "min": 0,
+          "max": 0.9285714285714286,
+          "mean": 0.09270516717325226
+        },
+        "translatedImprovement": {
+          "min": -0.5347829591419255,
+          "max": 0.725134583687408,
+          "mean": -0.3937661363708469
+        }
+      },
+      "worstTransition": {
+        "frame": 41,
+        "samples": 28,
+        "validSamples": 28,
+        "zeroCorrelation": 0.1797794131934795,
+        "translatedCorrelation": 0.895149221520039,
+        "translatedImprovement": 0.7153698083265594,
+        "reliableFraction": 0.8571428571428571,
+        "meanDx": 3.0416666666666665,
+        "meanDy": 0,
+        "radialDisplacement": -1.788634002332414,
+        "outwardFraction": 0.375,
+        "inwardFraction": 0.625,
+        "frameMeanAbsByte": 40.173583984375,
+        "frameRmsByte": 55.0523148006408,
+        "frameMeanSignedByte": -0.07470703125,
+        "changedFraction": 0.8281656901041666,
+        "columnEnergyCV": 0.5020784702108092,
+        "settings": {
+          "patchRadiusX": 16,
+          "patchRadiusY": 8,
+          "gridStepX": 48,
+          "gridStepY": 32,
+          "sampleStep": 2,
+          "maxShiftX": 12,
+          "maxShiftY": 4,
+          "minTextureRms": 2,
+          "minCorrelation": 0.65,
+          "minImprovement": 0.1,
+          "minPeakMargin": 0.03
+        },
+        "scope": "Image-only luma change and bounded local displacement evidence; not a human comfort or banding score."
+      },
+      "reconstruction": [
+        {
+          "frame": 0,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 551,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 41,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 550,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        },
+        {
+          "frame": 47,
+          "compared": 608,
+          "meanDisparityError": 0,
+          "withinTwoPixels": 1,
+          "confident": 550,
+          "confidentWrongFraction": 0,
+          "interior": 532,
+          "interiorWithinTwoPixels": 1
+        }
+      ]
+    }
+  ]
+}

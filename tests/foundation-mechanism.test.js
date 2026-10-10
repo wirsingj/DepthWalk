@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {changeEnergy,splitChange,leastChangeBound} from './foundation-mechanism-research.js';
+import {changeEnergy,splitChange,leastChangeBound} from './foundation-mechanism.js';
 const gray=value=>(0xff000000|value*0x010101)>>>0;
 
 test('brightness attribution distinguishes global shifts, cancelling regions and fine noise',()=>{

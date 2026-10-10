@@ -62,10 +62,10 @@ For low FPS, read the persistent backend badge. WebGPU completion latency includ
 browser scheduling; Firefox's 100 ms idle poll can mimic slow GPU work. Keep bounded
 submissions and the RAF completion workaround covered; see [README](../README.md#viewing-and-performance).
 
-Follow [State](SOT.md) priorities; identify each change's product gap.
-Distinguish performance optimization from perceptual progress. Human-authorized research
-defaults are not acceptance; promotion requires numerical and human checks.
-Reuse context and target reads; report evidence and blockers briefly.
+Follow [State](SOT.md); distinguish performance from perceptual progress.
+Research audit–fix–audit: read [the paper](RESEARCH-PAPER.md) before changes; after checks,
+reconcile changed claims, citations and limitations. Preserve evidence dates/revisions,
+pre-release status and unchanged sections. Promotion requires numerical and human checks.
 
 ## Change-sensitive boundaries and recovery
 

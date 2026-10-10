@@ -1,5 +1,9 @@
 # Banding: model, predictions and limits
 
+[Early pre-release paper](RESEARCH-PAPER.md) presents these findings; this document
+retains detailed evidence and limits. [Maintenance](MAINTAINER_GUIDE.md#verification-and-diagnosis)
+keeps the manuscript aligned during research loops.
+
 ## Foundations and recovery direction
 
 **Human direction, 2026-10-02:** The original monochrome effect felt better than

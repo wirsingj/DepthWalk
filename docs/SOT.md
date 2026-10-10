@@ -17,7 +17,7 @@ agent-guidance: Verify claims against named evidence; preserve human intent and 
 video game: this game first, eventually a reusable layer for other games, with
 explicit limits and accepted degradation. Strong, correctly ordered, stable depth
 comes before source-color fidelity. Research must advance playable usability.
-An eventual paper is an aspiration: preserve citations and reproducibility, not assumed novelty.
+[Pre-release paper](RESEARCH-PAPER.md) preserves citations and reproducibility; novelty and comfortable gameplay remain unproven.
 
 The first attempt failed human acceptance and is preserved on `v0.5` at `2a1278b`;
 development continues on `codex/v0.6`. Earlier human suggestions about art style,

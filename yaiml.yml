@@ -4,3 +4,9 @@ yaiml:
     state: docs/SOT.md
     architecture: docs/ARCHITECTURE.md
     maintainer_guide: docs/MAINTAINER_GUIDE.md
+  supporting:
+    operating_guide: .yaiml/YAIML_GUIDE.md
+    skills: .yaiml/skills/INDEX.md
+    yaimlacp: .yaiml/YAIMLACP.md
+    bootstrap: .yaiml/BOOTSTRAP.md
+    notice: .yaiml/YAIML_NOTICE.md

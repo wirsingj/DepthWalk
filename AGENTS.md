@@ -2,6 +2,12 @@
 
 ## YAIML Project Memory
 
+The maintainer treats these projects as works in progress: latest working files, including uncommitted edits, are the current baseline. Preserve that work; branch names and older commits do not establish production state or permission for Git mutations.
+
+Read and follow [.yaiml/YAIML_GUIDE.md](.yaiml/YAIML_GUIDE.md) and the [skill catalog](.yaiml/skills/INDEX.md). Select relevant methods, read their bodies and pass requested actions/counts/perspectives unchanged. Ordinary work uses context and maintains material understanding, including confirmed conversational decisions and new verification evidence, without a YAIML reminder. Init executes bootstrap immediately; routine startup uses local guidance without upstream polling or backlog execution. Native `.agents/skills/` entries route to these canonical methods.
+
+At startup/context refresh, consider coordination from available context. For a concrete benefit, read [.yaiml/YAIMLACP.md](.yaiml/YAIMLACP.md), explain scope, access, limits, cost and the single-agent alternative, and obtain affirmative confirmation before first use or changed scope/cost. Otherwise continue independently.
+
 This is the shared instruction entry point for the repository and its subdirectories.
 Before meaningful work, read the root `yaiml.yml` and its three core documents.
 Locate the Git repository root when working from a subdirectory; resolve map paths

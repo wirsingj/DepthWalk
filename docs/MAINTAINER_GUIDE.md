@@ -11,6 +11,8 @@ agent-guidance: Check scripts before executing; report unrun procedures and pres
 
 # Maintainer guide
 
+On 2026-10-17, Windows/Node 22.22.3 passed `npm run check` (lint, regressions, build). This does not revalidate human stereo perception, GPU browser behavior or deployment.
+
 ## Working locally
 
 Use Node 22.13+ (22.x), 20.19+ (20.x), or 24+.
@@ -81,26 +83,12 @@ found at initialization. Preserve independent changes and obtain missing authori
 before consequential integration/publication decisions. Do not infer permission
 from a memory label or `private: true`. Leave licensing unchanged.
 
-## YAIML maintenance
+## YAIML Maintenance
 
-[Root AGENTS.md](../AGENTS.md) owns the shared maintenance guidance; this section
-provides local procedures, not a recursive instruction include. [yaiml.yml](../yaiml.yml)
-indexes the roles. Keep state, architecture and procedures in their indexed homes;
-link detailed README/API material instead of copying it.
+Read and follow [Using YAIML](../.yaiml/YAIML_GUIDE.md) and the [skill catalog](../.yaiml/skills/INDEX.md) for ordinary context/maintenance and requested workflows, including Git actions. Preserve local facts, authority, budgets, privacy, retention and discovery layout.
 
-For a convention refresh, compare against a supplied or authorized workspace-local
-reference; request one if absent. Preserve the discovery layout and unknown fields.
-For compression, prune obsolete/repeated claims within the affected scope first,
-preserving decisions, conflicts and governed records. Count complete documents
-before/after against their headers and report growth or unresolved overages outside
-memory. Do not add archives or runtime tooling for YAIML.
+Source: [YAIML](https://github.com/wirsingj/YAIML), published revision `89c883d9a66dffc3b8671d975f7fa6c46535d676`. The 27-resource bundle SHA-256 is `3958b3c802cef951147d316c41a48e0aa7ad6c2aa72c84954c3cac003c169e07` (sorted package-relative paths, NUL, Git blob bytes; CRLF/LF differences verified). The pre-upgrade baseline was unavailable; local guidance remains preserved.
 
-Concurrent writers need separate workspaces or coordinated file ownership;
-re-reading is not a lock. Re-read changed files before edits. Reconcile memory with
-the actual integration target and independent contributions, including clean merges.
+The [notice](../.yaiml/YAIML_NOTICE.md) covers copied resources, permits commercial/client use with credit and preserves earlier grants; the application license is unchanged. Refresh from the recorded or an authorized newer source. No startup polling or automatic backlog work. Resource/link/native-entry and ShepAIrd discovery checks passed on 2026-10-17. Fresh-session activation remains untested here; current checks are recorded in this guide. Repeat reconciliation must leave healthy files unchanged.
 
-The root instruction route is connected for Codex root/subdirectory discovery under
-[official loading rules](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
-No other tool entry points were found. Fresh-session loading was not observed;
-external overrides/settings remain outside this repository audit. New instruction
-routes must explicitly direct agents to read and follow the shared root guidance.
+Root instructions apply in subdirectories; future host routes must read/follow that shared owner. External overrides/settings and fresh-session loading remain unverified. Do not add archives or runtime tooling for YAIML.

@@ -13,17 +13,18 @@ agent-guidance: Verify claims against named evidence; preserve human intent and 
 
 ## Identity and human direction
 
-**Reaffirmed human direction, 2026-10-02:** The goal is always a stereogram for a
-video game: this game first, eventually a reusable layer for other games, with
-explicit limits and accepted degradation. Strong, correctly ordered, stable depth
-comes before source-color fidelity. Research must advance playable usability.
+**Reaffirmed human direction, 2026-10-30:** Resurrect the stereogram game as a
+paper-informed research/engineering project: **immersion/pop → textures → colors**.
+Stable, correctly ordered, usable depth remains the first gate. Explore limits and
+[temporal encodings](STEREO-CONSTRAINTS.md#temporal-encoding-hypotheses); earlier failures do not establish impossibility. This game precedes a reusable
+layer for other games, with explicit limits and accepted degradation.
 [Pre-release paper](RESEARCH-PAPER.md) preserves citations and reproducibility; novelty and comfortable gameplay remain unproven.
 
-The first attempt failed human acceptance and is preserved on `v0.5` at `2a1278b`;
-development continues on `codex/v0.6`. Earlier human suggestions about art style,
-color, ink, spacing and strength are hypotheses. Preserve observations and failures;
-reconsider mechanisms against papers and outcomes. Color and edges remain possible
-extensions, never reasons to weaken fusion.
+The rejected first attempt remains on `v0.5` at `2a1278b`; this checkout is
+`codex/v0.6`. Art, color, ink and tuning suggestions remain hypotheses.
+[Lenticular inspiration](STEREO-CONSTRAINTS.md#lenticular-comparison-and-research-frontier)
+motivates research, not an implemented optical-display path. Preserve human failures;
+test mechanisms against papers and outcomes.
 
 Demo scope remains one level and five beacons, without accounts, multiplayer,
 combat or services. Preserve restrained movement, ground collisions, stationary
@@ -38,7 +39,7 @@ Legacy comparisons remain. **Compare moving grain** tests half contrast with unc
 See [preset policy](STEREO-CONSTRAINTS.md#v06-foundation-implementation),
 [API](INTEGRATION.md) and [comparison evidence](OBSERVER.md#quiet-motion-comparison).
 
-[Observer lab](OBSERVER.md) provides calibrated A/B/C replay, original-color references,
+[Observer lab](OBSERVER.md) provides settings-matched A/B/C replay, original-color references,
 native PNG export, asset-free fixtures and rejection gates. F3 restores views;
 tuning focus stops movement.
 Controls: [README](../README.md#play).
@@ -51,13 +52,11 @@ reversal and image history cannot alter these modes. Moving-grain comfort remain
 
 ## Evidence and limits
 
-**Verified, 2026-10-02:** [Audit](AUDIT.md): unit/build/lint, GPU fixtures, gameplay
-and failure checks passed. Preparation preserves reference pixels while leaving the UI responsive.
-Windows, Node 22.22.3, npm 10.2.3; `codex/v0.6` changes based on `545de5a`.
-[Earlier foundation](../evidence/foundation-verification.json),
-[depth](../evidence/depth-order-verification.json), [contour](../evidence/contour-verification.json)
-and [ink](OBSERVER.md#ink-contours) checks remain historical. Projected-lighting and row-dithered-depth
-candidates regressed and were removed. Metrics do not establish comfort.
+**Verified, 2026-10-30:** [Audit](AUDIT.md#verification-scope) records lint,
+230 tests/build for the [local fractional observer](STEREO-CONSTRAINTS.md#local-fractional-observer),
+based on `bf59d7d`, Windows/Node 22.22.3. Earlier 22 GPU/41 gameplay checks retain their scope.
+Projected-lighting and row-dithered-depth candidates regressed and were removed.
+Metrics do not establish comfort; general reconstruction remains integer-based.
 
 **Human-reported, 2026-09-26:** Synthesis regressed across several modes; foreground
 trees look cut into background. The harness remains valuable; clarity/color ambition
@@ -82,8 +81,9 @@ absent geometry. Legacy color bands and harsh moving grain remain unresolved.
 **Human-reported, 2026-10-02:** Depth holds; harsh moving static persists despite
 half contrast. One possible brief diamond band qualifies the earlier band-free report.
 Keyboard release now settles within 180 ms in tested simulations.
-**Next:** Test fractional spatial sampling across occlusions. Seed transport retains
-bursts; the flat-plane sampling control passes only its scoped checks. [Research and limits](STEREO-CONSTRAINTS.md#motion-carrier).
+**Next:** Test fractional single-image sampling across occlusions with the calibrated
+local observer. Thin surfaces and newly exposed boundaries remain unmeasured;
+record viewing geometry before human comparisons. [Research and limits](STEREO-CONSTRAINTS.md#local-fractional-observer).
 [Audit and work queue](AUDIT.md). Foundation output stays near 2 MP; no image blending.
 
 **Unknown:** First external engine target, supported hardware floor,

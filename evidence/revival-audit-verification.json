@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-30",
+  "scope": "Revival audit; runtime source unchanged. Software checks and reproduction of an existing plane experiment, not a new renderer or perceptual acceptance.",
+  "provenance": {
+    "revision": "bf59d7d26810a0fb64f68daef1969b409bc4a6eb",
+    "branch": "codex/v0.6",
+    "initialWorkingTree": "clean",
+    "changesAtVerification": "project documentation only",
+    "environment": {
+      "os": "Windows",
+      "node": "v22.22.3",
+      "npm": "10.2.3",
+      "browser": "Codex in-app browser",
+      "viewport": [
+        1280,
+        720
+      ],
+      "devicePixelRatio": 1
+    },
+    "sourceSHA256": {
+      "package.json": "67dc66f1419abd7cbdaeda41edbc137bc58ddda5711761277d6a7c10574cc6ce",
+      "package-lock.json": "fe8e96953f460a32f7ae73fd8274a644c1fa10c504bc641c156ce36c716f4c17",
+      "vite.config.js": "33787033f4f6471022d2e46a7e3f66819059cb375ded7ba56b3a35c0a0d4595e",
+      "src/main.js": "eb84643ee0b5b90e26b3bfc58712a6d559258bb289791c90bb04101cef5ead02",
+      "src/stereogram.js": "14cad13bbc7640a6b588a7c7839b2e98daff7abe43e7cbdd4dcedda485d3cae9",
+      "src/foundation-stereo.js": "51e47908e4e4d0568a1588668df82b66ce644a84cb789aecc02c7148dce904f5",
+      "src/foundation-motion.js": "279d0c95e837c0e1b669349bc9e6846425692ce229b2a0cfe9f2cf881f22ed81",
+      "src/gpu/depthwalk-gpu.js": "1d56d8cc03145a2d50424c3b1d53de203a767fd8ddc7512d53e3cf15d04cbbcd",
+      "src/gpu/stereogram.wgsl": "fed551458dd414509218ab75bad7152c186561834391271d9a4e740987049173",
+      "src/debug/reconstruct.js": "c7552bda0eade634b9ed242e6e77d924d1958e91349d47a06b375211dc6aa7ac",
+      "src/debug/observer.js": "d214f338e82c144a120aaa3cce2b5e27e24b208ea28e5f30c0c9394b59a42f89",
+      "tests/gpu-checks.js": "7e38a819eca88c28dcc86936ffa1f313b7c6b85cc388846629b0eedffc1f574f",
+      "tests/browser-checks.js": "f7150d4bda6580baee4e91675b359539e45a12ef4f3b89fcb07b321238ab2799",
+      "tests/fractional-phase-research.js": "597e67aa14779810a8ecd83cde9761e69aecdddb4cae5101e3b46dc92d55927f",
+      "tests/fractional-phase.test.js": "9dc01e5e211ec5f388c0376409cac3449a38adbdffb4605a711333bf28911da0"
+    }
+  },
+  "checks": {
+    "repository": {
+      "command": "npm run check",
+      "exitCode": 0,
+      "lint": "passed",
+      "unitTests": {
+        "passed": 222,
+        "failed": 0,
+        "skipped": 0
+      },
+      "build": "passed"
+    },
+    "gpu": {
+      "route": "/tests/gpu-checks.html",
+      "complete": true,
+      "passed": 22,
+      "failed": 0,
+      "fixtureDimensions": [
+        1000,
+        220
+      ]
+    },
+    "gameplay": {
+      "route": "/?verify&quality=1",
+      "complete": true,
+      "initialBackend": "gpu",
+      "finalBackend": "gpu",
+      "passed": 41,
+      "failed": 0,
+      "coverageIncludes": [
+        "live reconstruction and source-color checks",
+        "CPU/GPU renderer switching",
+        "movement/collision/collection",
+        "native-pixel F3 export",
+        "foundation motion and exact rest"
+      ],
+      "pointerLockAndFullscreen": "not manually verified"
+    },
+    "fractionalPlane": {
+      "entryPoint": "runFractionalPhaseResearch() from tests/fractional-phase-research.js",
+      "dimensions": [
+        384,
+        12
+      ],
+      "seed": 173,
+      "harmonics": 12,
+      "stepPixels": 0.0625,
+      "roundedByteRms": 25.144940090459112,
+      "continuousByteRms": 2.4598335817693036,
+      "continuousContrastSD": [
+        26.140052977587874,
+        26.157963756344877
+      ],
+      "roundedContrastSD": [
+        26.142802332992247,
+        26.174295597016553
+      ],
+      "sampledByteDecoderMaxErrorPixels": 0,
+      "decoderSearch": [
+        40,
+        56
+      ],
+      "decoderStepPixels": 0.03125,
+      "occlusionsTested": false,
+      "humanComfortTested": false
+    }
+  },
+  "notRerun": [
+    "separate CPU-start gameplay suite",
+    "startup fault injection",
+    "runtime GPU/worker failure suite",
+    "external Firefox",
+    "dependency advisory audit",
+    "timed performance benchmarks"
+  ],
+  "acceptance": "Open. Numerical passes do not supersede prior human rejection or establish fractional visibility, comfortable motion, color fidelity or release readiness."
+}

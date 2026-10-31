@@ -1,0 +1,1000 @@
+{
+  "schema": 1,
+  "scope": "Offline observer calibration, not a renderer candidate, benchmark or human-vision result.",
+  "settings": {
+    "min": 32,
+    "max": 56,
+    "step": 0.03125,
+    "kernelRadius": 8,
+    "windowRadii": [
+      5,
+      11
+    ],
+    "verticalRadius": 2,
+    "minSD": 5,
+    "minCorrelation": 0.97,
+    "minPeakMargin": 0.03,
+    "competitorDistance": 2,
+    "scaleTolerance": 0.125,
+    "roundTripTolerance": 0.125
+  },
+  "protocol": {
+    "seeds": [
+      17,
+      91,
+      317
+    ],
+    "tolerance": 0.0625,
+    "periods": [
+      35.375,
+      43.39,
+      47.25,
+      47.49,
+      47.5,
+      47.75,
+      51.61
+    ],
+    "cases": [
+      {
+        "name": "wide-post",
+        "options": {}
+      },
+      {
+        "name": "translated-post",
+        "options": {
+          "foregroundLeft": -26,
+          "foregroundRight": 38
+        }
+      },
+      {
+        "name": "thin-post",
+        "options": {
+          "foregroundLeft": -6,
+          "foregroundRight": 6
+        }
+      },
+      {
+        "name": "off-grid-depths",
+        "options": {
+          "nearSeparation": 36.2,
+          "farSeparation": 51.1
+        }
+      }
+    ]
+  },
+  "source": {
+    "url": "https://vision.middlebury.edu/stereo/taxonomy-IJCV.pdf",
+    "reviewed": "Scharstein and Szeliski (2002), sections 3.4, 5.1, 6.2 and 6.4: cross-checking, regional evaluation, boundary fattening and subpixel sampling. Our thresholds and implementation are engineering controls, not a reproduction."
+  },
+  "planes": [
+    {
+      "seed": 17,
+      "period": 35.375,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 17,
+      "period": 43.39,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.01624999999999943
+    },
+    {
+      "seed": 17,
+      "period": 47.25,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 17,
+      "period": 47.49,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.02125000000000199
+    },
+    {
+      "seed": 17,
+      "period": 47.5,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 17,
+      "period": 47.75,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 17,
+      "period": 51.61,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.01624999999999943
+    },
+    {
+      "seed": 91,
+      "period": 35.375,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 91,
+      "period": 43.39,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.015000000000000568
+    },
+    {
+      "seed": 91,
+      "period": 47.25,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 91,
+      "period": 47.49,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.00999999999999801
+    },
+    {
+      "seed": 91,
+      "period": 47.5,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 91,
+      "period": 47.75,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 91,
+      "period": 51.61,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.01624999999999943
+    },
+    {
+      "seed": 317,
+      "period": 35.375,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 317,
+      "period": 43.39,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.01624999999999943
+    },
+    {
+      "seed": 317,
+      "period": 47.25,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 317,
+      "period": 47.49,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.00999999999999801
+    },
+    {
+      "seed": 317,
+      "period": 47.5,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 317,
+      "period": 47.75,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0
+    },
+    {
+      "seed": 317,
+      "period": 51.61,
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 4,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.01624999999999943
+    }
+  ],
+  "controls": {
+    "blank": {
+      "samples": 4,
+      "visible": 0,
+      "withoutCorrespondence": 4,
+      "accepted": 0,
+      "correct": 0,
+      "falseMatches": 0,
+      "maxAcceptedError": null
+    },
+    "weak": {
+      "samples": 4,
+      "visible": 0,
+      "withoutCorrespondence": 4,
+      "accepted": 0,
+      "correct": 0,
+      "falseMatches": 0,
+      "maxAcceptedError": null
+    },
+    "unrelated": {
+      "samples": 4,
+      "visible": 0,
+      "withoutCorrespondence": 4,
+      "accepted": 0,
+      "correct": 0,
+      "falseMatches": 0,
+      "maxAcceptedError": null
+    },
+    "harmonic": {
+      "samples": 4,
+      "visible": 0,
+      "withoutCorrespondence": 4,
+      "accepted": 0,
+      "correct": 0,
+      "falseMatches": 0,
+      "maxAcceptedError": null
+    },
+    "wrongDepth": {
+      "samples": 4,
+      "visible": 4,
+      "withoutCorrespondence": 0,
+      "accepted": 4,
+      "correct": 0,
+      "falseMatches": 4,
+      "maxAcceptedError": 2
+    }
+  },
+  "boundaries": [
+    {
+      "seed": 17,
+      "case": "wide-post",
+      "samples": 58,
+      "visible": 50,
+      "withoutCorrespondence": 8,
+      "accepted": 29,
+      "correct": 29,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 18,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 8,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 20,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 29,
+        "unsupported scale": 29
+      }
+    },
+    {
+      "seed": 17,
+      "case": "translated-post",
+      "samples": 58,
+      "visible": 50,
+      "withoutCorrespondence": 8,
+      "accepted": 29,
+      "correct": 29,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 19,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 8,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 19,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 29,
+        "unsupported scale": 29
+      }
+    },
+    {
+      "seed": 17,
+      "case": "thin-post",
+      "samples": 58,
+      "visible": 54,
+      "withoutCorrespondence": 4,
+      "accepted": 37,
+      "correct": 37,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 27,
+          "accepted": 27,
+          "correct": 27,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 24,
+          "accepted": 10,
+          "correct": 10,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 4,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 3,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 37,
+        "unsupported scale": 21
+      }
+    },
+    {
+      "seed": 17,
+      "case": "off-grid-depths",
+      "samples": 58,
+      "visible": 51,
+      "withoutCorrespondence": 7,
+      "accepted": 28,
+      "correct": 28,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.012499999999988631,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.006250000000022737
+        },
+        "background-boundary": {
+          "samples": 20,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.006250000000022737
+        },
+        "occluded": {
+          "samples": 7,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 19,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.012499999999988631
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.012499999999988631
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 28,
+        "unsupported scale": 30
+      }
+    },
+    {
+      "seed": 91,
+      "case": "wide-post",
+      "samples": 58,
+      "visible": 50,
+      "withoutCorrespondence": 8,
+      "accepted": 30,
+      "correct": 30,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 18,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 8,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 20,
+          "accepted": 10,
+          "correct": 10,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 30,
+        "unsupported scale": 28
+      }
+    },
+    {
+      "seed": 91,
+      "case": "translated-post",
+      "samples": 58,
+      "visible": 50,
+      "withoutCorrespondence": 8,
+      "accepted": 31,
+      "correct": 31,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 19,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 8,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 19,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 31,
+        "unsupported scale": 27
+      }
+    },
+    {
+      "seed": 91,
+      "case": "thin-post",
+      "samples": 58,
+      "visible": 54,
+      "withoutCorrespondence": 4,
+      "accepted": 36,
+      "correct": 36,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 27,
+          "accepted": 27,
+          "correct": 27,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 24,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 4,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 3,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 36,
+        "unsupported scale": 22
+      }
+    },
+    {
+      "seed": 91,
+      "case": "off-grid-depths",
+      "samples": 58,
+      "visible": 51,
+      "withoutCorrespondence": 7,
+      "accepted": 29,
+      "correct": 29,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.01875000000001137,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.006250000000022737
+        },
+        "background-boundary": {
+          "samples": 20,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.006250000000022737
+        },
+        "occluded": {
+          "samples": 7,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 19,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.01875000000001137
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.012499999999988631
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 29,
+        "unsupported scale": 29
+      }
+    },
+    {
+      "seed": 317,
+      "case": "wide-post",
+      "samples": 58,
+      "visible": 50,
+      "withoutCorrespondence": 8,
+      "accepted": 31,
+      "correct": 31,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 18,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 8,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 20,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 31,
+        "unsupported scale": 27
+      }
+    },
+    {
+      "seed": 317,
+      "case": "translated-post",
+      "samples": 58,
+      "visible": 50,
+      "withoutCorrespondence": 8,
+      "accepted": 30,
+      "correct": 30,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 19,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 8,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 19,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 30,
+        "unsupported scale": 28
+      }
+    },
+    {
+      "seed": 317,
+      "case": "thin-post",
+      "samples": 58,
+      "visible": 54,
+      "withoutCorrespondence": 4,
+      "accepted": 36,
+      "correct": 36,
+      "falseMatches": 0,
+      "maxAcceptedError": 0,
+      "strata": {
+        "background-interior": {
+          "samples": 27,
+          "accepted": 27,
+          "correct": 27,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "background-boundary": {
+          "samples": 24,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0
+        },
+        "occluded": {
+          "samples": 4,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 3,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 36,
+        "unsupported scale": 22
+      }
+    },
+    {
+      "seed": 317,
+      "case": "off-grid-depths",
+      "samples": 58,
+      "visible": 51,
+      "withoutCorrespondence": 7,
+      "accepted": 29,
+      "correct": 29,
+      "falseMatches": 0,
+      "maxAcceptedError": 0.01875000000001137,
+      "strata": {
+        "background-interior": {
+          "samples": 11,
+          "accepted": 11,
+          "correct": 11,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.006250000000022737
+        },
+        "background-boundary": {
+          "samples": 20,
+          "accepted": 8,
+          "correct": 8,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.006250000000022737
+        },
+        "occluded": {
+          "samples": 7,
+          "accepted": 0,
+          "correct": 0,
+          "falseMatches": 0,
+          "maxAcceptedError": null
+        },
+        "foreground-boundary": {
+          "samples": 19,
+          "accepted": 9,
+          "correct": 9,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.01875000000001137
+        },
+        "foreground-interior": {
+          "samples": 1,
+          "accepted": 1,
+          "correct": 1,
+          "falseMatches": 0,
+          "maxAcceptedError": 0.012499999999988631
+        }
+      },
+      "falseExamples": [],
+      "reasons": {
+        "supported local disparity": 29,
+        "unsupported scale": 29
+      }
+    }
+  ],
+  "disocclusion": {
+    "newlyVisible": 6,
+    "newlyVisibleAccepted": 0,
+    "newlyVisibleWrong": 0
+  },
+  "limitations": [
+    "Layered boundary images are separately ray-rendered eye views; they do not demonstrate a valid single-image occlusion renderer.",
+    "Two fixed window widths assume locally constant disparity. Rejection leaves depth unmeasured; it does not prove the image is wrong.",
+    "The [32,56] pixel search is calibrated scope, not exhaustive uniqueness. Harmonics outside that range are not ruled out.",
+    "Contrast and horizontal gradient are diagnostics, not proof of retained texture spectrum or human comfort.",
+    "Synthetic two-plane geometry, three deterministic texture seeds, one sampled row band; no arbitrary slopes, color, physical display calibration or moving-game acceptance."
+  ],
+  "softwareChecks": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "lint": "passed",
+    "tests": { "passed": 230, "failed": 0, "skipped": 0 },
+    "build": "passed",
+    "browserSuites": "Not rerun for this offline observer addition; prior revival evidence retains its scope."
+  },
+  "provenance": {
+    "recordedAt": "2026-10-31T05:55:39.009Z",
+    "node": "v22.22.3",
+    "platform": "win32",
+    "baseRevision": "bf59d7d26810a0fb64f68daef1969b409bc4a6eb",
+    "uncommittedResearch": true,
+    "command": "node tests/fractional-observer-research.js --output evidence/fractional-observer-verification.json",
+    "sourceSHA256": {
+      "src/debug/fractional-reconstruct.js": "4e7753c775665b7f0357e349eeb6ef34f535ea4b70a442126759a38f797d07f9",
+      "tests/fractional-observer-fixtures.js": "d9d522f13799cf22063568ecd4a95a83bd6f7792045755a94a54df390a9654d0",
+      "tests/fractional-observer.test.js": "55120c66960b4ab387716dfe514f10b4350a311ff2f89e30473c293f7113253a",
+      "tests/fractional-observer-research.js": "9b07df4e12f8ed25eb4249ccf4e2ca18b30bbf89496b5843a7753c235c59da57"
+    }
+  }
+}

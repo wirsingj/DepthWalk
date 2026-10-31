@@ -9,8 +9,9 @@ read-with: SOT.md; ARCHITECTURE.md; MAINTAINER_GUIDE.md.
 
 # Project audit
 
-Scope: `codex/v0.6`, working changes based on `4e3b5d8`; 2026-10-03 local
-audit. Existing edits are preserved. [State](SOT.md) owns human direction;
+Scope: `codex/v0.6` based on `bf59d7d26810a0fb64f68daef1969b409bc4a6eb`;
+2026-10-30 revival audit of research, reconstruction and engineering readiness.
+Checkout initially clean; observer added, game/defaults unchanged. [State](SOT.md) owns human direction;
 [research](STEREO-CONSTRAINTS.md#motion-carrier) owns perceptual evidence.
 
 ## Assessment
@@ -29,6 +30,9 @@ stable, correctly ordered depth survives movement.
 | --- | --- | --- |
 | P1 | Product alignment | Whole-image carrier replacement dominates tiny-step flicker; half contrast helps but fails human comfort. Do not promote another cosmetic adjustment as a motion fix. |
 | P1 | Motion transitions | Actual-scene bounds expose avoidable renewal and expensive close-up transitions. Seed transport lowers average changes but retains bursts and alters spatial texture. A fractional flat-plane control passes its scoped checks; occlusions remain untested. [Research](STEREO-CONSTRAINTS.md#motion-carrier). |
+| P1 | Fractional validation | [Local observer](STEREO-CONSTRAINTS.md#local-fractional-observer) passes scoped plane and two-eye boundary calibration, with explicit abstentions. Thin foreground and six newly visible samples remain unmeasured; no single-image occlusion renderer is validated. General F3 reconstruction remains integer-based. Retain both guards and report coverage separately from accuracy. |
+| P1 | Viewing geometry | [Presentation](../src/main.js) preserves CSS spacing across render scaling, but does not measure physical screen scale, eye separation or viewing distance. Settings-matched replay is not physical calibration. Record geometry before human A/B; calibration cannot repair synthesis failures. [Model and limits](STEREO-CONSTRAINTS.md#lenticular-comparison-and-research-frontier). |
+| P2 | Literature scope | The full Stereogram Arcade thesis and Steer's algorithms are reviewed. Slope dithering is underspecified; supersampled links offer a concrete spatial comparator. Neither validates moving comfort. Earlier dither failure and Steer's thin-object visibility limitation require explicit controls. Echo and object-color full methods remain retrieval tasks. [Review](STEREO-CONSTRAINTS.md#stereogram-arcade-and-sampling-references). |
 | Fixed | Research validity | Shared browser/Node bounds match prior synthetic evidence. Counterexamples prevent concentration or translated matches being treated as standalone artifact verdicts. Worst-transition reconstruction and local flow now accompany averages. |
 | Fixed | Input contract | CPU/GPU projection validation rejects coercible strings, booleans and objects before output writes. Adjacent projection quantities retain numerical bounds and the documented infinite-far exception. |
 | Fixed | CPU lifecycle | Validated stripe replies and 15-second deadlines prevent silent worker failures from leaving frames permanently busy. Shared ownership settles requests and terminates failed work. |
@@ -36,7 +40,7 @@ stable, correctly ordered depth survives movement.
 | Fixed | Performance | Unchanged foundation output is held. Input, settings and capture wake rendering; GPU completion polling continues. Legacy convergence is unchanged. |
 | P2 | Architecture | `main.js` combines controls, scheduling, capture and worker ownership; compressed functions make lifecycle review difficult. Extract tested ownership boundaries when fixing them, not through a wholesale rewrite. |
 | Fixed | YAIML | README verification history is replaced by scoped evidence links; current checks, past observations and open acceptance remain distinct. The stale test port is removed. |
-| P2 | Security | Lockfile audit reports zero known advisories. Reviewed DOM HTML insertions use constant templates; persisted preferences are constrained. Loopback servers reduce exposure. This is not a penetration test or deployment review. |
+| P2 | Security | The earlier lockfile audit reported zero known advisories; advisories were not rechecked on 2026-10-30. Earlier DOM/input review and loopback exposure findings remain historical, not a current penetration test or deployment review. |
 | P2 | Portability | Current GPU input is canonical proximity from static, symmetric-perspective geometry. Other engines, animated geometry and a hardware floor remain unvalidated. |
 | Fixed | Startup | Gameplay prepares one reference-identical carrier in a worker and shares owned copies across CPU stripes or GPU. Explicit CPU selection avoids GPU initialization. Obsolete work, deadlines, retry, backend/world switches and failure recovery have focused coverage. Standalone synchronous APIs retain their fallback. |
 | Fixed | Recovery | Foundations bounds requests, retains workers on persisted suspension, and reconciles controls restored after Back with frame dimensions, scene and links. Narrow gameplay windows pause synthesis without killing either backend. |
@@ -65,10 +69,27 @@ Work in priority order. After each change inspect the affected diff and run its
 focused checks, then recheck combined behavior. Promote a renderer only with both
 numerical evidence and human acceptance.
 
+Alternate-frame/perceptual encodings are an additional authorized research path,
+not a replacement priority or accepted renderer. [Temporal hypotheses](STEREO-CONSTRAINTS.md#temporal-encoding-hypotheses)
+define complementary modulation and constraint scheduling. Before prototyping,
+state changed invariants, temporal observer controls, presentation timing and
+human gates; existing single-frame acceptance cannot certify these proposals.
+
+- [ ] **P1 — Remaining observer/geometry prerequisites:** local fractional decoding
+  and negative controls are implemented. Preserve its declared thresholds and
+  boundary abstentions during candidate trials; thin surfaces and disocclusion
+  still need coverage. Record physical screen scale, viewing distance and optional
+  eye separation before human comparisons. Existing integer metrics remain guards.
 - [ ] **P1 — Fractional visibility:** extend the matched flat-plane sampling control
   to a foreground/background edge with explicit visibility from both eyes. Preserve
   silhouettes, local depth, contrast and distinct matches. Measure texture motion
   against intended geometry; do not accept lower RMS caused by blur or lost fusion.
+  Specify correspondence at fractional sample positions separately from today's
+  integer RGB-equality invariant; do not quietly relax the runtime contract.
+  Include the [thesis-derived comparisons](STEREO-CONSTRAINTS.md#stereogram-arcade-and-sampling-references):
+  ramps and thin posts, specified slope dithering and supersampled links with
+  spatial integration. Keep independent original-geometry targets and matched
+  output resolution/contrast; do not reintroduce the rejected dither by name alone.
 - [ ] **P1 — Candidate coverage:** a numerical survivor must pass actual tiny-step,
   sustained turn/approach, disocclusion, pause/resume and exact-rest checks. The
   seed-transport trial retains bursts; the fractional control covers only a plane.
@@ -77,8 +98,10 @@ numerical evidence and human acceptance.
   while walking and turning. Require solid correctly ordered depth, correct motion
   direction/approach, successful object interaction, no recurring traveling bands
   and materially calmer static before changing defaults.
-- [ ] **P2 — Source appearance:** after motion acceptance, reintroduce source
-  color/edges with independent locality and fusion checks.
+- [ ] **P2 — Texture, then source appearance:** after motion acceptance, compare
+  attractive structured carriers at matched depth/contrast, then compatible
+  color/edges with independent locality and fusion checks. Retrieve Tsuda's
+  original color method before adopting thresholds attributed to it by the thesis.
 - [ ] **P2 — Integration readiness:** choose an external engine and hardware
   floor; validate animated depth input and deployment requirements there.
 - [ ] **P2 — Maintainability:** extract host responsibilities when modifying them;
@@ -87,6 +110,26 @@ numerical evidence and human acceptance.
   movement and on the chosen hardware floor; idle samples are deliberately excluded.
 
 ## Verification scope
+
+**Current, 2026-10-30:** the isolated fractional observer addition passes
+`npm run check`: lint, 230/230 tests and build on Windows/Node 22.22.3.
+[Calibration evidence](../evidence/fractional-observer-verification.json) fingerprints
+the working sources based on `bf59d7d`; it records 84 plane and 696 two-eye boundary
+samples, not human perception or game-renderer acceptance. No browser suite was
+rerun for this offline addition; gameplay output/defaults are unchanged.
+
+**Earlier revival check, 2026-10-30:** [Revival verification](../evidence/revival-audit-verification.json)
+records `npm run check`: lint, 222/222 tests and build passed on Windows,
+Node 22.22.3/npm 10.2.3, runtime source at `bf59d7d`. In the in-app browser,
+22/22 GPU fixtures and 41/41 gameplay checks passed at 1280×720, DPR 1,
+quality 1, initially WebGPU (including renderer switching and F3 native export).
+The 384×12 fractional-plane control reproduced 25.14494 → 2.45983 byte RMS
+at a 1/16-pixel rounding-boundary step with contrast near 26.15.
+This does not test fractional occlusions, human perception, real capture/fullscreen,
+external Firefox or performance. Separate CPU-start, startup and fault-injection
+suites were not rerun. Dependency advisories were not refreshed.
+
+The following evidence retains its original revision/environment:
 
 [Motion iteration evidence](../evidence/motion-iteration-verification.json) records
 222 passing tests, lint/build and the new browser/offline studies. Four tiny-step

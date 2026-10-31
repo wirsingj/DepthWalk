@@ -49,6 +49,163 @@ fusion remain evidence. A monochrome reference does not solve source-color bandi
   size. It does not disclose proprietary construction or establish which method
   produced the user's childhood books.
 
+### Lenticular comparison and research frontier
+
+**Source review, 2026-10-30:** In [Osman's segment, 22:21–25:30](https://www.youtube.com/watch?v=h4P1g_deX18&t=1341s),
+the auto-generated transcript reports unsuccessful 3D prints, possible reversed
+depth and unwanted image regions reaching each eye. His strip/lens explanation
+is a useful analogy, not evidence of a working stereoscopic correction.
+
+Lenticular optics route interleaved views toward different angles. DepthWalk's
+ordinary display shares an image between both eyes; its correspondence constraints
+couple surface appearance. Interleaving images in software cannot supply the
+missing directional optics. [Chan et al., 2021](https://arxiv.org/pdf/2012.08921),
+introduction/design/raytracing sections reviewed, demonstrate physical microlenses,
+view ordering and alignment, not a software-only display. [Gavane and Watson,
+2024](https://doi.org/10.1145/3651300) ([available manuscript](https://arxiv.org/html/2601.19901v1)),
+display model and rendering sections reviewed, describe the angular/spatial
+resolution tradeoff and multiview rendering for lens-equipped displays. A
+lenticular output would be a separate hardware-dependent research path; no such
+adapter or hardware result is implemented here. Neither is wavefront holography.
+
+**Engineering inference:** borrow explicit left/right ray geometry, visibility,
+view-order checks and sampling analysis. Strong relative relief remains plausible
+on an ordinary monitor, but arbitrary scene color plus unrestricted binocular
+views cannot be promised by this exact-RGB construction. This is not a universal
+impossibility proof for perceptual encodings.
+
+**Viewing geometry gap:** Current spacing is in CSS pixels, scaled into render
+pixels; it is not measured eye separation. A proposed calibration records physical
+screen scale, viewing distance, browser zoom/DPR, native/render resolution and
+optional interpupillary distance. Keep personal measurements local, outside
+versioned memory. For an ideal centered parallel-view pair with physical separation
+`s`, eye separation `e` and eye-to-screen distance `D`, similar triangles give
+depth behind the screen `Z = D*s/(e-s)` for `0 < s < e`
+([Petz et al., section 2.2](https://cvai.cit.tum.de/_media/spezial/bib/pgm03_has.pdf)).
+Smaller separation brings the surface nearer within that volume; foreground-near
+does not mean in front of the physical screen. Calibration makes this geometry
+testable; it neither removes focus/convergence mismatch nor certifies comfort.
+
+Additional research leads and limits:
+
+- [Byunn-Rieder, 2025, *Stereogram Arcade*](https://dash.harvard.edu/items/cfa6ac03-d6d4-4dcd-837e-7168a6ddf021):
+  full thesis and bibliography reviewed, with color, dithering and occlusion
+  figures inspected. [Method comparison below](#stereogram-arcade-and-sampling-references)
+  separates implementation descriptions from unmeasured performance and comfort.
+- [Zou et al., 2020, *NeuralMagicEye*](https://arxiv.org/html/2012.15692),
+  methods and section 4.6 reviewed: network-optimized images decoded successfully
+  while the authors reported no human depth percept. A learned decoder could be
+  an additional diagnostic, never the sole synthesis objective or acceptance gate.
+- [Lau and Kwong, 2002](https://research.cuhk.edu.hk/en/publications/analysis-of-echoes-in-single-image-random-dot-stereograms-8/):
+  institutional abstract reviewed; echo-free reconstruction depends on stated
+  conditions. Full derivation remains unread; no universal echo-free claim follows.
+- [Tsuda, Yue and Nishita, 2008](https://doi.org/10.1109/CW.2008.86):
+  object-color construction remains a retrieval lead; the author PDF is unavailable.
+  The thesis cites its fusion-tolerance study, but this secondary account cannot
+  establish transferable color thresholds. Inspect the original method before
+  comparing with rejected color candidates.
+
+This is a targeted literature review, not an exhaustive survey. Static texture,
+separate-eye stereo, learned reconstruction and optical-display results retain
+their original scope; none establishes this game's moving comfort.
+
+### Stereogram Arcade and sampling references
+
+**Full-text review, 2026-10-30:** Byunn-Rieder's bachelor's thesis (printed
+pp. 13–21) describes a Unity compute shader with rows processed in parallel,
+TIW-style constraints and Steer's endpoint-based visibility. Its slope-dithering
+pass detects slopes from neighboring depth samples and perturbs depth before
+link construction. Figure 6 supplies a static comparison. The thesis omits the
+dither pattern, amplitude, slope threshold, temporal anchoring and shader source;
+it reports neither a device/resolution/FPS benchmark nor a controlled moving
+observer study. Its O(width) claim describes ideal row parallelism, not total
+work or bounded-hardware scaling. It is useful implementation precedent, not
+proof of a solved motion problem or independently established novelty.
+
+The thesis declines object-specific color after describing incompatible pixel
+demands, using global/row tint instead. Its large or centrally anchored targets
+and depth-dependent mechanics motivate gameplay tests; peripheral-vision
+discussion is a design rationale, not a measured universal limit. The author's
+[release page](https://bililun.itch.io/stereogram-arcade) exposes a full-screen
+animation toggle, but neither source establishes its texture timing policy or
+alternate-frame eye separation. The executable was not evaluated.
+
+**Prior failure matters:** our removed [row-dithered trial](OBSERVER.md#ink-contours)
+lost depth accuracy and supported area. Its exact schedule is unavailable, so
+neither equivalence to this slope-aware method nor a meaningful difference is
+established. Any new dither must be fully specified and evaluated against the
+original geometry; altered depth cannot become its own correctness target.
+
+**Reference [4], [W. A. Steer's technical account](http://www.techmind.org/stereo/stech.html)**
+(originally 1995, revised 2002) was read directly, including the algorithms.
+It adds a concrete spatial comparator: form links on a finer horizontal grid,
+then average virtual samples into display pixels. This is current-frame spatial
+integration, distinct from depth dithering and temporal averaging. His patterned
+fill also handles isolated insertions and works outward from the center. These
+are qualitative static results; moving texture quality remains untested here.
+His nearer-link visibility rule explicitly differs from a continuous ray test
+and admits undefined background behind a thin foreground object in extreme
+geometry. Preserve independent two-eye visibility checks rather than assuming
+the shortcut is interchangeable with our solver.
+
+**Experiment implication, not implementation:** after the local fractional
+decoder prerequisites, compare rounded sampling, a specified slope-aware dither
+and supersampled correspondences with one spatial integration pass. Hold output
+resolution, physical spacing, input geometry and carrier contrast/bandwidth
+comparable. Test ramps, thin foreground posts, sharp boundaries and disocclusion;
+report local depth error, ambiguity, contrast loss and temporal peaks separately.
+Do not interpolate depth across silhouettes. State the fractional correspondence
+contract explicitly; final native-pixel RGB equality need not survive spatial
+integration. Retain the existing analytic-plane control and human acceptance gate.
+
+### Temporal encoding hypotheses
+
+**Human direction, 2026-10-30:** Investigate unconventional encodings, including
+alternate frames and perceptual mechanisms. Current renderer invariants protect
+the baseline; they are not universal constraints on research. No temporal candidate
+is implemented or accepted by this decision.
+
+In Magic Eye viewing, vergence changes while accommodation remains at the screen;
+alternation does not by itself deliver exclusive left/right images. Temporal
+processing nevertheless matters. [Henriksen, Cumming and Read, 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC4873186/),
+alternating-correlation results/methods reviewed, used a mirror stereoscope and
+120 Hz CRT with four observers. Depth judgments depended on correlation-alternation
+rate; rapid alternation degraded performance. This motivates timing experiments,
+not an optimum refresh rate or a software-only eye-separation claim.
+[Pulfrich research](https://pmc.ncbi.nlm.nih.gov/articles/PMC2737674/) also relies
+on differential timing between eyes; common frame alternation supplies no such
+selective delay by itself.
+
+**Proposed experiments, not published solutions:**
+
+- Complementary temporal texture: two current-geometry frames `C + S` and `C - S`,
+  with source color `C` and stereo-correlated modulation `S`. Equal-duration,
+  linear-light averaging preserves `C`; hypothesis: temporal stereo processing
+  could still extract the modulation. Different source means break instantaneous
+  RGB equality. Integration may erase the depth signal; visible flicker, rivalry
+  and gamut/clipping are rejection risks. Distinguish this channel-separation
+  hypothesis from rejected static local-contrast and evolving-carrier trials.
+- Schedule subsets of correspondence constraints across frames to reduce
+  instantaneous transitive appearance coupling. Test whether a sequence supports
+  stable depth without false matches or motion artifacts. This deliberately
+  departs from complete per-frame equality and has no demonstrated feasibility.
+
+**Analytical boundary:** At fixed geometry, any weighted temporal average of images
+that all satisfy the same exact RGB-equality graph also satisfies that graph.
+Alternating already-valid frames cannot, through linear averaging alone, escape
+its color constraint. A proposed benefit must identify changed constraints or a
+specific nonlinear/spatiotemporal perceptual mechanism.
+
+Start with fixed geometry and a declared sequence contract. Compare static stereo,
+unrelated temporal modulation, phase scrambling, and ordinary stereo/color
+alternation at matched mean/contrast. Retain per-frame and temporal diagnostics;
+neither averaged pixels nor one tuned observer establishes perception. Record
+actual presentation cadence, drops and display response; at 120 Hz, AB alternation
+repeats at 60 Hz. Nominal RAF/submission timing is not measured scanout. Predeclare
+stopping behavior if frames keep cycling at rest, then require human depth-order
+and comfort checks before motion extension or promotion. Avoid full-field flashing
+as the initial stimulus. Existing runtime regressions remain unchanged.
+
 ### Static implementation audit
 
 2026-10-02, Windows/Node 22.22.3; first-attempt source now preserved at `v0.5` /
@@ -333,9 +490,45 @@ byte-image RMS falls from 25.14 to 2.46; contrast stays near 26.15 in both contr
 with no clipping or repeated filtering. Image-only fractional reconstruction
 recovers sampled periods within 1/32 pixel in its declared search range. This
 contrast differs from gameplay; it is not a comparison to runtime quality.
-Expansion/contraction remains measurable. No foreground visibility, disocclusion,
-display calibration or human comfort is validated. Next test a foreground/background
-edge with explicit two-eye visibility, without interpolating depth across silhouettes.
+Expansion/contraction remains measurable. This plane experiment validates no
+foreground visibility, disocclusion, display calibration or human comfort.
+The following observer calibration prepares a separate scene-boundary experiment.
+
+### Local fractional observer
+
+**Implemented/calibrated, 2026-10-30:** [Image-only observer](../src/debug/fractional-reconstruct.js)
+searches scalar image patches at 1/32-pixel steps in [32,56], using radius-8
+Lanczos sampling, 11/23-pixel horizontal windows and five rows. Acceptance requires
+SD ≥5 code levels, correlation ≥.97, peak margin ≥.03 against shifts at least two
+pixels away, and scale/reverse-search agreement within 1/8 pixel. Unsupported
+windows remain null; search-edge peaks are rejected. Coordinates identify the left
+image sample and its partner at `x + separation`, not a cyclopean scene position.
+Expected geometry enters only the separate comparison, at 1/16-pixel tolerance.
+
+[Calibration](../tests/fractional-observer-research.js) and
+[evidence](../evidence/fractional-observer-verification.json) cover 84 single-image
+periodic samples across three seeds/seven periods, all accepted with maximum error
+.02125 pixels. Blank, weak, unrelated and harmonic controls are rejected; a
+two-pixel wrong-depth control remains decodable and fails the independent target
+comparison. Blur can retain accepted depth while reducing gradient strength:
+correlation alone does not certify texture fidelity.
+
+Separate ray-rendered eye images test a foreground post, translation, a thin post
+and off-grid depths. Across 696 samples, 375 are accepted, all within .01875 pixels;
+all 189 interior samples pass and all 81 occluded samples are rejected. Six newly
+visible samples remain unmeasured, as does the thin foreground itself. Boundary
+abstention is a coverage limitation, not evidence that those surfaces are wrong.
+These two-eye controls are **not** a working single-image occlusion renderer.
+
+[Scharstein and Szeliski, 2002](https://vision.middlebury.edu/stereo/taxonomy-IJCV.pdf),
+sections 3.4, 5.1, 6.2 and 6.4 reviewed, motivates reverse checks, regional scoring
+and subpixel sampling while documenting boundary fattening. Our thresholds are
+engineering controls, not their method reproduced. No dense scene, arbitrary
+slope, outside-range uniqueness, calibrated display or human comfort is established.
+Next apply this observer to explicitly visible single-image scene samples, retaining
+the unmeasured boundary regions and the existing integer regression guards.
+
+### Other motion candidates
 
 **Rejected continuous-carrier hypothesis:** [Offline study](../tests/foundation-temporal-research.js)
 and [results](../evidence/foundation-temporal-verification.json) compare independent,

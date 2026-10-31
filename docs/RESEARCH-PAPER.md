@@ -3,9 +3,9 @@ role: research-paper
 purpose: Early pre-release manuscript presenting scoped methods, results and limitations.
 not-here: Product authority, release acceptance or a chronological experiment log.
 status: early-pre-release
-version: 0.1-pre.1
-date: 2026-10-10
-evidence-through: 2026-10-03
+version: 0.1-pre.3
+date: 2026-10-30
+evidence-through: 2026-10-30
 durability: Reconcile affected claims with evidence; preserve historical result scope.
 update-when: Research methods, results, interpretations, citations or limitations change.
 read-with: SOT.md; STEREO-CONSTRAINTS.md; MAINTAINER_GUIDE.md.
@@ -15,9 +15,9 @@ read-with: SOT.md; STEREO-CONSTRAINTS.md; MAINTAINER_GUIDE.md.
 
 ## Separating Texture Renewal, Correspondence Changes, and Perceptual Quality
 
-**Early pre-release 0.1-pre.1 — 10 October 2026**
+**Early pre-release 0.1-pre.3 — observer calibration added 30 October 2026**
 
-**Experimental record through 3 October 2026**
+**Experimental record through 30 October 2026**
 
 **Status:** Preliminary engineering study; no controlled human-observer study or peer review.
 This is a manuscript version, not a game release or an accepted rendering algorithm.
@@ -28,7 +28,7 @@ Single-image autostereograms can communicate three-dimensional shape on an ordin
 
 Small prescribed movements produced approximately 67–68 grayscale levels of frame-difference RMS, despite optimistic correspondence-constrained bounds of 0.66–5.78. An offline procedural-seed assignment candidate reduced mean frame differences by approximately 62–83% across four short scene routes, but retained large transition bursts and altered spatial texture statistics. A separate flat-plane experiment reduced a rounding-boundary transition from 25.14 to 2.46 RMS using continuous spatial sampling at matched contrast.
 
-These findings identify mechanisms worth addressing, without establishing comfortable gameplay. The next priority is evaluating continuous sampling at occlusion boundaries, followed by controlled perceptual testing.
+An independent local observer now recovers fractional disparity in scoped calibration controls while abstaining on uncertain boundaries. These findings identify mechanisms worth addressing, without establishing comfortable gameplay. The next priority is evaluating continuous single-image sampling at occlusion boundaries, followed by controlled perceptual testing.
 
 ## 1. Objective and motivation
 
@@ -58,6 +58,10 @@ Allison and Howard found stronger perceived changing depth with dynamic than per
 
 Petz, Goldlücke, and Magnor demonstrated hardware-accelerated interactive autostereograms using texture projection. Fractional texture sampling improved depth resolution, with spatial filtering introducing blur. Their work establishes relevant implementation precedent, while leaving our gameplay-comfort question open. [*Hardware-accelerated Autostereogram Rendering for Interactive 3D Visualization*, 2003](https://cvai.cit.tum.de/_media/spezial/bib/pgm03_has.pdf).
 
+Byunn-Rieder's 2025 bachelor's thesis, [*Stereogram Arcade*](https://dash.harvard.edu/items/cfa6ac03-d6d4-4dcd-837e-7168a6ddf021), describes parallel row computation and slope-aware depth dithering before correspondence construction (pp. 15–18). Full-text review found a static visual comparison but no reproducible dither specification, measured hardware benchmark or controlled motion study. Its reference [4], [Steer's technical account](http://www.techmind.org/stereo/stech.html), supplies a distinct spatial method: construct correspondences at higher horizontal resolution, then integrate samples into display pixels. Its visibility shortcut has a documented thin-object limitation. These methods motivate controlled comparisons; neither establishes our moving-game objective. [Detailed comparison and prior dither failure](STEREO-CONSTRAINTS.md#stereogram-arcade-and-sampling-references).
+
+Zou et al.'s [*NeuralMagicEye*, section 4.6](https://arxiv.org/html/2012.15692) reports network-optimized images that machines decoded but humans did not perceive in depth. A separate human acceptance gate remains essential.
+
 ## 3. Methods
 
 ### 3.1 Reference renderer
@@ -78,7 +82,9 @@ $$
 
 Values are grayscale display codes on a 0–255 scale, not calibrated linear-light luminance. Contrast is measured as the population standard deviation of these codes.
 
-An image-only decoder estimates disparity before the expected scene disparity is supplied for comparison. Reported reconstruction accuracy means the percentage of sampled estimates within two image pixels of the expected disparity. It does not measure human fusion or comfort.
+An image-only decoder estimates disparity before the expected scene disparity is supplied for comparison. Reported reconstruction accuracy means the percentage of sampled estimates within two image pixels of the expected disparity. The general decoder searches integer disparities within configured bounds and compares rounded targets; it cannot establish subpixel accuracy. The separate flat-plane decoder below searches fractional periods but does not resolve occluded scenes. Neither measures human fusion or comfort.
+
+Section 4.6 separately calibrates a new local fractional observer. It does not rescore the historical renderer experiments. [Method, fixed thresholds and limitations](STEREO-CONSTRAINTS.md#local-fractional-observer).
 
 ### 3.3 Separating mechanisms
 
@@ -164,6 +170,14 @@ This is an engineering control, not a reproduction of a published algorithm or a
 
 Coherent texture expansion and contraction remained. Occlusions, disocclusions, and human comfort were not tested. [Fractional sampling evidence](../evidence/fractional-phase-verification.json).
 
+### 4.6 Local observer calibration separates accuracy from missing coverage
+
+On 30 October 2026, an image-only patch observer recovered all 84 periodic single-image controls within 0.02125 pixels. Blank, weak, unrelated and ambiguous harmonic controls were rejected. A deliberately wrong disparity remained decodable but failed separate ground-truth comparison, preventing a target-informed decoder from manufacturing success.
+
+Separately ray-rendered eye images tested wide, translated and thin foreground posts and off-grid depths. Of 696 samples, 375 were accepted, with maximum error 0.01875 pixels and no false accepted matches at the declared 1/16-pixel tolerance. All 189 interior samples passed; all 81 occluded samples were rejected. Six newly visible samples and the thin foreground remained unmeasured.
+
+These results calibrate sparse image evidence, not a single-image occlusion renderer. Abstention must remain visible when judging subsequent candidates. Blur also retained correct disparity while lowering measured texture gradients, so depth recovery alone cannot certify appearance. [Calibration evidence](../evidence/fractional-observer-verification.json).
+
 ## 5. Interpretation and limitations
 
 The findings distinguish three problems: unnecessary texture renewal, abrupt changes imposed by a discrete correspondence representation, and perceptual discomfort that numerical image metrics cannot settle.
@@ -178,7 +192,7 @@ Source-color fidelity and edge enhancement remain objectives rather than establi
 
 ## 6. Next experiments
 
-The immediate next experiment should extend continuous spatial sampling to a foreground–background boundary with explicit visibility from both eyes. It must avoid interpolating depth across silhouettes and test newly revealed surfaces.
+The immediate next experiment should extend continuous spatial sampling to a foreground–background boundary with explicit visibility from both eyes. The calibrated local observer provides a starting point, with thin-surface and newly visible boundary coverage still unresolved. Record viewing geometry before human comparisons. Avoid interpolating depth across silhouettes; the historical two-pixel accuracy measure alone cannot validate this extension.
 
 Candidates that survive this test should be evaluated across additional seeds, depth ranges, motion speeds, and longer routes. Measurements should include transition peaks, spatial texture changes, reconstruction errors, and exact behavior after stopping.
 
@@ -186,9 +200,11 @@ A subsequent controlled observer study should measure depth acquisition, sustain
 
 Source color and edge treatment can then be introduced incrementally against an accepted depth reference.
 
+A separate [temporal-encoding research path](STEREO-CONSTRAINTS.md#temporal-encoding-hypotheses) considers complementary modulation and time-shared constraints. These unimplemented hypotheses may depart from per-frame equality and require dedicated temporal controls and human evaluation; the present experiments do not validate them.
+
 ## 7. Reproducibility and evidence status
 
-The experimental record was produced from research changes based on commit `4e3b5d87b9dbff434e287e1a6d4f36d926f67f11`. Those research changes and their evidence are now committed in `d8eb75b84c58fb6f62367fb40ea424ec973e8d6e`. The earlier base commit alone does not contain the complete research state; evidence records retain their original working-tree provenance and source fingerprints.
+The renderer experiments in sections 4.1–4.5 were produced from research changes based on commit `4e3b5d87b9dbff434e287e1a6d4f36d926f67f11`. Those changes and their evidence are committed in `d8eb75b84c58fb6f62367fb40ea424ec973e8d6e`. The earlier base commit alone does not contain the complete research state; evidence records retain their original working-tree provenance and source fingerprints. Section 4.6 comes from the later observer addition based on `bf59d7d26810a0fb64f68daef1969b409bc4a6eb`, identified by source hashes in its calibration evidence.
 
 Principal evidence files are:
 
@@ -198,7 +214,7 @@ Principal evidence files are:
 - [Fractional sampling control](../evidence/fractional-phase-verification.json).
 - [Combined verification and source fingerprints](../evidence/motion-iteration-verification.json).
 
-The recorded verification reports 222 passing unit tests, lint, and build checks. These establish software checks within their recorded scope, not perceptual validation. Preparing this manuscript did not rerun the experiments or change their evidence dates.
+The historical renderer verification reports 222 passing unit tests, lint and build. The observer addition passes 230 tests, lint and build. These are scoped software checks, not perceptual validation. [Current audit](AUDIT.md#verification-scope) distinguishes these runs and the earlier browser checks; original renderer evidence dates remain intact.
 
 ## 8. Conclusion
 

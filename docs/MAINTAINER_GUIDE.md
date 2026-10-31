@@ -11,7 +11,9 @@ agent-guidance: Check scripts before executing; report unrun procedures and pres
 
 # Maintainer guide
 
-On 2026-10-17, Windows/Node 22.22.3 passed `npm run check` (lint, regressions, build). This does not revalidate human stereo perception, GPU browser behavior or deployment.
+On 2026-10-30, the observer addition based on `bf59d7d` passed lint, 230 tests
+and build on Windows/Node 22.22.3. Earlier 22 GPU/41 gameplay checks retain their
+[scope](AUDIT.md#verification-scope); perception and deployment remain unverified.
 
 ## Working locally
 
@@ -49,15 +51,14 @@ Manually check fullscreen, resize and captured-mouse
 release where Pointer Lock is permitted; key clearing does not prove capture.
 Review human stereo perception separately from numerical correctness.
 
-F3 inspects reconstruction and source-color error. Save JSON settings/metrics,
-PNG native pixels. Escape cancels and restores view/focus.
-[Observer lab](OBSERVER.md) compares motion, color conflicts, ink and propagation.
-Use isolated objects before city A/B; C shows original colors, arrows step.
-`node tests/fusion-research.js` checks CPU prototypes on three fixed scenes. Keep
-controls/thresholds fixed; inspect worst frames and stationary captures.
-Human rejection overrides metrics; harmonics cannot establish ghosts.
+F3 exports JSON metrics/native PNGs; Escape restores view/focus.
+[Observer lab](OBSERVER.md): isolated objects before city A/B; C shows originals.
+`node tests/fusion-research.js` checks three CPU fixtures. Fix thresholds; inspect
+worst frames/rest. Human rejection overrides metrics; harmonics alone cannot prove ghosts.
+F3 remains integer-based; the separate [fractional observer](STEREO-CONSTRAINTS.md#local-fractional-observer) reports calibrated local evidence and abstentions.
 Offline: `node tests/foundation-{luminance,temporal,mechanism,assignment}-research.js`
-(run each expanded filename), and `node tests/fractional-phase-research.js`.
+(run each expanded filename), `node tests/fractional-phase-research.js`, and
+`node tests/fractional-observer-research.js --output evidence/fractional-observer-verification.json`.
 These measure mechanisms, not comfort.
 
 For low FPS, read the persistent backend badge. WebGPU completion latency includes

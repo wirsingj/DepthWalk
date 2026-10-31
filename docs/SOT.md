@@ -52,9 +52,9 @@ reversal and image history cannot alter these modes. Moving-grain comfort remain
 
 ## Evidence and limits
 
-**Verified, 2026-10-30:** [Audit](AUDIT.md#verification-scope) records lint,
-230 tests/build for the [local fractional observer](STEREO-CONSTRAINTS.md#local-fractional-observer),
-based on `bf59d7d`, Windows/Node 22.22.3. Earlier 22 GPU/41 gameplay checks retain their scope.
+**Verified, 2026-10-31:** [Audit](AUDIT.md#verification-scope) records lint,
+238 tests/build for [fractional edge synthesis](STEREO-CONSTRAINTS.md#fractional-edge-synthesis),
+based on `3e19b34`, Windows/Node 22.22.3. Earlier 22 GPU/41 gameplay checks retain their scope.
 Projected-lighting and row-dithered-depth candidates regressed and were removed.
 Metrics do not establish comfort; general reconstruction remains integer-based.
 
@@ -81,9 +81,9 @@ absent geometry. Legacy color bands and harsh moving grain remain unresolved.
 **Human-reported, 2026-10-02:** Depth holds; harsh moving static persists despite
 half contrast. One possible brief diamond band qualifies the earlier band-free report.
 Keyboard release now settles within 180 ms in tested simulations.
-**Next:** Test fractional single-image sampling across occlusions with the calibrated
-local observer. Thin surfaces and newly exposed boundaries remain unmeasured;
-record viewing geometry before human comparisons. [Research and limits](STEREO-CONSTRAINTS.md#local-fractional-observer).
+**Next:** Address propagated edge changes and displayed-sample depth error in the
+fractional prototype before city trials. Thin surfaces and newly exposed boundaries
+remain unmeasured; record viewing geometry before human comparisons. [Limits](STEREO-CONSTRAINTS.md#fractional-edge-synthesis).
 [Audit and work queue](AUDIT.md). Foundation output stays near 2 MP; no image blending.
 
 **Unknown:** First external engine target, supported hardware floor,

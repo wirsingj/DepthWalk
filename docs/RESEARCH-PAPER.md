@@ -3,9 +3,9 @@ role: research-paper
 purpose: Early pre-release manuscript presenting scoped methods, results and limitations.
 not-here: Product authority, release acceptance or a chronological experiment log.
 status: early-pre-release
-version: 0.1-pre.3
-date: 2026-10-30
-evidence-through: 2026-10-30
+version: 0.1-pre.4
+date: 2026-10-31
+evidence-through: 2026-10-31
 durability: Reconcile affected claims with evidence; preserve historical result scope.
 update-when: Research methods, results, interpretations, citations or limitations change.
 read-with: SOT.md; STEREO-CONSTRAINTS.md; MAINTAINER_GUIDE.md.
@@ -15,9 +15,9 @@ read-with: SOT.md; STEREO-CONSTRAINTS.md; MAINTAINER_GUIDE.md.
 
 ## Separating Texture Renewal, Correspondence Changes, and Perceptual Quality
 
-**Early pre-release 0.1-pre.3 — observer calibration added 30 October 2026**
+**Early pre-release 0.1-pre.4 — fractional edge experiment evaluated 31 October 2026**
 
-**Experimental record through 30 October 2026**
+**Experimental record through 31 October 2026**
 
 **Status:** Preliminary engineering study; no controlled human-observer study or peer review.
 This is a manuscript version, not a game release or an accepted rendering algorithm.
@@ -28,7 +28,7 @@ Single-image autostereograms can communicate three-dimensional shape on an ordin
 
 Small prescribed movements produced approximately 67–68 grayscale levels of frame-difference RMS, despite optimistic correspondence-constrained bounds of 0.66–5.78. An offline procedural-seed assignment candidate reduced mean frame differences by approximately 62–83% across four short scene routes, but retained large transition bursts and altered spatial texture statistics. A separate flat-plane experiment reduced a rounding-boundary transition from 25.14 to 2.46 RMS using continuous spatial sampling at matched contrast.
 
-An independent local observer now recovers fractional disparity in scoped calibration controls while abstaining on uncertain boundaries. These findings identify mechanisms worth addressing, without establishing comfortable gameplay. The next priority is evaluating continuous single-image sampling at occlusion boundaries, followed by controlled perceptual testing.
+An independent local observer recovers fractional disparity in scoped calibration controls while abstaining on uncertain boundaries. Extending continuous synthesis to a two-plane occlusion scene reduces rounding-transition peaks, but exposes an out-of-tolerance displayed-depth estimate and texture changes propagated onto stationary background. These unresolved limits precede scene integration and controlled perceptual testing; comfortable gameplay is not established.
 
 ## 1. Objective and motivation
 
@@ -84,7 +84,7 @@ Values are grayscale display codes on a 0–255 scale, not calibrated linear-lig
 
 An image-only decoder estimates disparity before the expected scene disparity is supplied for comparison. Reported reconstruction accuracy means the percentage of sampled estimates within two image pixels of the expected disparity. The general decoder searches integer disparities within configured bounds and compares rounded targets; it cannot establish subpixel accuracy. The separate flat-plane decoder below searches fractional periods but does not resolve occluded scenes. Neither measures human fusion or comfort.
 
-Section 4.6 separately calibrates a new local fractional observer. It does not rescore the historical renderer experiments. [Method, fixed thresholds and limitations](STEREO-CONSTRAINTS.md#local-fractional-observer).
+Section 4.6 separately calibrates a local fractional observer; section 4.7 applies its unchanged thresholds to a single-image edge experiment. Neither rescores the historical renderer experiments. [Method, fixed thresholds and limitations](STEREO-CONSTRAINTS.md#local-fractional-observer).
 
 ### 3.3 Separating mechanisms
 
@@ -178,6 +178,16 @@ Separately ray-rendered eye images tested wide, translated and thin foreground p
 
 These results calibrate sparse image evidence, not a single-image occlusion renderer. Abstention must remain visible when judging subsequent candidates. Blur also retained correct disparity while lowering measured texture gradients, so depth recovery alone cannot certify appearance. [Calibration evidence](../evidence/fractional-observer-verification.json).
 
+### 4.7 Continuous edge synthesis reduces rounding jumps but leaves sampling and motion failures
+
+An offline two-plane renderer traces visible correspondences in continuous screen coordinates and analytically integrates the original finite Fourier field once per pixel. Visibility cuts split integration intervals; left-occluded background starts a separate seed phase. Rounded geometry and 8x nearest-subpixel links provide matched-field controls, scored against original geometry. No previous image, texture renewal or per-frame contrast normalization is used. These are research controls, not a comparison against gameplay.
+
+Across three seeds and four scenes, 371 of 696 continuous-image estimates are accepted; 370 meet the fixed 1/16-pixel tolerance. One thin-post background estimate errs by 0.09375 pixels. All 81 occluded samples are rejected; thin foreground and six newly visible samples remain unmeasured. All 4,524 sampled continuous-field correspondences agree within 3.1e-12 grayscale levels, distinguishing field construction from displayed-image evidence. The error persists without byte rounding and varies with interpolation support; this implicates sampling/observer behavior without establishing a unique cause. Primary thresholds remain unchanged.
+
+Across three seeds, near-depth rounding-crossing peaks fall from 10.45–11.40 to 0.81–0.96 RMS; far-depth crossing peaks fall from 20.14–20.81 to 1.71–1.75. Continuous output retains contrast of 25.68–26.57 and horizontal-gradient RMS of 14.86–16.34. Out-and-back translation/depth routes reproduce exact rest, return and reversal. However, moving silhouettes still cause 1.98–2.69 RMS changes on stationary background away from their projections. Worst-frame reconstruction accepts 738/1,392 estimates, with the same one error.
+
+The candidate remains offline. Reduced rounding jumps do not resolve propagated texture motion, displayed sampling, missing boundary coverage or human comfort. [Method, audit and limitations](STEREO-CONSTRAINTS.md#fractional-edge-synthesis); [reproducible evidence](../evidence/fractional-edge-verification.json).
+
 ## 5. Interpretation and limitations
 
 The findings distinguish three problems: unnecessary texture renewal, abrupt changes imposed by a discrete correspondence representation, and perceptual discomfort that numerical image metrics cannot settle.
@@ -192,7 +202,7 @@ Source-color fidelity and edge enhancement remain objectives rather than establi
 
 ## 6. Next experiments
 
-The immediate next experiment should extend continuous spatial sampling to a foreground–background boundary with explicit visibility from both eyes. The calibrated local observer provides a starting point, with thin-surface and newly visible boundary coverage still unresolved. Record viewing geometry before human comparisons. Avoid interpolating depth across silhouettes; the historical two-pixel accuracy measure alone cannot validate this extension.
+The immediate next experiment should isolate displayed sampling at propagated seed seams and reduce boundary-induced changes on stationary background while preserving visible correspondences. The two-plane prototype establishes neither arbitrary geometry nor complete thin-surface/disocclusion coverage. Record viewing geometry before human comparisons. Avoid interpolating depth across silhouettes; the historical two-pixel accuracy measure alone cannot validate this extension.
 
 Candidates that survive this test should be evaluated across additional seeds, depth ranges, motion speeds, and longer routes. Measurements should include transition peaks, spatial texture changes, reconstruction errors, and exact behavior after stopping.
 
@@ -206,20 +216,23 @@ A separate [temporal-encoding research path](STEREO-CONSTRAINTS.md#temporal-enco
 
 The renderer experiments in sections 4.1–4.5 were produced from research changes based on commit `4e3b5d87b9dbff434e287e1a6d4f36d926f67f11`. Those changes and their evidence are committed in `d8eb75b84c58fb6f62367fb40ea424ec973e8d6e`. The earlier base commit alone does not contain the complete research state; evidence records retain their original working-tree provenance and source fingerprints. Section 4.6 comes from the later observer addition based on `bf59d7d26810a0fb64f68daef1969b409bc4a6eb`, identified by source hashes in its calibration evidence.
 
+Section 4.7 is based on `3e19b347f7ca686f3a88a298f3e187ff566c55f6`; its evidence fingerprints the working edge implementation and unchanged observer. Historical sections retain their original verification scopes; no browser or human study was repeated for the offline edge experiment.
+
 Principal evidence files are:
 
 - [Tiny-step bounds](../evidence/tiny-step-bound-verification.json).
 - [City motion and assignment](../evidence/game-motion-assignment-verification.json).
 - [Synthetic assignment controls](../evidence/foundation-assignment-verification.json).
 - [Fractional sampling control](../evidence/fractional-phase-verification.json).
+- [Fractional edge synthesis](../evidence/fractional-edge-verification.json).
 - [Combined verification and source fingerprints](../evidence/motion-iteration-verification.json).
 
-The historical renderer verification reports 222 passing unit tests, lint and build. The observer addition passes 230 tests, lint and build. These are scoped software checks, not perceptual validation. [Current audit](AUDIT.md#verification-scope) distinguishes these runs and the earlier browser checks; original renderer evidence dates remain intact.
+The historical renderer verification reports 222 passing unit tests, lint and build; the observer addition passes 230. The edge addition passes 238 tests, lint and build, while failing its complete research acceptance gate. These are scoped software checks, not perceptual validation. [Current audit](AUDIT.md#verification-scope) distinguishes these runs and the earlier browser checks; original renderer evidence dates remain intact.
 
 ## 8. Conclusion
 
 The current evidence supports reducing unnecessary texture renewal while investigating continuous spatial representations for abrupt correspondence transitions.
 
-Procedural-seed assignment substantially reduced average frame changes but retained unacceptable risks. Continuous sampling reduced one isolated rounding discontinuity under matched conditions, warranting a visibility-aware extension.
+Procedural-seed assignment substantially reduced average frame changes but retained unacceptable risks. Continuous sampling reduces rounding discontinuities in plane and edge controls, while propagated texture changes and displayed reconstruction remain unresolved.
 
 A comfortable real-time game autostereogram remains an open project objective. The contribution at this stage is a reproducible diagnostic approach and a set of measured constraints that narrow the next experiments.

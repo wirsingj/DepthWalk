@@ -148,9 +148,9 @@ and admits undefined background behind a thin foreground object in extreme
 geometry. Preserve independent two-eye visibility checks rather than assuming
 the shortcut is interchangeable with our solver.
 
-**Experiment implication, not implementation:** after the local fractional
-decoder prerequisites, compare rounded sampling, a specified slope-aware dither
-and supersampled correspondences with one spatial integration pass. Hold output
+**Comparison scope:** the [edge experiment](#fractional-edge-synthesis) compares
+continuous, rounded and supersampled correspondences with one spatial integration
+pass. Specified slope-aware dithering and ramps remain pending. Hold output
 resolution, physical spacing, input geometry and carrier contrast/bandwidth
 comparable. Test ramps, thin foreground posts, sharp boundaries and disocclusion;
 report local depth error, ambiguity, contrast loss and temporal peaks separately.
@@ -492,7 +492,7 @@ recovers sampled periods within 1/32 pixel in its declared search range. This
 contrast differs from gameplay; it is not a comparison to runtime quality.
 Expansion/contraction remains measurable. This plane experiment validates no
 foreground visibility, disocclusion, display calibration or human comfort.
-The following observer calibration prepares a separate scene-boundary experiment.
+The following observer calibration underpins the separate scene-boundary experiment.
 
 ### Local fractional observer
 
@@ -525,8 +525,57 @@ sections 3.4, 5.1, 6.2 and 6.4 reviewed, motivates reverse checks, regional scor
 and subpixel sampling while documenting boundary fattening. Our thresholds are
 engineering controls, not their method reproduced. No dense scene, arbitrary
 slope, outside-range uniqueness, calibrated display or human comfort is established.
-Next apply this observer to explicitly visible single-image scene samples, retaining
-the unmeasured boundary regions and the existing integer regression guards.
+The [single-image edge trial](#fractional-edge-synthesis) retains these thresholds
+and exposes a sampled-pattern limitation absent from these calibration fixtures.
+
+### Fractional edge synthesis
+
+**Implemented/tested, 2026-10-31:** [Offline integrator](../src/debug/fractional-synthesis.js)
+extends the plane control to one vertical foreground post and a background plane.
+It follows continuous right-to-left correspondences using both-eye ray visibility,
+splits intervals at silhouettes and occlusions, and analytically integrates the
+original 12-harmonic seed field once per output pixel. Left-occluded background
+starts a separate seed phase. Amplitude and seed stay fixed; no image/depth history,
+repeated image filtering, contrast normalization or texture renewal is used.
+This research contract is continuous field correspondence, not runtime pixel equality.
+
+[Sweep](../tests/fractional-edge-research.js) and
+[evidence](../evidence/fractional-edge-verification.json), based on `3e19b34`, compare
+continuous, rounded-geometry and 8x nearest-subpixel links with final spatial
+integration. All are scored against **original** geometry. Their carrier parameters
+and resolution match; these controls are not the gameplay renderer or a claim of
+greater perceived pop. Steer/Petz motivate the comparisons, not this implementation.
+
+Across three seeds and wide, translated, thin and off-grid-depth scenes, the fixed
+observer accepts 371/696 continuous-image samples: 370 meet the 1/16-pixel tolerance,
+one errs by .09375 pixels. All 81 occluded samples are rejected. Thin foreground
+and six newly visible samples remain unmeasured. The 8x control likewise has one
+wrong accepted estimate; rounded geometry fails the strict original-depth target.
+All 4,524 sampled visible **continuous-field** pairs agree within 3.1e-12 code levels.
+Thus field equality alone does not certify displayed reconstruction.
+
+The error is at left-image x=168, y=4, seed 317, thin-post background: the small
+window returns 51.53125 versus 51.625 expected; the large window finds the target.
+It persists without byte quantization. A post-sweep interpolation-radius probe
+changes the estimate, while direct pixel-area pair integration agrees. This
+implicates sampling/observer behavior around propagated seed seams, without proving
+a unique cause. Thresholds and primary results remain unchanged. Piecewise Fourier
+fields acquire high frequencies at seams; one pixel-area integral is not an ideal
+band-limit. Do not hide the discrepancy by loosening tolerance or retuning on it.
+
+Four out-and-back routes include translation, thin-post translation, near/far depth
+crossings, and repeated rest. Near-crossing peaks are .81–.96 RMS continuous versus
+10.45–11.40 rounded; far-crossing peaks are 1.71–1.75 versus 20.14–20.81. Continuous
+contrast spans 25.68–26.57 and horizontal-gradient RMS 14.86–16.34; this is no proof
+of identical spectra. Every route returns/reverses exactly and holds rest.
+Lateral motion still produces 1.98–2.69 RMS on stationary background away from the
+projected silhouettes. Worst-frame sampling accepts 738/1,392 estimates, with the
+same one error; no complete depth-coverage or motion-comfort gate passes.
+
+**Audit decision:** keep offline. Resolve displayed sampling and propagated seam
+motion before city/adaptor work. Ramps, slope dithering, material-attached motion,
+broader depths/seeds, performance, viewing calibration and human fusion remain open.
+Gameplay defaults and earlier integer/browser safeguards are unchanged.
 
 ### Other motion candidates
 
@@ -561,7 +610,7 @@ explicit. Human fusion, direction, interaction and comfort require separate acce
 
 1. Preserve accepted band reduction while improving moving-grain comfort and fusion.
    Gameplay bounds and seed transport expose residual transition bursts; the
-   fractional flat-plane control motivates explicit visibility testing next.
+   fractional edge trial leaves displayed sampling and propagated seams unresolved.
    Exact-class reuse and continuous carrier evolution remain unpromoted. Distributed
    renewal is untested and must confront the same transition. Display/viewer
    calibration and complex occlusions remain open; no contrast/timing optimum is established.

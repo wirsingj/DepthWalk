@@ -9,9 +9,9 @@ read-with: SOT.md; ARCHITECTURE.md; MAINTAINER_GUIDE.md.
 
 # Project audit
 
-Scope: `codex/v0.6` based on `bf59d7d26810a0fb64f68daef1969b409bc4a6eb`;
-2026-10-30 revival audit of research, reconstruction and engineering readiness.
-Checkout initially clean; observer added, game/defaults unchanged. [State](SOT.md) owns human direction;
+Scope: `codex/v0.6` based on `3e19b347f7ca686f3a88a298f3e187ff566c55f6`;
+2026-10-31 fractional synthesis audit of geometry, displayed reconstruction and motion.
+Checkout initially clean; offline experiment added, game/defaults unchanged. [State](SOT.md) owns human direction;
 [research](STEREO-CONSTRAINTS.md#motion-carrier) owns perceptual evidence.
 
 ## Assessment
@@ -29,8 +29,8 @@ stable, correctly ordered depth survives movement.
 | Priority | Area | Evidence and consequence |
 | --- | --- | --- |
 | P1 | Product alignment | Whole-image carrier replacement dominates tiny-step flicker; half contrast helps but fails human comfort. Do not promote another cosmetic adjustment as a motion fix. |
-| P1 | Motion transitions | Actual-scene bounds expose avoidable renewal and expensive close-up transitions. Seed transport lowers average changes but retains bursts and alters spatial texture. A fractional flat-plane control passes its scoped checks; occlusions remain untested. [Research](STEREO-CONSTRAINTS.md#motion-carrier). |
-| P1 | Fractional validation | [Local observer](STEREO-CONSTRAINTS.md#local-fractional-observer) passes scoped plane and two-eye boundary calibration, with explicit abstentions. Thin foreground and six newly visible samples remain unmeasured; no single-image occlusion renderer is validated. General F3 reconstruction remains integer-based. Retain both guards and report coverage separately from accuracy. |
+| P1 | Motion transitions | [Continuous edge synthesis](STEREO-CONSTRAINTS.md#fractional-edge-synthesis) reduces rounding-crossing peaks without renewing texture, but lateral silhouettes still propagate changes onto stationary background. Exact rest/return passes; lower mean change does not resolve traveling-band risk. Seed transport retains its earlier burst limitation. |
+| P1 | Fractional validation | The fixed [local observer](STEREO-CONSTRAINTS.md#local-fractional-observer) accepts one out-of-tolerance estimate in 696 single-image edge samples, repeated in worst-frame checks. Continuous pairs agree, but sampled display evidence does not fully pass. Thin foreground and six newly visible samples remain unmeasured. Keep thresholds, abstentions and general integer guards; no promotion. |
 | P1 | Viewing geometry | [Presentation](../src/main.js) preserves CSS spacing across render scaling, but does not measure physical screen scale, eye separation or viewing distance. Settings-matched replay is not physical calibration. Record geometry before human A/B; calibration cannot repair synthesis failures. [Model and limits](STEREO-CONSTRAINTS.md#lenticular-comparison-and-research-frontier). |
 | P2 | Literature scope | The full Stereogram Arcade thesis and Steer's algorithms are reviewed. Slope dithering is underspecified; supersampled links offer a concrete spatial comparator. Neither validates moving comfort. Earlier dither failure and Steer's thin-object visibility limitation require explicit controls. Echo and object-color full methods remain retrieval tasks. [Review](STEREO-CONSTRAINTS.md#stereogram-arcade-and-sampling-references). |
 | Fixed | Research validity | Shared browser/Node bounds match prior synthetic evidence. Counterexamples prevent concentration or translated matches being treated as standalone artifact verdicts. Worst-transition reconstruction and local flow now accompany averages. |
@@ -80,20 +80,21 @@ human gates; existing single-frame acceptance cannot certify these proposals.
   boundary abstentions during candidate trials; thin surfaces and disocclusion
   still need coverage. Record physical screen scale, viewing distance and optional
   eye separation before human comparisons. Existing integer metrics remain guards.
-- [ ] **P1 — Fractional visibility:** extend the matched flat-plane sampling control
-  to a foreground/background edge with explicit visibility from both eyes. Preserve
-  silhouettes, local depth, contrast and distinct matches. Measure texture motion
-  against intended geometry; do not accept lower RMS caused by blur or lost fusion.
-  Specify correspondence at fractional sample positions separately from today's
-  integer RGB-equality invariant; do not quietly relax the runtime contract.
+- [ ] **P1 — Fractional boundary sampling:** the continuous two-plane integrator and
+  supersampled-link control now exercise both-eye visibility. Resolve the displayed
+  reconstruction discrepancy and propagated texture seams before extending geometry.
+  Preserve silhouettes, local depth, contrast and distinct matches; retain original
+  targets and fixed thresholds. Continuous field equality does not establish final
+  pixel sampling quality or relax the runtime integer RGB-equality contract.
   Include the [thesis-derived comparisons](STEREO-CONSTRAINTS.md#stereogram-arcade-and-sampling-references):
   ramps and thin posts, specified slope dithering and supersampled links with
   spatial integration. Keep independent original-geometry targets and matched
   output resolution/contrast; do not reintroduce the rejected dither by name alone.
 - [ ] **P1 — Candidate coverage:** a numerical survivor must pass actual tiny-step,
   sustained turn/approach, disocclusion, pause/resume and exact-rest checks. The
-  seed-transport trial retains bursts; the fractional control covers only a plane.
-  Neither is ready for promotion. Preserve the band-reduction baseline.
+  seed-transport trial retains bursts; fractional synthesis covers only two planes
+  and one post, with unresolved sampling and motion failures. Neither is ready for
+  promotion. Preserve the band-reduction baseline.
 - [ ] **P1 — Human gate:** only after numerical gates pass, compare the candidate
   while walking and turning. Require solid correctly ordered depth, correct motion
   direction/approach, successful object interaction, no recurring traveling bands
@@ -111,12 +112,17 @@ human gates; existing single-frame acceptance cannot certify these proposals.
 
 ## Verification scope
 
-**Current, 2026-10-30:** the isolated fractional observer addition passes
-`npm run check`: lint, 230/230 tests and build on Windows/Node 22.22.3.
-[Calibration evidence](../evidence/fractional-observer-verification.json) fingerprints
-the working sources based on `bf59d7d`; it records 84 plane and 696 two-eye boundary
-samples, not human perception or game-renderer acceptance. No browser suite was
-rerun for this offline addition; gameplay output/defaults are unchanged.
+**Current, 2026-10-31:** the offline fractional edge addition passes
+`npm run check`: lint, 238/238 tests and build on Windows/Node 22.22.3.
+[Edge evidence](../evidence/fractional-edge-verification.json) fingerprints sources
+based on `3e19b34`: three seeds, four static scenes and four out-and-back routes,
+with continuous, rounded and 8x-link treatments. Numerical research gates remain
+unmet despite passing software tests; [findings](STEREO-CONSTRAINTS.md#fractional-edge-synthesis)
+retain errors and missing coverage. No browser suite was rerun; gameplay is unchanged.
+
+The earlier [observer calibration](../evidence/fractional-observer-verification.json),
+based on `bf59d7d`, passed 230 tests/build and its 84 plane/696 two-eye samples.
+That scope does not certify the new single-image edge patterns or human perception.
 
 **Earlier revival check, 2026-10-30:** [Revival verification](../evidence/revival-audit-verification.json)
 records `npm run check`: lint, 222/222 tests and build passed on Windows,

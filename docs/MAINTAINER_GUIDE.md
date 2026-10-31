@@ -11,7 +11,7 @@ agent-guidance: Check scripts before executing; report unrun procedures and pres
 
 # Maintainer guide
 
-On 2026-10-30, the observer addition based on `bf59d7d` passed lint, 230 tests
+On 2026-10-31, the edge experiment based on `3e19b34` passed lint, 238 tests
 and build on Windows/Node 22.22.3. Earlier 22 GPU/41 gameplay checks retain their
 [scope](AUDIT.md#verification-scope); perception and deployment remain unverified.
 
@@ -59,6 +59,7 @@ F3 remains integer-based; the separate [fractional observer](STEREO-CONSTRAINTS.
 Offline: `node tests/foundation-{luminance,temporal,mechanism,assignment}-research.js`
 (run each expanded filename), `node tests/fractional-phase-research.js`, and
 `node tests/fractional-observer-research.js --output evidence/fractional-observer-verification.json`.
+Edge sweep: `node tests/fractional-edge-research.js --output evidence/fractional-edge-verification.json`.
 These measure mechanisms, not comfort.
 
 For low FPS, read the persistent backend badge. WebGPU completion latency includes

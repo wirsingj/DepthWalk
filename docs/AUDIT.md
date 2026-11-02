@@ -9,9 +9,9 @@ read-with: SOT.md; ARCHITECTURE.md; MAINTAINER_GUIDE.md.
 
 # Project audit
 
-Scope: `codex/v0.6` based on `3e19b347f7ca686f3a88a298f3e187ff566c55f6`;
-2026-10-31 fractional synthesis audit of geometry, displayed reconstruction and motion.
-Checkout initially clean; offline experiment added, game/defaults unchanged. [State](SOT.md) owns human direction;
+Scope: `codex/v0.6` based on `0e7cc09fccd86dd4568f7bd2956823a65ebaf4e5`;
+2026-11-01 seam-synthesis audit of sampling, continuity, boundary limits and motion.
+Checkout initially clean; offline experiments adjusted, game/defaults unchanged. [State](SOT.md) owns human direction;
 [research](STEREO-CONSTRAINTS.md#motion-carrier) owns perceptual evidence.
 
 ## Assessment
@@ -29,8 +29,9 @@ stable, correctly ordered depth survives movement.
 | Priority | Area | Evidence and consequence |
 | --- | --- | --- |
 | P1 | Product alignment | Whole-image carrier replacement dominates tiny-step flicker; half contrast helps but fails human comfort. Do not promote another cosmetic adjustment as a motion fix. |
-| P1 | Motion transitions | [Continuous edge synthesis](STEREO-CONSTRAINTS.md#fractional-edge-synthesis) reduces rounding-crossing peaks without renewing texture, but lateral silhouettes still propagate changes onto stationary background. Exact rest/return passes; lower mean change does not resolve traveling-band risk. Seed transport retains its earlier burst limitation. |
-| P1 | Fractional validation | The fixed [local observer](STEREO-CONSTRAINTS.md#local-fractional-observer) accepts one out-of-tolerance estimate in 696 single-image edge samples, repeated in worst-frame checks. Continuous pairs agree, but sampled display evidence does not fully pass. Thin foreground and six newly visible samples remain unmeasured. Keep thresholds, abstentions and general integer guards; no promotion. |
+| P1 | Motion transitions | [Seam constraints](STEREO-CONSTRAINTS.md#seam-constraints-and-boundary-controls) remove field discontinuities but change global texture coefficients as geometry moves. Value/slope and independent-seed treatments fail matched contrast/detail or motion screening; none is promoted. Earlier seed transport retains its burst limitation. |
+| P1 | Fractional validation | Value-only matching removes false accepts in the declared primary/holdout samples. Stronger slope matching misdecodes a thin foreground as background on fresh geometry; independent seeds retain a false occlusion accept. The observer and 1/16-pixel tolerance remain fixed. Missing boundary estimates and general integer guards remain explicit. |
+| Fixed | Boundary limits | A fully offscreen post no longer changes the unconstrained image seed; original twelve baseline images remain byte-identical. Projected-width fading makes vanishing-post corrections tend to zero while preserving continuous pairs. Large-dimension residual calculation avoids argument-list overflow. These are research-module fixes, not gameplay acceptance. |
 | P1 | Viewing geometry | [Presentation](../src/main.js) preserves CSS spacing across render scaling, but does not measure physical screen scale, eye separation or viewing distance. Settings-matched replay is not physical calibration. Record geometry before human A/B; calibration cannot repair synthesis failures. [Model and limits](STEREO-CONSTRAINTS.md#lenticular-comparison-and-research-frontier). |
 | P2 | Literature scope | The full Stereogram Arcade thesis and Steer's algorithms are reviewed. Slope dithering is underspecified; supersampled links offer a concrete spatial comparator. Neither validates moving comfort. Earlier dither failure and Steer's thin-object visibility limitation require explicit controls. Echo and object-color full methods remain retrieval tasks. [Review](STEREO-CONSTRAINTS.md#stereogram-arcade-and-sampling-references). |
 | Fixed | Research validity | Shared browser/Node bounds match prior synthetic evidence. Counterexamples prevent concentration or translated matches being treated as standalone artifact verdicts. Worst-transition reconstruction and local flow now accompany averages. |
@@ -80,12 +81,12 @@ human gates; existing single-frame acceptance cannot certify these proposals.
   boundary abstentions during candidate trials; thin surfaces and disocclusion
   still need coverage. Record physical screen scale, viewing distance and optional
   eye separation before human comparisons. Existing integer metrics remain guards.
-- [ ] **P1 — Fractional boundary sampling:** the continuous two-plane integrator and
-  supersampled-link control now exercise both-eye visibility. Resolve the displayed
-  reconstruction discrepancy and propagated texture seams before extending geometry.
-  Preserve silhouettes, local depth, contrast and distinct matches; retain original
-  targets and fixed thresholds. Continuous field equality does not establish final
-  pixel sampling quality or relax the runtime integer RGB-equality contract.
+- [ ] **P1 — Fractional boundary sampling:** investigate seed functions with local
+  spatial support instead of global coefficient corrections. Value matching improves
+  static decoding but fails joint motion/texture screening; derivative constraints
+  can erase thin-depth evidence. Preserve original geometry, fixed observer thresholds,
+  support-aware birth/death handling and missing coverage. Continuous field equality
+  does not certify displayed depth or relax runtime pixel equality.
   Include the [thesis-derived comparisons](STEREO-CONSTRAINTS.md#stereogram-arcade-and-sampling-references):
   ramps and thin posts, specified slope dithering and supersampled links with
   spatial integration. Keep independent original-geometry targets and matched
@@ -112,13 +113,17 @@ human gates; existing single-frame acceptance cannot certify these proposals.
 
 ## Verification scope
 
-**Current, 2026-10-31:** the offline fractional edge addition passes
-`npm run check`: lint, 238/238 tests and build on Windows/Node 22.22.3.
-[Edge evidence](../evidence/fractional-edge-verification.json) fingerprints sources
-based on `3e19b34`: three seeds, four static scenes and four out-and-back routes,
-with continuous, rounded and 8x-link treatments. Numerical research gates remain
-unmet despite passing software tests; [findings](STEREO-CONSTRAINTS.md#fractional-edge-synthesis)
-retain errors and missing coverage. No browser suite was rerun; gameplay is unchanged.
+**Current, 2026-11-01:** the offline seam experiments pass `npm run check`:
+lint, 249/249 tests and build on Windows/Node 22.22.3.
+[Seam evidence](../evidence/fractional-seam-verification.json) fingerprints sources
+based on `0e7cc09`: seven treatments, 696 primary samples each, four motion routes,
+and 360 fresh-seed/geometry samples for each of four selected treatments. Original
+observer thresholds remain fixed; no candidate passes joint screening. Boundary
+and maximum-dimension checks cover the retained fixes. No browser suite was rerun;
+gameplay is unchanged. [Detailed findings](STEREO-CONSTRAINTS.md#seam-constraints-and-boundary-controls).
+
+The earlier [edge evidence](../evidence/fractional-edge-verification.json), based on
+`3e19b34`, retains its 238-test scope and continuous/rounded/8x-link comparison.
 
 The earlier [observer calibration](../evidence/fractional-observer-verification.json),
 based on `bf59d7d`, passed 230 tests/build and its 84 plane/696 two-eye samples.

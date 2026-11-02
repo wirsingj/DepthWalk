@@ -52,9 +52,9 @@ reversal and image history cannot alter these modes. Moving-grain comfort remain
 
 ## Evidence and limits
 
-**Verified, 2026-10-31:** [Audit](AUDIT.md#verification-scope) records lint,
-238 tests/build for [fractional edge synthesis](STEREO-CONSTRAINTS.md#fractional-edge-synthesis),
-based on `3e19b34`, Windows/Node 22.22.3. Earlier 22 GPU/41 gameplay checks retain their scope.
+**Verified, 2026-11-01:** [Audit](AUDIT.md#verification-scope) records lint,
+249 tests/build for [fractional seam experiments](STEREO-CONSTRAINTS.md#seam-constraints-and-boundary-controls),
+based on `0e7cc09`, Windows/Node 22.22.3. Earlier 22 GPU/41 gameplay checks retain their scope.
 Projected-lighting and row-dithered-depth candidates regressed and were removed.
 Metrics do not establish comfort; general reconstruction remains integer-based.
 
@@ -81,9 +81,9 @@ absent geometry. Legacy color bands and harsh moving grain remain unresolved.
 **Human-reported, 2026-10-02:** Depth holds; harsh moving static persists despite
 half contrast. One possible brief diamond band qualifies the earlier band-free report.
 Keyboard release now settles within 180 ms in tested simulations.
-**Next:** Address propagated edge changes and displayed-sample depth error in the
-fractional prototype before city trials. Thin surfaces and newly exposed boundaries
-remain unmeasured; record viewing geometry before human comparisons. [Limits](STEREO-CONSTRAINTS.md#fractional-edge-synthesis).
+**Next:** Investigate seeds with local spatial support: global seam corrections
+improve static decoding but regress contrast/motion. Thin surfaces and disocclusions
+remain unresolved; record viewing geometry before human comparisons. [Limits](STEREO-CONSTRAINTS.md#seam-constraints-and-boundary-controls).
 [Audit and work queue](AUDIT.md). Foundation output stays near 2 MP; no image blending.
 
 **Unknown:** First external engine target, supported hardware floor,

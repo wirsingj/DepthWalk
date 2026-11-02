@@ -554,14 +554,11 @@ wrong accepted estimate; rounded geometry fails the strict original-depth target
 All 4,524 sampled visible **continuous-field** pairs agree within 3.1e-12 code levels.
 Thus field equality alone does not certify displayed reconstruction.
 
-The error is at left-image x=168, y=4, seed 317, thin-post background: the small
-window returns 51.53125 versus 51.625 expected; the large window finds the target.
-It persists without byte quantization. A post-sweep interpolation-radius probe
-changes the estimate, while direct pixel-area pair integration agrees. This
-implicates sampling/observer behavior around propagated seed seams, without proving
-a unique cause. Thresholds and primary results remain unchanged. Piecewise Fourier
-fields acquire high frequencies at seams; one pixel-area integral is not an ideal
-band-limit. Do not hide the discrepancy by loosening tolerance or retuning on it.
+The error at left-image x=168, y=4, seed 317 persists without byte rounding; the
+small window returns 51.53125 versus 51.625 expected. Pixel-area pairs agree, but
+interpolation support changes the estimate. The [seam study](#seam-constraints-and-boundary-controls)
+extends this diagnosis without changing observer thresholds. One pixel-area
+integral does not band-limit piecewise fields or certify displayed reconstruction.
 
 Four out-and-back routes include translation, thin-post translation, near/far depth
 crossings, and repeated rest. Near-crossing peaks are .81–.96 RMS continuous versus
@@ -572,10 +569,64 @@ Lateral motion still produces 1.98–2.69 RMS on stationary background away from
 projected silhouettes. Worst-frame sampling accepts 738/1,392 estimates, with the
 same one error; no complete depth-coverage or motion-comfort gate passes.
 
-**Audit decision:** keep offline. Resolve displayed sampling and propagated seam
-motion before city/adaptor work. Ramps, slope dithering, material-attached motion,
-broader depths/seeds, performance, viewing calibration and human fusion remain open.
-Gameplay defaults and earlier integer/browser safeguards are unchanged.
+**Audit decision:** keep offline. The following study addresses seams and boundary
+limits; city/adaptor work, ramps, slope dithering, material-attached motion,
+performance, viewing calibration and human fusion remain open.
+
+### Seam constraints and boundary controls
+
+**Verified research, 2026-11-01:** [Diagnostics/sweep](../tests/fractional-seam-research.js)
+and [evidence](../evidence/fractional-seam-verification.json), based on `0e7cc09`,
+retain ten audit/adjust/test loops. Partition diagnostics locate discontinuities
+propagated beyond silhouettes; sampling-grid offsets change the known depth error.
+[PBRT sampling theory, sections 8.1.1–8.1.4](https://pbr-book.org/4ed/Sampling_and_Reconstruction/Sampling_Theory)
+supports distinguishing continuous fields from sampled reconstruction: discontinuities
+are not band limited. This motivates our controls, not a reproduced stereo method.
+
+[Seed projection](../src/debug/fractional-seam-synthesis.js) minimally changes finite
+Fourier coefficients to equate values, optionally derivatives, at correspondence
+seams. Two-pass orthogonalization removes duplicate constraints. Independent seed
+regions provide 48 coefficients instead of 24. Continuous visible pairs remain
+constrained; pixels receive one analytic integral. There is no image history,
+renewal, output normalization or clipping. Projection can reduce signal energy
+and changes texture globally when the geometry moves.
+
+All primary treatments use the same 696 samples, three seeds, four scenes and four
+motion routes; the observer and 1/16-pixel tolerance are unchanged:
+
+| Treatment | Correct accepted | Wrong accepted |
+| --- | ---: | ---: |
+| Original continuous field | 370 | 1 |
+| Six harmonics, matched analytic energy | 362 | 4 |
+| Shared birth phase | 374 | 9 |
+| Value continuity | 395 | 0 |
+| Value and slope continuity | 406 | 0 |
+| Independent seeds with slope continuity | 405 | 0 |
+
+Lower bandwidth loses detail; shared phase worsens errors. Continuity treatments
+fail comparative motion/contrast/detail screening despite cleaner static decoding.
+Screening requires no worse per-route motion (0.1% numerical margin), ≥95% contrast,
+≥90% gradient, no wrong accepts and no loss of correct samples; these engineering
+criteria were specified before holdout, not derived human thresholds.
+
+Fresh seeds 101/509/2027 and three off-grid geometries provide 360 samples per
+held-out treatment. Value-only accepts 246 correctly with no wrong accepts; slope
+matching accepts 274 with four wrong, including thin foreground decoded as
+background. Independent seeds with support fading accept 273 with one false
+occlusion match. The original field has one wrong accept. Missing coverage remains
+visible; neither zero errors nor increased accepted counts establishes comfort.
+
+**Retained fixes:** below one projected pixel, smooth width-based fading makes the
+coefficient correction vanish without blending depth or old images. At world width
+1e-5, difference from empty background falls from 10.36 to .000039 RMS; hard
+constraints otherwise perturb a large region for an almost invisible post.
+Out-of-image partners now seed freely: a fully offscreen post's 15.24 RMS recoloring
+falls to zero, while the original twelve images stay byte-identical. Residual
+evaluation uses bounded iteration at supported 2048×512 dimensions.
+
+**Next:** test seed bases with local spatial support and explicit birth/death
+behavior, preserving fresh-geometry checks. All candidates stay offline; gameplay,
+integer guards and human acceptance requirements are unchanged.
 
 ### Other motion candidates
 

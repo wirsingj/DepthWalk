@@ -24,24 +24,32 @@ function geometry(options){
   const left=[screen(g.foregroundLeft,-g.eyeSeparation/2),screen(g.foregroundRight,-g.eyeSeparation/2)];
   const right=[screen(g.foregroundLeft,g.eyeSeparation/2),screen(g.foregroundRight,g.eyeSeparation/2)];
   // Changes of the right-eye surface, or visibility of its left partner.
-  g.cuts=[-.5,...right,...left.map(x=>x+g.farSeparation)].sort((a,b)=>a-b);
+  g.cuts=[-.5,g.farSeparation-.5,...right,...left.map(x=>x+g.farSeparation)].sort((a,b)=>a-b);
   if(g.cuts.some(v=>!Number.isFinite(v)))throw Error('Invalid projected edge geometry');
   return g;
 }
 
-function carrier(seed,height){
+function carrier(seed,height,harmonics=12,birthPhase=2.173){
+  if(!Number.isInteger(harmonics)||harmonics<1||harmonics>12)throw Error('Invalid harmonic count');
+  if(!Number.isFinite(birthPhase)||Math.abs(birthPhase)>Math.PI)throw Error('Invalid birth phase');
   let state=seed>>>0;
   const random=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};
-  const weights=Float64Array.from({length:12},(_,i)=>1/Math.sqrt(i+1));
-  const amplitude=120/weights.reduce((a,b)=>a+b,0);
-  const phases=Array.from({length:height},()=>Float64Array.from(weights,()=>TAU*random()));
-  return {weights,amplitude,phases};
+  const original=Float64Array.from({length:12},(_,i)=>1/Math.sqrt(i+1));
+  const weights=original.map((w,k)=>k<harmonics?w:0);
+  // Match analytic carrier energy, not measured output-frame contrast. Phases
+  // consume all twelve RNG values per row so every treatment has the same seed.
+  const amplitude=120/original.reduce((a,b)=>a+b,0)*Math.sqrt(
+    original.reduce((sum,w)=>sum+w*w,0)/weights.reduce((sum,w)=>sum+w*w,0));
+  const phases=Array.from({length:height},()=>Float64Array.from(original,()=>TAU*random()));
+  return {weights,amplitude,phases,birthPhase};
 }
 
 function action(x,g){
   if(x<-.5)return {seedKind:0,shift:0};
   const near=g.nearAt(x,g.eyeSeparation/2),shift=near?g.nearSeparation:g.farSeparation;
-  if(!near&&g.nearAt(x-shift,-g.eyeSeparation/2))return {seedKind:1,shift:0};
+  // A partner outside the image is an unconstrained seed, not an in-image
+  // occlusion birth. Otherwise a fully offscreen post can recolor the far field.
+  if(!near&&x-shift>=-.5&&g.nearAt(x-shift,-g.eyeSeparation/2))return {seedKind:1,shift:0};
   return {seedKind:null,shift};
 }
 
@@ -61,7 +69,7 @@ function segments(a,b,g,depth=0){
 function seedValue(x,y,kind,g,c){
   let value=128;
   for(let k=0;k<c.weights.length;k++)value+=c.amplitude*c.weights[k]*Math.cos(
-    TAU*(k+1)*(x-g.origin)/g.farSeparation+c.phases[y][k]+kind*(k+1)*2.173);
+    TAU*(k+1)*(x-g.origin)/g.farSeparation+c.phases[y][k]+kind*(k+1)*c.birthPhase);
   return value;
 }
 
@@ -69,14 +77,25 @@ function integral(part,y,g,c){
   let value=128*(part.b-part.a);
   for(let k=0;k<c.weights.length;k++){
     const frequency=TAU*(k+1)/g.farSeparation;
-    const phase=c.phases[y][k]+part.seedKind*(k+1)*2.173-frequency*g.origin;
+    const phase=c.phases[y][k]+part.seedKind*(k+1)*c.birthPhase-frequency*g.origin;
     value+=c.amplitude*c.weights[k]*(Math.sin(frequency*part.b+phase)-Math.sin(frequency*part.a+phase))/frequency;
   }
   return value;
 }
 
-export function createFractionalEdgeField(options={}){
-  const g=geometry(options),c=carrier(g.seed,g.height);
+export function createFractionalEdgeField(options={}, {harmonics=12,birthPhase=2.173}={}){
+  const g=geometry(options),c=carrier(g.seed,g.height,harmonics,birthPhase);
+  const partition=()=>{
+    let screen=-.5;
+    return segments(-.5,g.width-.5,g).map(part=>{
+      const start=screen;screen+=part.b-part.a;
+      return {start,end:screen,rootStart:part.a,rootEnd:part.b,kind:part.seedKind};
+    });
+  };
+  const area=(center,y)=>{
+    if(!Number.isFinite(center)||center<0||center>g.width-1||!Number.isInteger(y)||y<0||y>=g.height)throw Error('Invalid field area sample');
+    return segments(center-.5,center+.5,g).reduce((sum,part)=>sum+integral(part,y,g,c),0);
+  };
   const sample=(x,y)=>{
     if(!Number.isFinite(x)||x<-.5||x>g.width-.5||!Number.isInteger(y)||y<0||y>=g.height)throw Error('Invalid field sample');
     let current=x;
@@ -95,16 +114,20 @@ export function createFractionalEdgeField(options={}){
     }
     return {width:g.width,height:g.height,pixels};
   };
-  return {sample,render};
+  const spectrum={period:g.farSeparation,origin:g.origin,birthPhase:c.birthPhase,
+    rows:c.phases.map(phases=>Float64Array.from({length:24},(_,j)=>{
+      const k=j>>1;return c.amplitude*c.weights[k]*(j%2?-Math.sin(phases[k]):Math.cos(phases[k]));
+    }))};
+  return {sample,render,partition,area,spectrum};
 }
 
-export function renderFractionalEdge(options={}, {mode='continuous',subpixels=8,quantize=true}={}){
+export function renderFractionalEdge(options={}, {mode='continuous',subpixels=8,quantize=true,harmonics=12,birthPhase=2.173}={}){
   if(!['continuous','rounded','supersampled-links'].includes(mode)||typeof quantize!=='boolean'||
     !Number.isInteger(subpixels)||subpixels<1||subpixels>64)throw Error('Invalid edge sampling mode');
   const original=geometry(options);
   let image;
   if(mode==='supersampled-links'){
-    const g=original,c=carrier(g.seed,g.height),count=g.width*subpixels;
+    const g=original,c=carrier(g.seed,g.height,harmonics,birthPhase),count=g.width*subpixels;
     const roots=new Int32Array(count),kinds=new Uint8Array(count);
     for(let i=0;i<count;i++){
       const x=(i+.5)/subpixels-.5,branch=action(x,g);
@@ -118,7 +141,7 @@ export function renderFractionalEdge(options={}, {mode='continuous',subpixels=8,
     image={width:g.width,height:g.height,pixels};
   }else{
     const target=mode==='rounded'?{...options,nearSeparation:Math.round(original.nearSeparation),farSeparation:Math.round(original.farSeparation)}:options;
-    image=createFractionalEdgeField(target).render();
+    image=createFractionalEdgeField(target,{harmonics,birthPhase}).render();
   }
   if(quantize)image.pixels=Uint8Array.from(image.pixels,v=>Math.round(v));
   return image;

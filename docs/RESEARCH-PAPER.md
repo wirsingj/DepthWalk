@@ -3,9 +3,9 @@ role: research-paper
 purpose: Early pre-release manuscript presenting scoped methods, results and limitations.
 not-here: Product authority, release acceptance or a chronological experiment log.
 status: early-pre-release
-version: 0.1-pre.4
-date: 2026-10-31
-evidence-through: 2026-10-31
+version: 0.1-pre.5
+date: 2026-11-01
+evidence-through: 2026-11-01
 durability: Reconcile affected claims with evidence; preserve historical result scope.
 update-when: Research methods, results, interpretations, citations or limitations change.
 read-with: SOT.md; STEREO-CONSTRAINTS.md; MAINTAINER_GUIDE.md.
@@ -15,9 +15,9 @@ read-with: SOT.md; STEREO-CONSTRAINTS.md; MAINTAINER_GUIDE.md.
 
 ## Separating Texture Renewal, Correspondence Changes, and Perceptual Quality
 
-**Early pre-release 0.1-pre.4 — fractional edge experiment evaluated 31 October 2026**
+**Early pre-release 0.1-pre.5 — seam constraints evaluated 1 November 2026**
 
-**Experimental record through 31 October 2026**
+**Experimental record through 1 November 2026**
 
 **Status:** Preliminary engineering study; no controlled human-observer study or peer review.
 This is a manuscript version, not a game release or an accepted rendering algorithm.
@@ -28,7 +28,7 @@ Single-image autostereograms can communicate three-dimensional shape on an ordin
 
 Small prescribed movements produced approximately 67–68 grayscale levels of frame-difference RMS, despite optimistic correspondence-constrained bounds of 0.66–5.78. An offline procedural-seed assignment candidate reduced mean frame differences by approximately 62–83% across four short scene routes, but retained large transition bursts and altered spatial texture statistics. A separate flat-plane experiment reduced a rounding-boundary transition from 25.14 to 2.46 RMS using continuous spatial sampling at matched contrast.
 
-An independent local observer recovers fractional disparity in scoped calibration controls while abstaining on uncertain boundaries. Extending continuous synthesis to a two-plane occlusion scene reduces rounding-transition peaks, but exposes an out-of-tolerance displayed-depth estimate and texture changes propagated onto stationary background. These unresolved limits precede scene integration and controlled perceptual testing; comfortable gameplay is not established.
+An independent local observer recovers fractional disparity while abstaining on uncertain boundaries. Continuous two-plane synthesis reduces rounding-transition peaks but exposes sampling errors and texture changes on stationary background. Matching seed values at seams improves scoped static reconstruction while worsening motion or contrast. Stronger derivative constraints can misdecode thin foreground on fresh geometry. These limits precede scene integration and perceptual testing; comfortable gameplay is not established.
 
 ## 1. Objective and motivation
 
@@ -188,6 +188,16 @@ Across three seeds, near-depth rounding-crossing peaks fall from 10.45–11.40 t
 
 The candidate remains offline. Reduced rounding jumps do not resolve propagated texture motion, displayed sampling, missing boundary coverage or human comfort. [Method, audit and limitations](STEREO-CONSTRAINTS.md#fractional-edge-synthesis); [reproducible evidence](../evidence/fractional-edge-verification.json).
 
+### 4.8 Seam continuity improves static reconstruction without satisfying joint acceptance
+
+An engineering extension projects finite Fourier seed coefficients onto value-continuity constraints, optionally matching derivatives or separating the two seed regions. The continuous correspondence geometry and image-only observer remain unchanged. No old frames, output normalization or clipping are used; coefficient adjustment can reduce signal energy and change texture globally.
+
+Across the same 696 primary samples, value continuity yields 395 correct accepts without wrong accepts; slope continuity yields 406, and independent seeds 405. Six-harmonic and shared-phase controls instead increase wrong accepts to four and nine. Every treatment fails joint screening: depth alone is insufficient when motion, contrast or detail regresses.
+
+Fresh seeds and off-grid geometry provide 360 samples per selected treatment. Value-only matching yields 246 correct accepts and zero wrong accepts. Slope matching yields 270 correct and four wrong, including thin foreground decoded as background. Independent seeds with support fading yield 272 correct and one false occlusion match. Missing estimates remain unmeasured, not successful. Screening criteria were specified before holdout; the original observer and 1/16-pixel tolerance were not retuned.
+
+Two boundary corrections remain useful independently of promotion. Fading the coefficient correction below one projected pixel removes a finite global change as a post vanishes. Treating out-of-image partners as unconstrained seeds removes 15.24 RMS recoloring from a fully offscreen post while preserving the original twelve baseline images byte-for-byte. [Method, thresholds, evidence and limitations](STEREO-CONSTRAINTS.md#seam-constraints-and-boundary-controls).
+
 ## 5. Interpretation and limitations
 
 The findings distinguish three problems: unnecessary texture renewal, abrupt changes imposed by a discrete correspondence representation, and perceptual discomfort that numerical image metrics cannot settle.
@@ -202,7 +212,7 @@ Source-color fidelity and edge enhancement remain objectives rather than establi
 
 ## 6. Next experiments
 
-The immediate next experiment should isolate displayed sampling at propagated seed seams and reduce boundary-induced changes on stationary background while preserving visible correspondences. The two-plane prototype establishes neither arbitrary geometry nor complete thin-surface/disocclusion coverage. Record viewing geometry before human comparisons. Avoid interpolating depth across silhouettes; the historical two-pixel accuracy measure alone cannot validate this extension.
+The immediate next experiment should investigate seed bases with local spatial support and explicit birth/death behavior, reducing geometry-driven global coefficient changes. Preserve original depth and fresh-geometry checks: smooth seams alone do not establish correct thin-surface or disocclusion evidence. Record viewing geometry before human comparisons. Avoid interpolating depth across silhouettes; the historical two-pixel accuracy measure alone cannot validate this extension.
 
 Candidates that survive this test should be evaluated across additional seeds, depth ranges, motion speeds, and longer routes. Measurements should include transition peaks, spatial texture changes, reconstruction errors, and exact behavior after stopping.
 
@@ -218,6 +228,8 @@ The renderer experiments in sections 4.1–4.5 were produced from research chang
 
 Section 4.7 is based on `3e19b347f7ca686f3a88a298f3e187ff566c55f6`; its evidence fingerprints the working edge implementation and unchanged observer. Historical sections retain their original verification scopes; no browser or human study was repeated for the offline edge experiment.
 
+Section 4.8 is based on `0e7cc09fccd86dd4568f7bd2956823a65ebaf4e5`; [seam evidence](../evidence/fractional-seam-verification.json) fingerprints the final working sources and separates primary sweeps, holdout geometry and boundary controls.
+
 Principal evidence files are:
 
 - [Tiny-step bounds](../evidence/tiny-step-bound-verification.json).
@@ -227,12 +239,12 @@ Principal evidence files are:
 - [Fractional edge synthesis](../evidence/fractional-edge-verification.json).
 - [Combined verification and source fingerprints](../evidence/motion-iteration-verification.json).
 
-The historical renderer verification reports 222 passing unit tests, lint and build; the observer addition passes 230. The edge addition passes 238 tests, lint and build, while failing its complete research acceptance gate. These are scoped software checks, not perceptual validation. [Current audit](AUDIT.md#verification-scope) distinguishes these runs and the earlier browser checks; original renderer evidence dates remain intact.
+Historical renderer, observer and edge additions retain their 222-, 230- and 238-test scopes. The seam addition passes 249 tests, lint and build; no candidate passes joint research screening. These are software checks, not perceptual validation. [Current audit](AUDIT.md#verification-scope) distinguishes these runs and earlier browser checks; original evidence dates remain intact.
 
 ## 8. Conclusion
 
 The current evidence supports reducing unnecessary texture renewal while investigating continuous spatial representations for abrupt correspondence transitions.
 
-Procedural-seed assignment substantially reduced average frame changes but retained unacceptable risks. Continuous sampling reduces rounding discontinuities in plane and edge controls, while propagated texture changes and displayed reconstruction remain unresolved.
+Procedural-seed assignment reduces average frame changes but retains bursts. Continuous sampling reduces rounding discontinuities; seam matching improves some static reconstruction while global texture changes, contrast loss and thin-surface errors remain unresolved.
 
 A comfortable real-time game autostereogram remains an open project objective. The contribution at this stage is a reproducible diagnostic approach and a set of measured constraints that narrow the next experiments.
